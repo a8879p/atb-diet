@@ -9,7 +9,7 @@
       "c": 0.4,
       "price": 249.89,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_117789.jpg",
+      "image": "./cart_files/cart_list_117789.jpg",
       "atb_id": null
     },
     {
@@ -21,7 +21,7 @@
       "c": 0,
       "price": 258.99,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_111637.jpg",
+      "image": "./cart_files/cart_list_111637.jpg",
       "atb_id": null
     },
     {
@@ -69,7 +69,7 @@
       "c": 0.7,
       "price": 79.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_31637.jpg",
+      "image": "./cart_files/cart_list_31637.jpg",
       "atb_id": null
     },
     {
@@ -81,7 +81,7 @@
       "c": 0.7,
       "price": 85.3,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_31621.jpg",
+      "image": "./cart_files/cart_list_31621.jpg",
       "atb_id": null
     },
     {
@@ -93,7 +93,7 @@
       "c": 3.3,
       "price": 55.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_114671.jpg",
+      "image": "./cart_files/cart_list_114671.jpg",
       "atb_id": null
     },
     {
@@ -105,7 +105,7 @@
       "c": 1.8,
       "price": 39.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_89601.jpg",
+      "image": "./cart_files/cart_list_89601.jpg",
       "atb_id": null
     },
     {
@@ -117,7 +117,7 @@
       "c": 1.8,
       "price": 50.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_95087.jpg",
+      "image": "./cart_files/cart_list_95087.jpg",
       "atb_id": null
     },
     {
@@ -129,7 +129,7 @@
       "c": 1.8,
       "price": 48.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_62615.jpg",
+      "image": "./cart_files/cart_list_62615.jpg",
       "atb_id": null
     },
     {
@@ -141,7 +141,7 @@
       "c": 1.8,
       "price": 75.51,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_52751.jpg",
+      "image": "./cart_files/cart_list_52751.jpg",
       "atb_id": null
     },
     {
@@ -153,7 +153,7 @@
       "c": 1.8,
       "price": 60.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_114667.jpg",
+      "image": "./cart_files/cart_list_114667.jpg",
       "atb_id": null
     },
     {
@@ -165,7 +165,7 @@
       "c": 0,
       "price": 95.3,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_114205.jpg",
+      "image": "./cart_files/cart_list_114205.jpg",
       "atb_id": null
     },
     {
@@ -177,7 +177,7 @@
       "c": 0,
       "price": 62.9,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_30115.jpg",
+      "image": "./cart_files/cart_list_30115.jpg",
       "atb_id": null
     },
     {
@@ -189,7 +189,7 @@
       "c": 4,
       "price": 104.9,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_114535.jpg",
+      "image": "./cart_files/cart_list_114535.jpg",
       "atb_id": null
     },
     {
@@ -201,7 +201,7 @@
       "c": 0,
       "price": 152.5,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_107547.png",
+      "image": "./cart_files/cart_list_107547.png",
       "atb_id": null
     },
     {
@@ -213,7 +213,7 @@
       "c": 70,
       "price": 10.2,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_92695.jpg",
+      "image": "./cart_files/cart_list_92695.jpg",
       "atb_id": null
     },
     {
@@ -225,7 +225,7 @@
       "c": 50,
       "price": 23.9,
       "group": "carb",
-      "image": "./лаваш_files/cart_list_112597.jpg",
+      "image": "./cart_files/cart_list_112597.jpg",
       "atb_id": null
     },
     {
@@ -237,7 +237,7 @@
       "c": 50,
       "price": 22.5,
       "group": "carb",
-      "image": "./лаваш_files/cart_list_112599.jpg",
+      "image": "./cart_files/cart_list_112599.jpg",
       "atb_id": null
     },
     {
@@ -249,7 +249,7 @@
       "c": 42.9,
       "price": 37.4,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_273.jpg",
+      "image": "./cart_files/cart_list_273.jpg",
       "atb_id": null
     },
     {
@@ -261,7 +261,7 @@
       "c": 43,
       "price": 32.1,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_109105.jpg",
+      "image": "./cart_files/cart_list_109105.jpg",
       "atb_id": null
     },
     {
@@ -273,7 +273,7 @@
       "c": 42,
       "price": 32.1,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_109107.jpg",
+      "image": "./cart_files/cart_list_109107.jpg",
       "atb_id": null
     },
     {
@@ -285,7 +285,7 @@
       "c": 46,
       "price": 37,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_34131.jpg",
+      "image": "./cart_files/cart_list_34131.jpg",
       "atb_id": null
     },
     {
@@ -297,7 +297,7 @@
       "c": 49,
       "price": 43.8,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_109189.jpg",
+      "image": "./cart_files/cart_list_109189.jpg",
       "atb_id": null
     },
     {
@@ -321,7 +321,7 @@
       "c": 61.8,
       "price": 54.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_81067.png",
+      "image": "./cart_files/cart_list_81067.png",
       "atb_id": null
     },
     {
@@ -333,7 +333,7 @@
       "c": 66.9,
       "price": 24.5,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_303.jpg",
+      "image": "./cart_files/cart_list_303.jpg",
       "atb_id": null
     },
     {
@@ -345,7 +345,7 @@
       "c": 66.3,
       "price": 23.6,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_295.jpg",
+      "image": "./cart_files/cart_list_295.jpg",
       "atb_id": null
     },
     {
@@ -357,7 +357,7 @@
       "c": 62.1,
       "price": 19.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_26599.jpg",
+      "image": "./cart_files/cart_list_26599.jpg",
       "atb_id": null
     },
     {
@@ -369,7 +369,7 @@
       "c": 48.5,
       "price": 27.5,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_331.jpg",
+      "image": "./cart_files/cart_list_331.jpg",
       "atb_id": null
     },
     {
@@ -381,7 +381,7 @@
       "c": 78.9,
       "price": 53.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_174.jpg",
+      "image": "./cart_files/cart_list_174.jpg",
       "atb_id": null
     },
     {
@@ -393,7 +393,7 @@
       "c": 62.1,
       "price": 65.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_173.jpg",
+      "image": "./cart_files/cart_list_173.jpg",
       "atb_id": null
     },
     {
@@ -405,7 +405,7 @@
       "c": 78.9,
       "price": 69.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_115639.jpg",
+      "image": "./cart_files/cart_list_115639.jpg",
       "atb_id": null
     },
     {
@@ -417,7 +417,7 @@
       "c": 60,
       "price": 59.6,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_81063.png",
+      "image": "./cart_files/cart_list_81063.png",
       "atb_id": null
     },
     {
@@ -429,7 +429,7 @@
       "c": 16,
       "price": 12.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_27.png",
+      "image": "./cart_files/cart_list_27.png",
       "atb_id": null
     },
     {
@@ -441,7 +441,7 @@
       "c": 22.8,
       "price": 64.9,
       "group": "carb",
-      "image": "./Кошик_files/cart_list_18797.jpg",
+      "image": "./cart_files/cart_list_18797.jpg",
       "atb_id": null
     },
     {
@@ -453,7 +453,7 @@
       "c": 6,
       "price": 39.95,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_14941.jpg",
+      "image": "./cart_files/cart_list_14941.jpg",
       "atb_id": null
     },
     {
@@ -465,7 +465,7 @@
       "c": 6.9,
       "price": 24.89,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_1941.jpg",
+      "image": "./cart_files/cart_list_1941.jpg",
       "atb_id": null
     },
     {
@@ -477,7 +477,7 @@
       "c": 4.6,
       "price": 34.95,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_1855.jpg",
+      "image": "./cart_files/cart_list_1855.jpg",
       "atb_id": null
     },
     {
@@ -489,7 +489,7 @@
       "c": 8.8,
       "price": 14.89,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_58.png",
+      "image": "./cart_files/cart_list_58.png",
       "atb_id": null
     },
     {
@@ -501,7 +501,7 @@
       "c": 9.3,
       "price": 19.59,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_28.jpg",
+      "image": "./cart_files/cart_list_28.jpg",
       "atb_id": null
     },
     {
@@ -513,7 +513,7 @@
       "c": 33.1,
       "price": 133.89,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_18573.jpg",
+      "image": "./cart_files/cart_list_18573.jpg",
       "atb_id": null
     },
     {
@@ -525,7 +525,7 @@
       "c": 13.8,
       "price": 39.9,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_64.jpg",
+      "image": "./cart_files/cart_list_64.jpg",
       "atb_id": null
     },
     {
@@ -537,7 +537,7 @@
       "c": 14.5,
       "price": 278.9,
       "group": "veggie",
-      "image": "./Кошик_files/cart_list_13148.jpg",
+      "image": "./cart_files/cart_list_13148.jpg",
       "atb_id": null
     },
     {
@@ -609,7 +609,7 @@
       "c": 13.5,
       "price": 31.41,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_111069.jpg",
+      "image": "./cart_files/cart_list_111069.jpg",
       "atb_id": null
     },
     {
@@ -621,7 +621,7 @@
       "c": 4.7,
       "price": 92.16,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_115823.jpg",
+      "image": "./cart_files/cart_list_115823.jpg",
       "atb_id": null
     },
     {
@@ -633,7 +633,7 @@
       "c": 4,
       "price": 63.2,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_91423.jpg",
+      "image": "./cart_files/cart_list_91423.jpg",
       "atb_id": null
     },
     {
@@ -645,7 +645,7 @@
       "c": 12,
       "price": 71.2,
       "group": "protein",
-      "image": "./Кошик_files/cart_list_91427.jpg",
+      "image": "./cart_files/cart_list_91427.jpg",
       "atb_id": null
     },
     {
@@ -669,7 +669,7 @@
       "c": 0,
       "price": 66.9,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_111311.jpg",
+      "image": "./cart_files/cart_list_111311.jpg",
       "atb_id": null
     },
     {
@@ -681,7 +681,7 @@
       "c": 0,
       "price": 66.9,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_111309.jpg",
+      "image": "./cart_files/cart_list_111309.jpg",
       "atb_id": null
     },
     {
@@ -693,7 +693,7 @@
       "c": 0,
       "price": 81.36,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_111321.jpg",
+      "image": "./cart_files/cart_list_111321.jpg",
       "atb_id": null
     },
     {
@@ -705,7 +705,7 @@
       "c": 0,
       "price": 89.54,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_33213.jpg",
+      "image": "./cart_files/cart_list_33213.jpg",
       "atb_id": null
     },
     {
@@ -717,7 +717,7 @@
       "c": 5,
       "price": 23.92,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_80517.jpg",
+      "image": "./cart_files/cart_list_80517.jpg",
       "atb_id": null
     },
     {
@@ -729,7 +729,7 @@
       "c": 0,
       "price": 53.13,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_48117.jpg",
+      "image": "./cart_files/cart_list_48117.jpg",
       "atb_id": null
     },
     {
@@ -741,7 +741,7 @@
       "c": 0,
       "price": 87.84,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_1147.jpg",
+      "image": "./cart_files/cart_list_1147.jpg",
       "atb_id": null
     },
     {
@@ -753,7 +753,7 @@
       "c": 0,
       "price": 276.14,
       "group": "fat",
-      "image": "./Кошик_files/cart_list_2669.jpg",
+      "image": "./cart_files/cart_list_2669.jpg",
       "atb_id": null
     },
     {
@@ -801,7 +801,7 @@
       "c": 99.8,
       "price": 32.9,
       "group": "sweetener",
-      "image": "./Кошик_files/cart_list_81069.jpg",
+      "image": "./cart_files/cart_list_81069.jpg",
       "atb_id": null
     },
     {
@@ -813,7 +813,7 @@
       "c": 56,
       "price": 97.9,
       "group": "sweetener",
-      "image": "./Кошик_files/cart_list_108255.png",
+      "image": "./cart_files/cart_list_108255.png",
       "atb_id": null
     }
   ]
