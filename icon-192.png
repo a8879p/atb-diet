@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="112" fill="#ffffff"/>
-  <rect x="24" y="24" width="464" height="464" rx="88" fill="#f4f4f5"/>
-  <text x="256" y="230" font-family="system-ui, Roboto, Arial, sans-serif" font-weight="800" font-size="90" text-anchor="middle" letter-spacing="-2">
-    <tspan fill="#e30613">ATB</tspan><tspan fill="#1f2937">-DIET</tspan>
-  </text>
-  <path d="M170 320 C170 270, 342 270, 342 320 C342 360, 295 400, 256 420 C217 400, 170 360, 170 320 Z" fill="#047857"/>
-</svg>
+
