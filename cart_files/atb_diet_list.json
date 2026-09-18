@@ -537,7 +537,7 @@
       "c": 2.5,
       "price": 60,
       "group": "veggie",
-      "image": "",
+      "image": "cart_files/cart_list_6775.jpg",
       "atb_id": null
     },
     {
@@ -549,7 +549,7 @@
       "c": 3.8,
       "price": 80,
       "group": "veggie",
-      "image": "",
+      "image": "cart_files/cart_list_76657.jpg",
       "atb_id": null
     },
     {
@@ -561,31 +561,7 @@
       "c": 4.7,
       "price": 20,
       "group": "veggie",
-      "image": "",
-      "atb_id": null
-    },
-    {
-      "name": "Апельсин",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0.9,
-      "f": 0.2,
-      "c": 8.1,
-      "price": 65,
-      "group": "veggie",
-      "image": "",
-      "atb_id": null
-    },
-    {
-      "name": "Броколі",
-      "unit": "g",
-      "weight": 1000,
-      "p": 2.8,
-      "f": 0.4,
-      "c": 5.2,
-      "price": 90,
-      "group": "veggie",
-      "image": "",
+      "image": "cart_files/cart_list_18495.jpg",
       "atb_id": null
     },
     {
@@ -709,18 +685,6 @@
       "atb_id": null
     },
     {
-      "name": "Олія 0,5л Своя лінія соняшникова рафінована",
-      "unit": "g",
-      "weight": 500,
-      "p": 0,
-      "f": 99.9,
-      "c": 0,
-      "price": 53.13,
-      "group": "fat",
-      "image": "./cart_files/cart_list_48117.jpg",
-      "atb_id": null
-    },
-    {
       "name": "Олія 0,9л Своя лінія соняшникова рафінована",
       "unit": "g",
       "weight": 900,
@@ -730,18 +694,6 @@
       "price": 87.84,
       "group": "fat",
       "image": "./cart_files/cart_list_1147.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Олія 3л Своя лінія соняшникова рафінована",
-      "unit": "g",
-      "weight": 3000,
-      "p": 0,
-      "f": 99.9,
-      "c": 0,
-      "price": 276.14,
-      "group": "fat",
-      "image": "./cart_files/cart_list_2669.jpg",
       "atb_id": null
     },
     {
