@@ -301,18 +301,6 @@
       "atb_id": null
     },
     {
-      "name": "Хліб цільнозерновий",
-      "unit": "g",
-      "weight": 400,
-      "p": 9,
-      "f": 2,
-      "c": 43,
-      "price": 30,
-      "group": "carb",
-      "image": "",
-      "atb_id": null
-    },
-    {
       "name": "Крупа 0,5 кг Trapeza вівсяна плющена",
       "unit": "g",
       "weight": 500,
