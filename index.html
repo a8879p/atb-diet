@@ -3,6 +3,10 @@
 <head>
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#047857">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ATB-Diet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ATB-Diet v2.1</title>
@@ -23,6 +27,8 @@
 --macro-protein: #2563eb;
 --macro-fat: #b45309;
 --macro-carb: #047857;
+--pt-animal: #378ADD;
+--pt-plant: #1D9E75;
 --macro-kcal: #1f2937;
 --radius: 8px;
 --radius-lg: 12px;
@@ -595,71 +601,93 @@ color: var(--text-muted)
 .dev-chart {
 border: 1px solid var(--border);
 border-radius: var(--radius);
-padding: 16px 10px 14px
+padding: 10px 10px 8px
 }
-.dev-rings {
+.dev-tiles {
 display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 4px
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 6px;
+align-items: stretch
 }
-@media(max-width:400px) {
-.dev-rings {
-grid-template-columns: repeat(2, 1fr);
-row-gap: 16px
+@media(max-width:340px) {
+.dev-tiles {
+grid-template-columns: repeat(2, minmax(0, 1fr))
 }
 }
-.dev-ring-item {
+.dev-tile {
+--st: #047857;
+--st-text: #047857;
+background: var(--border-soft);
+border-radius: 8px;
+padding: 6px 8px 7px;
 display: flex;
 flex-direction: column;
-align-items: center;
-text-align: center
+min-width: 0
 }
-.dev-ring-wrap {
-position: relative;
-width: 64px;
-height: 64px
+.dev-tile.low {
+--st: #f2b90c;
+--st-text: #a16207
 }
-.dev-ring-svg {
-width: 64px;
-height: 64px;
-transform: rotate(-90deg)
+.dev-tile.high {
+--st: #dc2626;
+--st-text: #dc2626
 }
-.dev-ring-track {
-fill: none;
-stroke: var(--border-soft);
-stroke-width: 7
+.dev-tile.tappable {
+cursor: pointer
 }
-.dev-ring-fill {
-fill: none;
-stroke-width: 7;
-stroke-linecap: round
-}
-.dev-ring-center {
-position: absolute;
-inset: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 13px;
-font-weight: 800;
-font-variant-numeric: tabular-nums
-}
-.dev-ring-name {
+.dev-tile-name {
 font-size: 11px;
 font-weight: 700;
-margin-top: 7px
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis
 }
-.dev-ring-val {
-font-size: 10.5px;
-color: var(--text-muted);
-margin-top: 1px;
+.dev-tile-val {
+font-size: 15px;
+font-weight: 800;
+line-height: 1.25;
+font-variant-numeric: tabular-nums
+}
+.dev-tile-delta {
+font-size: 11px;
+font-weight: 600;
+color: var(--st-text);
+font-variant-numeric: tabular-nums
+}
+.dev-tile-bar {
+margin-top: auto;
+padding-top: 4px
+}
+.dev-tile-bar>i {
+display: block;
+height: 3px;
+border-radius: 2px;
+background: var(--st)
+}
+.pt-strip {
+display: flex;
+height: 4px;
+border-radius: 2px;
+overflow: hidden;
+margin-top: 3px
+}
+.pt-strip>i {
+display: block;
+height: 100%
+}
+.pt-nums {
+display: flex;
+justify-content: space-between;
+font-size: 11px;
+font-weight: 600;
+margin-top: 2px;
 font-variant-numeric: tabular-nums
 }
 .dev-legend {
 font-size: 10px;
 color: var(--text-light);
 text-align: center;
-margin-top: 14px
+margin-top: 8px
 }
 .activity-desc {
 font-size: 11px;
@@ -1283,11 +1311,11 @@ padding: 10px 14px
 .cook-row {
 padding: 13px 14px
 }
-.dev-ring-name {
+.dev-tile-name {
 font-size: 12px
 }
-.dev-ring-val {
-font-size: 11.5px
+.dev-tile-delta {
+font-size: 12px
 }
 .note {
 font-size: 14px;
@@ -1662,9 +1690,27 @@ data-i18n="profile.restore">📂 Восстановить</button>
 </div>
 <input type="file" id="import-dump" accept=".json" style="display:none">
 </div>
+<div class="section" style="margin-top:20px">
+<div class="section-title" data-i18n="reminders.title2">Напоминания о приёме пищи</div>
+<div class="form-group"><label class="form-label" data-i18n="reminders.enable">Уведомления</label>
+<div class="seg"><button class="seg-item active" id="rem-off" onclick="Reminders.toggle(false)"
+data-i18n="reminders.off">Выкл</button><button class="seg-item" id="rem-on"
+onclick="Reminders.toggle(true)" data-i18n="reminders.on">Вкл</button></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="reminders.sound">Звук</label>
+<div class="seg"><button class="seg-item" id="rem-sound-off" onclick="Reminders.toggleSound(false)"
+data-i18n="reminders.off">Выкл</button><button class="seg-item active" id="rem-sound-on"
+onclick="Reminders.toggleSound(true)" data-i18n="reminders.on">Вкл</button></div>
+</div>
+<div class="activity-desc" id="rem-status"></div>
+<div class="activity-desc" data-i18n="reminders.hint" style="margin-top:6px;opacity:0.7">Работает, пока вкладка открыта (на переднем плане или недавно свёрнута); если браузер полностью закрыт или долго простоял в фоне, напоминание может не сработать — это ограничение платформы.</div>
+<button class="btn btn-ghost" style="margin-top:10px" onclick="Reminders.testNow()"
+data-i18n="reminders.test_btn">🔔 Проверить</button>
+</div>
 </div>
 <!-- ========== INFO TAB ========== -->
 <div class="tab" id="tab-info">
+
 <div class="section">
 <div class="section-title">📚 Научная база спортивной диетологии</div>
 <div class="info-intro">
@@ -1897,6 +1943,11 @@ labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — угл
 };
 const I18N = {
 ru: {
+'reminders.title2': 'Напоминания о приёме пищи', 'reminders.enable': 'Уведомления', 'reminders.sound': 'Звук',
+'reminders.on': 'Вкл', 'reminders.off': 'Выкл', 'reminders.test_btn': '🔔 Проверить',
+'reminders.title': 'Пора поесть 🍽', 'reminders.test': 'Тестовое напоминание',
+'reminders.unsupported': 'Браузер не поддерживает уведомления', 'reminders.blocked': 'Уведомления заблокированы в настройках браузера — разрешите их для этого сайта',
+'reminders.active_until': 'Следующее уведомление:', 'reminders.hint': 'Работает, пока вкладка открыта (на переднем плане или недавно свёрнута); если браузер полностью закрыт или долго простоял в фоне, напоминание может не сработать — это ограничение платформы.',
 'app.title': 'ATB-Diet', 'nav.plan': 'План', 'nav.products': 'Продукты', 'nav.cook': 'Готовка',
 'nav.progress': 'Прогресс', 'nav.profile': 'Профиль', 'nav.info': 'Инфо',
 'shop.title': 'Продукты', 'shop.add': '+ Добавить продукт', 'shop.import': '📂 Загрузить JSON',
@@ -1934,6 +1985,7 @@ ru: {
 'toast.empty': 'Список пуст', 'day.empty': 'Список продуктов пуст.', 'day.kcal': 'ккал',
 'day.protein': 'белки', 'day.fat': 'жиры', 'day.carb': 'углеводы',
 'dev.legend': '🟡 недобор (<-10%) · 🟢 норма (±10%) · 🔴 перебор (>+10%)',
+'dev.animal': 'животный', 'dev.plant': 'растительный',
 'diag.title': '⚠ Отклонения:', 'diag.protein': 'Белки', 'diag.fat': 'Жиры', 'diag.carbs': 'Углеводы', 'diag.kcal': 'Калории',
 'toast.meas_saved': 'Замер сохранён', 'toast.enter_weight': 'Укажи вес', 'toast.enter_name': 'Укажи название',
 'toast.enter_name_price': 'Укажи название и цену', 'meas.none': 'Пока нет замеров.',
@@ -1962,6 +2014,11 @@ ru: {
 'profile.activity_1_9': 'Коэф. 1.9 · 2 тренировки в день.'
 },
 ua: {
+'reminders.title2': 'Нагадування про прийом їжі', 'reminders.enable': 'Сповіщення', 'reminders.sound': 'Звук',
+'reminders.on': 'Увімк', 'reminders.off': 'Вимк', 'reminders.test_btn': '🔔 Перевірити',
+'reminders.title': 'Час поїсти 🍽', 'reminders.test': 'Тестове нагадування',
+'reminders.unsupported': 'Браузер не підтримує сповіщення', 'reminders.blocked': 'Сповіщення заблоковані в налаштуваннях браузера — дозвольте їх для цього сайту',
+'reminders.active_until': 'Наступне сповіщення:', 'reminders.hint': 'Працює, поки вкладка відкрита (на передньому плані або нещодавно згорнута); якщо браузер повністю закритий або довго був у фоні, нагадування може не спрацювати — це обмеження платформи.',
 'app.title': 'ATB-Diet', 'nav.plan': 'План', 'nav.products': 'Продукти', 'nav.cook': 'Готування',
 'nav.progress': 'Прогрес', 'nav.profile': 'Профіль', 'nav.info': 'Інфо',
 'shop.title': 'Продукты', 'shop.add': '+ Додати продукт', 'shop.import': '📂 Завантажити JSON',
@@ -1999,6 +2056,7 @@ ua: {
 'toast.empty': 'Список порожній', 'day.empty': 'Список продуктів порожній.', 'day.kcal': 'ккал',
 'day.protein': 'білки', 'day.fat': 'жири', 'day.carb': 'вуглеводи',
 'dev.legend': '🟡 нестача (<-10%) · 🟢 норма (±10%) · 🔴 перевищення (>+10%)',
+'dev.animal': 'тваринний', 'dev.plant': 'рослинний',
 'diag.title': '⚠ Відхилення:', 'diag.protein': 'Білки', 'diag.fat': 'Жири', 'diag.carbs': 'Вуглеводи', 'diag.kcal': 'Калорії',
 'toast.meas_saved': 'Замір збережено', 'toast.enter_weight': 'Вкажи вагу', 'toast.enter_name': 'Вкажи назву',
 'toast.enter_name_price': 'Вкажи назву та ціну', 'meas.none': 'Поки що немає замірів.',
@@ -2049,7 +2107,7 @@ return { value: parseFloat(m[1].replace(',', '.')) || CONFIG.DEFAULTS.defaultWei
 const AppState = {
 data: {
 profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', macroLevel: 'optim' },
-weekList: [], measHistory: [], cookChecks: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru' }
+weekList: [], measHistory: [], cookChecks: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
 },
 runtime: { products: [], menuPlan: null, currentDay: 0, targets: { kcal: 0, protein: 0, fat: 0, carbs: 0, fiber: 0, water: 0 }, lastMenuParams: null },
 init() {
@@ -2060,6 +2118,8 @@ if (!this.data.progress) this.data.progress = { days: {}, meals: {}, cyclesCompl
 if (!this.data.progress.days) this.data.progress.days = {};
 if (!this.data.progress.meals) this.data.progress.meals = {};
 if (typeof this.data.progress.cyclesCompleted !== 'number') this.data.progress.cyclesCompleted = 0;
+if (!this.data.settings) this.data.settings = { lang: 'ru' };
+if (!this.data.settings.reminders) this.data.settings.reminders = { enabled: false, sound: true };
 },
 save(key) {
 try { localStorage.setItem(CONFIG.STORAGE_PREFIX + key, JSON.stringify(this.data[key])); return true; } catch (e) {
@@ -2159,6 +2219,9 @@ isBreadOrLavash: n => /хліб|хлеб|лаваш|батон|багет/i.test
 isPotato: n => /картопл|картофел|potato/i.test(n || ''),
 isSweetener: n => /цукор|сахар|мед|мёд|сироп/i.test(n || ''),
 isGarlic: n => /часник|чеснок|garlic/i.test(n || ''),
+isPlantMarked: n => /соєв|соев|рослин|растит|веган|vegan|тофу|tofu|кокос|мигдал|миндал|горіх|орех|арахіс|арахис/i.test(n || ''),
+isAnimalName: n => /філе|филе|курк|курят|куриц|курча|індич|индей|яловичин|говяд|свинин|телятин|баранин|кролик|(?<![а-яіїєґё])(?:риб|рыб)|тунец|тунець|лосос|сьомг|семг|хек|минтай|скумбр|оселедц|сельд|яйц|яйце|молок|кефір|кефир|йогурт|(?<![а-яіїєґё])сир(?:ок|н\S*)?(?![а-яіїєґё])|творог|казеїн|казеин|печінк|печень|паштет|шпрот|сардин|тушонк|тушёнк|м['’ʼ]?яс|ковбас|сосиск|egg|chicken|beef|pork|fish|tuna|cheese|milk/i.test(n || ''),
+isAnimalProtein(item) { const n = (item && item.name) || ''; if (this.isPlantMarked(n)) return false; return this.isAnimalName(n) || this.get(item) === 'protein'; },
 isCasein: n => /казеїн|казеин|творог|кисломолочний сир|сир кисломолочний|кисломолочный сыр|cottage|quark|skyr/i.test(n || ''),
 isPasta: n => /вермішель|вермишель|макарон|спагеті|локшина|лапша|паста|pasta|spaghetti|noodle/i.test(n || ''),
 isUnrefinedOil: n => /нерафін|нерафин|extra virgin/i.test(n || ''),
@@ -2498,18 +2561,22 @@ if (grain) setWeight(m, grain, grain.weight + addW); else addNew(m, item, addW);
 }
 // 3) Последний резерв — если жир всё ещё выше цели даже после обнуления масла, слегка подрезаем порцию мяса в её собственных min/max (она же источник оставшегося жира). Овощи, творог и число яиц не трогаем никогда.
 if (dayTotals.f - targets.fatG > 1 && !within(dayTotals.f, targets.fatG)) {
-const total = mains.length;
-mains.forEach((m, idx) => {
+const proteinSlots = [
+...snacks.map(m => ({ meal: m, floor: cut ? CONFIG.PORTIONS.meatSnackMin : 25 })),
+...mains.map(m => ({ meal: m, floor: CONFIG.PORTIONS.meatMainMin }))
+];
+const total = proteinSlots.length;
+proteinSlots.forEach((entry, idx) => {
 const remaining = dayTotals.f - targets.fatG;
 if (remaining <= 1) return;
 const share = remaining / (total - idx);
-const meat = findComp(m, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name));
+const meat = findComp(entry.meal, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name));
 if (!meat) return;
 const fatPerG = meat.f / meat.weight;
 if (fatPerG <= 0) return;
-const minW = CONFIG.PORTIONS.meatMainMin;
+const minW = entry.floor;
 const wantCutG = Math.min(Math.max(0, meat.weight - minW), share / fatPerG);
-if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCutG) / 5) * 5); setWeight(m, meat, newW); }
+if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCutG) / 5) * 5); setWeight(entry.meal, meat, newW); }
 });
 }
 },
@@ -2582,13 +2649,25 @@ let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
 if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
 if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
-[1, 3].forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; pW = protPerG > 0 ? (targets.proteinG * 0.13) / protPerG : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
+[1, 3].forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
 const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
 if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
-let proteinGap = Math.max(0, targets.proteinG - daySum.p);
 const meats = [0, 2, 4].map(m => this.selectProtein(m, d, pools, p.goal)).filter(Boolean);
-if (meats.length) { const avgProtDensity = meats.reduce((sum, g) => sum + (g.p / g.weight), 0) / meats.length; let meatW = (proteinGap / avgProtDensity) / meats.length; const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMin : 45; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMax : 250; meatW = Math.max(minPW, Math.min(maxPW, Math.round(meatW / 5) * 5)); [0, 2, 4].forEach((m, i) => { addC(m, meats[i], meatW); }); }
+if (meats.length) {
+const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMin : 45;
+const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMax : 250;
+[0, 2, 4].forEach((m, i) => {
+const meatItem = meats[i]; if (!meatItem) return;
+const protPerG = meatItem.p / meatItem.weight;
+if (protPerG <= 0) return;
+const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0);
+const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.18);
+let meatW = Math.max(0, (mealTarget - existingP) / protPerG);
+meatW = Math.max(minPW, Math.min(maxPW, Math.round(meatW / 5) * 5));
+addC(m, meatItem, meatW);
+});
+}
 const meals = [];
 for (let m = 0; m < CONFIG.MEALS.mainCount; m++) {
 const fatBudget = Math.max(0, targets.fatG - daySum.f);
@@ -2670,9 +2749,8 @@ const checkHtml = isDone
 htmlArr.push(`<div class="bju-card"><div class="meal-title">${i + 1}. ${CONFIG.MEALS.names[i]} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
-htmlArr.push(`<div class="section"><div class="section-title">${t('plan.dayTotal')}</div><div class="stats-row"><div class="stat"><div class="stat-value">~${Targets.round50(dkcal)}</div><div class="stat-label">${t('day.kcal')}</div></div><div class="stat"><div class="stat-value">~${Targets.round5(DB)} г</div><div class="stat-label">${t('day.protein')}</div></div><div class="stat"><div class="stat-value">~${Targets.round5(DF)} г</div><div class="stat-label">${t('day.fat')}</div></div><div class="stat"><div class="stat-value">~${Targets.round10(DC)} г</div><div class="stat-label">${t('day.carb')}</div></div></div></div>`);
 // Баланс КБЖУ
-if (rawTargets) htmlArr.push(this.renderDevChart(dkcal, DB, DF, DC, rawTargets));
+if (rawTargets) htmlArr.push(this.renderDevChart(dkcal, DB, DF, DC, rawTargets, this.proteinSplit(dayData)));
 // Служебные переменные для кнопок
 const completedCount = Progress.getCompletedCount();
 const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
@@ -2699,18 +2777,33 @@ el.innerHTML = htmlArr.join('');
 },
 sortRank(comp) { const name = comp.item.name || ''; if (Classify.isFillet(name)) return 0; if (Classify.isEggName(name)) return 1; if (Classify.isGarlic(name)) return 4; if (Classify.isYogurt(name)) return 10; const cat = Classify.get(comp.item); if (cat === 'protein') return 2; if (cat === 'carb') return 3; if (cat === 'veggie' || cat === 'sweetener') return 4.5; if (cat === 'fat') return 5; return 6; },
 devStatus(actual, target) { if (!target || target <= 0) return 'ok'; const ratio = actual / target; if (ratio < 1 - CONFIG.MACRO.tolerance) return 'low'; if (ratio > 1 + CONFIG.MACRO.tolerance) return 'high'; return 'ok'; },
-devRing(label, actual, target, unit, macroColor) {
-const t_ = target > 0 ? target : 0.0001;
-const ratio = actual / t_;
-const status = this.devStatus(actual, target);
-const color = status === 'low' ? '#f2b90c' : (status === 'high' ? '#dc2626' : '#047857');
-const pct = Math.round(ratio * 100);
-const clamped = Math.min(1, Math.max(0, ratio));
-const r = 26, c = 2 * Math.PI * r;
-const offset = c * (1 - clamped);
-return `<div class="dev-ring-item"><div class="dev-ring-wrap"><svg class="dev-ring-svg" viewBox="0 0 64 64"><circle class="dev-ring-track" cx="32" cy="32" r="${r}"/><circle class="dev-ring-fill" cx="32" cy="32" r="${r}" stroke="${color}" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/></svg><div class="dev-ring-center" style="color:${color}">${pct}%</div></div><div class="dev-ring-name" style="color:${macroColor}">${label}</div><div class="dev-ring-val">${actual.toFixed(0)}/${target.toFixed(0)} ${unit}</div></div>`;
+proteinSplit(dayData) {
+let animal = 0, total = 0;
+dayData.meals.forEach(m => m.components.forEach(c => { total += c.p; if (Classify.isAnimalProtein(c.item)) animal += c.p; }));
+if (total <= 0) return null;
+const animalPct = Math.round(animal / total * 100);
+return { animalG: animal, plantG: total - animal, animalPct, plantPct: 100 - animalPct };
 },
-renderDevChart(dkcal, DB, DF, DC, t_) { return `<div class="section"><div class="section-title">${t('plan.balance')}</div><div class="dev-chart"><div class="dev-rings">${this.devRing(t('diag.kcal'), dkcal, t_.kcal, t('day.kcal'), 'var(--macro-kcal)')}${this.devRing(t('day.protein'), DB, t_.proteinG, 'г', 'var(--macro-protein)')}${this.devRing(t('day.fat'), DF, t_.fatG, 'г', 'var(--macro-fat)')}${this.devRing(t('day.carb'), DC, t_.carbsG, 'г', 'var(--macro-carb)')}</div><div class="dev-legend">${t('dev.legend')}</div></div></div>`; },
+splitText(s) { return `${t('diag.protein')}: ${t('dev.animal')} ${s.animalPct}% · ${Math.round(s.animalG)} г, ${t('dev.plant')} ${s.plantPct}% · ${Math.round(s.plantG)} г`; },
+showProteinSplit() {
+const d = this.getDayData(AppState.runtime.currentDay);
+const s = d ? this.proteinSplit(d) : null;
+if (s) UI.toast(this.splitText(s));
+},
+devTile(label, actual, target, unit, macroColor, extraHtml, split) {
+const status = this.devStatus(actual, target);
+const diff = Math.round(actual - target);
+const delta = target > 0 ? `${diff > 0 ? '+' : diff < 0 ? '−' : '±'}${Math.abs(diff)}${unit ? ' ' + unit : ''}` : '';
+const pct = target > 0 ? Math.round(actual / target * 100) : 0;
+let title = target > 0 ? `${Math.round(actual)} / ${Math.round(target)} ${unit || t('day.kcal')} (${pct}%)` : '';
+if (split) title += '\n' + this.splitText(split);
+const tap = split ? ' tappable" onclick="Menu.showProteinSplit()' : '';
+return `<div class="dev-tile ${status}${tap}" title="${UI.escapeAttr(title)}"><div class="dev-tile-name" style="color:${macroColor}">${label}</div><div class="dev-tile-val">${Math.round(actual)}</div><div class="dev-tile-delta">${delta}</div><div class="dev-tile-bar"><i></i>${extraHtml || ''}</div></div>`;
+},
+renderDevChart(dkcal, DB, DF, DC, t_, split) {
+const splitHtml = split ? `<div class="pt-strip" aria-hidden="true"><i style="width:${split.animalPct}%;background:var(--pt-animal)"></i><i style="width:${split.plantPct}%;background:var(--pt-plant)"></i></div><div class="pt-nums" aria-hidden="true"><span style="color:var(--pt-animal)">${split.animalPct}</span><span style="color:var(--pt-plant)">${split.plantPct}</span></div>` : '';
+return `<div class="section"><div class="section-title">${t('plan.balance')}</div><div class="dev-chart"><div class="dev-tiles">${this.devTile(t('diag.kcal'), dkcal, t_.kcal, '', 'var(--macro-kcal)')}${this.devTile(t('diag.protein'), DB, t_.proteinG, 'г', 'var(--macro-protein)', splitHtml, split)}${this.devTile(t('diag.fat'), DF, t_.fatG, 'г', 'var(--macro-fat)')}${this.devTile(t('diag.carbs'), DC, t_.carbsG, 'г', 'var(--macro-carb)')}</div><div class="dev-legend">${t('dev.legend')}</div></div></div>`;
+},
 renderDiagnostics() {
 const box = document.getElementById('menu-diagnostics');
 if (!box) return;
@@ -3208,6 +3301,106 @@ event.target.value = '';
 reader.readAsText(file);
 }
 };
+const Reminders = {
+timer: null,
+nextLabel: '',
+audioCtx: null,
+ensureAudioUnlocked() {
+if (!this.audioCtx) { try { this.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { /* нет Web Audio — просто без звука */ } }
+if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();
+},
+playBeep() {
+try {
+this.ensureAudioUnlocked();
+if (!this.audioCtx) return;
+const ctx = this.audioCtx; const now = ctx.currentTime;
+[0, 0.22].forEach(offset => {
+const osc = ctx.createOscillator(); const gain = ctx.createGain();
+osc.type = 'sine'; osc.frequency.value = 880;
+gain.gain.setValueAtTime(0.0001, now + offset);
+gain.gain.exponentialRampToValueAtTime(0.35, now + offset + 0.02);
+gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.18);
+osc.connect(gain); gain.connect(ctx.destination);
+osc.start(now + offset); osc.stop(now + offset + 0.2);
+});
+} catch (e) { console.warn('Reminders beep failed', e); }
+},
+async requestPermission() {
+if (!('Notification' in window)) { UI.toast(t('reminders.unsupported')); return false; }
+if (Notification.permission === 'granted') return true;
+if (Notification.permission === 'denied') { UI.toast(t('reminders.blocked')); return false; }
+try { const res = await Notification.requestPermission(); return res === 'granted'; } catch (e) { return false; }
+},
+async toggle(on) {
+this.ensureAudioUnlocked();
+if (on) { const granted = await this.requestPermission(); if (!granted) on = false; }
+AppState.data.settings.reminders.enabled = on;
+AppState.save('settings');
+if (on) this.scheduleNext(); else { this.clearTimer(); this.nextLabel = ''; }
+this.renderState();
+},
+toggleSound(on) { AppState.data.settings.reminders.sound = on; AppState.save('settings'); this.renderState(); },
+renderState() {
+const r = AppState.data.settings.reminders || {};
+const onBtn = document.getElementById('rem-on'), offBtn = document.getElementById('rem-off');
+if (onBtn && offBtn) { onBtn.classList.toggle('active', !!r.enabled); offBtn.classList.toggle('active', !r.enabled); }
+const sOnBtn = document.getElementById('rem-sound-on'), sOffBtn = document.getElementById('rem-sound-off');
+if (sOnBtn && sOffBtn) { sOnBtn.classList.toggle('active', r.sound !== false); sOffBtn.classList.toggle('active', r.sound === false); }
+const status = document.getElementById('rem-status');
+if (!status) return;
+if (!('Notification' in window)) status.textContent = t('reminders.unsupported');
+else if (Notification.permission === 'denied') status.textContent = t('reminders.blocked');
+else if (r.enabled && this.nextLabel) status.textContent = t('reminders.active_until') + ' ' + this.nextLabel;
+else status.textContent = '';
+},
+clearTimer() { if (this.timer) { clearTimeout(this.timer); this.timer = null; } },
+nextMealInfo(fromDate) {
+const times = CONFIG.MEALS.times, names = CONFIG.MEALS.names;
+const now = fromDate || new Date();
+let best = null;
+for (let dayOffset = 0; dayOffset <= 1 && !best; dayOffset++) {
+for (let i = 0; i < times.length; i++) {
+const [hh, mm] = times[i].split(':').map(Number);
+const dt = new Date(now); dt.setDate(now.getDate() + dayOffset); dt.setHours(hh, mm, 0, 0);
+if (dt.getTime() > now.getTime() && (!best || dt.getTime() < best.time)) best = { time: dt.getTime(), name: names[i], timeStr: times[i] };
+}
+}
+return best;
+},
+scheduleNext() {
+this.clearTimer();
+const r = AppState.data.settings.reminders;
+if (!r || !r.enabled) return;
+const info = this.nextMealInfo();
+if (!info) return;
+this.nextLabel = info.timeStr + ' · ' + info.name;
+this.renderState();
+const delay = Math.max(0, info.time - Date.now());
+// В свёрнутой вкладке браузер вправе замедлять/замораживать таймеры — это ограничение платформы
+// (см. подсказку под переключателем), а не баг: пока вкладка открыта, напоминание сработает.
+this.timer = setTimeout(() => this.fire(info), delay);
+},
+fire(info) {
+const r = AppState.data.settings.reminders || {};
+if (r.sound !== false) this.playBeep();
+const title = t('reminders.title'), body = info.name + ' · ' + info.timeStr;
+if ('Notification' in window && Notification.permission === 'granted') {
+try { const n = new Notification(title, { body, icon: './icon-192.png', tag: 'atb-diet-meal' }); n.onclick = () => { window.focus(); n.close(); }; }
+catch (e) { UI.toast(body); }
+} else { UI.toast(body); }
+if (r.enabled) this.scheduleNext();
+},
+testNow() { this.ensureAudioUnlocked(); this.fire({ name: t('reminders.test'), timeStr: new Date().toTimeString().slice(0, 5) }); },
+init() {
+this.renderState();
+const r = AppState.data.settings.reminders;
+if (r && r.enabled) {
+if ('Notification' in window && Notification.permission === 'granted') this.scheduleNext();
+else { r.enabled = false; AppState.save('settings'); this.renderState(); }
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && AppState.data.settings.reminders.enabled) this.scheduleNext(); });
+}
+};
 async function registerServiceWorker() {
 if (!('serviceWorker' in navigator)) return;
 try {
@@ -3237,6 +3430,7 @@ MeasureUI.renderMeas();
 InfoUI.highlightCurrentGoal();
 UI.applyLang();
 Profile.calc();
+Reminders.init();
 registerServiceWorker();
 }
 document.addEventListener('DOMContentLoaded', init);
