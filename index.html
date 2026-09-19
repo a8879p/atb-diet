@@ -1880,7 +1880,7 @@ mainCount: 5,
 totalCount: 6
 },
 PORTIONS: {
-veggie: 150, cookedTarget: 280, snackBread: 80, snackBreadMinLoss: 20,
+veggie: 150, cookedTarget: 280, snackBread: 80, snackBreadMinLoss: 20, grainMin: 30,
 meatMainMin: 35, meatMainMax: 250, meatSnackMin: 20, meatSnackMax: 130,
 instantNoodlePack: 60, caseinPack: 200, sweetenerMax: 50, sweetenerCutMax: 15,
 garlicMax: 50, eggsMin: 2, eggsMax: 5
@@ -1889,7 +1889,7 @@ DEFAULTS: {
 sweetenerMaintainMax: 35, avgPieceWeight: 60, defaultWeight: 100, roundingStep: 5,
 maxImageSize: 300 * 1024, minEggs: 2, maxEggs: 5, carbCountThreshold: 3
 },
-MACRO: { tolerance: 0.10 },
+MACRO: { tolerance: 0.10, balanceTolerance: 0.05 },
 CAT: {
 order: ['meat', 'carb', 'fat', 'fruits', 'snack'],
 labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — углеводы', fat: 'Жиры', fruits: 'Фрукты, йогурты, напитки', snack: 'Перекусы' }
@@ -2391,16 +2391,26 @@ if (pools.proteinEggs.length) return pools.proteinEggs[(dayIndex + mealIndex) % 
 return null;
 }
 if (isSnack) {
+const cut = goal === 'cut';
+// На похудении сыр (Б≈Ж) не выбираем в приоритет — сначала более постные источники:
+// консервы, творог/казеиновые (Б>>Ж), филе, яйца, прочий белок. Сыр остаётся резервом в самом конце.
 if (mealIndex === CONFIG.MEALS.snackIndices[0]) {
 if (pools.proteinCanned.length) return pools.proteinCanned[dayIndex % pools.proteinCanned.length];
-if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
+if (cut) { if (pools.proteinCasein.length) return pools.proteinCasein[dayIndex % pools.proteinCasein.length]; }
+else if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
 } else {
-if (goal === 'cut') { if (pools.proteinCanned.length) return pools.proteinCanned[(dayIndex + mealIndex) % pools.proteinCanned.length]; if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length]; }
-else { if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length]; if (pools.proteinCanned.length) return pools.proteinCanned[dayIndex % pools.proteinCanned.length]; }
+if (cut) {
+if (pools.proteinCanned.length) return pools.proteinCanned[(dayIndex + mealIndex) % pools.proteinCanned.length];
+if (pools.proteinCasein.length) return pools.proteinCasein[(dayIndex + mealIndex) % pools.proteinCasein.length];
+} else {
+if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
+if (pools.proteinCanned.length) return pools.proteinCanned[dayIndex % pools.proteinCanned.length];
+}
 }
 if (pools.proteinFillet.length) return pools.proteinFillet[(dayIndex + mealIndex) % pools.proteinFillet.length];
 if (pools.proteinEggs.length) return pools.proteinEggs[(dayIndex + mealIndex) % pools.proteinEggs.length];
 if (pools.proteinOther.length) return pools.proteinOther[(dayIndex + mealIndex) % pools.proteinOther.length];
+if (cut && pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
 }
 return null;
 },
@@ -2410,35 +2420,96 @@ const existing = meal.components.find(c => c.item && c.item.name === item.name);
 if (existing) { const s = this.scale(item, existing.weight + weight); existing.weight += weight; existing.kcal = s.kcal; existing.p = s.p; existing.f = s.f; existing.c = s.c; existing.fib = s.fib; existing.price = s.price; }
 else { const s = this.scale(item, weight); meal.components.push({ item, weight, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }); }
 },
-topUpDay(meals, dayTotals, targets, pools, dayIndex) {
-const mainMealsList = [meals[0], meals[2], meals[4]].filter(Boolean);
-if (!mainMealsList.length) return;
-const fatGap = targets.fatG - dayTotals.f;
-if (fatGap > 2) {
-const gapPerMeal = fatGap / mainMealsList.length;
-mainMealsList.forEach((m, idx) => {
-const existingFat = m.components.find(c => c.item && Classify.get(c.item) === 'fat');
-let oilItem = existingFat ? existingFat.item : null;
-if (!oilItem) { const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking; oilItem = oilPool && oilPool.length ? oilPool[(dayIndex + idx) % oilPool.length] : null; }
-const fatPerG = oilItem ? oilItem.f / oilItem.weight : 0;
-if (oilItem && fatPerG > 0) {
-const addW = Math.round(gapPerMeal / fatPerG);
-if (addW > 0) { this.addComponent(m, oilItem, addW); dayTotals.f += addW * fatPerG; dayTotals.kcal += addW * (oilItem.kcal / oilItem.weight); dayTotals.p += addW * (oilItem.p / oilItem.weight); dayTotals.c += addW * (oilItem.c / oilItem.weight); dayTotals.price += addW * (oilItem.price / oilItem.weight); }
-}
+balanceDay(meals, dayTotals, targets, pools, dayIndex, goal) {
+const cut = goal === 'cut';
+const fatMeals = [meals[0], meals[1], meals[2], meals[3], meals[4]].filter(Boolean);
+const mains = [meals[0], meals[2], meals[4]].filter(Boolean);
+const snacks = [meals[1], meals[3]].filter(Boolean);
+if (!fatMeals.length) return;
+const TOL = CONFIG.MACRO.balanceTolerance;
+const within = (actual, target) => !target || target <= 0 || Math.abs(actual - target) / target <= TOL;
+const applyDelta = (meal, d) => { meal.totals.kcal += d.kcal; meal.totals.p += d.p; meal.totals.f += d.f; meal.totals.c += d.c; meal.totals.fib += d.fib; meal.totals.price += d.price; dayTotals.kcal += d.kcal; dayTotals.p += d.p; dayTotals.f += d.f; dayTotals.c += d.c; dayTotals.fib += d.fib; dayTotals.price += d.price; };
+const setWeight = (meal, comp, newWeight) => {
+const before = { kcal: comp.kcal, p: comp.p, f: comp.f, c: comp.c, fib: comp.fib, price: comp.price };
+if (newWeight <= 0) { meal.components = meal.components.filter(c => c !== comp); applyDelta(meal, { kcal: -before.kcal, p: -before.p, f: -before.f, c: -before.c, fib: -before.fib, price: -before.price }); }
+else { const s = this.scale(comp.item, newWeight); comp.weight = newWeight; comp.kcal = s.kcal; comp.p = s.p; comp.f = s.f; comp.c = s.c; comp.fib = s.fib; comp.price = s.price; applyDelta(meal, { kcal: s.kcal - before.kcal, p: s.p - before.p, f: s.f - before.f, c: s.c - before.c, fib: s.fib - before.fib, price: s.price - before.price }); }
+};
+const addNew = (meal, item, weight) => { if (!item || weight <= 0) return; const s = this.scale(item, weight); meal.components.push({ item, weight, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }); applyDelta(meal, s); };
+const findComp = (meal, pred) => meal.components.find(c => c.item && pred(c));
+for (let iter = 0; iter < 3; iter++) {
+if (within(dayTotals.f, targets.fatG) && within(dayTotals.c, targets.carbsG)) break;
+// 1) Жир — самый гибкий рычаг: добавочное масло. Приёмы обрабатываем по одному, пересчитывая остаток после каждого — иначе округление до 5 г на каждом из 5 приёмов накапливается и качается между недобором и перебором.
+if (Math.abs(dayTotals.f - targets.fatG) > 1) {
+const total = fatMeals.length;
+fatMeals.forEach((m, idx) => {
+const remaining = dayTotals.f - targets.fatG;
+if (Math.abs(remaining) <= 1) return;
+const share = remaining / (total - idx);
+const oilComp = findComp(m, c => c.disc === 'fat');
+if (oilComp) { const fatPerG = oilComp.f / oilComp.weight; if (fatPerG > 0) { const newW = Math.max(0, Math.round((oilComp.weight - share / fatPerG) / 5) * 5); setWeight(m, oilComp, newW); } }
+else if (share < -1) { const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking; if (oilPool && oilPool.length) { const item = oilPool[(dayIndex + idx) % oilPool.length]; const fatPerG = item.f / item.weight; if (fatPerG > 0) { const w = Math.max(0, Math.round((-share / fatPerG) / 5) * 5); if (item && w > 0) { const s = this.scale(item, w); m.components.push({ item, weight: w, disc: 'fat', ...s }); applyDelta(m, s); } } } }
 });
 }
-const carbGap = targets.carbsG - dayTotals.c;
-if (carbGap > 3) {
-const gapPerMeal = carbGap / mainMealsList.length;
-mainMealsList.forEach((m, idx) => {
-const existingGrain = m.components.find(c => c.item && Classify.get(c.item) === 'carb' && !Classify.isBreadOrLavash(c.item.name));
-let carbItem = existingGrain ? existingGrain.item : null;
-if (!carbItem) { const breadPool = (pools.carbBread && pools.carbBread.length) ? pools.carbBread : pools.carbMain; carbItem = breadPool && breadPool.length ? breadPool[(dayIndex + idx) % breadPool.length] : null; }
-const carbPerG = carbItem ? carbItem.c / carbItem.weight : 0;
-if (carbItem && carbPerG > 0) {
-let addW = Math.round(gapPerMeal / carbPerG / 5) * 5;
-if (addW > 0) { this.addComponent(m, carbItem, addW); dayTotals.c += addW * carbPerG; dayTotals.p += addW * (carbItem.p / carbItem.weight); dayTotals.f += addW * (carbItem.f / carbItem.weight); dayTotals.kcal += addW * (carbItem.kcal / carbItem.weight); dayTotals.price += addW * (carbItem.price / carbItem.weight); }
+// 2) Углеводы — по порядку рычагов: крупа (не ниже grainMin) -> хлеб/лаваш (до 0 на сушке, иначе до snackBreadMinLoss) -> чеснок (только сушка, до 0) -> подсластитель (до 0).
+let carbDiff = dayTotals.c - targets.carbsG;
+if (carbDiff > 3) {
+let remaining = carbDiff;
+for (const m of mains) {
+if (remaining <= 3) break;
+const grain = findComp(m, c => Classify.get(c.item) === 'carb' && !Classify.isBreadOrLavash(c.item.name) && !Classify.isInstantNoodle(c.item.name));
+if (!grain) continue;
+const carbPerG = grain.c / grain.weight;
+if (carbPerG <= 0) continue;
+const floor = CONFIG.PORTIONS.grainMin;
+const maxCut = Math.max(0, grain.weight - floor);
+const wantCut = Math.min(maxCut, remaining / carbPerG);
+if (wantCut > 0) { const newW = Math.max(floor, Math.round((grain.weight - wantCut) / 5) * 5); setWeight(m, grain, newW); remaining = dayTotals.c - targets.carbsG; }
 }
+for (const m of snacks) {
+if (remaining <= 3) break;
+const bread = findComp(m, c => Classify.isBreadOrLavash(c.item.name));
+if (!bread) continue;
+const carbPerG = bread.c / bread.weight;
+if (carbPerG <= 0) continue;
+const floor = cut ? 0 : CONFIG.PORTIONS.snackBreadMinLoss;
+const maxCut = Math.max(0, bread.weight - floor);
+const wantCut = Math.min(maxCut, remaining / carbPerG);
+if (wantCut > 0) { const newW = Math.max(floor, Math.round((bread.weight - wantCut) / 5) * 5); setWeight(m, bread, newW); remaining = dayTotals.c - targets.carbsG; }
+}
+if (cut && remaining > 3) { const dinner = meals[4]; const garlic = dinner ? findComp(dinner, c => Classify.isGarlic(c.item.name)) : null; if (garlic) { setWeight(dinner, garlic, 0); remaining = dayTotals.c - targets.carbsG; } }
+if (remaining > 3) { const caseinMeal = meals[CONFIG.MEALS.caseinIndex] || meals[meals.length - 1]; const sw = caseinMeal ? findComp(caseinMeal, c => Classify.get(c.item) === 'sweetener') : null; if (sw) setWeight(caseinMeal, sw, 0); }
+} else if (carbDiff < -3) {
+const total = mains.length;
+mains.forEach((m, idx) => {
+const gapNow = targets.carbsG - dayTotals.c;
+if (gapNow <= 3) return;
+const share = gapNow / (total - idx);
+const grain = findComp(m, c => Classify.get(c.item) === 'carb' && !Classify.isBreadOrLavash(c.item.name) && !Classify.isInstantNoodle(c.item.name));
+let item = grain ? grain.item : null;
+if (!item) { const pool = (pools.carbMain && pools.carbMain.length) ? pools.carbMain : pools.carbBread; item = pool && pool.length ? pool[(dayIndex + idx) % pool.length] : null; }
+if (!item) return;
+const carbPerG = item.c / item.weight;
+if (carbPerG <= 0) return;
+const addW = Math.round((share / carbPerG) / 5) * 5;
+if (addW <= 0) return;
+if (grain) setWeight(m, grain, grain.weight + addW); else addNew(m, item, addW);
+});
+}
+}
+// 3) Последний резерв — если жир всё ещё выше цели даже после обнуления масла, слегка подрезаем порцию мяса в её собственных min/max (она же источник оставшегося жира). Овощи, творог и число яиц не трогаем никогда.
+if (dayTotals.f - targets.fatG > 1 && !within(dayTotals.f, targets.fatG)) {
+const total = mains.length;
+mains.forEach((m, idx) => {
+const remaining = dayTotals.f - targets.fatG;
+if (remaining <= 1) return;
+const share = remaining / (total - idx);
+const meat = findComp(m, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name));
+if (!meat) return;
+const fatPerG = meat.f / meat.weight;
+if (fatPerG <= 0) return;
+const minW = CONFIG.PORTIONS.meatMainMin;
+const wantCutG = Math.min(Math.max(0, meat.weight - minW), share / fatPerG);
+if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCutG) / 5) * 5); setWeight(m, meat, newW); }
 });
 }
 },
@@ -2526,7 +2597,7 @@ let fatComp = null;
 if (allowance > 1) {
 const isSnack = CONFIG.MEALS.snackIndices.includes(m);
 let fatPool = isSnack ? ((pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking) : ((pools.fatRaw && pools.fatRaw.length) ? pools.fatRaw : pools.fatCooking);
-if (fatPool && fatPool.length) { const fItem = fatPool[(d + m) % fatPool.length]; const fatPerUnit = fItem.f / fItem.weight; const fW = Math.min(50, Math.max(0, Math.round((allowance / fatPerUnit) / 5) * 5)); if (fW > 0) { const s = this.scale(fItem, fW); fatComp = { item: fItem, weight: fW, ...s }; } }
+if (fatPool && fatPool.length) { const fItem = fatPool[(d + m) % fatPool.length]; const fatPerUnit = fItem.f / fItem.weight; const fW = Math.min(50, Math.max(0, Math.round((allowance / fatPerUnit) / 5) * 5)); if (fW > 0) { const s = this.scale(fItem, fW); fatComp = { item: fItem, weight: fW, disc: 'fat', ...s }; } }
 }
 const components = [...mealComps[m]];
 if (fatComp) { components.push(fatComp); daySum.f += fatComp.f; daySum.c += fatComp.c; daySum.p += fatComp.p; daySum.kcal += fatComp.kcal; }
@@ -2537,7 +2608,7 @@ meals.push({ components, totals });
 meals.push(caseinMeal);
 const dayTotals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p; dayTotals.f += m.totals.f; dayTotals.c += m.totals.c; dayTotals.fib += m.totals.fib; dayTotals.price += m.totals.price; });
-this.topUpDay(meals, dayTotals, targets, pools, d);
+this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
 days.push({ meals, totals: dayTotals });
 }
 AppState.runtime.menuPlan = { targets, days, goal: p.goal };
