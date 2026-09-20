@@ -244,6 +244,7 @@ font-size: 10px;
 font-weight: 700
 }
 .nav {
+z-index: 100;
 position: fixed;
 bottom: 0;
 left: 0;
@@ -366,6 +367,17 @@ transition: var(--transition)
 .seg-item.active {
 background: var(--text-main);
 color: #fff
+}
+.input.invalid {
+border-color: #dc2626;
+background: #fef2f2
+}
+.field-warn {
+color: #dc2626;
+font-size: 12px;
+font-weight: 600;
+margin: -4px 0 10px;
+line-height: 1.4
 }
 .btn {
 width: 100%;
@@ -506,7 +518,13 @@ padding: 4px
 display: flex;
 align-items: center;
 padding: 10px 0;
-border-bottom: 1px solid var(--border-soft)
+border-bottom: 1px solid var(--border-soft);
+transition: background-color .12s, box-shadow .12s
+}
+.shop-row.pressed {
+background: var(--border-soft);
+box-shadow: -8px 0 0 var(--border-soft), 8px 0 0 var(--border-soft);
+border-radius: 6px
 }
 .shop-img {
 width: 48px;
@@ -980,6 +998,17 @@ font-weight: 700;
 color: var(--text-main);
 font-size: 11px
 }
+.info-section-body>.info-table:first-child {
+margin-top: 0
+}
+.info-table small {
+display: block;
+font-weight: 400;
+color: var(--text-muted);
+font-size: 11px;
+line-height: 1.35;
+margin-top: 2px
+}
 .info-table td:first-child {
 text-align: left;
 font-weight: 600;
@@ -1031,7 +1060,7 @@ font-style: italic;
 font-size: 11px
 }
 .modal-overlay {
-position: absolute;
+position: fixed;
 inset: 0;
 background: rgba(0, 0, 0, .5);
 display: flex;
@@ -1646,6 +1675,7 @@ data-i18n="profile.activity">Активность</label><select class="select" 
 <div class="activity-desc" id="activityDesc"></div>
 </div>
 </div>
+<div class="field-warn" id="profileWarn" style="display:none"></div>
 <div class="form-group"><label class="form-label" data-i18n="profile.goal">Цель</label>
 <div class="seg"><button class="seg-item" id="g-maintain" onclick="Profile.setGoal('maintain')"
 data-i18n="profile.maintain">Поддержание</button><button class="seg-item" id="g-gain"
@@ -1653,20 +1683,12 @@ onclick="Profile.setGoal('gain')" data-i18n="profile.gain">Набор</button><b
 class="seg-item active" id="g-loss" onclick="Profile.setGoal('loss')"
 data-i18n="profile.loss">Снижение жира</button></div>
 </div>
-<div class="form-group"><label class="form-label" data-i18n="profile.level">Уровень БЖУ для этой
-цели</label>
-<div class="seg"><button class="seg-item" id="lvl-min" onclick="Profile.setLevel('min')"
-data-i18n="profile.min">Мин</button><button class="seg-item active" id="lvl-optim"
-onclick="Profile.setLevel('optim')" data-i18n="profile.optim">Оптимум</button><button
-class="seg-item" id="lvl-max" onclick="Profile.setLevel('max')"
-data-i18n="profile.max">Макс</button></div>
-<div class="activity-desc" id="levelDesc"></div>
-</div>
 <div class="result" id="result">
 <div class="result-big" id="rKcal" style="color:var(--macro-kcal)">—</div>
 <div class="result-sub">ккал в день</div>
 <div class="result-sub" id="rModeNote"
 style="display:none;color:var(--primary);font-weight:700"></div>
+<div class="result-sub" id="rFloorNote" style="display:none;color:#a16207;font-weight:600"></div>
 <div class="result-row"><span
 style="color:var(--macro-protein);font-weight:600">Белки</span><span id="rProt">—</span>
 </div>
@@ -1710,135 +1732,7 @@ data-i18n="reminders.test_btn">🔔 Проверить</button>
 </div>
 <!-- ========== INFO TAB ========== -->
 <div class="tab" id="tab-info">
-
-<div class="section">
-<div class="section-title">📚 Научная база спортивной диетологии</div>
-<div class="info-intro">
-Рекомендации основаны на официальных <b>Position Stands</b> двух ведущих мировых
-организаций:<br>
-<b>ISSN</b> (International Society of Sports Nutrition) и <b>ACSM</b> (American College of
-Sports Medicine),
-совместно с Academy of Nutrition and Dietetics.
-</div>
-<div class="info-section open" id="info-general">
-<button class="info-section-toggle" onclick="InfoUI.toggle('info-general')">
-<span>📋 1. Общие принципы (все цели)</span><span class="info-arrow">▼</span>
-</button>
-<div class="info-section-body">
-<table class="info-table">
-<tr>
-<th>Параметр</th>
-<th>Значение</th>
-</tr>
-<tr>
-<td>Белок (база)</td>
-<td>1.4–2.0 г/кг</td>
-</tr>
-<tr>
-<td>Белок (оптимум для силовых)</td>
-<td><b>1.6–2.2 г/кг</b></td>
-</tr>
-<tr>
-<td>Жиры (минимум)</td>
-<td>≥ 0.3 г/кг или 20% ккал</td>
-</tr>
-<tr>
-<td>Жиры (оптимум)</td>
-<td>0.5–1.5 г/кг или 20–35% ккал</td>
-</tr>
-<tr>
-<td>Углеводы (лёгкая активность)</td>
-<td>3–5 г/кг</td>
-</tr>
-<tr>
-<td>Углеводы (силовые 1–2 ч/день)</td>
-<td>5–7 г/кг</td>
-</tr>
-<tr>
-<td>Распределение белка</td>
-<td>4–6 приёмов по 20–40 г каждые 3–5 ч</td>
-</tr>
-<tr>
-<td>Вода</td>
-<td>30–35 мл/кг + 500–1000 мл/час тренировки</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="info-section" id="info-bulk">
-<button class="info-section-toggle" onclick="InfoUI.toggle('info-bulk')">
-<span>💪 2. Набор мышечной массы (Lean Bulk)</span><span class="info-arrow">▼</span>
-</button>
-<div class="info-section-body">
-<div class="info-h">🔥 Калории</div>
-<div class="info-p"><b>Профицит 5–10%</b> от TDEE (+250–500 ккал/день).</div>
-<div class="info-p">Агрессивный профицит (>15%) ведёт к избыточному набору жира без
-дополнительного роста мышц.</div>
-<div class="info-card"><b>Оптимальная скорость:</b> +0.25–0.5% веса в неделю.</div>
-<div class="info-h">🥩 Белок</div>
-<ul class="info-list">
-<li><b>1.6–2.2 г/кг</b> общего веса</li>
-<li>Выше 2.2 г/кг не даёт доп. прироста мышц у натуральных атлетов</li>
-<li><b>20–40 г качественного белка</b> на приём (богат лейцином: 2–3 г)</li>
-<li>Распределение: 4–6 приёмов в день</li>
-</ul>
-<div class="info-h">🥑 Жиры</div>
-<div class="info-p"><b>0.5–1.5 г/кг</b> (25–35% калорийности). Критичны для синтеза
-тестостерона и усвоения витаминов A/D/E/K.</div>
-<div class="info-h">🍞 Углеводы</div>
-<div class="info-p"><b>4–7 г/кг</b> — основной источник энергии для тяжёлых тренировок.
-</div>
-</div>
-</div>
-<div class="info-section" id="info-cut">
-<button class="info-section-toggle" onclick="InfoUI.toggle('info-cut')">
-<span>🔥 3. Снижение жира (Cutting)</span><span class="info-arrow">▼</span>
-</button>
-<div class="info-section-body">
-<div class="info-h">🔥 Калории</div>
-<div class="info-p"><b>Дефицит 20–25%</b> от TDEE (−500–750 ккал/день).</div>
-<div class="info-card"><b>Оптимальная скорость:</b> −0.5–1.0% веса в неделю.</div>
-<div class="info-h">🥩 Белок</div>
-<ul class="info-list">
-<li><b>1.8–2.7 г/кг</b> общего веса</li>
-</ul>
-<div class="info-h">🥑 Жиры</div>
-<div class="info-p">Не ниже 20% калорийности и не ниже 0.5 г/кг.</div>
-<div class="info-h">🍞 Углеводы</div>
-<div class="info-p"><b>Минимум 2–3 г/кг</b> для поддержания интенсивности тренировок.</div>
-</div>
-</div>
-<div class="info-section" id="info-maintain">
-<button class="info-section-toggle" onclick="InfoUI.toggle('info-maintain')">
-<span>⚖️ 4. Поддержание (Maintenance)</span><span class="info-arrow">▼</span>
-</button>
-<div class="info-section-body">
-<div class="info-h">🔥 Калории</div>
-<div class="info-p"><b>TDEE ± 0–5%</b> — стабильный вес.</div>
-<div class="info-h">🥩 Белок</div>
-<div class="info-p"><b>1.6–2.2 г/кг</b> — достаточно для сохранения мышц.</div>
-</div>
-</div>
-<div class="info-section" id="info-sources">
-<button class="info-section-toggle" onclick="InfoUI.toggle('info-sources')">
-<span>📚 5. Источники</span><span class="info-arrow">▼</span>
-</button>
-<div class="info-section-body">
-<div class="info-source"><b>ISSN Position Stand: Diets and Body Composition</b>
-<div class="authors">Jäger et al., JISSN 2017</div>
-</div>
-<div class="info-source"><b>ACSM/AND/DC Position: Nutrition and Athletic Performance</b>
-<div class="authors">Thomas, Erdman, Burke. Med Sci Sports Exerc 2016</div>
-</div>
-<div class="info-source"><b>Meta-analysis: Protein and muscle mass</b>
-<div class="authors">Morton et al., Br J Sports Med 2018</div>
-</div>
-<div class="info-source"><b>MATADOR study: Diet breaks and fat loss</b>
-<div class="authors">Byrne et al., Int J Obes 2018</div>
-</div>
-</div>
-</div>
-</div>
+<div class="section" id="info-root"></div>
 </div>
 </div>
 <div class="nav">
@@ -1958,8 +1852,61 @@ ru: {
 'profile.female': 'Женский', 'profile.age': 'Возраст', 'profile.height': 'Рост, см',
 'profile.weight': 'Вес, кг', 'profile.activity': 'Активность', 'profile.goal': 'Цель',
 'profile.maintain': 'Поддержание', 'profile.gain': 'Набор', 'profile.loss': 'Снижение жира',
-'profile.level': 'Уровень БЖУ для этой цели', 'profile.min': 'Мин', 'profile.optim': 'Оптимум',
-'profile.max': 'Макс', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
+'profile.per_week': 'кг/нед',
+'profile.note_cut': 'Режим жиросжигания: дефицит ~{0}% · {1}', 'profile.note_gain': 'Режим набора: профицит ~{0}% · {1}',
+'profile.floor_note': 'Сработал нижний порог калорий ({0} ккал): дефицит ограничен.',
+"info.title": "📚 Научная база спортивной диетологии",
+"info.intro": "Расчёт опирается на официальные <b>Position Stands</b> ведущих организаций: <b>ISSN</b> (International Society of Sports Nutrition) и <b>ACSM</b> (American College of Sports Medicine) совместно с Academy of Nutrition and Dietetics и Dietitians of Canada. Диапазоны белка, жиров и углеводов взяты из них; величины дефицита и профицита — практические ориентиры из публикаций ISSN. Цели в приложении — середина диапазона.",
+"info.your": "📌 Ваш расчёт сейчас",
+"info.you_kcal": "<b>Калории:</b> {0} ккал — {1} к TDEE (≈ {2}) · {3}",
+"info.you_prot": "<b>Белки:</b> {0} г · {1} г/кг",
+"info.you_fat": "<b>Жиры:</b> {0} г · {1}% ккал",
+"info.you_carb": "<b>Углеводы:</b> {0} г · {1} г/кг",
+"info.s_general": "📋 1. Общие принципы (все цели)",
+"info.th_param": "Параметр",
+"info.th_value": "Значение",
+"info.r_protein": "Белок, г/кг в сутки",
+"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.r_protein_cut": "Белок при дефиците энергии",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжировой массы у худых силовых</small>",
+"info.r_protein_meal": "Белок за приём",
+"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>каждые 3–5 ч, 4–6 приёмов (ACSM, ISSN)</small>",
+"info.r_fat": "Жиры",
+"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. В приложении: не ниже 20% и 0.5 г/кг</small>",
+"info.r_carb": "Углеводы, г/кг",
+"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>лёгкая активность · ~1 ч/день · 1–3 ч/день · 4–5+ ч/день (ACSM/AND/DC). В приложении углеводы — остаток калорий после белка и жиров</small>",
+"info.r_water": "Вода",
+"info.v_water": "30–35 мл/кг + 500–1000 мл на час тренировки<small>ориентир; в приложении 35 мл/кг</small>",
+"info.s_bulk": "💪 2. Набор мышечной массы (Lean Bulk)",
+"info.s_cut": "🔥 3. Снижение жира (Cutting)",
+"info.s_maintain": "⚖️ 4. Поддержание (Maintenance)",
+"info.s_sources": "📚 5. Источники",
+"info.h_cal": "🔥 Калории",
+"info.h_prot": "🥩 Белок",
+"info.h_fat": "🥑 Жиры",
+"info.h_carb": "🍞 Углеводы",
+"info.bulk_cal": "<b>Профицит 5–10%</b> от TDEE; в приложении — {0}%. ISSN: набор мышц требует устойчивого профицита, а его величина и тренировочный стаж определяют, сколько будет мышц и сколько жира.",
+"info.bulk_cal2": "Агрессивный профицит (>15%) ведёт к избыточному набору жира без дополнительного роста мышц.",
+"info.bulk_rate": "<b>Ориентир по скорости:</b> +0.25–0.5% веса в неделю.",
+"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> общего веса (в приложении {0})",
+"info.bulk_prot2": "Выше ~2.2 г/кг прироста мышц не даёт у натуральных атлетов (Morton, 2018)",
+"info.bulk_prot3": "<b>20–40 г качественного белка</b> на приём (лейцин 2–3 г)",
+"info.bulk_prot4": "Распределение: 4–6 приёмов в день",
+"info.bulk_fat": "<b>25–35%</b> калорийности (в приложении {0}%), не ниже 0.5 г/кг. Нужны для гормонов и усвоения витаминов A/D/E/K.",
+"info.bulk_carb": "Остаток калорий после белка и жиров — основной источник энергии тренировок (ориентиры ACSM — в таблице выше).",
+"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE; в приложении — {0}%. ISSN: чем больше жировой массы, тем агрессивнее допустим дефицит; у худых лучше медленнее — так сохраняется больше мышц.",
+"info.cut_rate": "<b>Скорость:</b> −0.5–1.0% веса в неделю (Helms et al., 2014).",
+"info.cut_floor": "Нижняя граница: не ниже BMR и не ниже 1200 ккал (женщины) / 1500 ккал (мужчины).",
+"info.cut_prot1": "<b>1.8–2.7 г/кг</b> общего веса (в приложении {0})",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефиците энергии; ISSN: 2.3–3.1 г/кг безжировой массы для худых силовых",
+"info.cut_prot3": "При заболеваниях почек высокий белок — только по согласованию с врачом",
+"info.cut_fat": "<b>25–30%</b> калорийности (в приложении {0}%), не ниже 20% и 0.5 г/кг.",
+"info.cut_carb": "Остаток калорий, <b>не менее 2 г/кг</b> — чтобы сохранять интенсивность тренировок.",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабильный вес; в приложении — 0%.",
+"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — сохранение мышц (в приложении {0}).",
+"info.mnt_fat": "<b>30–35%</b> калорийности (в приложении {0}%).",
+"info.disclaimer": "<b>Важно:</b> это ориентиры для здоровых взрослых. При беременности, диабете, заболеваниях почек и других состояниях, а также при высоких тренировочных нагрузках нужен индивидуальный план у врача или спортивного диетолога.",
+'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
 'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 'plan.dayTotal': 'Итог дня',
 'plan.balance': 'Баланс КБЖУ', 'plan.mark_day_done': 'Отметить день пройденным',
 'plan.unmark_day': '↩️ Снять отметку дня',
@@ -2008,7 +1955,6 @@ ru: {
 'backup.err_progress': 'Данные прогресса повреждены', 'backup.err_settings': 'Настройки повреждены',
 'backup.err_format': 'Неверный формат', 'backup.restore_confirm': 'Восстановить данные?', 'backup.restore': 'Восстановить',
 'backup.restored': 'Восстановлено', 'backup.err_prefix': 'Ошибка',
-'profile.level_min_desc': 'Щадящий край вилки.', 'profile.level_optim_desc': 'Рекомендуемая середина вилки.', 'profile.level_max_desc': 'Выраженный край вилки.',
 'profile.activity_1_2': 'Коэф. 1.2 · 0 тренировок/нед.', 'profile.activity_1_375': 'Коэф. 1.375 · 1–3 тренировки/нед.',
 'profile.activity_1_55': 'Коэф. 1.55 · 3–5 тренировок/нед.', 'profile.activity_1_725': 'Коэф. 1.725 · 6–7 тренировок/нед.',
 'profile.activity_1_9': 'Коэф. 1.9 · 2 тренировки в день.'
@@ -2029,8 +1975,61 @@ ua: {
 'profile.female': 'Жіноча', 'profile.age': 'Вік', 'profile.height': 'Зріст, см',
 'profile.weight': 'Вага, кг', 'profile.activity': 'Активность', 'profile.goal': 'Мета',
 'profile.maintain': 'Підтримка', 'profile.gain': 'Набір', 'profile.loss': 'Зниження жиру',
-'profile.level': 'Рівень БЖВ для цієї мети', 'profile.min': 'Мін', 'profile.optim': 'Оптимум',
-'profile.max': 'Макс', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
+'profile.per_week': 'кг/тижд',
+'profile.note_cut': 'Режим спалювання жиру: дефіцит ~{0}% · {1}', 'profile.note_gain': 'Режим набору: профіцит ~{0}% · {1}',
+'profile.floor_note': 'Спрацював нижній поріг калорій ({0} ккал): дефіцит обмежено.',
+"info.title": "📚 Наукова база спортивної дієтології",
+"info.intro": "Розрахунок спирається на офіційні <b>Position Stands</b> провідних організацій: <b>ISSN</b> (International Society of Sports Nutrition) та <b>ACSM</b> (American College of Sports Medicine) разом з Academy of Nutrition and Dietetics і Dietitians of Canada. Діапазони білка, жирів і вуглеводів узято з них; величини дефіциту та профіциту — практичні орієнтири з публікацій ISSN. Цілі в застосунку — середина діапазону.",
+"info.your": "📌 Ваш розрахунок зараз",
+"info.you_kcal": "<b>Калорії:</b> {0} ккал — {1} до TDEE (≈ {2}) · {3}",
+"info.you_prot": "<b>Білки:</b> {0} г · {1} г/кг",
+"info.you_fat": "<b>Жири:</b> {0} г · {1}% ккал",
+"info.you_carb": "<b>Вуглеводи:</b> {0} г · {1} г/кг",
+"info.s_general": "📋 1. Загальні принципи (усі цілі)",
+"info.th_param": "Параметр",
+"info.th_value": "Значення",
+"info.r_protein": "Білок, г/кг на добу",
+"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.r_protein_cut": "Білок при дефіциті енергії",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжирової маси у худих силових</small>",
+"info.r_protein_meal": "Білок на прийом",
+"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>кожні 3–5 год, 4–6 прийомів (ACSM, ISSN)</small>",
+"info.r_fat": "Жири",
+"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. У застосунку: не нижче 20% і 0.5 г/кг</small>",
+"info.r_carb": "Вуглеводи, г/кг",
+"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>легка активність · ~1 год/день · 1–3 год/день · 4–5+ год/день (ACSM/AND/DC). У застосунку вуглеводи — залишок калорій після білка та жирів</small>",
+"info.r_water": "Вода",
+"info.v_water": "30–35 мл/кг + 500–1000 мл на годину тренування<small>орієнтир; у застосунку 35 мл/кг</small>",
+"info.s_bulk": "💪 2. Набір м'язової маси (Lean Bulk)",
+"info.s_cut": "🔥 3. Зниження жиру (Cutting)",
+"info.s_maintain": "⚖️ 4. Підтримання (Maintenance)",
+"info.s_sources": "📚 5. Джерела",
+"info.h_cal": "🔥 Калорії",
+"info.h_prot": "🥩 Білок",
+"info.h_fat": "🥑 Жири",
+"info.h_carb": "🍞 Вуглеводи",
+"info.bulk_cal": "<b>Профіцит 5–10%</b> від TDEE; у застосунку — {0}%. ISSN: набір м'язів потребує стійкого профіциту, а його величина та тренувальний стаж визначають, скільки буде м'язів і скільки жиру.",
+"info.bulk_cal2": "Агресивний профіцит (>15%) веде до надмірного набору жиру без додаткового росту м'язів.",
+"info.bulk_rate": "<b>Орієнтир за швидкістю:</b> +0.25–0.5% ваги на тиждень.",
+"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> загальної ваги (у застосунку {0})",
+"info.bulk_prot2": "Понад ~2.2 г/кг приросту м'язів не дає у натуральних атлетів (Morton, 2018)",
+"info.bulk_prot3": "<b>20–40 г якісного білка</b> на прийом (лейцин 2–3 г)",
+"info.bulk_prot4": "Розподіл: 4–6 прийомів на день",
+"info.bulk_fat": "<b>25–35%</b> калорійності (у застосунку {0}%), не нижче 0.5 г/кг. Потрібні для гормонів і засвоєння вітамінів A/D/E/K.",
+"info.bulk_carb": "Залишок калорій після білка та жирів — основне джерело енергії тренувань (орієнтири ACSM — у таблиці вище).",
+"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE; у застосунку — {0}%. ISSN: чим більше жирової маси, тим агресивніший допустимий дефіцит; у худих краще повільніше — так зберігається більше м'язів.",
+"info.cut_rate": "<b>Швидкість:</b> −0.5–1.0% ваги на тиждень (Helms et al., 2014).",
+"info.cut_floor": "Нижня межа: не нижче BMR і не нижче 1200 ккал (жінки) / 1500 ккал (чоловіки).",
+"info.cut_prot1": "<b>1.8–2.7 г/кг</b> загальної ваги (у застосунку {0})",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефіциті енергії; ISSN: 2.3–3.1 г/кг безжирової маси для худих силових",
+"info.cut_prot3": "При захворюваннях нирок високий білок — лише за погодженням з лікарем",
+"info.cut_fat": "<b>25–30%</b> калорійності (у застосунку {0}%), не нижче 20% і 0.5 г/кг.",
+"info.cut_carb": "Залишок калорій, <b>не менше 2 г/кг</b> — щоб зберігати інтенсивність тренувань.",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабільна вага; у застосунку — 0%.",
+"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — збереження м'язів (у застосунку {0}).",
+"info.mnt_fat": "<b>30–35%</b> калорійності (у застосунку {0}%).",
+"info.disclaimer": "<b>Важливо:</b> це орієнтири для здорових дорослих. При вагітності, діабеті, захворюваннях нирок та інших станах, а також при високих тренувальних навантаженнях потрібен індивідуальний план у лікаря або спортивного дієтолога.",
+'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
 'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 'plan.dayTotal': 'Підсумок дня',
 'plan.balance': 'Баланс КБЖВ', 'plan.mark_day_done': 'Позначити день пройденим',
 'plan.unmark_day': '↩️ Зняти позначку дня',
@@ -2079,7 +2078,6 @@ ua: {
 'backup.err_progress': 'Дані прогресу пошкоджені', 'backup.err_settings': 'Налаштування пошкоджені',
 'backup.err_format': 'Невірний формат', 'backup.restore_confirm': 'Відновити дані?', 'backup.restore': 'Відновити',
 'backup.restored': 'Відновлено', 'backup.err_prefix': 'Помилка',
-'profile.level_min_desc': 'Щадний край вилки.', 'profile.level_optim_desc': 'Рекомендована середина вилки.', 'profile.level_max_desc': 'Виражений край вилки.',
 'profile.activity_1_2': 'Коеф. 1.2 · 0 тренувань/тижд.', 'profile.activity_1_375': 'Коеф. 1.375 · 1–3 тренування/тижд.',
 'profile.activity_1_55': 'Коеф. 1.55 · 3–5 тренувань/тижд.', 'profile.activity_1_725': 'Коеф. 1.725 · 6–7 тренувань/тижд.',
 'profile.activity_1_9': 'Коеф. 1.9 · 2 тренування на день.'
@@ -2191,9 +2189,9 @@ document.getElementById('langBtn').textContent = s.lang === 'ru' ? 'RU' : 'UA';
 AppState.save('settings');
 this.applyLang();
 Shop.render(); Menu.render(); Cook.render();
-const lvl = AppState.data.profile.macroLevel || 'optim';
-const levelDescEl = document.getElementById('levelDesc');
-if (levelDescEl) levelDescEl.textContent = Profile.LEVEL_DESC[lvl] || '';
+const _P = Profile.readParams();
+if (_P) Profile.renderResults(_P);
+InfoUI.render();
 Profile.updateActivityDesc();
 MeasureUI.renderMeas();
 }
@@ -2205,7 +2203,63 @@ const goal = AppState.data.profile.goal;
 const map = { loss: 'info-cut', gain: 'info-bulk', maintain: 'info-maintain' };
 ['info-bulk', 'info-cut', 'info-maintain'].forEach(id => { document.getElementById(id)?.classList.remove('current'); });
 const activeId = map[goal];
-if (activeId) { const el = document.getElementById(activeId); if (el) { el.classList.add('current'); el.classList.add('open'); } }
+if (activeId) { const el = document.getElementById(activeId); if (el) el.classList.add('current'); }
+},
+SOURCES: [
+['ACSM/AND/DC Joint Position Statement: Nutrition and Athletic Performance', 'Thomas, Erdman, Burke. Med Sci Sports Exerc 2016;48(3):543–568'],
+['ISSN Position Stand: Protein and Exercise', 'Jäger et al., J Int Soc Sports Nutr 2017;14:20'],
+['ISSN Position Stand: Diets and Body Composition', 'Aragon et al., J Int Soc Sports Nutr 2017;14:16'],
+['Evidence-based recommendations for natural bodybuilding contest preparation', 'Helms, Aragon, Fitschen. J Int Soc Sports Nutr 2014;11:20'],
+['Meta-analysis: Protein supplementation and muscle mass', 'Morton et al., Br J Sports Med 2018'],
+['MATADOR study: Diet breaks and fat loss', 'Byrne et al., Int J Obes 2018']
+],
+render() {
+const root = document.getElementById('info-root');
+if (!root) return;
+const prevOpen = [...root.querySelectorAll('.info-section.open')].map(e => e.id);
+const first = !root.dataset.ready;
+const d = g => Targets.defaults(g);
+const num = v => String(Math.round(v * 100) / 100);
+const pc = v => String(Math.round(Math.abs(v) * 1000) / 10);
+const h = k => `<div class="info-h">${t(k)}</div>`;
+const p = (k, ...a) => `<div class="info-p">${t(k, ...a)}</div>`;
+const li = (k, ...a) => `<li>${t(k, ...a)}</li>`;
+const row = k => `<tr><td>${t('info.r_' + k)}</td><td>${t('info.v_' + k)}</td></tr>`;
+const sec = (id, title, body) => `<div class="info-section" id="${id}"><button class="info-section-toggle" onclick="InfoUI.toggle('${id}')"><span>${title}</span><span class="info-arrow">▼</span></button><div class="info-section-body">${body}</div></div>`;
+let you = '';
+const pi = AppState.runtime.planInfo;
+if (pi) {
+const goalLabel = t({ cut: 'profile.loss', bulk: 'profile.gain', maintain: 'profile.maintain' }[pi.goal] || 'profile.maintain');
+const dp = Math.round(pi.deltaKcal / pi.tdee * 1000) / 10;
+const dpStr = (dp > 0 ? '+' : dp < 0 ? '−' : '±') + String(Math.abs(dp)).replace('.', ',') + '%';
+you = `<div class="info-card"><b>${t('info.your')} · ${goalLabel}</b><ul class="info-list" style="margin-bottom:0">` +
+li('info.you_kcal', pi.kcal, dpStr, Math.round(pi.tdee / 10) * 10, Profile.fmtWeekly(pi.weeklyKg)) +
+li('info.you_prot', pi.proteinG, num(pi.proteinPerKg)) +
+li('info.you_fat', pi.fatG, Math.round(pi.fatG * 9 / pi.kcal * 100)) +
+li('info.you_carb', pi.carbsG, String(Math.round(pi.carbsG / pi.weight * 10) / 10)) +
+(pi.floorApplied ? `<li>${t('profile.floor_note', pi.floorKcal)}</li>` : '') + '</ul></div>';
+}
+const general = `<table class="info-table"><tr><th>${t('info.th_param')}</th><th>${t('info.th_value')}</th></tr>` + ['protein', 'protein_cut', 'protein_meal', 'fat', 'carb', 'water'].map(row).join('') + '</table>';
+const bulk = h('info.h_cal') + p('info.bulk_cal', pc(d('bulk').kcalAdj)) + p('info.bulk_cal2') + `<div class="info-card">${t('info.bulk_rate')}</div>` +
+h('info.h_prot') + '<ul class="info-list">' + li('info.bulk_prot1', num(d('bulk').protein)) + li('info.bulk_prot2') + li('info.bulk_prot3') + li('info.bulk_prot4') + '</ul>' +
+h('info.h_fat') + p('info.bulk_fat', pc(d('bulk').fatPct)) + h('info.h_carb') + p('info.bulk_carb');
+const cut = h('info.h_cal') + p('info.cut_cal', pc(d('cut').kcalAdj)) + `<div class="info-card">${t('info.cut_rate')}</div>` + p('info.cut_floor') +
+h('info.h_prot') + '<ul class="info-list">' + li('info.cut_prot1', num(d('cut').protein)) + li('info.cut_prot2') + li('info.cut_prot3') + '</ul>' +
+h('info.h_fat') + p('info.cut_fat', pc(d('cut').fatPct)) + h('info.h_carb') + p('info.cut_carb');
+const maintain = h('info.h_cal') + p('info.mnt_cal') + h('info.h_prot') + p('info.mnt_prot', num(d('maintain').protein)) + h('info.h_fat') + p('info.mnt_fat', pc(d('maintain').fatPct));
+const sources = InfoUI.SOURCES.map(s => `<div class="info-source"><b>${s[0]}</b><div class="authors">${s[1]}</div></div>`).join('') + `<div class="info-card warn">${t('info.disclaimer')}</div>`;
+root.innerHTML = `<div class="section-title">${t('info.title')}</div><div class="info-intro">${t('info.intro')}</div>${you}` +
+sec('info-general', t('info.s_general'), general) + sec('info-bulk', t('info.s_bulk'), bulk) + sec('info-cut', t('info.s_cut'), cut) + sec('info-maintain', t('info.s_maintain'), maintain) + sec('info-sources', t('info.s_sources'), sources);
+// открытые разделы сохраняются между перерисовками; при смене цели закрывается раздел прежней цели и открывается новой
+const goal = AppState.data.profile.goal;
+const goalMap = { loss: 'info-cut', gain: 'info-bulk', maintain: 'info-maintain' };
+const opens = new Set(first ? ['info-general'] : prevOpen);
+const prevGoal = root.dataset.goal;
+if (first || prevGoal !== goal) { if (prevGoal && goalMap[prevGoal]) opens.delete(goalMap[prevGoal]); if (goalMap[goal]) opens.add(goalMap[goal]); }
+opens.forEach(id => document.getElementById(id)?.classList.add('open'));
+if (goalMap[goal]) document.getElementById(goalMap[goal])?.classList.add('current');
+root.dataset.ready = '1';
+root.dataset.goal = goal;
 }
 };
 const Classify = {
@@ -2417,26 +2471,63 @@ clearTimeout(timeoutId);
 }
 };
 const Targets = {
-RANGES: {
-cut: { kcalAdj: [-0.20, -0.25], proteinPerKg: [1.8, 2.7], fatPct: [0.25, 0.30] },
-maintain: { kcalAdj: [-0.05, 0.05], proteinPerKg: [1.6, 2.2], fatPct: [0.30, 0.35] },
-bulk: { kcalAdj: [0.05, 0.10], proteinPerKg: [1.6, 2.2], fatPct: [0.25, 0.35] }
+// Диапазоны из справки во вкладке «Инфо» (ISSN / ACSM-AND-DC). Цель приложения — середина диапазона.
+SPEC: {
+cut: { kcalAdj: [-0.20, -0.25], protein: [1.8, 2.7], fatPct: [0.25, 0.30] },
+maintain: { kcalAdj: [-0.05, 0.05], protein: [1.6, 2.2], fatPct: [0.30, 0.35] },
+bulk: { kcalAdj: [0.05, 0.10], protein: [1.6, 2.2], fatPct: [0.25, 0.35] }
 },
-LEVELS: { min: 0, optim: 0.5, max: 1 },
-lerp(range, t) { return range[0] + (range[1] - range[0]) * t; },
-compute(sex, age, weight, height, activity, goal, level = 'optim') {
-const bmr = sex === 'male' ? 10 * weight + 6.25 * height - 5 * age + 5 : 10 * weight + 6.25 * height - 5 * age - 161;
+MIN_KCAL: { male: 1500, female: 1200 },
+MIN_FAT_PCT: 0.20,
+MIN_FAT_PER_KG: 0.5,
+CUT_MIN_CARB_PER_KG: 2,
+PROTEIN_CAP_PCT: 0.45,
+mid(r) { return (r[0] + r[1]) / 2; },
+defaults(goal) {
+const s = this.SPEC[goal] || this.SPEC.maintain;
+return { kcalAdj: this.mid(s.kcalAdj), protein: this.mid(s.protein), fatPct: this.mid(s.fatPct) };
+},
+compute(sex, age, weight, height, activity, goal) {
+const male = sex === 'male' || sex === 'm';
+const bmr = 10 * weight + 6.25 * height - 5 * age + (male ? 5 : -161);
 const tdee = bmr * activity;
-const r = this.RANGES[goal] || this.RANGES.maintain;
-const t = this.LEVELS[level] ?? 0.5;
-const kcal = tdee * (1 + this.lerp(r.kcalAdj, t));
-let proteinG = this.lerp(r.proteinPerKg, t) * weight;
-proteinG = Math.min(proteinG, kcal * 0.45 / 4);
-let fatG = this.lerp(r.fatPct, t) * kcal / 9;
-fatG = Math.max(fatG, weight * 0.5);
-let carbsG = Math.max(0, (kcal - proteinG * 4 - fatG * 9) / 4);
+const gk = this.SPEC[goal] ? goal : 'maintain';
+const spec = this.SPEC[gk];
+const d = this.defaults(gk);
+const rawKcal = tdee * (1 + d.kcalAdj);
+const floor = Math.max(bmr, male ? this.MIN_KCAL.male : this.MIN_KCAL.female);
+let kcal = rawKcal, floorApplied = false;
+if (d.kcalAdj < 0 && rawKcal < floor) { kcal = Math.min(tdee, floor); floorApplied = kcal > rawKcal + 0.5; }
+let proteinG = Math.min(d.protein * weight, kcal * this.PROTEIN_CAP_PCT / 4);
+const fatMin = Math.max(this.MIN_FAT_PCT * kcal / 9, this.MIN_FAT_PER_KG * weight);
+let fatG = Math.max(d.fatPct * kcal / 9, fatMin);
+let carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
+// На сушке углеводы не ниже 2 г/кг: сначала снижаем белок до нижней границы диапазона, затем жиры до минимума
+if (gk === 'cut' && carbsG < this.CUT_MIN_CARB_PER_KG * weight) {
+let need = this.CUT_MIN_CARB_PER_KG * weight * 4 - (kcal - proteinG * 4 - fatG * 9);
+const pLow = Math.min(proteinG, spec.protein[0] * weight);
+const fromP = Math.min(need, (proteinG - pLow) * 4);
+proteinG -= fromP / 4; need -= fromP;
+if (need > 0) { const fromF = Math.min(need, Math.max(0, fatG - fatMin) * 9); fatG -= fromF / 9; }
+carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
+}
+carbsG = Math.max(0, carbsG);
 if (carbsG <= 0) { fatG = Math.max(kcal * 0.20 / 9, weight * 0.4); carbsG = Math.max(0, (kcal - proteinG * 4 - fatG * 9) / 4); }
-return { kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0 };
+return { bmr, tdee, kcal, proteinG, fatG, carbsG, floorApplied, floorKcal: Math.round(floor), goal: gk, kcalAdj: d.kcalAdj, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0 };
+},
+// Итоговые цели: Б и Ж округляются до 5 г, углеводы добираются остатком до целевой калорийности
+// и тоже округляются до 5 г; ккал = 4Б + 9Ж + 4У (сходится точно, отклонение от расчётной ≤ ~10 ккал).
+// Именно эти цифры используются и в анкете, и при построении меню.
+plan(sex, age, weight, height, activity, goal) {
+const r = this.compute(sex, age, weight, height, activity, goal);
+const proteinG = this.round5(r.proteinG);
+const fatG = this.round5(r.fatG);
+let carbsG = Math.max(0, this.round5((r.kcal - proteinG * 4 - fatG * 9) / 4));
+if (r.floorApplied && proteinG * 4 + fatG * 9 + carbsG * 4 < r.floorKcal) carbsG += 5;
+if (r.goal === 'cut') { const minC = Math.ceil(this.CUT_MIN_CARB_PER_KG * weight / 5) * 5; if (carbsG < minC) carbsG = minC; }
+const kcal = proteinG * 4 + fatG * 9 + carbsG * 4;
+const deltaKcal = kcal - r.tdee;
+return { ...r, kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0, deltaKcal, weeklyKg: deltaKcal * 7 / 7700 };
 },
 round5: x => Math.round(x / 5) * 5,
 round10: x => Math.round(x / 10) * 10,
@@ -2580,10 +2671,10 @@ if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCu
 });
 }
 },
-buildCaseinSnack(dayIndex, pools) {
+buildCaseinSnack(dayIndex, pools, targets) {
 let comp = null;
 const pool = pools.proteinCasein;
-if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; const s = this.scale(pItem, CONFIG.PORTIONS.caseinPack); comp = { item: pItem, weight: CONFIG.PORTIONS.caseinPack, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
+if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; let cw = CONFIG.PORTIONS.caseinPack; const pg = pItem.weight > 0 ? pItem.p / pItem.weight : 0; if (targets && pg > 0) { const share = 1 - CONFIG.MEALS.proteinPct.reduce((a, b) => a + b, 0); cw = Math.max(100, Math.min(300, Math.round(targets.proteinG * share / pg / 50) * 50)); } const s = this.scale(pItem, cw); comp = { item: pItem, weight: cw, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
 const components = comp ? [comp] : [];
 const totals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 if (comp) { totals.kcal = comp.kcal; totals.p = comp.p; totals.f = comp.f; totals.c = comp.c; totals.fib = comp.fib; totals.price = comp.price; }
@@ -2593,7 +2684,7 @@ recalc(meal) { const t = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 }; meal.c
 build() {
 const p = AppState.runtime.lastMenuParams;
 if (!p) return;
-const targets = Targets.compute(p.sex, p.age, p.weight, p.height, p.activity, p.goal, p.level);
+const targets = Targets.plan(p.sex, p.age, p.weight, p.height, p.activity, p.goal, p.level);
 const allCarb = AppState.runtime.products.filter(x => Classify.get(x) === 'carb' && !Classify.isGarlic(x.name));
 const allProtein = AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && !Classify.isCasein(x.name) && !Classify.isGarlic(x.name));
 const proteinFillet = [], proteinEggs = [], proteinCanned = [], proteinOther = [];
@@ -2631,7 +2722,7 @@ const cutMode = (p.goal === 'cut');
 const sweetLimit = cutMode ? CONFIG.PORTIONS.sweetenerCutMax : (p.goal === 'maintain' ? CONFIG.DEFAULTS.sweetenerMaintainMax : CONFIG.PORTIONS.sweetenerMax);
 const days = [];
 for (let d = 0; d < CONFIG.TOTAL_DAYS; d++) {
-const caseinMeal = this.buildCaseinSnack(d, pools);
+const caseinMeal = this.buildCaseinSnack(d, pools, targets);
 if (pools.sweetener.length > 0) {
 const sItem = pools.sweetener[d % pools.sweetener.length];
 const carbPerG = sItem.c / sItem.weight;
@@ -2663,8 +2754,10 @@ const protPerG = meatItem.p / meatItem.weight;
 if (protPerG <= 0) return;
 const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0);
 const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.18);
-let meatW = Math.max(0, (mealTarget - existingP) / protPerG);
-meatW = Math.max(minPW, Math.min(maxPW, Math.round(meatW / 5) * 5));
+const needP = mealTarget - existingP;
+let meatW = Math.min(maxPW, Math.round(Math.max(0, needP) / protPerG / 5) * 5);
+// минимальную порцию мяса добавляем, только если приём недобирает хотя бы половину её белка
+if (meatW < minPW) meatW = needP >= 0.5 * minPW * protPerG ? minPW : 0;
 addC(m, meatItem, meatW);
 });
 }
@@ -3078,6 +3171,8 @@ input.click();
 },
 showCtxMenu(x, y, idx) {
 this.currentActionIdx = idx;
+this.rowLock = idx;
+this.pressRow(idx);
 const overlay = document.getElementById('ctx-overlay');
 const menu = document.getElementById('ctx-menu');
 overlay.classList.add('active');
@@ -3089,35 +3184,49 @@ if (rect.right > window.innerWidth) menu.style.left = (window.innerWidth - rect.
 if (rect.bottom > window.innerHeight) menu.style.top = (y - rect.height) + 'px';
 });
 },
-hideCtxMenu() {
+hideCtxMenu(keepRow) {
 document.getElementById('ctx-overlay').classList.remove('active');
 this.currentActionIdx = null;
+if (!keepRow) this.releaseRow();
+},
+pressRow(idx) {
+const info = document.querySelector('.shop-info[data-idx="' + idx + '"]');
+const row = info && info.closest('.shop-row');
+if (row) row.classList.add('pressed');
+},
+releaseRow() {
+this.rowLock = null;
+document.querySelectorAll('.shop-row.pressed').forEach(r => r.classList.remove('pressed'));
 },
 initCtxMenu() {
 const overlay = document.getElementById('ctx-overlay');
 overlay.addEventListener('click', (e) => { if (e.target === overlay) this.hideCtxMenu(); });
 document.getElementById('ctx-edit').onclick = () => { const idx = this.currentActionIdx; this.hideCtxMenu(); if (idx !== null) this.openEdit(idx); };
-document.getElementById('ctx-delete').onclick = async () => { const idx = this.currentActionIdx; this.hideCtxMenu(); if (idx !== null) { const confirmed = await UI.confirm(t('shop.delete_confirm'), t('common.delete'), t('common.cancel')); if (confirmed) this.delWeek(idx); } };
+document.getElementById('ctx-delete').onclick = async () => { const idx = this.currentActionIdx; this.hideCtxMenu(true); if (idx !== null) { const confirmed = await UI.confirm(t('shop.delete_confirm'), t('common.delete'), t('common.cancel')); this.releaseRow(); if (confirmed) this.delWeek(idx); } else this.releaseRow(); };
 },
 attachShopInfoEvents() {
-let longPressTimer = null;
+let longPressTimer = null, hlTimer = null;
 let startX = 0, startY = 0;
 document.querySelectorAll('.shop-info').forEach(el => {
 const idx = parseInt(el.getAttribute('data-idx'));
+const row = el.closest('.shop-row');
+const cancelHl = () => { clearTimeout(hlTimer); if (row && ShopUI.rowLock !== idx) row.classList.remove('pressed'); };
 const startPress = (e) => {
+clearTimeout(longPressTimer); clearTimeout(hlTimer);
 startX = e.touches ? e.touches[0].clientX : e.clientX;
 startY = e.touches ? e.touches[0].clientY : e.clientY;
+hlTimer = setTimeout(() => { if (row) row.classList.add('pressed'); }, 150);
 longPressTimer = setTimeout(() => {
 if (navigator.vibrate) navigator.vibrate(30);
 ShopUI.showCtxMenu(startX, startY, idx);
 }, 450);
 };
-const endPress = () => clearTimeout(longPressTimer);
+const endPress = () => { clearTimeout(longPressTimer); cancelHl(); };
 const movePress = (e) => {
 if (e.touches) {
 const dx = Math.abs(e.touches[0].clientX - startX);
 const dy = Math.abs(e.touches[0].clientY - startY);
-if (dx > 10 || dy > 10) clearTimeout(longPressTimer);
+if (dx > 10 || dy > 10) { clearTimeout(longPressTimer); cancelHl(); }
 }
 };
 el.addEventListener('mousedown', startPress);
@@ -3127,6 +3236,7 @@ el.addEventListener('mouseleave', endPress);
 el.addEventListener('touchend', endPress);
 el.addEventListener('touchcancel', endPress);
 el.addEventListener('touchmove', movePress, { passive: true });
+el.addEventListener('contextmenu', e => e.preventDefault());
 });
 }
 };
@@ -3204,57 +3314,67 @@ history.innerHTML = arr.slice().reverse().map((m, idxRev) => { const i = arr.len
 const Profile = {
 setGender(g) { AppState.data.profile.gender = g; document.getElementById('gm').classList.toggle('active', g === 'm'); document.getElementById('gf').classList.toggle('active', g === 'f'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
 setGoal(g) { AppState.data.profile.goal = g; document.getElementById('g-maintain').classList.toggle('active', g === 'maintain'); document.getElementById('g-gain').classList.toggle('active', g === 'gain'); document.getElementById('g-loss').classList.toggle('active', g === 'loss'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
-get LEVEL_DESC() { return { min: t('profile.level_min_desc'), optim: t('profile.level_optim_desc'), max: t('profile.level_max_desc') }; },
-setLevel(l) { AppState.data.profile.macroLevel = l; document.getElementById('lvl-min').classList.toggle('active', l === 'min'); document.getElementById('lvl-optim').classList.toggle('active', l === 'optim'); document.getElementById('lvl-max').classList.toggle('active', l === 'max'); document.getElementById('levelDesc').textContent = this.LEVEL_DESC[l] || ''; this.calc(); AppState.save('profile'); },
 updateActivityDesc() { const val = document.getElementById('activity').value; const map = { '1.2': t('profile.activity_1_2'), '1.375': t('profile.activity_1_375'), '1.55': t('profile.activity_1_55'), '1.725': t('profile.activity_1_725'), '1.9': t('profile.activity_1_9') }; document.getElementById('activityDesc').textContent = map[val] || map['1.55']; },
-calc() {
-const a = +document.getElementById('age').value || 47;
-const h = +document.getElementById('height').value || 184;
-const w = +document.getElementById('weight').value || 90;
-const act = +document.getElementById('activity').value || 1.55;
-const sex = AppState.data.profile.gender === 'm' ? 'male' : 'female';
-const goalMap = { maintain: 'maintain', gain: 'bulk', loss: 'cut' };
-const g = goalMap[AppState.data.profile.goal] || 'maintain';
-const level = AppState.data.profile.macroLevel || 'optim';
-const targets = Targets.compute(sex, a, w, h, act, g, level);
-const fiber = Math.min(35, Math.max(25, Math.round(targets.kcal / 1000 * 14)));
+LIMITS: { age: [14, 90], height: [120, 230], weight: [35, 250] },
+inRange(id, v) { const [lo, hi] = this.LIMITS[id]; return Number.isFinite(v) && v >= lo && v <= hi; },
+goalKey() { return ({ maintain: 'maintain', gain: 'bulk', loss: 'cut' })[AppState.data.profile.goal] || 'maintain'; },
+readParams() {
+const num = id => { const v = document.getElementById(id).value; return v === '' ? NaN : +v; };
+const v = { age: num('age'), height: num('height'), weight: num('weight') };
+const bad = Object.keys(v).filter(k => !this.inRange(k, v[k]));
+Object.keys(v).forEach(k => document.getElementById(k).classList.toggle('invalid', bad.includes(k)));
+const warn = document.getElementById('profileWarn');
+if (bad.length) { warn.textContent = t('profile.err_check', bad.map(k => t('profile.' + k) + ' ' + this.LIMITS[k].join('–')).join('; ')); warn.style.display = 'block'; return null; }
+warn.style.display = 'none';
+return { age: v.age, height: v.height, weight: v.weight, act: +document.getElementById('activity').value || 1.55, sex: AppState.data.profile.gender === 'm' ? 'male' : 'female', goal: this.goalKey() };
+},
+fmtWeekly(kg) {
+const v = Math.round(Math.abs(kg) * 10) / 10;
+if (v === 0) return '≈ 0 ' + t('profile.per_week');
+return '≈ ' + (kg < 0 ? '−' : '+') + String(v).replace('.', ',') + ' ' + t('profile.per_week');
+},
+renderResults(P) {
+const tg = Targets.plan(P.sex, P.age, P.weight, P.height, P.act, P.goal);
+const w = P.weight;
+const fiber = Math.min(35, Math.max(25, Math.round(tg.kcal / 1000 * 14)));
 const water = (w * 35 / 1000).toFixed(1);
-AppState.runtime.targets = { kcal: Targets.round50(targets.kcal), protein: Targets.round5(targets.proteinG), fat: Targets.round5(targets.fatG), carbs: Targets.round10(targets.carbsG), fiber, water };
-document.getElementById('rKcal').textContent = '~' + AppState.runtime.targets.kcal + ' ' + t('day.kcal');
-document.getElementById('rProt').textContent = '~' + AppState.runtime.targets.protein + ' г (' + targets.proteinPerKg + ' г/кг)';
-const fatPerKg = w > 0 ? (AppState.runtime.targets.fat / w).toFixed(1) : 0;
-const carbPerKg = w > 0 ? (AppState.runtime.targets.carbs / w).toFixed(1) : 0;
-document.getElementById('rFat').textContent = '~' + AppState.runtime.targets.fat + ' г (' + fatPerKg + ' г/кг)';
-document.getElementById('rCarb').textContent = '~' + AppState.runtime.targets.carbs + ' г (' + carbPerKg + ' г/кг)';
+AppState.runtime.targets = { kcal: tg.kcal, protein: tg.proteinG, fat: tg.fatG, carbs: tg.carbsG, fiber, water };
+AppState.runtime.planInfo = { ...tg, weight: w, goal: P.goal };
+const T = AppState.runtime.targets;
+document.getElementById('rKcal').textContent = '~' + T.kcal + ' ' + t('day.kcal');
+document.getElementById('rProt').textContent = '~' + T.protein + ' г (' + tg.proteinPerKg + ' г/кг)';
+document.getElementById('rFat').textContent = '~' + T.fat + ' г (' + (T.fat / w).toFixed(1) + ' г/кг)';
+document.getElementById('rCarb').textContent = '~' + T.carbs + ' г (' + (T.carbs / w).toFixed(1) + ' г/кг)';
 document.getElementById('rFiber').textContent = fiber + ' г';
 document.getElementById('rWater').textContent = water + ' л';
 const modeNote = document.getElementById('rModeNote');
-const r = Targets.RANGES[g];
-const tLvl = Targets.LEVELS[level] ?? 0.5;
-const pct = Math.round(Math.abs(Targets.lerp(r.kcalAdj, tLvl)) * 100);
-if (AppState.data.profile.goal === 'loss') { modeNote.style.display = 'block'; modeNote.textContent = `Режим жиросжигания: дефицит ~${pct}%`; }
-else if (AppState.data.profile.goal === 'gain') { modeNote.style.display = 'block'; modeNote.textContent = `Режим набора: профицит ~${pct}%`; }
+const pct = Math.round(Math.abs(tg.deltaKcal) / tg.tdee * 100);
+if (P.goal === 'cut') { modeNote.style.display = 'block'; modeNote.textContent = t('profile.note_cut', pct, this.fmtWeekly(tg.weeklyKg)); }
+else if (P.goal === 'bulk') { modeNote.style.display = 'block'; modeNote.textContent = t('profile.note_gain', pct, this.fmtWeekly(tg.weeklyKg)); }
 else modeNote.style.display = 'none';
-AppState.runtime.lastMenuParams = { sex, age: a, weight: w, height: h, activity: act, goal: g, level };
+const floorNote = document.getElementById('rFloorNote');
+floorNote.textContent = tg.floorApplied ? t('profile.floor_note', tg.floorKcal) : '';
+floorNote.style.display = tg.floorApplied ? 'block' : 'none';
+InfoUI.render();
+},
+calc() {
+const P = this.readParams();
+if (!P) return;
+this.renderResults(P);
+AppState.runtime.lastMenuParams = { sex: P.sex, age: P.age, weight: P.weight, height: P.height, activity: P.act, goal: P.goal };
 Products.refreshAll();
 Menu.build();
 },
 load() {
 const p = AppState.data.profile;
-document.getElementById('age').value = p.age || 47;
-document.getElementById('height').value = p.height || 184;
-document.getElementById('weight').value = p.weight || 90;
+const DEF = { age: 47, height: 184, weight: 90 };
+['age', 'height', 'weight'].forEach(k => { document.getElementById(k).value = this.inRange(k, +p[k]) ? p[k] : DEF[k]; });
 document.getElementById('activity').value = p.activity || '1.55';
 document.getElementById('gm').classList.toggle('active', p.gender === 'm');
 document.getElementById('gf').classList.toggle('active', p.gender === 'f');
 document.getElementById('g-maintain').classList.toggle('active', p.goal === 'maintain');
 document.getElementById('g-gain').classList.toggle('active', p.goal === 'gain');
 document.getElementById('g-loss').classList.toggle('active', p.goal === 'loss');
-const lvl = p.macroLevel || 'optim';
-document.getElementById('lvl-min').classList.toggle('active', lvl === 'min');
-document.getElementById('lvl-optim').classList.toggle('active', lvl === 'optim');
-document.getElementById('lvl-max').classList.toggle('active', lvl === 'max');
-document.getElementById('levelDesc').textContent = this.LEVEL_DESC[lvl] || '';
 }
 };
 const BackupSystem = {
@@ -3264,7 +3384,7 @@ if (!data || typeof data !== 'object') return t('backup.err_root');
 const p = data.profile;
 if (!p || typeof p !== 'object') return t('backup.err_profile');
 if (p.gender !== undefined && p.gender !== 'm' && p.gender !== 'f') return t('backup.err_gender');
-for (const k of ['age', 'height', 'weight']) { if (p[k] !== undefined && (typeof p[k] !== 'number' || !Number.isFinite(p[k]) || p[k] < 0)) return t('backup.err_field', k); }
+for (const k of ['age', 'height', 'weight']) { if (p[k] !== undefined && (typeof p[k] !== 'number' || !Profile.inRange(k, p[k]))) return t('backup.err_field', k); }
 if (data.weekList !== undefined && !Array.isArray(data.weekList)) return t('backup.err_weeklist');
 if (data.measHistory !== undefined && !Array.isArray(data.measHistory)) return t('backup.err_meas');
 if (data.cookChecks !== undefined && (typeof data.cookChecks !== 'object' || Array.isArray(data.cookChecks))) return t('backup.err_cookchecks');
@@ -3422,7 +3542,7 @@ ShopUI.bindImg('edit_img_file', 'edit_img', 'edit_img_preview');
 ShopUI.initCtxMenu();
 document.getElementById('import-dump').addEventListener('change', e => BackupSystem.importFullDump(e));
 const debouncedProfileUpdate = debounce(() => { Profile.calc(); AppState.save('profile'); }, 250);
-['age', 'height', 'weight'].forEach(id => { document.getElementById(id).addEventListener('input', () => { AppState.data.profile[id] = +document.getElementById(id).value; debouncedProfileUpdate(); }); });
+['age', 'height', 'weight'].forEach(id => { document.getElementById(id).addEventListener('input', () => { const raw = document.getElementById(id).value; const v = raw === '' ? NaN : +raw; if (Profile.inRange(id, v)) AppState.data.profile[id] = v; debouncedProfileUpdate(); }); });
 document.getElementById('activity').addEventListener('input', () => { AppState.data.profile.activity = +document.getElementById('activity').value; debouncedProfileUpdate(); });
 document.getElementById('activity').addEventListener('change', () => { AppState.data.profile.activity = document.getElementById('activity').value; Profile.updateActivityDesc(); debouncedProfileUpdate(); });
 Shop.render();
