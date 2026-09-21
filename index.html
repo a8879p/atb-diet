@@ -1534,20 +1534,20 @@ placeholder="URL"></div>
 class="file-input"><img id="np_img_preview" class="shop-img"
 style="display:none;margin-top:6px" alt=""></div>
 <div class="form-group"><button class="btn btn-ghost" onclick="SearchOFF.run('np_')"
-style="font-size:12px;padding:4px 8px;margin-bottom:8px">🔍 БЖУ з OpenFoodFacts</button>
+style="font-size:12px;padding:4px 8px;margin-bottom:8px" data-i18n="shop.off_search">🔍 БЖУ з OpenFoodFacts</button>
 </div>
 <div class="form-row3">
-<div class="form-group"><label class="form-label">Белки/100г</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="shop.b100">Белки/100г</label><input type="number"
 step="0.1" class="input" id="np_b" placeholder="17"></div>
-<div class="form-group"><label class="form-label">Жиры/100г</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="shop.f100">Жиры/100г</label><input type="number"
 step="0.1" class="input" id="np_f" placeholder="5"></div>
-<div class="form-group"><label class="form-label">Углеводы/100г</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="shop.c100">Углеводы/100г</label><input type="number"
 step="0.1" class="input" id="np_c" placeholder="2"></div>
 </div>
 <button class="btn" onclick="ShopUI.addUserProduct()" data-i18n="common.save">Сохранить</button>
 </div>
 <div class="addform" id="editForm" style="border-color:var(--primary)">
-<div class="section-title" style="color:var(--primary);margin-bottom:10px">Редактирование</div>
+<div class="section-title" style="color:var(--primary);margin-bottom:10px" data-i18n="shop.editing">Редактирование</div>
 <input type="hidden" id="edit_idx">
 <div class="form-group"><label class="form-label" data-i18n="common.name">Название</label><input
 type="text" class="input" id="edit_name"></div>
@@ -1575,14 +1575,14 @@ data-i18n="common.image">Картинка</label><input type="text" class="input
 class="file-input"><img id="edit_img_preview" class="shop-img"
 style="display:none;margin-top:6px" alt=""></div>
 <div class="form-group"><button class="btn btn-ghost" onclick="SearchOFF.run('edit_')"
-style="font-size:12px;padding:4px 8px;margin-bottom:8px">🔍 БЖУ з OpenFoodFacts</button>
+style="font-size:12px;padding:4px 8px;margin-bottom:8px" data-i18n="shop.off_search">🔍 БЖУ з OpenFoodFacts</button>
 </div>
 <div class="form-row3">
-<div class="form-group"><label class="form-label">Белки</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="diag.protein">Белки</label><input type="number"
 step="0.1" class="input" id="edit_b"></div>
-<div class="form-group"><label class="form-label">Жиры</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="diag.fat">Жиры</label><input type="number"
 step="0.1" class="input" id="edit_f"></div>
-<div class="form-group"><label class="form-label">Углеводы</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="diag.carbs">Углеводы</label><input type="number"
 step="0.1" class="input" id="edit_c"></div>
 </div>
 <div class="import-row"><button class="btn" onclick="ShopUI.saveEdit()"
@@ -1594,7 +1594,7 @@ onclick="ShopUI.closeEdit()" data-i18n="common.cancel">Отмена</button></di
 data-i18n="shop.import">📂
 Загрузить JSON</button><button class="btn btn-ghost" onclick="ShopUI.exportProducts()"
 data-i18n="shop.export">💾 Выгрузить JSON</button></div>
-<p class="note" style="margin-top:8px">БЖУ в файле — на 100 г.</p>
+<p class="note" style="margin-top:8px" data-i18n="shop.file_note">БЖУ в файле — на 100 г.</p>
 </div>
 </div>
 <div class="tab" id="tab-cook">
@@ -1605,16 +1605,16 @@ onclick="CookUI.toggleKitchenMode()" data-i18n="cook.kitchen">🍳 Режим к
 onclick="window.print()" data-i18n="cook.print">🖨️ Печать</button><button
 onclick="CookUI.resetCook()" data-i18n="cook.reset">Сбросить</button></div>
 <div id="cooking-intro">
-<p class="note">Выберите период.</p>
+<p class="note" data-i18n="cook.choose_period">Выберите период.</p>
 <div class="cooking-toolbar"><select id="cooking-period-type" onchange="Cook.render()">
-<option value="day">День</option>
-<option value="p3">3 дня</option>
-<option value="p6">6 дней</option>
-<option value="p10">Все 10 дней</option>
+<option value="day" data-i18n="cook.p_day">День</option>
+<option value="p3" data-i18n="cook.p_3">3 дня</option>
+<option value="p6" data-i18n="cook.p_6">6 дней</option>
+<option value="p10" data-i18n="cook.p_10">Все 10 дней</option>
 </select><select id="cooking-period-start" onchange="Cook.render()"></select></div>
 </div>
 <div id="cooking-empty" style="display:none">
-<p class="note">Сначала добавьте продукты.</p>
+<p class="note" data-i18n="cook.add_first">Сначала добавьте продукты.</p>
 </div>
 <div id="cooking-groups"></div>
 </div>
@@ -1626,18 +1626,18 @@ onclick="CookUI.resetCook()" data-i18n="cook.reset">Сбросить</button></d
 onclick="MeasureUI.toggleMeasForm()" data-i18n="progress.add">+ Добавить замер</button>
 <div class="meas-form" id="measForm">
 <div class="form-row">
-<div class="form-group"><label class="form-label">Вес, кг</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="meas.weight">Вес, кг</label><input type="number"
 step="0.1" class="input" id="mf_weight"></div>
-<div class="form-group"><label class="form-label">Талия, см</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="meas.waist">Талия, см</label><input type="number"
 step="0.5" class="input" id="mf_waist"></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label class="form-label">Грудь, см</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="meas.chest">Грудь, см</label><input type="number"
 step="0.5" class="input" id="mf_chest"></div>
-<div class="form-group"><label class="form-label">Бедро, см</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="meas.hip">Бедро, см</label><input type="number"
 step="0.5" class="input" id="mf_hip"></div>
 </div>
-<div class="form-group"><label class="form-label">Бицепс, см</label><input type="number"
+<div class="form-group"><label class="form-label" data-i18n="meas.biceps">Бицепс, см</label><input type="number"
 step="0.5" class="input" id="mf_biceps"></div>
 <button class="btn" onclick="MeasureUI.saveMeas()" data-i18n="common.save">Сохранить</button>
 </div>
@@ -1666,11 +1666,11 @@ type="number" class="input" id="age" value="47"></div>
 кг</label><input type="number" class="input" id="weight" value="90"></div>
 <div class="form-group"><label class="form-label"
 data-i18n="profile.activity">Активность</label><select class="select" id="activity">
-<option value="1.2">Сидячий (0 тренировок)</option>
-<option value="1.375">Лёгкая (1–3)</option>
-<option value="1.55" selected>Средняя (3–5)</option>
-<option value="1.725">Высокая (6–7)</option>
-<option value="1.9">Очень высокая (2 в день)</option>
+<option value="1.2" data-i18n="profile.act_opt_1_2">Сидячий (0 тренировок)</option>
+<option value="1.375" data-i18n="profile.act_opt_1_375">Лёгкая (1–3)</option>
+<option value="1.55" selected data-i18n="profile.act_opt_1_55">Средняя (3–5)</option>
+<option value="1.725" data-i18n="profile.act_opt_1_725">Высокая (6–7)</option>
+<option value="1.9" data-i18n="profile.act_opt_1_9">Очень высокая (2 в день)</option>
 </select>
 <div class="activity-desc" id="activityDesc"></div>
 </div>
@@ -1685,20 +1685,20 @@ data-i18n="profile.loss">Снижение жира</button></div>
 </div>
 <div class="result" id="result">
 <div class="result-big" id="rKcal" style="color:var(--macro-kcal)">—</div>
-<div class="result-sub">ккал в день</div>
+<div class="result-sub" data-i18n="profile.kcal_per_day">ккал в день</div>
 <div class="result-sub" id="rModeNote"
 style="display:none;color:var(--primary);font-weight:700"></div>
 <div class="result-sub" id="rFloorNote" style="display:none;color:#a16207;font-weight:600"></div>
 <div class="result-row"><span
-style="color:var(--macro-protein);font-weight:600">Белки</span><span id="rProt">—</span>
+style="color:var(--macro-protein);font-weight:600" data-i18n="diag.protein">Белки</span><span id="rProt">—</span>
 </div>
-<div class="result-row"><span style="color:var(--macro-fat);font-weight:600">Жиры</span><span
+<div class="result-row"><span style="color:var(--macro-fat);font-weight:600" data-i18n="diag.fat">Жиры</span><span
 id="rFat">—</span></div>
 <div class="result-row"><span
-style="color:var(--macro-carb);font-weight:600">Углеводы</span><span id="rCarb">—</span>
+style="color:var(--macro-carb);font-weight:600" data-i18n="diag.carbs">Углеводы</span><span id="rCarb">—</span>
 </div>
-<div class="result-row"><span>Клетчатка</span><span id="rFiber">—</span></div>
-<div class="result-row"><span>Вода</span><span id="rWater">—</span></div>
+<div class="result-row"><span data-i18n="profile.fiber">Клетчатка</span><span id="rFiber">—</span></div>
+<div class="result-row"><span data-i18n="profile.water">Вода</span><span id="rWater">—</span></div>
 </div>
 </div>
 <div class="section" style="margin-top:20px">
@@ -1793,16 +1793,16 @@ viewBox="0 0 24 24">
 <!-- CONTEXT MENU -->
 <div class="ctx-overlay" id="ctx-overlay">
 <div class="ctx-menu" id="ctx-menu">
-<button class="ctx-item" id="ctx-edit">✏️ Редактировать</button>
+<button class="ctx-item" id="ctx-edit" data-i18n="ctx.edit">✏️ Редактировать</button>
 <div class="ctx-sep"></div>
-<button class="ctx-item danger" id="ctx-delete">🗑️ Удалить</button>
+<button class="ctx-item danger" id="ctx-delete" data-i18n="ctx.delete">🗑️ Удалить</button>
 </div>
 </div>
 <div id="toast" class="toast"></div>
 <script>
 'use strict';
-window.addEventListener('error', e => { console.error(e); UI.toast('Критическая ошибка: ' + e.message); });
-window.addEventListener('unhandledrejection', e => { console.error(e); UI.toast('Ошибка промиса: ' + e.reason); });
+window.addEventListener('error', e => { console.error(e); UI.toast(t('err.critical') + e.message); });
+window.addEventListener('unhandledrejection', e => { console.error(e); UI.toast(t('err.promise') + e.reason); });
 const CONFIG = {
 APP_VERSION: '2.1',
 STORAGE_PREFIX: 'atbdiet_',
@@ -1873,6 +1873,8 @@ ru: {
 "info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>каждые 3–5 ч, 4–6 приёмов (ACSM, ISSN)</small>",
 "info.r_fat": "Жиры",
 "info.v_fat": "20–35% ккал<small>ACSM/AND/DC. В приложении: не ниже 20% и 0.5 г/кг</small>",
+"info.r_oil": "Масло",
+"info.v_oil": "Подсолнечное, оливковое, льняное и др.<small>По калориям и жирам они практически одинаковы, поэтому в меню масло раскладывается на три основных приёма (салат, готовка), а вид можно менять на любой другой</small>",
 "info.r_carb": "Углеводы, г/кг",
 "info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>лёгкая активность · ~1 ч/день · 1–3 ч/день · 4–5+ ч/день (ACSM/AND/DC). В приложении углеводы — остаток калорий после белка и жиров</small>",
 "info.r_water": "Вода",
@@ -1906,6 +1908,43 @@ ru: {
 "info.mnt_prot": "<b>1.6–2.2 г/кг</b> — сохранение мышц (в приложении {0}).",
 "info.mnt_fat": "<b>30–35%</b> калорийности (в приложении {0}%).",
 "info.disclaimer": "<b>Важно:</b> это ориентиры для здоровых взрослых. При беременности, диабете, заболеваниях почек и других состояниях, а также при высоких тренировочных нагрузках нужен индивидуальный план у врача или спортивного диетолога.",
+"meal.0": "Завтрак",
+"meal.1": "Перекус №1",
+"meal.2": "Обед",
+"meal.3": "Перекус №2",
+"meal.4": "Ужин",
+"meal.5": "Перекус перед сном (казеин)",
+"cat.meat": "Мясо, рыба, яйца",
+"cat.carb": "Гарниры — углеводы",
+"cat.fat": "Жиры",
+"cat.fruits": "Фрукты, йогурты, напитки",
+"cat.snack": "Перекусы",
+"shop.b100": "Белки/100г",
+"shop.f100": "Жиры/100г",
+"shop.c100": "Углеводы/100г",
+"shop.file_note": "БЖУ в файле — на 100 г.",
+"shop.off_search": "🔍 БЖУ из OpenFoodFacts",
+"shop.editing": "Редактирование",
+"shop.toggle_avail": "Переключить наличие",
+"cook.choose_period": "Выберите период.",
+"cook.add_first": "Сначала добавьте продукты.",
+"cook.p_day": "День",
+"cook.p_3": "3 дня",
+"cook.p_6": "6 дней",
+"cook.p_10": "Все 10 дней",
+"profile.act_opt_1_2": "Сидячий (0 тренировок)",
+"profile.act_opt_1_375": "Лёгкая (1–3)",
+"profile.act_opt_1_55": "Средняя (3–5)",
+"profile.act_opt_1_725": "Высокая (6–7)",
+"profile.act_opt_1_9": "Очень высокая (2 в день)",
+"profile.kcal_per_day": "ккал в день",
+"profile.fiber": "Клетчатка",
+"profile.water": "Вода",
+"ctx.edit": "✏️ Редактировать",
+"ctx.delete": "🗑️ Удалить",
+"diag.at_target": "при цели",
+"err.critical": "Критическая ошибка: ",
+"err.promise": "Ошибка промиса: ",
 'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
 'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 'plan.dayTotal': 'Итог дня',
 'plan.balance': 'Баланс КБЖУ', 'plan.mark_day_done': 'Отметить день пройденным',
@@ -1967,7 +2006,7 @@ ua: {
 'reminders.active_until': 'Наступне сповіщення:', 'reminders.hint': 'Працює, поки вкладка відкрита (на передньому плані або нещодавно згорнута); якщо браузер повністю закритий або довго був у фоні, нагадування може не спрацювати — це обмеження платформи.',
 'app.title': 'ATB-Diet', 'nav.plan': 'План', 'nav.products': 'Продукти', 'nav.cook': 'Готування',
 'nav.progress': 'Прогрес', 'nav.profile': 'Профіль', 'nav.info': 'Інфо',
-'shop.title': 'Продукты', 'shop.add': '+ Додати продукт', 'shop.import': '📂 Завантажити JSON',
+'shop.title': 'Продукти', 'shop.add': '+ Додати продукт', 'shop.import': '📂 Завантажити JSON',
 'shop.export': '💾 Вивантажити JSON', 'shop.total': 'Разом:', 'cook.title': 'Готування',
 'cook.kitchen': '🍳 Режим кухні', 'cook.print': '🖨️ Друк', 'cook.reset': 'Скинути',
 'progress.title': 'Заміри тіла', 'progress.add': '+ Додати замір', 'progress.history': 'Історія замірів',
@@ -1996,6 +2035,8 @@ ua: {
 "info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>кожні 3–5 год, 4–6 прийомів (ACSM, ISSN)</small>",
 "info.r_fat": "Жири",
 "info.v_fat": "20–35% ккал<small>ACSM/AND/DC. У застосунку: не нижче 20% і 0.5 г/кг</small>",
+"info.r_oil": "Олія",
+"info.v_oil": "Соняшникова, оливкова, лляна та ін.<small>За калоріями та жирами вони практично однакові, тому в меню олія розкладається на три основні прийоми (салат, готування), а вид можна змінювати на будь-який інший</small>",
 "info.r_carb": "Вуглеводи, г/кг",
 "info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>легка активність · ~1 год/день · 1–3 год/день · 4–5+ год/день (ACSM/AND/DC). У застосунку вуглеводи — залишок калорій після білка та жирів</small>",
 "info.r_water": "Вода",
@@ -2029,6 +2070,43 @@ ua: {
 "info.mnt_prot": "<b>1.6–2.2 г/кг</b> — збереження м'язів (у застосунку {0}).",
 "info.mnt_fat": "<b>30–35%</b> калорійності (у застосунку {0}%).",
 "info.disclaimer": "<b>Важливо:</b> це орієнтири для здорових дорослих. При вагітності, діабеті, захворюваннях нирок та інших станах, а також при високих тренувальних навантаженнях потрібен індивідуальний план у лікаря або спортивного дієтолога.",
+"meal.0": "Сніданок",
+"meal.1": "Перекус №1",
+"meal.2": "Обід",
+"meal.3": "Перекус №2",
+"meal.4": "Вечеря",
+"meal.5": "Перекус перед сном (казеїн)",
+"cat.meat": "М'ясо, риба, яйця",
+"cat.carb": "Гарніри — вуглеводи",
+"cat.fat": "Жири",
+"cat.fruits": "Фрукти, йогурти, напої",
+"cat.snack": "Перекуси",
+"shop.b100": "Білки/100г",
+"shop.f100": "Жири/100г",
+"shop.c100": "Вуглеводи/100г",
+"shop.file_note": "БЖВ у файлі — на 100 г.",
+"shop.off_search": "🔍 БЖВ з OpenFoodFacts",
+"shop.editing": "Редагування",
+"shop.toggle_avail": "Перемкнути наявність",
+"cook.choose_period": "Оберіть період.",
+"cook.add_first": "Спочатку додайте продукти.",
+"cook.p_day": "День",
+"cook.p_3": "3 дні",
+"cook.p_6": "6 днів",
+"cook.p_10": "Усі 10 днів",
+"profile.act_opt_1_2": "Сидячий (0 тренувань)",
+"profile.act_opt_1_375": "Легка (1–3)",
+"profile.act_opt_1_55": "Середня (3–5)",
+"profile.act_opt_1_725": "Висока (6–7)",
+"profile.act_opt_1_9": "Дуже висока (2 на день)",
+"profile.kcal_per_day": "ккал на день",
+"profile.fiber": "Клітковина",
+"profile.water": "Вода",
+"ctx.edit": "✏️ Редагувати",
+"ctx.delete": "🗑️ Видалити",
+"diag.at_target": "при цілі",
+"err.critical": "Критична помилка: ",
+"err.promise": "Помилка промісу: ",
 'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
 'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 'plan.dayTotal': 'Підсумок дня',
 'plan.balance': 'Баланс КБЖВ', 'plan.mark_day_done': 'Позначити день пройденим',
@@ -2134,7 +2212,7 @@ escape(str) { const d = document.createElement('div'); d.textContent = String(st
 escapeAttr(str) { return String(str ?? '').replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); },
 toastTimer: null,
 toast(msg) { const tEl = document.getElementById('toast'); tEl.textContent = msg; tEl.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = setTimeout(() => tEl.classList.remove('show'), 3000); },
-confirm(message, okText = 'OK', cancelText = 'Отмена') {
+confirm(message, okText = 'OK', cancelText = t('common.cancel')) {
 return new Promise(resolve => {
 const overlay = document.getElementById('sys-modal');
 document.getElementById('sys-modal-text').innerHTML = this.escape(message).replace(/\n/g, '<br>');
@@ -2174,6 +2252,7 @@ window.scrollTo(0, 0);
 if (name === 'info') InfoUI.highlightCurrentGoal();
 },
 applyLang() {
+document.documentElement.lang = AppState.data.settings.lang === 'ua' ? 'uk' : 'ru';
 document.querySelectorAll('[data-i18n]').forEach(el => {
 const key = el.getAttribute('data-i18n');
 const val = t(key);
@@ -2192,6 +2271,7 @@ Shop.render(); Menu.render(); Cook.render();
 const _P = Profile.readParams();
 if (_P) Profile.renderResults(_P);
 InfoUI.render();
+if (AppState.data.settings.reminders && AppState.data.settings.reminders.enabled) Reminders.scheduleNext(); else Reminders.renderState();
 Profile.updateActivityDesc();
 MeasureUI.renderMeas();
 }
@@ -2239,7 +2319,7 @@ li('info.you_fat', pi.fatG, Math.round(pi.fatG * 9 / pi.kcal * 100)) +
 li('info.you_carb', pi.carbsG, String(Math.round(pi.carbsG / pi.weight * 10) / 10)) +
 (pi.floorApplied ? `<li>${t('profile.floor_note', pi.floorKcal)}</li>` : '') + '</ul></div>';
 }
-const general = `<table class="info-table"><tr><th>${t('info.th_param')}</th><th>${t('info.th_value')}</th></tr>` + ['protein', 'protein_cut', 'protein_meal', 'fat', 'carb', 'water'].map(row).join('') + '</table>';
+const general = `<table class="info-table"><tr><th>${t('info.th_param')}</th><th>${t('info.th_value')}</th></tr>` + ['protein', 'protein_cut', 'protein_meal', 'fat', 'oil', 'carb', 'water'].map(row).join('') + '</table>';
 const bulk = h('info.h_cal') + p('info.bulk_cal', pc(d('bulk').kcalAdj)) + p('info.bulk_cal2') + `<div class="info-card">${t('info.bulk_rate')}</div>` +
 h('info.h_prot') + '<ul class="info-list">' + li('info.bulk_prot1', num(d('bulk').protein)) + li('info.bulk_prot2') + li('info.bulk_prot3') + li('info.bulk_prot4') + '</ul>' +
 h('info.h_fat') + p('info.bulk_fat', pc(d('bulk').fatPct)) + h('info.h_carb') + p('info.bulk_carb');
@@ -2529,9 +2609,7 @@ const kcal = proteinG * 4 + fatG * 9 + carbsG * 4;
 const deltaKcal = kcal - r.tdee;
 return { ...r, kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0, deltaKcal, weeklyKg: deltaKcal * 7 / 7700 };
 },
-round5: x => Math.round(x / 5) * 5,
-round10: x => Math.round(x / 10) * 10,
-round50: x => Math.round(x / 50) * 50
+round5: x => Math.round(x / 5) * 5
 };
 const Menu = {
 scale(item, weight) { const ratio = item.weight > 0 ? weight / item.weight : 0; return { kcal: item.kcal * ratio, p: item.p * ratio, f: item.f * ratio, c: item.c * ratio, fib: item.fib * ratio, price: item.price * ratio }; },
@@ -2576,10 +2654,9 @@ else { const s = this.scale(item, weight); meal.components.push({ item, weight, 
 },
 balanceDay(meals, dayTotals, targets, pools, dayIndex, goal) {
 const cut = goal === 'cut';
-const fatMeals = [meals[0], meals[1], meals[2], meals[3], meals[4]].filter(Boolean);
 const mains = [meals[0], meals[2], meals[4]].filter(Boolean);
 const snacks = [meals[1], meals[3]].filter(Boolean);
-if (!fatMeals.length) return;
+if (!meals.length) return;
 const TOL = CONFIG.MACRO.balanceTolerance;
 const within = (actual, target) => !target || target <= 0 || Math.abs(actual - target) / target <= TOL;
 const applyDelta = (meal, d) => { meal.totals.kcal += d.kcal; meal.totals.p += d.p; meal.totals.f += d.f; meal.totals.c += d.c; meal.totals.fib += d.fib; meal.totals.price += d.price; dayTotals.kcal += d.kcal; dayTotals.p += d.p; dayTotals.f += d.f; dayTotals.c += d.c; dayTotals.fib += d.fib; dayTotals.price += d.price; };
@@ -2592,13 +2669,16 @@ const addNew = (meal, item, weight) => { if (!item || weight <= 0) return; const
 const findComp = (meal, pred) => meal.components.find(c => c.item && pred(c));
 for (let iter = 0; iter < 3; iter++) {
 if (within(dayTotals.f, targets.fatG) && within(dayTotals.c, targets.carbsG)) break;
-// 1) Жир — самый гибкий рычаг: добавочное масло. Приёмы обрабатываем по одному, пересчитывая остаток после каждого — иначе округление до 5 г на каждом из 5 приёмов накапливается и качается между недобором и перебором.
+// 1) Жир — самый гибкий рычаг: масло на основных приёмах (салат/готовка), доли по kcalPct. Приёмы обрабатываем по одному, пересчитывая остаток после каждого — иначе округление до 5 г накапливается и качается между недобором и перебором.
 if (Math.abs(dayTotals.f - targets.fatG) > 1) {
-const total = fatMeals.length;
-fatMeals.forEach((m, idx) => {
+const KPb = CONFIG.MEALS.kcalPct, oilIdx = CONFIG.MEALS.mainIndices;
+oilIdx.forEach((mi, idx) => {
+const m = meals[mi];
+if (!m) return;
 const remaining = dayTotals.f - targets.fatG;
 if (Math.abs(remaining) <= 1) return;
-const share = remaining / (total - idx);
+const restW = oilIdx.slice(idx).reduce((a, i) => a + KPb[i], 0);
+const share = remaining * KPb[mi] / restW;
 const oilComp = findComp(m, c => c.disc === 'fat');
 if (oilComp) { const fatPerG = oilComp.f / oilComp.weight; if (fatPerG > 0) { const newW = Math.max(0, Math.round((oilComp.weight - share / fatPerG) / 5) * 5); setWeight(m, oilComp, newW); } }
 else if (share < -1) { const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking; if (oilPool && oilPool.length) { const item = oilPool[(dayIndex + idx) % oilPool.length]; const fatPerG = item.f / item.weight; if (fatPerG > 0) { const w = Math.max(0, Math.round((-share / fatPerG) / 5) * 5); if (item && w > 0) { const s = this.scale(item, w); m.components.push({ item, weight: w, disc: 'fat', ...s }); applyDelta(m, s); } } } }
@@ -2691,7 +2771,7 @@ const proteinFillet = [], proteinEggs = [], proteinCanned = [], proteinOther = [
 allProtein.forEach(item => { if (Classify.isFillet(item.name)) proteinFillet.push(item); else if (Classify.isEggName(item.name)) proteinEggs.push(item); else if (Classify.isCannedFood(item.name)) proteinCanned.push(item); else proteinOther.push(item); });
 const breadLavash = [], regularCarbs = [], instantNoodles = [];
 allCarb.forEach(c => { if (Classify.isBreadOrLavash(c.name)) breadLavash.push(c); else if (Classify.isInstantNoodle(c.name)) instantNoodles.push(c); else regularCarbs.push(c); });
-const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name)), carbBread: breadLavash, instantNoodles, fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), fatRaw: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isUnrefinedOil(x.name) && !Classify.isGarlic(x.name)), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
+const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name)), carbBread: breadLavash, instantNoodles, fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
 const totalProteinCount = proteinFillet.length + proteinEggs.length + proteinCanned.length + proteinOther.length + pools.proteinCasein.length;
 if (totalProteinCount === 0 || allCarb.length === 0) { AppState.runtime.menuPlan = null; this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render(); return; }
 if (!pools.carbMain.length) pools.carbMain = [...pools.carbBread];
@@ -2762,15 +2842,22 @@ addC(m, meatItem, meatW);
 });
 }
 const meals = [];
+// Масло раскладывается только на основные приёмы (салат / готовка). Виды масел (подсолнечное, оливковое и др.)
+// взаимозаменяемы по ккал и БЖУ: берём любое из группы масел, пользователь может заменить его на другое.
+// Доля каждого основного приёма = его «дефицит жира» относительно kcalPct (доля приёма × жир дня − жир, уже пришедший из еды).
+const KPct = CONFIG.MEALS.kcalPct;
+const oilMealIdx = CONFIG.MEALS.mainIndices;
+const fatForFive = Math.max(0, targets.fatG - caseinMeal.totals.f);
+const natFat = mealComps.map(arr => arr.reduce((s, c) => s + c.f, 0));
+const oilBudget = Math.max(0, fatForFive - natFat.reduce((a, b) => a + b, 0));
+const oilNeed = KPct.map((k, i) => oilMealIdx.includes(i) ? Math.max(0, fatForFive * k - natFat[i]) : 0);
+const oilNeedSum = oilNeed.reduce((a, b) => a + b, 0);
+const oilShare = oilNeed.map((x, i) => !oilMealIdx.includes(i) ? 0 : (oilNeedSum > 0 ? oilBudget * x / oilNeedSum : oilBudget / oilMealIdx.length));
+const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking;
 for (let m = 0; m < CONFIG.MEALS.mainCount; m++) {
-const fatBudget = Math.max(0, targets.fatG - daySum.f);
-let allowance = fatBudget / CONFIG.MEALS.mainCount;
 let fatComp = null;
-if (allowance > 1) {
-const isSnack = CONFIG.MEALS.snackIndices.includes(m);
-let fatPool = isSnack ? ((pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking) : ((pools.fatRaw && pools.fatRaw.length) ? pools.fatRaw : pools.fatCooking);
-if (fatPool && fatPool.length) { const fItem = fatPool[(d + m) % fatPool.length]; const fatPerUnit = fItem.f / fItem.weight; const fW = Math.min(50, Math.max(0, Math.round((allowance / fatPerUnit) / 5) * 5)); if (fW > 0) { const s = this.scale(fItem, fW); fatComp = { item: fItem, weight: fW, disc: 'fat', ...s }; } }
-}
+const allowance = oilShare[m];
+if (allowance > 1 && oilPool && oilPool.length) { const fItem = oilPool[(d + m) % oilPool.length]; const fatPerUnit = fItem.f / fItem.weight; const fW = Math.min(50, Math.max(0, Math.round((allowance / fatPerUnit) / 5) * 5)); if (fW > 0) { const s = this.scale(fItem, fW); fatComp = { item: fItem, weight: fW, disc: 'fat', ...s }; } }
 const components = [...mealComps[m]];
 if (fatComp) { components.push(fatComp); daySum.f += fatComp.f; daySum.c += fatComp.c; daySum.p += fatComp.p; daySum.kcal += fatComp.kcal; }
 const totals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
@@ -2813,7 +2900,7 @@ const el = document.getElementById('dayContent');
 const dayIdx = AppState.runtime.currentDay;
 if (!AppState.runtime.menuPlan) {
 const t_ = AppState.runtime.targets;
-el.innerHTML = `<div class="goal-bar"><b>${t('plan.goal')}</b> ~${t_.kcal} ${t('day.kcal')} · Б ~${t_.protein} г · Ж ~${t_.fat} г · У ~${t_.carbs} г</div><div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
+el.innerHTML = `<div class="goal-bar"><b>${t('plan.goal')}</b> ~${t_.kcal} ${t('day.kcal')} · ${t('macro.b')} ~${t_.protein} г · ${t('macro.f')} ~${t_.fat} г · ${t('macro.c')} ~${t_.carbs} г</div><div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
 }
 const dayData = this.getDayData(dayIdx);
@@ -2821,7 +2908,7 @@ const isDone = AppState.data.progress.days[dayIdx]?.done;
 // Цели для отображения: из снимка для пройденных дней, иначе текущие
 const displayTargets = (isDone && dayData?.runtimeTargets) ? dayData.runtimeTargets : AppState.runtime.targets;
 const rawTargets = (isDone && dayData?.targets) ? dayData.targets : AppState.runtime.menuPlan?.targets;
-const htmlArr = [`<div class="goal-bar"><b>${t('plan.goal')}</b> ~${displayTargets.kcal} ${t('day.kcal')} · Б ~${displayTargets.protein} г · Ж ~${displayTargets.fat} г · У ~${displayTargets.carbs} г</div>`];
+const htmlArr = [`<div class="goal-bar"><b>${t('plan.goal')}</b> ~${displayTargets.kcal} ${t('day.kcal')} · ${t('macro.b')} ~${displayTargets.protein} г · ${t('macro.f')} ~${displayTargets.fat} г · ${t('macro.c')} ~${displayTargets.carbs} г</div>`];
 if (!dayData) {
 el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
@@ -2839,7 +2926,7 @@ const isEaten = AppState.data.progress.meals[mealKey];
 const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
 : `<div class="meal-eaten-check ${isEaten ? 'on' : ''}" onclick="Progress.toggleMeal(${dayIdx}, ${i})">${isEaten ? '✓' : ''}</div>`;
-htmlArr.push(`<div class="bju-card"><div class="meal-title">${i + 1}. ${CONFIG.MEALS.names[i]} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
+htmlArr.push(`<div class="bju-card"><div class="meal-title">${i + 1}. ${t('meal.' + i)} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
 // Баланс КБЖУ
@@ -2909,7 +2996,7 @@ const isDone = AppState.data.progress.days[dayIdx]?.done;
 const t_ = (isDone && day.targets) ? day.targets : AppState.runtime.menuPlan.targets;
 if (!t_) { box.innerHTML = ''; return; }
 const issues = [];
-const check = (label, actual, target) => { if (!target || target <= 0) return; const diff = (actual - target) / target; if (Math.abs(diff) <= CONFIG.MACRO.tolerance) return; issues.push(`<b>${label}:</b> ${actual.toFixed(0)} при цели ${target.toFixed(0)} (${diff > 0 ? '+' : ''}${Math.round(diff * 100)}%)`); };
+const check = (label, actual, target) => { if (!target || target <= 0) return; const diff = (actual - target) / target; if (Math.abs(diff) <= CONFIG.MACRO.tolerance) return; issues.push(`<b>${label}:</b> ${actual.toFixed(0)} ${t('diag.at_target')} ${target.toFixed(0)} (${diff > 0 ? '+' : ''}${Math.round(diff * 100)}%)`); };
 check(t('diag.protein'), actualVals.p, t_.proteinG);
 check(t('diag.fat'), actualVals.f, t_.fatG);
 check(t('diag.carbs'), actualVals.c, t_.carbsG);
@@ -3050,15 +3137,15 @@ const htmlArr = [];
 CONFIG.CAT.order.forEach(g => {
 const items = classified.filter(x => x.group === g);
 if (!items.length) return;
-htmlArr.push(`<div class="shop-group-title">${CONFIG.CAT.labels[g]}</div>`);
+htmlArr.push(`<div class="shop-group-title">${t('cat.' + g)}</div>`);
 items.forEach(s => {
 num++;
 const count = s.count || 1;
 const line = (s.price || 0) * count;
 const isUnavail = s.unavailable;
 const imgHtml = s.image
-? `<img src="${UI.escapeAttr(s.image)}" class="shop-img" onerror="this.style.display='none'" onclick="ShopUI.toggleAvail(${s.idx})" title="Переключить наличие">`
-: `<div class="shop-img" onclick="ShopUI.toggleAvail(${s.idx})" title="Переключить наличие"></div>`;
+? `<img src="${UI.escapeAttr(s.image)}" class="shop-img" onerror="this.style.display='none'" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}">`
+: `<div class="shop-img" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}"></div>`;
 htmlArr.push(`<div class="shop-row ${isUnavail ? 'unavailable' : ''}"><div class="shop-num">${num}.</div>${imgHtml}<div class="shop-info" data-idx="${s.idx}"><div class="shop-name">${UI.escape(Products.displayName(s.n))}${count > 1 ? ' ×' + count : ''}</div><div class="shop-sub">${UI.escape(s.qty || '')}${s.b ? ' · ' + t('macro.b') + s.b + ' ' + t('macro.f') + s.f + ' ' + t('macro.c') + s.c : ''}</div></div><div class="shop-price">${line.toFixed(2)} ${t('common.currency')}</div><span class="avail-btn" onclick="ShopUI.toggleAvail(${s.idx})">${isUnavail ? '🚫' : '✅'}</span></div>`);
 });
 });
@@ -3272,7 +3359,7 @@ let totalPrice = 0, positions = 0;
 CONFIG.CAT.order.forEach(g => {
 const list = items.filter(x => x.group === g).sort((a, b) => this.actualWeight(b) - this.actualWeight(a));
 if (!list.length) return;
-htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${CONFIG.CAT.labels[g]}</div>`);
+htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
 list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
 htmlArr.push('</div>');
 });
@@ -3316,6 +3403,8 @@ setGender(g) { AppState.data.profile.gender = g; document.getElementById('gm').c
 setGoal(g) { AppState.data.profile.goal = g; document.getElementById('g-maintain').classList.toggle('active', g === 'maintain'); document.getElementById('g-gain').classList.toggle('active', g === 'gain'); document.getElementById('g-loss').classList.toggle('active', g === 'loss'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
 updateActivityDesc() { const val = document.getElementById('activity').value; const map = { '1.2': t('profile.activity_1_2'), '1.375': t('profile.activity_1_375'), '1.55': t('profile.activity_1_55'), '1.725': t('profile.activity_1_725'), '1.9': t('profile.activity_1_9') }; document.getElementById('activityDesc').textContent = map[val] || map['1.55']; },
 LIMITS: { age: [14, 90], height: [120, 230], weight: [35, 250] },
+GOALS: ['maintain', 'gain', 'loss'],
+ACTIVITY: ['1.2', '1.375', '1.55', '1.725', '1.9'],
 inRange(id, v) { const [lo, hi] = this.LIMITS[id]; return Number.isFinite(v) && v >= lo && v <= hi; },
 goalKey() { return ({ maintain: 'maintain', gain: 'bulk', loss: 'cut' })[AppState.data.profile.goal] || 'maintain'; },
 readParams() {
@@ -3369,7 +3458,12 @@ load() {
 const p = AppState.data.profile;
 const DEF = { age: 47, height: 184, weight: 90 };
 ['age', 'height', 'weight'].forEach(k => { document.getElementById(k).value = this.inRange(k, +p[k]) ? p[k] : DEF[k]; });
-document.getElementById('activity').value = p.activity || '1.55';
+// значения из ограниченных наборов: при повреждённых данных возвращаем безопасные (и это видно в интерфейсе)
+if (p.gender !== 'm' && p.gender !== 'f') p.gender = 'm';
+if (!this.GOALS.includes(p.goal)) p.goal = 'loss';
+if (!this.ACTIVITY.includes(String(p.activity))) p.activity = '1.55';
+p.activity = String(p.activity);
+document.getElementById('activity').value = p.activity;
 document.getElementById('gm').classList.toggle('active', p.gender === 'm');
 document.getElementById('gf').classList.toggle('active', p.gender === 'f');
 document.getElementById('g-maintain').classList.toggle('active', p.goal === 'maintain');
@@ -3384,6 +3478,8 @@ if (!data || typeof data !== 'object') return t('backup.err_root');
 const p = data.profile;
 if (!p || typeof p !== 'object') return t('backup.err_profile');
 if (p.gender !== undefined && p.gender !== 'm' && p.gender !== 'f') return t('backup.err_gender');
+if (p.goal !== undefined && !Profile.GOALS.includes(p.goal)) return t('backup.err_field', 'goal');
+if (p.activity !== undefined && !Profile.ACTIVITY.includes(String(p.activity))) return t('backup.err_field', 'activity');
 for (const k of ['age', 'height', 'weight']) { if (p[k] !== undefined && (typeof p[k] !== 'number' || !Profile.inRange(k, p[k]))) return t('backup.err_field', k); }
 if (data.weekList !== undefined && !Array.isArray(data.weekList)) return t('backup.err_weeklist');
 if (data.measHistory !== undefined && !Array.isArray(data.measHistory)) return t('backup.err_meas');
@@ -3475,14 +3571,14 @@ else status.textContent = '';
 },
 clearTimer() { if (this.timer) { clearTimeout(this.timer); this.timer = null; } },
 nextMealInfo(fromDate) {
-const times = CONFIG.MEALS.times, names = CONFIG.MEALS.names;
+const times = CONFIG.MEALS.times;
 const now = fromDate || new Date();
 let best = null;
 for (let dayOffset = 0; dayOffset <= 1 && !best; dayOffset++) {
 for (let i = 0; i < times.length; i++) {
 const [hh, mm] = times[i].split(':').map(Number);
 const dt = new Date(now); dt.setDate(now.getDate() + dayOffset); dt.setHours(hh, mm, 0, 0);
-if (dt.getTime() > now.getTime() && (!best || dt.getTime() < best.time)) best = { time: dt.getTime(), name: names[i], timeStr: times[i] };
+if (dt.getTime() > now.getTime() && (!best || dt.getTime() < best.time)) best = { time: dt.getTime(), name: t('meal.' + i), timeStr: times[i] };
 }
 }
 return best;
