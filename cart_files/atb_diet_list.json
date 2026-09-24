@@ -697,16 +697,16 @@
       "atb_id": null
     },
     {
-      "name": "Оливкова олія",
+      "name": "Олія 0,5л De Luxe Foods&Goods Selected оливкова Extra Virgin",
       "unit": "g",
       "weight": 500,
       "p": 0,
       "f": 99.8,
       "c": 0,
-      "price": 250,
+      "price": 305.80,
       "group": "fat",
-      "image": "",
-      "atb_id": null
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i2/catalog_product_gal_75831.webp",
+      "atb_id": 72591
     },
     {
       "name": "Масло вершкове 73%",
