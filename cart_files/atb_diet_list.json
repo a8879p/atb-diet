@@ -613,16 +613,16 @@
       "atb_id": null
     },
     {
-      "name": "Молоко 2.5%",
+      "name": "Молоко 0,9кг Своя Лінія ультрапастеризоване 2,5%",
       "unit": "g",
       "weight": 900,
       "p": 2.8,
       "f": 2.5,
       "c": 4.7,
-      "price": 40,
+      "price": 52.6,
       "group": "protein",
-      "image": "",
-      "atb_id": null
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i1/catalog_product_gal_111301.webp",
+      "atb_id":  190450
     },
     {
       "name": "Сир твердий 160г Звенигора Сметанковий 50%",
@@ -709,27 +709,27 @@
       "atb_id": 72591
     },
     {
-      "name": "Масло вершкове 73%",
+      "name": "Масло 180г Білоцерківське солодковершкове селянське 72,6%",
       "unit": "g",
-      "weight": 200,
+      "weight": 180,
       "p": 0.8,
       "f": 73,
       "c": 1.3,
-      "price": 80,
+      "price": 72.90,
       "group": "fat",
-      "image": "",
-      "atb_id": null
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i44/catalog_product_gal_105263.webp",
+      "atb_id": 128718
     },
     {
       "name": "Горіхи волоські",
       "unit": "g",
-      "weight": 1000,
+      "weight": 200,
       "p": 15.2,
       "f": 65.2,
       "c": 7,
-      "price": 300,
+      "price": 129.9,
       "group": "fat",
-      "image": "",
+      "image": "https://images.silpo.ua/v2/products/90x90/webp/6fea43ff-e285-473c-8e9f-103937f85411.png",
       "atb_id": null
     },
     {
