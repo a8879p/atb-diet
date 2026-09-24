@@ -28,12 +28,12 @@
       "name": "Індиче філе",
       "unit": "g",
       "weight": 1000,
-      "p": 22,
-      "f": 1,
+      "p": 19.5,
+      "f": 0.7,
       "c": 0,
-      "price": 200,
+      "price": 470,
       "group": "protein",
-      "image": "",
+      "image": "https://images.silpo.ua/v2/products/90x90/webp/7ae6214d-8c5a-4020-bf03-cbd1f812ac5a.png",
       "atb_id": null
     },
     {
