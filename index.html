@@ -580,6 +580,34 @@ font-weight: 700;
 font-size: 14px;
 white-space: nowrap
 }
+.avail-switch {
+flex-shrink: 0;
+width: 40px;
+height: 23px;
+border-radius: 12px;
+background: var(--border);
+position: relative;
+cursor: pointer;
+transition: background .15s;
+margin-left: 4px
+}
+.avail-switch.on {
+background: var(--primary)
+}
+.avail-switch i {
+position: absolute;
+top: 2px;
+left: 2px;
+width: 19px;
+height: 19px;
+border-radius: 50%;
+background: #fff;
+box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+transition: left .15s
+}
+.avail-switch.on i {
+left: 19px
+}
 .del {
 margin-left: 8px;
 cursor: pointer;
@@ -1533,9 +1561,6 @@ placeholder="URL"></div>
 <div class="form-group"><input type="file" id="np_img_file" accept="image/*"
 class="file-input"><img id="np_img_preview" class="shop-img"
 style="display:none;margin-top:6px" alt=""></div>
-<div class="form-group"><button class="btn btn-ghost" onclick="SearchOFF.run('np_')"
-style="font-size:12px;padding:4px 8px;margin-bottom:8px" data-i18n="shop.off_search">🔍 БЖУ з OpenFoodFacts</button>
-</div>
 <div class="form-row3">
 <div class="form-group"><label class="form-label" data-i18n="shop.b100">Белки/100г</label><input type="number"
 step="0.1" class="input" id="np_b" placeholder="17"></div>
@@ -1574,9 +1599,6 @@ data-i18n="common.image">Картинка</label><input type="text" class="input
 <div class="form-group"><input type="file" id="edit_img_file" accept="image/*"
 class="file-input"><img id="edit_img_preview" class="shop-img"
 style="display:none;margin-top:6px" alt=""></div>
-<div class="form-group"><button class="btn btn-ghost" onclick="SearchOFF.run('edit_')"
-style="font-size:12px;padding:4px 8px;margin-bottom:8px" data-i18n="shop.off_search">🔍 БЖУ з OpenFoodFacts</button>
-</div>
 <div class="form-row3">
 <div class="form-group"><label class="form-label" data-i18n="diag.protein">Белки</label><input type="number"
 step="0.1" class="input" id="edit_b"></div>
@@ -1923,7 +1945,6 @@ ru: {
 "shop.f100": "Жиры/100г",
 "shop.c100": "Углеводы/100г",
 "shop.file_note": "БЖУ в файле — на 100 г.",
-"shop.off_search": "🔍 БЖУ из OpenFoodFacts",
 "shop.editing": "Редактирование",
 "shop.toggle_avail": "Переключить наличие",
 "cook.choose_period": "Выберите период.",
@@ -1966,8 +1987,7 @@ ru: {
 'common.name': 'Название', 'common.qty': 'Количество', 'common.unit': 'Единица',
 'common.price': 'Цена, грн', 'common.code': 'Код АТБ', 'common.image': 'Картинка',
 'common.confirm': 'Подтвердите действие', 'toast.save_err': 'Ошибка сохранения',
-'toast.quota': '⚠ Хранилище переполнено!', 'toast.saved': 'Сохранено', 'toast.search': 'Поиск...',
-'toast.found': 'БЖУ найдено', 'toast.not_found': 'Не найдено', 'toast.added': 'Добавлено',
+'toast.quota': '⚠ Хранилище переполнено!', 'toast.saved': 'Сохранено',  'toast.added': 'Добавлено',
 'toast.empty': 'Список пуст', 'day.empty': 'Список продуктов пуст.', 'day.kcal': 'ккал',
 'day.protein': 'белки', 'day.fat': 'жиры', 'day.carb': 'углеводы',
 'dev.legend': '🟡 недобор (<-10%) · 🟢 норма (±10%) · 🔴 перебор (>+10%)',
@@ -1985,8 +2005,6 @@ ru: {
 'shop.exported_count': 'Выгружено', 'shop.imported_count': 'Загружено', 'shop.json_error': 'Ошибка JSON',
 'shop.delete_confirm': 'Удалить этот продукт из списка?', 'shop.import_found': 'Найдено',
 'shop.import_replace_q': 'Заменить текущий список ({0} шт.)?', 'shop.replace_btn': 'Заменить', 'shop.add_to_current_btn': 'Добавить к текущему',
-'search.prompt': 'Что искать в OpenFoodFacts?', 'search.product_fallback': 'продукт', 'search.error_prefix': 'Ошибка',
-'toast.search_timeout': 'Превышено время ожидания ответа',
 'backup.exported': 'Бэкап выгружен', 'backup.err_root': 'Некорректный формат бэкапа',
 'backup.err_profile': 'Отсутствует или повреждён профиль', 'backup.err_gender': 'Некорректное значение пола',
 'backup.err_field': 'Некорректное поле: {0}', 'backup.err_weeklist': 'Список покупок повреждён',
@@ -2085,7 +2103,6 @@ ua: {
 "shop.f100": "Жири/100г",
 "shop.c100": "Вуглеводи/100г",
 "shop.file_note": "БЖВ у файлі — на 100 г.",
-"shop.off_search": "🔍 БЖВ з OpenFoodFacts",
 "shop.editing": "Редагування",
 "shop.toggle_avail": "Перемкнути наявність",
 "cook.choose_period": "Оберіть період.",
@@ -2128,8 +2145,7 @@ ua: {
 'common.name': 'Назва', 'common.qty': 'Кількість', 'common.unit': 'Одиниця',
 'common.price': 'Ціна, грн', 'common.code': 'Код АТБ', 'common.image': 'Зображення',
 'common.confirm': 'Підтвердіть дію', 'toast.save_err': 'Помилка збереження',
-'toast.quota': '⚠ Сховище переповнене!', 'toast.saved': 'Збережено', 'toast.search': 'Пошук...',
-'toast.found': 'БЖВ знайдено', 'toast.not_found': 'Не знайдено', 'toast.added': 'Додано',
+'toast.quota': '⚠ Сховище переповнене!', 'toast.saved': 'Збережено',  'toast.added': 'Додано',
 'toast.empty': 'Список порожній', 'day.empty': 'Список продуктів порожній.', 'day.kcal': 'ккал',
 'day.protein': 'білки', 'day.fat': 'жири', 'day.carb': 'вуглеводи',
 'dev.legend': '🟡 нестача (<-10%) · 🟢 норма (±10%) · 🔴 перевищення (>+10%)',
@@ -2147,8 +2163,6 @@ ua: {
 'shop.exported_count': 'Вивантажено', 'shop.imported_count': 'Завантажено', 'shop.json_error': 'Помилка JSON',
 'shop.delete_confirm': 'Видалити цей продукт зі списку?', 'shop.import_found': 'Знайдено',
 'shop.import_replace_q': 'Замінити поточний список ({0} шт.)?', 'shop.replace_btn': 'Замінити', 'shop.add_to_current_btn': 'Додати до поточного',
-'search.prompt': 'Що шукати в OpenFoodFacts?', 'search.product_fallback': 'продукт', 'search.error_prefix': 'Помилка',
-'toast.search_timeout': 'Перевищено час очікування відповіді',
 'backup.exported': 'Бекап вивантажено', 'backup.err_root': 'Некоректний формат бекапу',
 'backup.err_profile': 'Відсутній або пошкоджений профіль', 'backup.err_gender': 'Некоректне значення статі',
 'backup.err_field': 'Некоректне поле: {0}', 'backup.err_weeklist': 'Список покупок пошкоджений',
@@ -2633,41 +2647,6 @@ const pricePer100 = baseWeight > 0 ? (s.price || 0) * 100 / baseWeight : s.price
 return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: 0, price: Math.round(pricePer100 * 100) / 100, forceGroup: forceGroup };
 },
 refreshAll() { AppState.runtime.products = AppState.data.weekList.filter(s => !s.unavailable).map(s => this.toRacion(s)).filter(Boolean); }
-};
-const SearchOFF = {
-REQUEST_TIMEOUT_MS: 8000,
-async run(prefix) {
-const nameInput = document.getElementById(prefix + 'name');
-let q = nameInput ? nameInput.value.trim() : '';
-q = await UI.prompt(t('search.prompt'), q);
-if (!q) return;
-UI.toast(t('toast.search'));
-const controller = new AbortController();
-const timeoutId = setTimeout(() => controller.abort(), this.REQUEST_TIMEOUT_MS);
-try {
-// /api/v2/search — только структурный пошук по тегах (категорія, бренд, штрихкод); повнотекстовий
-// пошук за назвою там не працює (задокументовано в API OFF). Для пошуку за назвою товару потрібен
-// legacy-ендпоінт /cgi/search.pl — саме він раніше не використовувався, тому пошук не працював.
-const url = 'https://world.openfoodfacts.org/cgi/search.pl?' + new URLSearchParams({ search_terms: q, search_simple: '1', action: 'process', json: '1', page_size: '5', fields: 'product_name,nutriments,code' });
-const r = await fetch(url, { signal: controller.signal });
-if (!r.ok) throw new Error('HTTP ' + r.status);
-const data = await r.json();
-if (data.products && data.products.length > 0) {
-const valid = data.products.filter(x => x.nutriments && x.nutriments.proteins_100g !== undefined);
-const p = valid.length > 0 ? valid[0] : data.products[0];
-const nm = p.nutriments || {};
-document.getElementById(prefix + 'b').value = Math.round((nm.proteins_100g || 0) * 10) / 10;
-document.getElementById(prefix + 'f').value = Math.round((nm.fat_100g || 0) * 10) / 10;
-document.getElementById(prefix + 'c').value = Math.round((nm.carbohydrates_100g || 0) * 10) / 10;
-UI.toast(t('toast.found') + ': ' + (p.product_name || t('search.product_fallback')));
-} else UI.toast(t('toast.not_found'));
-} catch (err) {
-if (err.name === 'AbortError') UI.toast(t('toast.search_timeout'));
-else UI.toast(t('search.error_prefix') + ': ' + err.message);
-} finally {
-clearTimeout(timeoutId);
-}
-}
 };
 const Targets = {
 // Диапазоны из справки во вкладке «Инфо» (ISSN / ACSM-AND-DC). Цель приложения — середина диапазона.
@@ -3265,7 +3244,7 @@ const isUnavail = s.unavailable;
 const imgHtml = s.image
 ? `<img src="${UI.escapeAttr(s.image)}" class="shop-img" onerror="this.style.display='none'" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}">`
 : `<div class="shop-img" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}"></div>`;
-htmlArr.push(`<div class="shop-row ${isUnavail ? 'unavailable' : ''}"><div class="shop-num">${num}.</div>${imgHtml}<div class="shop-info" data-idx="${s.idx}"><div class="shop-name">${UI.escape(Products.displayName(s.n))}${count > 1 ? ' ×' + count : ''}</div><div class="shop-sub">${UI.escape(s.qty || '')}${s.b ? ' · ' + t('macro.b') + s.b + ' ' + t('macro.f') + s.f + ' ' + t('macro.c') + s.c : ''}</div></div><div class="shop-price">${line.toFixed(2)} ${t('common.currency')}</div><span class="avail-btn" onclick="ShopUI.toggleAvail(${s.idx})">${isUnavail ? '🚫' : '✅'}</span></div>`);
+htmlArr.push(`<div class="shop-row ${isUnavail ? 'unavailable' : ''}"><div class="shop-num">${num}.</div>${imgHtml}<div class="shop-info" data-idx="${s.idx}"><div class="shop-name">${UI.escape(Products.displayName(s.n))}${count > 1 ? ' ×' + count : ''}</div><div class="shop-sub">${UI.escape(s.qty || '')}${s.b ? ' · ' + t('macro.b') + s.b + ' ' + t('macro.f') + s.f + ' ' + t('macro.c') + s.c : ''}</div></div><div class="shop-price">${line.toFixed(2)} ${t('common.currency')}</div><div class="avail-switch ${isUnavail ? '' : 'on'}" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}"><i></i></div></div>`);
 });
 });
 document.getElementById('shopContent').innerHTML = htmlArr.join('');
