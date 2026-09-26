@@ -312,6 +312,18 @@
       "image": "./cart_files/cart_list_81067.png",
       "atb_id": null
     },
+     {
+      "name": "Крупа 1 кг Своя лінія булгур",
+      "unit": "g",
+      "weight": 1000,
+      "p": 12,
+      "f": 1.3,
+      "c": 75,
+      "price": 48,
+      "group": "carb",
+      "image": "./cart_files/cart_list_20260926_231236.jpg",
+      "atb_id": null
+    },
     {
       "name": "Крупа 1 кг Розумний вибір перлова",
       "unit": "g",
