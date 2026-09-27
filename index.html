@@ -901,16 +901,13 @@ border-width: 2px
 filter: grayscale(100%) opacity(.4)
 }
 .unavailable .shop-name {
-text-decoration: line-through;
 color: var(--text-light)
 }
 .unavailable .shop-sub {
-color: #d1d5db;
-text-decoration: line-through
+color: #d1d5db
 }
 .unavailable .shop-price {
-color: var(--text-light);
-text-decoration: line-through
+color: var(--text-light)
 }
 .avail-btn {
 margin-left: 8px;
@@ -1845,7 +1842,7 @@ PORTIONS: {
 veggie: 150, cookedTarget: 280, snackBread: 80, snackBreadMinLoss: 20, grainMin: 30,
 meatMainMin: 35, meatMainMax: 250, meatSnackMin: 20, meatSnackMax: 130,
 instantNoodlePack: 60, caseinPack: 200, sweetenerMax: 50, sweetenerCutMax: 15,
-garlicMax: 50, eggsMin: 2, eggsMax: 5
+garlicMax: 15, eggsMin: 2, eggsMax: 5
 },
 DEFAULTS: {
 sweetenerMaintainMax: 35, avgPieceWeight: 60, defaultWeight: 100, roundingStep: 5,
@@ -3248,16 +3245,29 @@ htmlArr.push(`<div class="shop-row ${isUnavail ? 'unavailable' : ''}"><div class
 });
 });
 document.getElementById('shopContent').innerHTML = htmlArr.join('');
+this.updateTotals();
+ShopUI.attachShopInfoEvents();
+},
+updateTotals() {
 let activeCount = 0, sum = 0;
 AppState.data.weekList.forEach(s => { if (!s.unavailable) { activeCount++; sum += (s.price || 0) * (s.count || 1); } });
 document.getElementById('shopCountLabel').textContent = `${t('shop.total')} ${AppState.data.weekList.length} ${t('common.positions_short')} (${t('common.active_short')}: ${activeCount})`;
 document.getElementById('shopTotalPrice').textContent = sum.toFixed(2) + ' ' + t('common.currency');
-ShopUI.attachShopInfoEvents();
 }
 };
 const ShopUI = {
 currentActionIdx: null,
-toggleAvail(idx) { AppState.data.weekList[idx].unavailable = !AppState.data.weekList[idx].unavailable; AppState.save('weekList'); Shop.render(); Products.refreshAll(); Menu.build(); },
+toggleAvail(idx) {
+const un = !AppState.data.weekList[idx].unavailable;
+AppState.data.weekList[idx].unavailable = un;
+AppState.save('weekList');
+const info = document.querySelector('.shop-info[data-idx="' + idx + '"]');
+const row = info && info.closest('.shop-row');
+if (row) { row.classList.toggle('unavailable', un); const sw = row.querySelector('.avail-switch'); if (sw) sw.classList.toggle('on', !un); Shop.updateTotals(); }
+else Shop.render();
+Products.refreshAll();
+Menu.build();
+},
 toggleAddForm() { document.getElementById('addForm').classList.toggle('open'); },
 delWeek(idx) { AppState.data.weekList.splice(idx, 1); AppState.save('weekList'); Shop.render(); Products.refreshAll(); Menu.build(); },
 addUserProduct() {
