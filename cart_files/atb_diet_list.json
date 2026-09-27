@@ -1,772 +1,3763 @@
-{
-  "products": [
-    {
-      "name": "Філе курчат-бройлерів Чебатурочка охолоджене",
-      "unit": "g",
-      "weight": 1000,
-      "p": 22,
-      "f": 1.9,
-      "c": 0.4,
-      "price": 249.89,
-      "group": "protein",
-      "image": "./cart_files/cart_list_117789.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Філе стегна курчат-бройлерів Чебатурочка охолоджене газ/упак",
-      "unit": "g",
-      "weight": 1000,
-      "p": 19,
-      "f": 6,
-      "c": 0,
-      "price": 258.99,
-      "group": "protein",
-      "image": "./cart_files/cart_list_111637.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Індиче філе",
-      "unit": "g",
-      "weight": 1000,
-      "p": 19.5,
-      "f": 0.7,
-      "c": 0,
-      "price": 470,
-      "group": "protein",
-      "image": "https://images.silpo.ua/v2/products/90x90/webp/7ae6214d-8c5a-4020-bf03-cbd1f812ac5a.png",
-      "atb_id": null
-    },
-    {
-      "name": "Яловичина нежирна",
-      "unit": "g",
-      "weight": 1000,
-      "p": 18.9,
-      "f": 12.4,
-      "c": 0,
-      "price": 469,
-      "group": "protein",
-      "image": "https://images.silpo.ua/v2/products/90x90/webp/a36fc556-4991-472e-9090-e55524ccbbe3.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Риба хек с/м",
-      "unit": "g",
-      "weight": 1000,
-      "p": 16.6,
-      "f": 2.2,
-      "c": 0,
-      "price": 199,
-      "group": "protein",
-      "image": "https://images.silpo.ua/v2/products/90x90/webp/6d7f23e1-b2b8-47ae-8394-391059e7e296.png",
-      "atb_id": null
-    },
-    {
-      "name": "Яйце куряче 10 шт Ясенсвіт 1 категорії фас",
-      "unit": "pcs",
-      "weight": 10,
-      "p": 12.7,
-      "f": 11.5,
-      "c": 0.7,
-      "price": 79.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_31637.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Яйце куряче 10 шт Ясенсвіт Справжні велетні вища категорія фас",
-      "unit": "pcs",
-      "weight": 10,
-      "p": 12.7,
-      "f": 11.5,
-      "c": 0.7,
-      "price": 85.3,
-      "group": "protein",
-      "image": "./cart_files/cart_list_31621.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 350 г Білоцерківський нежирний п/ет",
-      "unit": "g",
-      "weight": 350,
-      "p": 18,
-      "f": 0.2,
-      "c": 3.3,
-      "price": 55.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_114671.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 180г День у День 0% еколін",
-      "unit": "g",
-      "weight": 180,
-      "p": 16,
-      "f": 0.2,
-      "c": 1.8,
-      "price": 39.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_89601.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 200г Молокія 0,2%",
-      "unit": "g",
-      "weight": 200,
-      "p": 16,
-      "f": 0.2,
-      "c": 1.8,
-      "price": 50.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_95087.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 180 г Білоцерківський 5%",
-      "unit": "g",
-      "weight": 180,
-      "p": 16.5,
-      "f": 5,
-      "c": 1.8,
-      "price": 48.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_62615.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 300 г ПростоНаше 5% вак/уп",
-      "unit": "g",
-      "weight": 300,
-      "p": 16.5,
-      "f": 5,
-      "c": 1.8,
-      "price": 75.51,
-      "group": "protein",
-      "image": "./cart_files/cart_list_52751.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир кисломолочний 350 г Білоцерківський 5% п/ет",
-      "unit": "g",
-      "weight": 350,
-      "p": 16.5,
-      "f": 5,
-      "c": 1.8,
-      "price": 60.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_114667.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Консерви 185г De Luxe Foods & Goods Selected Тунець шматочками у власному соку",
-      "unit": "g",
-      "weight": 185,
-      "p": 21,
-      "f": 1,
-      "c": 0,
-      "price": 95.3,
-      "group": "protein",
-      "image": "./cart_files/cart_list_114205.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Консерви 185 г Своя Лінія Тунець подрібнений у власному соку з/б",
-      "unit": "g",
-      "weight": 185,
-      "p": 21,
-      "f": 1,
-      "c": 0,
-      "price": 62.9,
-      "group": "protein",
-      "image": "./cart_files/cart_list_30115.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Консерви 100 г Своя Лінія паштет з печінкою та ікрою тріски з/б",
-      "unit": "g",
-      "weight": 100,
-      "p": 12,
-      "f": 25,
-      "c": 4,
-      "price": 104.9,
-      "group": "fat",
-      "image": "./cart_files/cart_list_114535.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Консерви 121 г Scandi Печінка гренландської тріски з/б",
-      "unit": "g",
-      "weight": 121,
-      "p": 4.2,
-      "f": 35,
-      "c": 0,
-      "price": 152.5,
-      "group": "fat",
-      "image": "./cart_files/cart_list_107547.png",
-      "atb_id": null
-    },
-    {
-      "name": "Вермішель 60 г Розумний вибір швидкого приготування зі смаком гострої курки м/уп",
-      "unit": "g",
-      "weight": 60,
-      "p": 13,
-      "f": 1.7,
-      "c": 70,
-      "price": 10.2,
-      "group": "carb",
-      "image": "./cart_files/cart_list_92695.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Лаваш 200 г День у День вірменський тонкий круглий п/ет",
-      "unit": "g",
-      "weight": 200,
-      "p": 8,
-      "f": 1,
-      "c": 50,
-      "price": 23.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_112597.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Лаваш 230 г День у День вірменський тонкий п/ет",
-      "unit": "g",
-      "weight": 230,
-      "p": 8,
-      "f": 1,
-      "c": 50,
-      "price": 22.5,
-      "group": "carb",
-      "image": "./cart_files/cart_list_112599.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Хліб 0,52 кг Хлібна хата житній Новий формовий",
-      "unit": "g",
-      "weight": 520,
-      "p": 6.6,
-      "f": 1.2,
-      "c": 42.9,
-      "price": 37.4,
-      "group": "carb",
-      "image": "./cart_files/cart_list_273.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Хліб 280 г Agrola Шведський формовий нарізаний ж/пш п/ет",
-      "unit": "g",
-      "weight": 280,
-      "p": 8.5,
-      "f": 3.5,
-      "c": 43,
-      "price": 32.1,
-      "group": "carb",
-      "image": "./cart_files/cart_list_109105.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Хліб 300 г Agrola Фінський формовий нарізаний ж/пш п/ет",
-      "unit": "g",
-      "weight": 300,
-      "p": 8.2,
-      "f": 3.2,
-      "c": 42,
-      "price": 32.1,
-      "group": "carb",
-      "image": "./cart_files/cart_list_109107.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Хліб 400 г Agrola Трипільський нарізаний ж/пш п/ет",
-      "unit": "g",
-      "weight": 400,
-      "p": 7.8,
-      "f": 2.8,
-      "c": 46,
-      "price": 37,
-      "group": "carb",
-      "image": "./cart_files/cart_list_34131.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Хліб 0,5 кг Хлібна хата Тостовий ніжний нарізаний",
-      "unit": "g",
-      "weight": 500,
-      "p": 8.3,
-      "f": 3.8,
-      "c": 49,
-      "price": 43.8,
-      "group": "carb",
-      "image": "./cart_files/cart_list_109189.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 0,5 кг Trapeza вівсяна плющена",
-      "unit": "g",
-      "weight": 500,
-      "p": 12.3,
-      "f": 6.2,
-      "c": 61.8,
-      "price": 54.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_81067.png",
-      "atb_id": null
-    },
-     {
-      "name": "Крупа 1 кг Своя лінія булгур",
-      "unit": "g",
-      "weight": 1000,
-      "p": 12,
-      "f": 1.3,
-      "c": 75,
-      "price": 48,
-      "group": "carb",
-      "image": "./cart_files/cart_list_231236.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір перлова",
-      "unit": "g",
-      "weight": 1000,
-      "p": 9.3,
-      "f": 1.1,
-      "c": 66.9,
-      "price": 24.5,
-      "group": "carb",
-      "image": "./cart_files/cart_list_303.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір Ячна",
-      "unit": "g",
-      "weight": 1000,
-      "p": 10.4,
-      "f": 1.3,
-      "c": 66.3,
-      "price": 23.6,
-      "group": "carb",
-      "image": "./cart_files/cart_list_295.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір пшенична з м'яких сортів пшениці",
-      "unit": "g",
-      "weight": 1000,
-      "p": 11.5,
-      "f": 1.3,
-      "c": 62.1,
-      "price": 19.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_26599.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір горох",
-      "unit": "g",
-      "weight": 1000,
-      "p": 20.5,
-      "f": 1.5,
-      "c": 48.5,
-      "price": 27.5,
-      "group": "carb",
-      "image": "./cart_files/cart_list_331.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір рис довгозернистий шліфований",
-      "unit": "g",
-      "weight": 1000,
-      "p": 6.7,
-      "f": 0.7,
-      "c": 78.9,
-      "price": 53.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_174.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг Розумний вибір гречана",
-      "unit": "g",
-      "weight": 1000,
-      "p": 12.6,
-      "f": 3.3,
-      "c": 62.1,
-      "price": 65.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_173.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Крупа 1 кг De Luxe Foods & Goods Selected рис довгозернистий пропарений",
-      "unit": "g",
-      "weight": 1000,
-      "p": 6.7,
-      "f": 0.7,
-      "c": 78.9,
-      "price": 69.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_115639.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сочевиця 0,5 кг Attuale червона",
-      "unit": "g",
-      "weight": 500,
-      "p": 24,
-      "f": 1.5,
-      "c": 60,
-      "price": 59.6,
-      "group": "carb",
-      "image": "./cart_files/cart_list_81063.png",
-      "atb_id": null
-    },
-    {
-      "name": "Картопля",
-      "unit": "g",
-      "weight": 1000,
-      "p": 2,
-      "f": 0,
-      "c": 16,
-      "price": 12.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_27.png",
-      "atb_id": null
-    },
-    {
-      "name": "Банан",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.1,
-      "f": 0.3,
-      "c": 22.8,
-      "price": 64.9,
-      "group": "carb",
-      "image": "./cart_files/cart_list_18797.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Перець салатний",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.3,
-      "f": 0.1,
-      "c": 6,
-      "price": 39.95,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_14941.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Морква мита 1 гат",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.3,
-      "f": 0.1,
-      "c": 6.9,
-      "price": 24.89,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_1941.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Кабачки",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0.6,
-      "f": 0.3,
-      "c": 4.6,
-      "price": 34.95,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_1855.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Буряк 1 гат",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.5,
-      "f": 0.1,
-      "c": 8.8,
-      "price": 14.89,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_58.png",
-      "atb_id": null
-    },
-    {
-      "name": "Цибуля Ріпчаста",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.1,
-      "f": 0.1,
-      "c": 9.3,
-      "price": 19.59,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_28.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Часник імпорт",
-      "unit": "g",
-      "weight": 1000,
-      "p": 6.4,
-      "f": 0.5,
-      "c": 33.1,
-      "price": 133.89,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_18573.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Яблуко Голден",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0.3,
-      "f": 0.2,
-      "c": 13.8,
-      "price": 39.9,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_64.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Лохина 1 гат",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0.7,
-      "f": 0.3,
-      "c": 14.5,
-      "price": 278.9,
-      "group": "veggie",
-      "image": "./cart_files/cart_list_13148.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Огірок",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0.8,
-      "f": 0.1,
-      "c": 2.5,
-      "price": 60,
-      "group": "veggie",
-      "image": "cart_files/cart_list_6775.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Помідор",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.1,
-      "f": 0.2,
-      "c": 3.8,
-      "price": 80,
-      "group": "veggie",
-      "image": "cart_files/cart_list_76657.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Капуста",
-      "unit": "g",
-      "weight": 1000,
-      "p": 1.8,
-      "f": 0.1,
-      "c": 4.7,
-      "price": 20,
-      "group": "veggie",
-      "image": "cart_files/cart_list_18495.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Йогурт 260 г Яготинський вишня-черешня 2,1% п/стакан",
-      "unit": "g",
-      "weight": 260,
-      "p": 3.2,
-      "f": 2.1,
-      "c": 13.5,
-      "price": 31.41,
-      "group": "protein",
-      "image": "./cart_files/cart_list_111069.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Йогурт 1 кг Молокія білий 3% п/відро",
-      "unit": "g",
-      "weight": 1000,
-      "p": 3,
-      "f": 3,
-      "c": 4.7,
-      "price": 92.16,
-      "group": "protein",
-      "image": "./cart_files/cart_list_115823.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Йогурт 0,75 кг Злагода білий без цукру 1% п/бут",
-      "unit": "g",
-      "weight": 750,
-      "p": 3.5,
-      "f": 1,
-      "c": 4,
-      "price": 63.2,
-      "group": "protein",
-      "image": "./cart_files/cart_list_91423.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Йогурт 0,75 кг Злагода Смузі Манго-Банан-Льон 1,2% п/бут",
-      "unit": "g",
-      "weight": 750,
-      "p": 3,
-      "f": 1.2,
-      "c": 12,
-      "price": 71.2,
-      "group": "protein",
-      "image": "./cart_files/cart_list_91427.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Молоко 0,9кг Своя Лінія ультрапастеризоване 2,5%",
-      "unit": "g",
-      "weight": 900,
-      "p": 2.8,
-      "f": 2.5,
-      "c": 4.7,
-      "price": 52.6,
-      "group": "protein",
-      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i1/catalog_product_gal_111301.webp",
-      "atb_id":  190450
-    },
-    {
-      "name": "Сир твердий 160г Звенигора Сметанковий 50%",
-      "unit": "g",
-      "weight": 160,
-      "p": 26,
-      "f": 27,
-      "c": 0,
-      "price": 66.9,
-      "group": "fat",
-      "image": "./cart_files/cart_list_111311.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир твердий 160г Звенигора Звенигородський 50%",
-      "unit": "g",
-      "weight": 160,
-      "p": 26,
-      "f": 27,
-      "c": 0,
-      "price": 66.9,
-      "group": "fat",
-      "image": "./cart_files/cart_list_111309.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир твердий 160г Своя лінія Голландський 45%",
-      "unit": "g",
-      "weight": 160,
-      "p": 25,
-      "f": 26,
-      "c": 0,
-      "price": 81.36,
-      "group": "fat",
-      "image": "./cart_files/cart_list_111321.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир напівтвердий 150г SOT Гоуда 45%",
-      "unit": "g",
-      "weight": 150,
-      "p": 25,
-      "f": 26,
-      "c": 0,
-      "price": 89.54,
-      "group": "fat",
-      "image": "./cart_files/cart_list_33213.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Сир плавлений 75 г Комо Вершковий тенеро 35% фольга",
-      "unit": "g",
-      "weight": 75,
-      "p": 17,
-      "f": 20,
-      "c": 5,
-      "price": 23.92,
-      "group": "fat",
-      "image": "./cart_files/cart_list_80517.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Олія 0,9л Своя лінія соняшникова рафінована",
-      "unit": "g",
-      "weight": 900,
-      "p": 0,
-      "f": 99.9,
-      "c": 0,
-      "price": 87.84,
-      "group": "fat",
-      "image": "./cart_files/cart_list_1147.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Олія 0,5л De Luxe Foods&Goods Selected оливкова Extra Virgin",
-      "unit": "g",
-      "weight": 500,
-      "p": 0,
-      "f": 99.8,
-      "c": 0,
-      "price": 305.80,
-      "group": "fat",
-      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i2/catalog_product_gal_75831.webp",
-      "atb_id": 72591
-    },
-    {
-      "name": "Масло 180г Білоцерківське солодковершкове селянське 72,6%",
-      "unit": "g",
-      "weight": 180,
-      "p": 0.8,
-      "f": 73,
-      "c": 1.3,
-      "price": 72.90,
-      "group": "fat",
-      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i44/catalog_product_gal_105263.webp",
-      "atb_id": 128718
-    },
-    {
-      "name": "Горіхи волоські",
-      "unit": "g",
-      "weight": 200,
-      "p": 15.2,
-      "f": 65.2,
-      "c": 7,
-      "price": 129.9,
-      "group": "fat",
-      "image": "https://images.silpo.ua/v2/products/90x90/webp/6fea43ff-e285-473c-8e9f-103937f85411.png",
-      "atb_id": null
-    },
-    {
-      "name": "Цукор 1 кг",
-      "unit": "g",
-      "weight": 1000,
-      "p": 0,
-      "f": 0,
-      "c": 99.8,
-      "price": 32.9,
-      "group": "sweetener",
-      "image": "./cart_files/cart_list_81069.jpg",
-      "atb_id": null
-    },
-    {
-      "name": "Молоко 450 г Ічня згущене з цукром 8,5% д/пак",
-      "unit": "g",
-      "weight": 450,
-      "p": 7.2,
-      "f": 8.5,
-      "c": 56,
-      "price": 97.9,
-      "group": "sweetener",
-      "image": "./cart_files/cart_list_108255.png",
-      "atb_id": null
-    }
-  ]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#047857">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ATB-Diet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ATB-Diet v2.1</title>
+<style>
+:root {
+--bg-main: #f4f4f5;
+--bg-card: #ffffff;
+--text-main: #1f2937;
+--text-muted: #6b7280;
+--text-light: #9ca3af;
+--border: #e5e7eb;
+--border-soft: #f3f4f6;
+--primary: #047857;
+--primary-light: #f0fdf9;
+--danger: #dc2626;
+--warning: #f2b90c;
+--brand: #e30613;
+--macro-protein: #2563eb;
+--macro-fat: #b45309;
+--macro-carb: #047857;
+--pt-animal: #378ADD;
+--pt-plant: #1D9E75;
+--macro-kcal: #1f2937;
+--radius: 8px;
+--radius-lg: 12px;
+--shadow: 0 4px 6px -1px rgba(0, 0, 0, .08), 0 2px 4px -1px rgba(0, 0, 0, .04);
+--shadow-lg: 0 10px 30px rgba(0, 0, 0, .06);
+--transition: all .18s ease;
 }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+background: var(--bg-main);
+color: var(--text-main);
+line-height: 1.4;
+-webkit-font-smoothing: antialiased
+}
+.app {
+max-width: 520px;
+margin: 20px auto;
+background: var(--bg-card);
+min-height: calc(100vh - 40px);
+border-radius: var(--radius-lg);
+box-shadow: var(--shadow-lg);
+padding-bottom: calc(76px + env(safe-area-inset-bottom));
+overflow: hidden;
+position: relative
+}
+.header {
+padding: 18px 20px 14px;
+border-bottom: 1px solid var(--border)
+}
+.header-row {
+display: flex;
+justify-content: space-between;
+align-items: center
+}
+.header h1 {
+font-size: 20px;
+font-weight: 700;
+letter-spacing: -.3px
+}
+.header h1 .brand {
+color: var(--brand)
+}
+.lang {
+font-size: 13px;
+color: var(--text-muted);
+border: 1px solid var(--border);
+padding: 3px 10px;
+border-radius: 4px;
+background: none;
+cursor: pointer;
+transition: var(--transition)
+}
+.content {
+padding: 16px 20px
+}
+.section {
+margin-bottom: 22px
+}
+.section-title {
+font-size: 13px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: .6px;
+color: var(--text-muted);
+margin-bottom: 10px
+}
+.stats-row {
+display: flex;
+gap: 8px
+}
+.stat {
+flex: 1;
+border: 1px solid var(--border);
+border-radius: 6px;
+padding: 10px 8px;
+text-align: center
+}
+.stat-value {
+font-size: 17px;
+font-weight: 700
+}
+.stat-label {
+font-size: 11px;
+color: var(--text-muted);
+margin-top: 2px
+}
+.goal-bar {
+border: 1px solid var(--primary);
+background: var(--primary-light);
+border-radius: var(--radius);
+padding: 12px 14px;
+margin-bottom: 14px;
+font-size: 13px
+}
+.goal-bar b {
+color: var(--primary)
+}
+.bju-card {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+margin-bottom: 12px;
+overflow: hidden;
+position: relative
+}
+.bju-head,
+.bju-row,
+.bju-total {
+display: grid;
+grid-template-columns: 1fr 42px 42px 42px 42px;
+gap: 4px;
+align-items: center
+}
+.bju-head {
+font-size: 11px;
+color: var(--text-muted);
+font-weight: 700;
+padding: 7px 14px;
+background: #fafafa;
+border-bottom: 1px solid var(--border);
+position: relative
+}
+.bju-head span {
+text-align: right
+}
+.bju-head span:first-child {
+text-align: left
+}
+.bju-row {
+padding: 10px 14px;
+border-bottom: 1px solid var(--border-soft)
+}
+.bju-row:last-child {
+border-bottom: none
+}
+.bju-row .num,
+.bju-total .num {
+text-align: right;
+font-size: 13px;
+font-variant-numeric: tabular-nums;
+color: #374151
+}
+.p-name {
+font-size: 14px;
+font-weight: 500
+}
+.bju-total {
+padding: 9px 14px;
+background: #fafafa;
+border-top: 1px solid var(--border);
+font-weight: 700;
+font-size: 13px
+}
+.meal-title {
+padding: 12px 14px 4px;
+font-size: 15px;
+font-weight: 700;
+position: relative;
+padding-right: 50px
+}
+.day-tabs {
+display: flex;
+gap: 6px;
+margin-bottom: 16px;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+scroll-snap-type: x proximity;
+scrollbar-width: none
+}
+.day-tabs::-webkit-scrollbar {
+display: none
+}
+.day-tab {
+flex: 0 0 calc((100% - 36px) / 7);
+text-align: center;
+padding: 8px 0;
+font-size: 13px;
+font-weight: 600;
+color: var(--text-muted);
+border: 1px solid var(--border);
+border-radius: 6px;
+cursor: pointer;
+background: #fff;
+scroll-snap-align: start;
+transition: var(--transition);
+position: relative
+}
+.day-tab.active {
+background: var(--text-main);
+color: #fff;
+border-color: var(--text-main)
+}
+.day-tab.done {
+background: var(--primary-light);
+border-color: var(--primary);
+color: var(--primary)
+}
+.day-tab.done.active {
+background: var(--primary);
+color: #fff;
+border-color: var(--primary)
+}
+.day-tab.done::after {
+content: '✓';
+position: absolute;
+top: 2px;
+right: 4px;
+font-size: 10px;
+font-weight: 700
+}
+.nav {
+z-index: 100;
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+max-width: 520px;
+margin: 0 auto;
+display: flex;
+background: var(--bg-card);
+border-top: 1px solid var(--border);
+padding-bottom: env(safe-area-inset-bottom)
+}
+.nav-item {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 3px;
+min-height: 54px;
+padding: 8px 2px 6px;
+font-size: 10px;
+font-weight: 600;
+color: var(--text-muted);
+background: none;
+border: none;
+cursor: pointer;
+position: relative;
+transition: var(--transition)
+}
+.nav-item svg {
+width: 20px;
+height: 20px;
+stroke: currentColor;
+fill: none;
+stroke-width: 1.8;
+stroke-linecap: round;
+stroke-linejoin: round;
+flex-shrink: 0
+}
+.nav-item.active {
+color: var(--text-main)
+}
+.nav-item.active::before {
+content: '';
+position: absolute;
+top: 0;
+left: 20%;
+right: 20%;
+height: 2px;
+background: var(--text-main)
+}
+.nav-item:active {
+transform: scale(.96)
+}
+.tab {
+display: none
+}
+.tab.active {
+display: block
+}
+.note {
+font-size: 13px;
+color: var(--text-muted);
+line-height: 1.5
+}
+.form-group {
+margin-bottom: 12px
+}
+.form-label {
+font-size: 13px;
+font-weight: 600;
+margin-bottom: 5px;
+display: block;
+color: #374151
+}
+.input,
+.select {
+width: 100%;
+padding: 10px 12px;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+font-size: 15px;
+background: #fff;
+color: var(--text-main);
+outline: none;
+transition: var(--transition)
+}
+.input:focus,
+.select:focus {
+border-color: var(--text-main)
+}
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px
+}
+.form-row3 {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 8px
+}
+.seg {
+display: flex;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+overflow: hidden
+}
+.seg-item {
+flex: 1;
+padding: 10px;
+text-align: center;
+font-size: 12px;
+font-weight: 600;
+color: var(--text-muted);
+background: #fff;
+border: none;
+cursor: pointer;
+transition: var(--transition)
+}
+.seg-item.active {
+background: var(--text-main);
+color: #fff
+}
+.input.invalid {
+border-color: #dc2626;
+background: #fef2f2
+}
+.field-warn {
+color: #dc2626;
+font-size: 12px;
+font-weight: 600;
+margin: -4px 0 10px;
+line-height: 1.4
+}
+.btn {
+width: 100%;
+padding: 13px;
+border: none;
+border-radius: 6px;
+font-size: 15px;
+font-weight: 700;
+background: var(--text-main);
+color: #fff;
+cursor: pointer;
+transition: var(--transition);
+box-shadow: var(--shadow)
+}
+.btn:active {
+opacity: .85
+}
+.btn-ghost {
+background: #fff;
+color: var(--text-main);
+border: 1.5px solid #d1d5db;
+box-shadow: none
+}
+.btn-primary {
+background: var(--primary);
+color: #fff
+}
+.import-row {
+display: flex;
+gap: 8px;
+margin-top: 14px
+}
+.import-row .btn {
+flex: 1
+}
+.result {
+border: 1px solid var(--primary);
+border-radius: var(--radius);
+padding: 14px;
+margin-top: 16px;
+display: block;
+background: var(--primary-light)
+}
+.result-big {
+font-size: 26px;
+font-weight: 800;
+color: var(--primary);
+text-align: center
+}
+.result-sub {
+text-align: center;
+font-size: 12px;
+color: var(--text-muted);
+margin-bottom: 10px
+}
+.result-row {
+display: flex;
+justify-content: space-between;
+padding: 5px 0;
+font-size: 14px
+}
+.result-row span:first-child {
+color: var(--text-muted)
+}
+.result-row span:last-child {
+font-weight: 700
+}
+.meas-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 8px
+}
+.meas-item {
+border: 1px solid var(--border);
+border-radius: 6px;
+padding: 12px
+}
+.meas-value {
+font-size: 20px;
+font-weight: 600
+}
+.meas-label {
+font-size: 11px;
+color: var(--text-muted);
+margin-top: 2px
+}
+.meas-delta {
+font-size: 12px;
+font-weight: 600;
+margin-top: 4px
+}
+.down {
+color: var(--primary)
+}
+.up {
+color: var(--danger)
+}
+.neutral {
+color: var(--text-muted)
+}
+.meas-form {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 16px;
+margin-top: 12px;
+display: none
+}
+.meas-form.open {
+display: block
+}
+.meas-history-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 0;
+border-bottom: 1px solid var(--border-soft);
+font-size: 13px
+}
+.meas-history-date {
+color: var(--text-muted);
+font-weight: 600;
+min-width: 80px
+}
+.meas-history-vals {
+flex: 1;
+text-align: right;
+font-variant-numeric: tabular-nums
+}
+.meas-history-del {
+margin-left: 10px;
+cursor: pointer;
+color: var(--danger);
+font-weight: 700;
+font-size: 14px;
+padding: 4px
+}
+.shop-row {
+display: flex;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px solid var(--border-soft);
+transition: background-color .12s, box-shadow .12s
+}
+.shop-row.pressed {
+background: var(--border-soft);
+box-shadow: -8px 0 0 var(--border-soft), 8px 0 0 var(--border-soft);
+border-radius: 6px
+}
+.shop-img {
+width: 48px;
+height: 48px;
+object-fit: cover;
+border-radius: 6px;
+margin-right: 10px;
+flex-shrink: 0;
+background: var(--border-soft);
+border: 1px solid var(--border);
+cursor: pointer
+}
+.shop-num {
+width: 26px;
+font-size: 13px;
+font-weight: 700;
+color: var(--text-muted);
+flex-shrink: 0;
+text-align: right;
+margin-right: 10px
+}
+.shop-group-title {
+font-size: 13px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: .6px;
+color: var(--text-muted);
+margin: 18px 0 8px;
+padding-top: 12px;
+border-top: 1px solid var(--border)
+}
+.shop-group-title:first-child {
+margin-top: 0;
+padding-top: 0;
+border-top: none
+}
+.shop-info {
+flex: 1;
+-webkit-user-select: none;
+user-select: none;
+-webkit-touch-callout: none;
+touch-action: manipulation
+}
+.shop-name {
+font-size: 14px
+}
+.shop-sub {
+font-size: 12px;
+color: var(--text-muted)
+}
+.shop-price {
+font-weight: 700;
+font-size: 14px;
+white-space: nowrap
+}
+.avail-switch {
+flex-shrink: 0;
+width: 40px;
+height: 23px;
+border-radius: 12px;
+background: var(--border);
+position: relative;
+cursor: pointer;
+transition: background .15s;
+margin-left: 4px
+}
+.avail-switch.on {
+background: var(--primary)
+}
+.avail-switch i {
+position: absolute;
+top: 2px;
+left: 2px;
+width: 19px;
+height: 19px;
+border-radius: 50%;
+background: #fff;
+box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+transition: left .15s
+}
+.avail-switch.on i {
+left: 19px
+}
+.del {
+margin-left: 8px;
+cursor: pointer;
+color: var(--danger);
+font-weight: 700;
+font-size: 16px;
+line-height: 1;
+padding: 4px;
+flex-shrink: 0
+}
+.total-bar {
+display: flex;
+justify-content: space-between;
+padding: 12px 14px;
+background: var(--text-main);
+color: #fff;
+border-radius: 6px;
+font-weight: 700;
+font-size: 14px;
+margin-top: 12px
+}
+.addform {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 16px;
+margin-top: 12px;
+display: none
+}
+.addform.open {
+display: block
+}
+.file-input {
+font-size: 12px;
+width: 100%;
+color: var(--text-muted)
+}
+.dev-chart {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 10px 10px 8px
+}
+.dev-tiles {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 6px;
+align-items: stretch
+}
+@media(max-width:340px) {
+.dev-tiles {
+grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+}
+.dev-tile {
+--st: #047857;
+--st-text: #047857;
+background: var(--border-soft);
+border-radius: 8px;
+padding: 6px 8px 7px;
+display: flex;
+flex-direction: column;
+min-width: 0
+}
+.dev-tile.low {
+--st: #f2b90c;
+--st-text: #a16207
+}
+.dev-tile.high {
+--st: #dc2626;
+--st-text: #dc2626
+}
+.dev-tile.tappable {
+cursor: pointer
+}
+.dev-tile-name {
+font-size: 11px;
+font-weight: 700;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis
+}
+.dev-tile-val {
+font-size: 15px;
+font-weight: 800;
+line-height: 1.25;
+font-variant-numeric: tabular-nums
+}
+.dev-tile-delta {
+font-size: 11px;
+font-weight: 600;
+color: var(--st-text);
+font-variant-numeric: tabular-nums
+}
+.dev-tile-bar {
+margin-top: auto;
+padding-top: 4px
+}
+.dev-tile-bar>i {
+display: block;
+height: 3px;
+border-radius: 2px;
+background: var(--st)
+}
+.pt-strip {
+display: flex;
+height: 4px;
+border-radius: 2px;
+overflow: hidden;
+margin-top: 3px
+}
+.pt-strip>i {
+display: block;
+height: 100%
+}
+.pt-nums {
+display: flex;
+justify-content: space-between;
+font-size: 11px;
+font-weight: 600;
+margin-top: 2px;
+font-variant-numeric: tabular-nums
+}
+.dev-legend {
+font-size: 10px;
+color: var(--text-light);
+text-align: center;
+margin-top: 8px
+}
+.activity-desc {
+font-size: 11px;
+color: var(--text-muted);
+margin-top: 5px;
+line-height: 1.4
+}
+#menu-diagnostics {
+margin: 4px 0 12px
+}
+.diagnostic-banner {
+background: #fff8e6;
+border: 1px solid #f0d68a;
+border-radius: var(--radius);
+padding: 12px 16px;
+font-size: 13px;
+color: #3b3b3b
+}
+.diagnostic-banner b {
+color: #8a6d1a
+}
+.diagnostic-banner ul {
+margin: 6px 0 0 0;
+padding-left: 20px
+}
+.diagnostic-banner li {
+margin-bottom: 6px
+}
+.cooking-persistent-bar {
+display: flex;
+gap: 8px;
+margin-bottom: 12px;
+flex-wrap: wrap
+}
+.cooking-persistent-bar button {
+flex: 1;
+min-width: 96px;
+padding: 10px 6px;
+border: 1.5px solid #d1d5db;
+border-radius: 6px;
+background: #fff;
+font-size: 12px;
+font-weight: 600;
+cursor: pointer;
+color: var(--text-main);
+transition: var(--transition)
+}
+#kitchen-mode-btn {
+background: var(--text-main);
+color: #fff;
+border-color: var(--text-main)
+}
+.kitchen-mode #kitchen-mode-btn {
+background: var(--primary);
+border-color: var(--primary)
+}
+.cooking-toolbar {
+display: flex;
+gap: 8px;
+margin-top: 10px
+}
+.cooking-toolbar select {
+flex: 1;
+padding: 10px;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+font-size: 14px;
+background: #fff;
+color: var(--text-main);
+outline: none
+}
+.cook-group {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+margin-bottom: 12px;
+overflow: hidden
+}
+.cook-group-title {
+padding: 9px 14px;
+background: #fafafa;
+font-size: 12px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: .5px;
+color: var(--text-muted);
+border-bottom: 1px solid var(--border)
+}
+.cook-row {
+display: flex;
+align-items: center;
+padding: 11px 14px;
+border-bottom: 1px solid var(--border-soft)
+}
+.cook-row:last-child {
+border-bottom: none
+}
+.cook-check {
+width: 22px;
+height: 22px;
+border: 1.5px solid var(--text-light);
+border-radius: 5px;
+margin-right: 12px;
+cursor: pointer;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+color: #fff;
+transition: var(--transition)
+}
+.cook-check.on {
+background: var(--primary);
+border-color: var(--primary)
+}
+.cook-name {
+flex: 1;
+font-size: 14px
+}
+.cook-row.done .cook-name {
+text-decoration: line-through;
+color: var(--text-light)
+}
+.cook-meta {
+text-align: right;
+margin-left: 10px
+}
+.cook-weight {
+font-weight: 700;
+font-size: 13px;
+font-variant-numeric: tabular-nums
+}
+.cook-price {
+color: var(--text-muted);
+font-size: 12px
+}
+.cook-total-bar {
+display: flex;
+justify-content: space-between;
+padding: 12px 14px;
+background: var(--text-main);
+color: #fff;
+border-radius: 6px;
+font-weight: 700;
+font-size: 14px;
+margin: 12px 0
+}
+.kitchen-mode .cook-row {
+padding: 18px 14px
+}
+.kitchen-mode .cook-name {
+font-size: 20px;
+font-weight: 600
+}
+.kitchen-mode .cook-weight {
+font-size: 19px
+}
+.kitchen-mode .cook-check {
+width: 34px;
+height: 34px;
+font-size: 20px;
+border-width: 2px
+}
+.unavailable .shop-img {
+filter: grayscale(100%) opacity(.4)
+}
+.unavailable .shop-name {
+color: var(--text-light)
+}
+.unavailable .shop-sub {
+color: #d1d5db
+}
+.unavailable .shop-price {
+color: var(--text-light)
+}
+.avail-btn {
+margin-left: 8px;
+cursor: pointer;
+font-size: 16px;
+padding: 4px;
+flex-shrink: 0;
+user-select: none
+}
+/* ===== INFO TAB ===== */
+.info-intro {
+background: var(--primary-light);
+border: 1px solid var(--primary);
+border-radius: var(--radius);
+padding: 14px;
+font-size: 13px;
+line-height: 1.5;
+margin-bottom: 16px;
+color: #065f46
+}
+.info-intro b {
+color: var(--primary)
+}
+.info-section {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+margin-bottom: 10px;
+overflow: hidden;
+background: #fff
+}
+.info-section-toggle {
+width: 100%;
+padding: 14px 16px;
+background: #fafafa;
+border: none;
+font-size: 14px;
+font-weight: 700;
+color: var(--text-main);
+cursor: pointer;
+text-align: left;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+transition: var(--transition)
+}
+.info-section-toggle .info-arrow {
+font-size: 12px;
+color: var(--text-muted);
+transition: transform .2s
+}
+.info-section.open .info-section-toggle .info-arrow {
+transform: rotate(180deg)
+}
+.info-section-body {
+display: none;
+padding: 16px;
+border-top: 1px solid var(--border);
+font-size: 13px;
+line-height: 1.55
+}
+.info-section.open .info-section-body {
+display: block
+}
+.info-section.current .info-section-toggle {
+background: var(--primary-light);
+color: var(--primary)
+}
+.info-h {
+font-size: 13px;
+font-weight: 700;
+color: var(--text-main);
+margin: 14px 0 8px;
+padding-bottom: 4px;
+border-bottom: 1px solid var(--border-soft)
+}
+.info-h:first-child {
+margin-top: 0
+}
+.info-p {
+margin-bottom: 8px;
+color: #374151
+}
+.info-p b {
+color: var(--text-main)
+}
+.info-list {
+margin: 8px 0 12px 20px;
+padding: 0
+}
+.info-list li {
+margin-bottom: 4px;
+color: #374151
+}
+.info-list li b {
+color: var(--text-main)
+}
+.info-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 12px;
+margin: 10px 0 14px
+}
+.info-table th,
+.info-table td {
+padding: 7px 6px;
+text-align: center;
+border: 1px solid var(--border)
+}
+.info-table th {
+background: #fafafa;
+font-weight: 700;
+color: var(--text-main);
+font-size: 11px
+}
+.info-section-body>.info-table:first-child {
+margin-top: 0
+}
+.info-table small {
+display: block;
+font-weight: 400;
+color: var(--text-muted);
+font-size: 11px;
+line-height: 1.35;
+margin-top: 2px
+}
+.info-table td:first-child {
+text-align: left;
+font-weight: 600;
+color: var(--text-main)
+}
+.info-table tr:nth-child(even) td {
+background: #fafafa
+}
+.info-card {
+background: #fafafa;
+border-left: 3px solid var(--primary);
+padding: 10px 12px;
+border-radius: 4px;
+margin: 10px 0;
+font-size: 12px
+}
+.info-card b {
+color: var(--primary)
+}
+.info-card.warn {
+border-left-color: var(--warning);
+background: #fffbeb
+}
+.info-card.warn b {
+color: #92400e
+}
+.info-card.danger {
+border-left-color: var(--danger);
+background: #fef2f2
+}
+.info-card.danger b {
+color: var(--danger)
+}
+.info-source {
+padding: 10px 12px;
+background: #fafafa;
+border-radius: 6px;
+margin-bottom: 8px;
+font-size: 12px
+}
+.info-source b {
+display: block;
+margin-bottom: 2px;
+color: var(--text-main)
+}
+.info-source .authors {
+color: var(--text-muted);
+font-style: italic;
+font-size: 11px
+}
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, .5);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 2000;
+opacity: 0;
+pointer-events: none;
+transition: opacity .2s
+}
+.modal-overlay.active {
+opacity: 1;
+pointer-events: auto
+}
+.modal-box {
+background: var(--bg-card);
+padding: 20px;
+border-radius: var(--radius);
+width: 90%;
+max-width: 340px;
+box-shadow: var(--shadow-lg)
+}
+.modal-title {
+font-weight: 700;
+margin-bottom: 10px;
+line-height: 1.4
+}
+.modal-actions {
+display: flex;
+gap: 10px;
+margin-top: 20px;
+justify-content: flex-end
+}
+.modal-actions .btn {
+width: auto;
+padding: 10px 16px;
+flex: 0 1 auto
+}
+.toast {
+position: fixed;
+bottom: 80px;
+left: 50%;
+transform: translateX(-50%);
+background: var(--text-main);
+color: #fff;
+padding: 10px 20px;
+border-radius: var(--radius);
+font-size: 14px;
+opacity: 0;
+transition: opacity .3s;
+pointer-events: none;
+z-index: 3000;
+white-space: nowrap
+}
+.toast.show {
+opacity: 1
+}
+/* ===== CONTEXT MENU ===== */
+.ctx-overlay {
+position: fixed;
+inset: 0;
+z-index: 4000;
+display: none
+}
+.ctx-overlay.active {
+display: block
+}
+.ctx-menu {
+position: absolute;
+background: #fff;
+border-radius: 10px;
+box-shadow: 0 8px 30px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.08);
+padding: 6px 0;
+min-width: 180px;
+z-index: 4001;
+animation: ctxPop .15s ease
+}
+@keyframes ctxPop {
+from {
+opacity: 0;
+transform: scale(.92)
+}
+to {
+opacity: 1;
+transform: scale(1)
+}
+}
+.ctx-item {
+display: flex;
+align-items: center;
+gap: 10px;
+width: 100%;
+padding: 12px 16px;
+border: none;
+background: none;
+font-size: 15px;
+font-weight: 500;
+color: var(--text-main);
+cursor: pointer;
+text-align: left;
+transition: background .12s
+}
+.ctx-item:active {
+background: #f3f4f6
+}
+.ctx-item.danger {
+color: var(--danger)
+}
+.ctx-sep {
+height: 1px;
+background: var(--border);
+margin: 4px 0
+}
+/* ===== PROGRESS TRACKING ===== */
+.meal-eaten-check {
+position: absolute;
+top: 10px;
+right: 10px;
+width: 28px;
+height: 28px;
+border: 2px solid var(--border);
+border-radius: 6px;
+background: #fff;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+font-weight: 700;
+color: #fff;
+transition: var(--transition);
+z-index: 10
+}
+.meal-eaten-check.on {
+background: var(--primary);
+border-color: var(--primary)
+}
+.meal-eaten-check.locked {
+pointer-events: none;
+opacity: 0.6;
+cursor: default
+}
+.day-complete-btn {
+margin-top: 12px
+}
+.cycle-stats {
+margin-top: 12px;
+padding: 10px 14px;
+background: var(--primary-light);
+border: 1px solid var(--primary);
+border-radius: var(--radius);
+font-size: 12px;
+color: var(--primary);
+text-align: center;
+font-weight: 600
+}
+.progress-actions {
+display: flex;
+gap: 8px;
+margin-top: 12px
+}
+.progress-actions .btn {
+flex: 1
+}
+/* ===== УВЕЛИЧЕНИЕ ШРИФТОВ ДЛЯ МОБИЛЬНЫХ ===== */
+@media (max-width: 540px) {
+body {
+font-size: 16px;
+line-height: 1.5
+}
+.header h1 {
+font-size: 22px
+}
+.section-title {
+font-size: 15px;
+letter-spacing: .4px
+}
+.shop-name {
+font-size: 16px;
+font-weight: 600
+}
+.shop-sub {
+font-size: 14px;
+margin-top: 2px
+}
+.shop-price {
+font-size: 16px
+}
+.shop-num {
+font-size: 14px;
+min-width: 30px
+}
+.shop-group-title {
+font-size: 15px;
+margin: 20px 0 10px;
+padding-top: 14px
+}
+.stat-value {
+font-size: 20px
+}
+.stat-label {
+font-size: 12px
+}
+.meal-title {
+font-size: 17px;
+padding: 14px 50px 6px 14px
+}
+.bju-head {
+font-size: 12px;
+padding: 8px 14px
+}
+.bju-row {
+padding: 12px 14px
+}
+.bju-row .num,
+.bju-total .num {
+font-size: 14px
+}
+.p-name {
+font-size: 15px
+}
+.bju-total {
+padding: 10px 14px;
+font-size: 14px
+}
+.day-tab {
+font-size: 15px;
+padding: 10px 0;
+min-width: 44px
+}
+.input,
+.select {
+font-size: 17px;
+padding: 12px 14px
+}
+.form-label {
+font-size: 14px;
+margin-bottom: 6px
+}
+.btn {
+font-size: 16px;
+padding: 14px
+}
+.seg-item {
+font-size: 14px;
+padding: 12px
+}
+.nav-item {
+font-size: 11px;
+min-height: 60px;
+padding: 10px 2px 8px
+}
+.nav-item svg {
+width: 22px;
+height: 22px
+}
+.result-big {
+font-size: 28px
+}
+.result-row {
+font-size: 15px;
+padding: 6px 0
+}
+.cook-name {
+font-size: 15px
+}
+.cook-weight {
+font-size: 14px
+}
+.cook-price {
+font-size: 13px
+}
+.cook-group-title {
+font-size: 13px;
+padding: 10px 14px
+}
+.cook-row {
+padding: 13px 14px
+}
+.dev-tile-name {
+font-size: 12px
+}
+.dev-tile-delta {
+font-size: 12px
+}
+.note {
+font-size: 14px;
+line-height: 1.6
+}
+.activity-desc {
+font-size: 13px;
+margin-top: 6px
+}
+.lang {
+font-size: 14px;
+padding: 5px 12px
+}
+.total-bar,
+.cook-total-bar {
+font-size: 15px;
+padding: 13px 16px
+}
+.meas-history-row {
+font-size: 14px;
+padding: 10px 0
+}
+.info-section-toggle {
+font-size: 15px;
+padding: 15px 16px
+}
+.info-section-body {
+font-size: 14px;
+line-height: 1.6
+}
+.info-h {
+font-size: 14px;
+margin: 16px 0 10px
+}
+.info-p {
+font-size: 14px;
+margin-bottom: 10px
+}
+.info-list li {
+font-size: 14px;
+margin-bottom: 6px
+}
+.shop-row {
+padding: 12px 0
+}
+.ctx-item {
+padding: 14px 18px;
+font-size: 16px
+}
+.meal-eaten-check {
+width: 32px;
+height: 32px;
+font-size: 18px
+}
+}
+@media (max-width: 380px) {
+.shop-name {
+font-size: 15px
+}
+.shop-sub {
+font-size: 13px
+}
+.stat-value {
+font-size: 18px
+}
+.day-tab {
+font-size: 14px
+}
+}
+@media print {
+.nav,
+.header,
+.cooking-persistent-bar,
+.cooking-toolbar,
+#cooking-intro,
+.toast,
+.ctx-overlay,
+.meal-eaten-check,
+.day-complete-btn,
+.cycle-stats,
+.progress-actions {
+display: none !important
+}
+.tab {
+display: none !important
+}
+.tab.active {
+display: block !important
+}
+}
+@media(hover:hover) {
+.lang:hover {
+color: var(--text-main);
+border-color: var(--text-light)
+}
+.day-tab:not(.active):hover {
+border-color: var(--text-light);
+color: var(--text-main)
+}
+.nav-item:hover {
+color: var(--text-main)
+}
+.seg-item:not(.active):hover {
+background: #fafafa
+}
+.btn:hover {
+opacity: .92
+}
+.btn-ghost:hover {
+background: #fafafa;
+border-color: var(--text-light)
+}
+.cooking-persistent-bar button:hover {
+background: #fafafa
+}
+.info-section-toggle:hover {
+background: #f3f4f6
+}
+.ctx-item:hover {
+background: #f9fafb
+}
+.ctx-item.danger:hover {
+background: #fef2f2
+}
+.meal-eaten-check:not(.locked):hover {
+border-color: var(--primary)
+}
+}
+@media(max-width:540px) {
+.app {
+margin: 0;
+border-radius: 0;
+box-shadow: none;
+min-height: 100vh
+}
+.nav {
+max-width: 100%
+}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header">
+<div class="header-row">
+<h1><span class="brand">ATB</span>-Diet <span
+style="font-size:11px;color:var(--text-light);font-weight:400">v2.0</span></h1><button
+class="lang" onclick="UI.toggleLang()" id="langBtn">RU</button>
+</div>
+</div>
+<div class="content">
+<div class="tab active" id="tab-plan">
+<div class="day-tabs" id="dayTabs"></div>
+<div id="dayContent"></div>
+<div id="menu-diagnostics"></div>
+</div>
+<div class="tab" id="tab-shop">
+<div class="section">
+<div class="section-title" data-i18n="shop.title">Продукты</div>
+<div id="shopContent"></div><button class="btn btn-ghost" style="margin-top:12px"
+onclick="ShopUI.toggleAddForm()" data-i18n="shop.add">+ Добавить продукт</button>
+<div class="addform" id="addForm">
+<div class="form-group"><label class="form-label" data-i18n="common.name">Название</label><input
+type="text" class="input" id="np_name" placeholder="Творог"
+list="golden_products"><datalist id="golden_products"></datalist></div>
+<div class="form-row">
+<div class="form-group"><label class="form-label"
+data-i18n="common.qty">Количество</label><input type="number" class="input"
+id="np_qty" value="1000"></div>
+<div class="form-group"><label class="form-label"
+data-i18n="common.unit">Единица</label><select class="select" id="np_unit">
+<option value="г">г</option>
+<option value="шт">шт</option>
+</select></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="common.price">Цена,
+грн</label><input type="number" class="input" id="np_price" value="85"></div>
+<div class="form-group"><label class="form-label" data-i18n="common.code">Код
+АТБ</label><input type="number" class="input" id="np_atb" placeholder="148723">
+</div>
+</div>
+<div class="form-group"><label class="form-label"
+data-i18n="common.image">Картинка</label><input type="text" class="input" id="np_img"
+placeholder="URL"></div>
+<div class="form-group"><input type="file" id="np_img_file" accept="image/*"
+class="file-input"><img id="np_img_preview" class="shop-img"
+style="display:none;margin-top:6px" alt=""></div>
+<div class="form-row3">
+<div class="form-group"><label class="form-label" data-i18n="shop.b100">Белки/100г</label><input type="number"
+step="0.1" class="input" id="np_b" placeholder="17"></div>
+<div class="form-group"><label class="form-label" data-i18n="shop.f100">Жиры/100г</label><input type="number"
+step="0.1" class="input" id="np_f" placeholder="5"></div>
+<div class="form-group"><label class="form-label" data-i18n="shop.c100">Углеводы/100г</label><input type="number"
+step="0.1" class="input" id="np_c" placeholder="2"></div>
+</div>
+<button class="btn" onclick="ShopUI.addUserProduct()" data-i18n="common.save">Сохранить</button>
+</div>
+<div class="addform" id="editForm" style="border-color:var(--primary)">
+<div class="section-title" style="color:var(--primary);margin-bottom:10px" data-i18n="shop.editing">Редактирование</div>
+<input type="hidden" id="edit_idx">
+<div class="form-group"><label class="form-label" data-i18n="common.name">Название</label><input
+type="text" class="input" id="edit_name"></div>
+<div class="form-row">
+<div class="form-group"><label class="form-label"
+data-i18n="common.qty">Количество</label><input type="number" class="input"
+id="edit_qty"></div>
+<div class="form-group"><label class="form-label"
+data-i18n="common.unit">Единица</label><select class="select" id="edit_unit">
+<option value="г">г</option>
+<option value="шт">шт</option>
+</select></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label"
+data-i18n="common.price">Цена</label><input type="number" step="0.01" class="input"
+id="edit_price"></div>
+<div class="form-group"><label class="form-label" data-i18n="common.code">Код
+АТБ</label><input type="number" class="input" id="edit_atb"></div>
+</div>
+<div class="form-group"><label class="form-label"
+data-i18n="common.image">Картинка</label><input type="text" class="input" id="edit_img">
+</div>
+<div class="form-group"><input type="file" id="edit_img_file" accept="image/*"
+class="file-input"><img id="edit_img_preview" class="shop-img"
+style="display:none;margin-top:6px" alt=""></div>
+<div class="form-row3">
+<div class="form-group"><label class="form-label" data-i18n="diag.protein">Белки</label><input type="number"
+step="0.1" class="input" id="edit_b"></div>
+<div class="form-group"><label class="form-label" data-i18n="diag.fat">Жиры</label><input type="number"
+step="0.1" class="input" id="edit_f"></div>
+<div class="form-group"><label class="form-label" data-i18n="diag.carbs">Углеводы</label><input type="number"
+step="0.1" class="input" id="edit_c"></div>
+</div>
+<div class="import-row"><button class="btn" onclick="ShopUI.saveEdit()"
+data-i18n="common.save">Сохранить</button><button class="btn btn-ghost"
+onclick="ShopUI.closeEdit()" data-i18n="common.cancel">Отмена</button></div>
+</div>
+<div class="total-bar"><span id="shopCountLabel"></span><span id="shopTotalPrice">0 грн</span></div>
+<div class="import-row"><button class="btn" onclick="ShopUI.importProducts()"
+data-i18n="shop.import">📂
+Загрузить JSON</button><button class="btn btn-ghost" onclick="ShopUI.exportProducts()"
+data-i18n="shop.export">💾 Выгрузить JSON</button></div>
+<p class="note" style="margin-top:8px" data-i18n="shop.file_note">БЖУ в файле — на 100 г.</p>
+</div>
+</div>
+<div class="tab" id="tab-cook">
+<div class="section">
+<div class="section-title" data-i18n="cook.title">Готовка</div>
+<div class="cooking-persistent-bar"><button id="kitchen-mode-btn"
+onclick="CookUI.toggleKitchenMode()" data-i18n="cook.kitchen">🍳 Режим кухни</button><button
+onclick="window.print()" data-i18n="cook.print">🖨️ Печать</button><button
+onclick="CookUI.resetCook()" data-i18n="cook.reset">Сбросить</button></div>
+<div id="cooking-intro">
+<p class="note" data-i18n="cook.choose_period">Выберите период.</p>
+<div class="cooking-toolbar"><select id="cooking-period-type" onchange="Cook.render()">
+<option value="day" data-i18n="cook.p_day">День</option>
+<option value="p3" data-i18n="cook.p_3">3 дня</option>
+<option value="p6" data-i18n="cook.p_6">6 дней</option>
+<option value="p10" data-i18n="cook.p_10">Все 10 дней</option>
+</select><select id="cooking-period-start" onchange="Cook.render()"></select></div>
+</div>
+<div id="cooking-empty" style="display:none">
+<p class="note" data-i18n="cook.add_first">Сначала добавьте продукты.</p>
+</div>
+<div id="cooking-groups"></div>
+</div>
+</div>
+<div class="tab" id="tab-progress">
+<div class="section">
+<div class="section-title" data-i18n="progress.title">Замеры тела</div>
+<div id="measDisplay"></div><button class="btn" style="margin-top:12px"
+onclick="MeasureUI.toggleMeasForm()" data-i18n="progress.add">+ Добавить замер</button>
+<div class="meas-form" id="measForm">
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="meas.weight">Вес, кг</label><input type="number"
+step="0.1" class="input" id="mf_weight"></div>
+<div class="form-group"><label class="form-label" data-i18n="meas.waist">Талия, см</label><input type="number"
+step="0.5" class="input" id="mf_waist"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="meas.chest">Грудь, см</label><input type="number"
+step="0.5" class="input" id="mf_chest"></div>
+<div class="form-group"><label class="form-label" data-i18n="meas.hip">Бедро, см</label><input type="number"
+step="0.5" class="input" id="mf_hip"></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="meas.biceps">Бицепс, см</label><input type="number"
+step="0.5" class="input" id="mf_biceps"></div>
+<button class="btn" onclick="MeasureUI.saveMeas()" data-i18n="common.save">Сохранить</button>
+</div>
+</div>
+<div class="section">
+<div class="section-title" data-i18n="progress.history">История замеров</div>
+<div id="measHistory"></div>
+</div>
+</div>
+<div class="tab" id="tab-profile">
+<div class="section">
+<div class="section-title" data-i18n="profile.title">Анкета и расчёт</div>
+<div class="form-group"><label class="form-label" data-i18n="profile.gender">Пол</label>
+<div class="seg"><button class="seg-item active" id="gm" onclick="Profile.setGender('m')"
+data-i18n="profile.male">Мужской</button><button class="seg-item" id="gf"
+onclick="Profile.setGender('f')" data-i18n="profile.female">Женский</button></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="profile.age">Возраст</label><input
+type="number" class="input" id="age" value="47"></div>
+<div class="form-group"><label class="form-label" data-i18n="profile.height">Рост,
+см</label><input type="number" class="input" id="height" value="184"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="profile.weight">Вес,
+кг</label><input type="number" class="input" id="weight" value="90"></div>
+<div class="form-group"><label class="form-label"
+data-i18n="profile.activity">Активность</label><select class="select" id="activity">
+<option value="1.2" data-i18n="profile.act_opt_1_2">Сидячий (0 тренировок)</option>
+<option value="1.375" data-i18n="profile.act_opt_1_375">Лёгкая (1–3)</option>
+<option value="1.55" selected data-i18n="profile.act_opt_1_55">Средняя (3–5)</option>
+<option value="1.725" data-i18n="profile.act_opt_1_725">Высокая (6–7)</option>
+<option value="1.9" data-i18n="profile.act_opt_1_9">Очень высокая (2 в день)</option>
+</select>
+<div class="activity-desc" id="activityDesc"></div>
+</div>
+</div>
+<div class="field-warn" id="profileWarn" style="display:none"></div>
+<div class="form-group"><label class="form-label" data-i18n="profile.goal">Цель</label>
+<div class="seg"><button class="seg-item" id="g-maintain" onclick="Profile.setGoal('maintain')"
+data-i18n="profile.maintain">Поддержание</button><button class="seg-item" id="g-gain"
+onclick="Profile.setGoal('gain')" data-i18n="profile.gain">Набор</button><button
+class="seg-item active" id="g-loss" onclick="Profile.setGoal('loss')"
+data-i18n="profile.loss">Снижение жира</button></div>
+</div>
+<div class="result" id="result">
+<div class="result-big" id="rKcal" style="color:var(--macro-kcal)">—</div>
+<div class="result-sub" data-i18n="profile.kcal_per_day">ккал в день</div>
+<div class="result-sub" id="rModeNote"
+style="display:none;color:var(--primary);font-weight:700"></div>
+<div class="result-sub" id="rFloorNote" style="display:none;color:#a16207;font-weight:600"></div>
+<div class="result-row"><span
+style="color:var(--macro-protein);font-weight:600" data-i18n="diag.protein">Белки</span><span id="rProt">—</span>
+</div>
+<div class="result-row"><span style="color:var(--macro-fat);font-weight:600" data-i18n="diag.fat">Жиры</span><span
+id="rFat">—</span></div>
+<div class="result-row"><span
+style="color:var(--macro-carb);font-weight:600" data-i18n="diag.carbs">Углеводы</span><span id="rCarb">—</span>
+</div>
+<div class="result-row"><span data-i18n="profile.fiber">Клетчатка</span><span id="rFiber">—</span></div>
+<div class="result-row"><span data-i18n="profile.water">Вода</span><span id="rWater">—</span></div>
+</div>
+</div>
+<div class="section" style="margin-top:20px">
+<div class="section-title" data-i18n="profile.data">Данные</div>
+<div class="import-row">
+<button class="btn btn-ghost" onclick="BackupSystem.exportFullDump()"
+data-i18n="profile.backup">💾 Полный
+бэкап</button>
+<button class="btn btn-ghost" onclick="document.getElementById('import-dump').click()"
+data-i18n="profile.restore">📂 Восстановить</button>
+</div>
+<input type="file" id="import-dump" accept=".json" style="display:none">
+</div>
+<div class="section" style="margin-top:20px">
+<div class="section-title" data-i18n="reminders.title2">Напоминания о приёме пищи</div>
+<div class="form-group"><label class="form-label" data-i18n="reminders.enable">Уведомления</label>
+<div class="seg"><button class="seg-item active" id="rem-off" onclick="Reminders.toggle(false)"
+data-i18n="reminders.off">Выкл</button><button class="seg-item" id="rem-on"
+onclick="Reminders.toggle(true)" data-i18n="reminders.on">Вкл</button></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="reminders.sound">Звук</label>
+<div class="seg"><button class="seg-item" id="rem-sound-off" onclick="Reminders.toggleSound(false)"
+data-i18n="reminders.off">Выкл</button><button class="seg-item active" id="rem-sound-on"
+onclick="Reminders.toggleSound(true)" data-i18n="reminders.on">Вкл</button></div>
+</div>
+<div class="activity-desc" id="rem-status"></div>
+<div class="activity-desc" data-i18n="reminders.hint" style="margin-top:6px;opacity:0.7">Работает, пока вкладка открыта (на переднем плане или недавно свёрнута); если браузер полностью закрыт или долго простоял в фоне, напоминание может не сработать — это ограничение платформы.</div>
+<button class="btn btn-ghost" style="margin-top:10px" onclick="Reminders.testNow()"
+data-i18n="reminders.test_btn">🔔 Проверить</button>
+</div>
+</div>
+<!-- ========== INFO TAB ========== -->
+<div class="tab" id="tab-info">
+<div class="section" id="info-root"></div>
+</div>
+</div>
+<div class="nav">
+<button class="nav-item active" onclick="UI.goTo('plan',this)" data-i18n="nav.plan"><svg
+viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="16" rx="2" />
+<line x1="3" y1="10" x2="21" y2="10" />
+<line x1="8" y1="2" x2="8" y2="6" />
+<line x1="16" y1="2" x2="16" y2="6" />
+</svg>План</button>
+<button class="nav-item" onclick="UI.goTo('shop',this)" data-i18n="nav.products"><svg viewBox="0 0 24 24">
+<circle cx="9" cy="20" r="1.4" />
+<circle cx="18" cy="20" r="1.4" />
+<path d="M2.5 3h2.6l2.3 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21.5 7H6" />
+</svg>Продукты</button>
+<button class="nav-item" onclick="UI.goTo('cook',this)" data-i18n="nav.cook"><svg viewBox="0 0 24 24">
+<path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3z" />
+<path d="M4 12a8 8 0 0 1 16 0" />
+<line x1="12" y1="4" x2="12" y2="1.7" />
+<line x1="8" y1="4.5" x2="7.3" y2="2.4" />
+<line x1="16" y1="4.5" x2="16.7" y2="2.4" />
+</svg>Готовка</button>
+<button class="nav-item" onclick="UI.goTo('progress',this)" data-i18n="nav.progress"><svg
+viewBox="0 0 24 24">
+<polyline points="3 17 9 11 13 15 21 6" />
+<polyline points="15 6 21 6 21 12" />
+</svg>Прогресс</button>
+<button class="nav-item" onclick="UI.goTo('profile',this)" data-i18n="nav.profile"><svg viewBox="0 0 24 24">
+<circle cx="12" cy="8" r="3.6" />
+<path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
+</svg>Профиль</button>
+<button class="nav-item" onclick="UI.goTo('info',this)" data-i18n="nav.info"><svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9" />
+<line x1="12" y1="11" x2="12" y2="16.5" />
+<circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none" />
+</svg>Инфо</button>
+</div>
+<div class="modal-overlay" id="sys-modal">
+<div class="modal-box">
+<div class="modal-title" id="sys-modal-text">Подтвердите действие</div>
+<div class="modal-actions">
+<button class="btn btn-ghost" id="sys-modal-cancel">Отмена</button>
+<button class="btn" id="sys-modal-confirm" style="background:var(--primary)">OK</button>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="prompt-modal">
+<div class="modal-box">
+<div class="modal-title" id="prompt-modal-text"></div>
+<input type="text" class="input" id="prompt-modal-input" style="margin-top:10px">
+<div class="modal-actions">
+<button class="btn btn-ghost" id="prompt-modal-cancel" data-i18n="common.cancel">Отмена</button>
+<button class="btn" id="prompt-modal-confirm" style="background:var(--primary)">OK</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CONTEXT MENU -->
+<div class="ctx-overlay" id="ctx-overlay">
+<div class="ctx-menu" id="ctx-menu">
+<button class="ctx-item" id="ctx-edit" data-i18n="ctx.edit">✏️ Редактировать</button>
+<div class="ctx-sep"></div>
+<button class="ctx-item danger" id="ctx-delete" data-i18n="ctx.delete">🗑️ Удалить</button>
+</div>
+</div>
+<div id="toast" class="toast"></div>
+<script>
+'use strict';
+window.addEventListener('error', e => { console.error(e); UI.toast(t('err.critical') + e.message); });
+window.addEventListener('unhandledrejection', e => { console.error(e); UI.toast(t('err.promise') + e.reason); });
+const CONFIG = {
+APP_VERSION: '2.1',
+STORAGE_PREFIX: 'atbdiet_',
+TOTAL_DAYS: 10,
+GRAIN_BLOCK_SIZE: 3,
+MEALS: {
+times: ['08:00', '11:00', '14:00', '17:00', '20:00', '22:30'],
+names: ['Завтрак', 'Перекус №1', 'Обед', 'Перекус №2', 'Ужин', 'Перекус перед сном (казеин)'],
+kcalPct: [0.25, 0.125, 0.25, 0.125, 0.25],
+proteinPct: [0.19, 0.13, 0.22, 0.13, 0.16],
+mainIndices: [0, 2, 4],
+snackIndices: [1, 3],
+caseinIndex: 5,
+mainCount: 5,
+totalCount: 6
+},
+PORTIONS: {
+veggie: 150, cookedTarget: 280, snackBread: 80, snackBreadMinLoss: 20, grainMin: 30,
+meatMainMin: 35, meatMainMax: 250, meatSnackMin: 20, meatSnackMax: 130,
+instantNoodlePack: 60, caseinPack: 200, sweetenerMax: 50, sweetenerCutMax: 15,
+garlicMax: 15, eggsMin: 2, eggsMax: 5
+},
+DEFAULTS: {
+sweetenerMaintainMax: 35, avgPieceWeight: 60, defaultWeight: 100, roundingStep: 5,
+maxImageSize: 300 * 1024, minEggs: 2, maxEggs: 5, carbCountThreshold: 3
+},
+MACRO: { tolerance: 0.10, balanceTolerance: 0.05 },
+CAT: {
+order: ['meat', 'carb', 'fat', 'fruits', 'snack'],
+labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — углеводы', fat: 'Жиры', fruits: 'Фрукты, йогурты, напитки', snack: 'Перекусы' }
+}
+};
+const I18N = {
+ru: {
+'reminders.title2': 'Напоминания о приёме пищи', 'reminders.enable': 'Уведомления', 'reminders.sound': 'Звук',
+'reminders.on': 'Вкл', 'reminders.off': 'Выкл', 'reminders.test_btn': '🔔 Проверить',
+'reminders.title': 'Пора поесть 🍽', 'reminders.test': 'Тестовое напоминание',
+'reminders.unsupported': 'Браузер не поддерживает уведомления', 'reminders.blocked': 'Уведомления заблокированы в настройках браузера — разрешите их для этого сайта',
+'reminders.active_until': 'Следующее уведомление:', 'reminders.hint': 'Работает, пока вкладка открыта (на переднем плане или недавно свёрнута); если браузер полностью закрыт или долго простоял в фоне, напоминание может не сработать — это ограничение платформы.',
+'app.title': 'ATB-Diet', 'nav.plan': 'План', 'nav.products': 'Продукты', 'nav.cook': 'Готовка',
+'nav.progress': 'Прогресс', 'nav.profile': 'Профиль', 'nav.info': 'Инфо',
+'shop.title': 'Продукты', 'shop.add': '+ Добавить продукт', 'shop.import': '📂 Загрузить JSON',
+'shop.export': '💾 Выгрузить JSON', 'shop.total': 'Итого:', 'cook.title': 'Готовка',
+'cook.kitchen': '🍳 Режим кухни', 'cook.print': '🖨️ Печать', 'cook.reset': 'Сбросить',
+'progress.title': 'Замеры тела', 'progress.add': '+ Добавить замер', 'progress.history': 'История замеров',
+'profile.title': 'Анкета и расчёт', 'profile.gender': 'Пол', 'profile.male': 'Мужской',
+'profile.female': 'Женский', 'profile.age': 'Возраст', 'profile.height': 'Рост, см',
+'profile.weight': 'Вес, кг', 'profile.activity': 'Активность', 'profile.goal': 'Цель',
+'profile.maintain': 'Поддержание', 'profile.gain': 'Набор', 'profile.loss': 'Снижение жира',
+'profile.per_week': 'кг/нед',
+'profile.note_cut': 'Режим жиросжигания: дефицит ~{0}% · {1}', 'profile.note_gain': 'Режим набора: профицит ~{0}% · {1}',
+'profile.floor_note': 'Сработал нижний порог калорий ({0} ккал): дефицит ограничен.',
+"info.title": "📚 Научная база спортивной диетологии",
+"info.intro": "Расчёт опирается на официальные <b>Position Stands</b> ведущих организаций: <b>ISSN</b> (International Society of Sports Nutrition) и <b>ACSM</b> (American College of Sports Medicine) совместно с Academy of Nutrition and Dietetics и Dietitians of Canada. Диапазоны белка, жиров и углеводов взяты из них; величины дефицита и профицита — практические ориентиры из публикаций ISSN. Цели в приложении — середина диапазона.",
+"info.your": "📌 Ваш расчёт сейчас",
+"info.you_kcal": "<b>Калории:</b> {0} ккал — {1} к TDEE (≈ {2}) · {3}",
+"info.you_prot": "<b>Белки:</b> {0} г · {1} г/кг",
+"info.you_fat": "<b>Жиры:</b> {0} г · {1}% ккал",
+"info.you_carb": "<b>Углеводы:</b> {0} г · {1} г/кг",
+"info.s_general": "📋 1. Общие принципы (все цели)",
+"info.th_param": "Параметр",
+"info.th_value": "Значение",
+"info.r_protein": "Белок, г/кг в сутки",
+"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.r_protein_cut": "Белок при дефиците энергии",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжировой массы у худых силовых</small>",
+"info.r_protein_meal": "Белок за приём",
+"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>каждые 3–5 ч, 4–6 приёмов (ACSM, ISSN)</small>",
+"info.r_fat": "Жиры",
+"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. В приложении: не ниже 20% и 0.5 г/кг</small>",
+"info.r_oil": "Масло",
+"info.v_oil": "Подсолнечное, оливковое, льняное и др.<small>По калориям и жирам они практически одинаковы, поэтому в меню масло раскладывается на три основных приёма (салат, готовка), а вид можно менять на любой другой</small>",
+"info.r_carb": "Углеводы, г/кг",
+"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>лёгкая активность · ~1 ч/день · 1–3 ч/день · 4–5+ ч/день (ACSM/AND/DC). В приложении углеводы — остаток калорий после белка и жиров</small>",
+"info.r_water": "Вода",
+"info.v_water": "30–35 мл/кг + 500–1000 мл на час тренировки<small>ориентир; в приложении 35 мл/кг</small>",
+"info.s_bulk": "💪 2. Набор мышечной массы (Lean Bulk)",
+"info.s_cut": "🔥 3. Снижение жира (Cutting)",
+"info.s_maintain": "⚖️ 4. Поддержание (Maintenance)",
+"info.s_sources": "📚 5. Источники",
+"info.h_cal": "🔥 Калории",
+"info.h_prot": "🥩 Белок",
+"info.h_fat": "🥑 Жиры",
+"info.h_carb": "🍞 Углеводы",
+"info.bulk_cal": "<b>Профицит 5–10%</b> от TDEE; в приложении — {0}%. ISSN: набор мышц требует устойчивого профицита, а его величина и тренировочный стаж определяют, сколько будет мышц и сколько жира.",
+"info.bulk_cal2": "Агрессивный профицит (>15%) ведёт к избыточному набору жира без дополнительного роста мышц.",
+"info.bulk_rate": "<b>Ориентир по скорости:</b> +0.25–0.5% веса в неделю.",
+"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> общего веса (в приложении {0})",
+"info.bulk_prot2": "Выше ~2.2 г/кг прироста мышц не даёт у натуральных атлетов (Morton, 2018)",
+"info.bulk_prot3": "<b>20–40 г качественного белка</b> на приём (лейцин 2–3 г)",
+"info.bulk_prot4": "Распределение: 4–6 приёмов в день",
+"info.bulk_fat": "<b>25–35%</b> калорийности (в приложении {0}%), не ниже 0.5 г/кг. Нужны для гормонов и усвоения витаминов A/D/E/K.",
+"info.bulk_carb": "Остаток калорий после белка и жиров — основной источник энергии тренировок (ориентиры ACSM — в таблице выше).",
+"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE; в приложении — {0}%. ISSN: чем больше жировой массы, тем агрессивнее допустим дефицит; у худых лучше медленнее — так сохраняется больше мышц.",
+"info.cut_rate": "<b>Скорость:</b> −0.5–1.0% веса в неделю (Helms et al., 2014).",
+"info.cut_floor": "Нижняя граница: не ниже BMR и не ниже 1200 ккал (женщины) / 1500 ккал (мужчины).",
+"info.cut_prot1": "<b>1.8–2.7 г/кг</b> общего веса (в приложении {0})",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефиците энергии; ISSN: 2.3–3.1 г/кг безжировой массы для худых силовых",
+"info.cut_prot3": "При заболеваниях почек высокий белок — только по согласованию с врачом",
+"info.cut_fat": "<b>25–30%</b> калорийности (в приложении {0}%), не ниже 20% и 0.5 г/кг.",
+"info.cut_carb": "Остаток калорий, <b>не менее 2 г/кг</b> — чтобы сохранять интенсивность тренировок.",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабильный вес; в приложении — 0%.",
+"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — сохранение мышц (в приложении {0}).",
+"info.mnt_fat": "<b>30–35%</b> калорийности (в приложении {0}%).",
+"info.disclaimer": "<b>Важно:</b> это ориентиры для здоровых взрослых. При беременности, диабете, заболеваниях почек и других состояниях, а также при высоких тренировочных нагрузках нужен индивидуальный план у врача или спортивного диетолога.",
+"meal.0": "Завтрак",
+"meal.1": "Перекус №1",
+"meal.2": "Обед",
+"meal.3": "Перекус №2",
+"meal.4": "Ужин",
+"meal.5": "Перекус перед сном (казеин)",
+"cat.meat": "Мясо, рыба, яйца",
+"cat.carb": "Гарниры — углеводы",
+"cat.fat": "Жиры",
+"cat.fruits": "Фрукты, йогурты, напитки",
+"cat.snack": "Перекусы",
+"shop.b100": "Белки/100г",
+"shop.f100": "Жиры/100г",
+"shop.c100": "Углеводы/100г",
+"shop.file_note": "БЖУ в файле — на 100 г.",
+"shop.editing": "Редактирование",
+"shop.toggle_avail": "Переключить наличие",
+"cook.choose_period": "Выберите период.",
+"cook.add_first": "Сначала добавьте продукты.",
+"cook.p_day": "День",
+"cook.p_3": "3 дня",
+"cook.p_6": "6 дней",
+"cook.p_10": "Все 10 дней",
+"profile.act_opt_1_2": "Сидячий (0 тренировок)",
+"profile.act_opt_1_375": "Лёгкая (1–3)",
+"profile.act_opt_1_55": "Средняя (3–5)",
+"profile.act_opt_1_725": "Высокая (6–7)",
+"profile.act_opt_1_9": "Очень высокая (2 в день)",
+"profile.kcal_per_day": "ккал в день",
+"profile.fiber": "Клетчатка",
+"profile.water": "Вода",
+"ctx.edit": "✏️ Редактировать",
+"ctx.delete": "🗑️ Удалить",
+"diag.at_target": "при цели",
+"err.critical": "Критическая ошибка: ",
+"err.promise": "Ошибка промиса: ",
+'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
+'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 'plan.dayTotal': 'Итог дня',
+'plan.balance': 'Баланс КБЖУ', 'plan.mark_day_done': 'Отметить день пройденным',
+'plan.unmark_day': '↩️ Снять отметку дня',
+'plan.day_completed': 'День отмечен пройденным ✓',
+'plan.day_unmarked': 'Отметка дня снята',
+'plan.all_meals_eaten': 'Все приёмы пищи съедены! Отметить день пройденным?',
+'plan.refresh_completed': '🔄 Обновить все пройденные дни',
+'plan.refresh_confirm': 'Обновить пройденные дни ({0}) до актуального меню? Старые снимки будут заменены.',
+'plan.refresh': 'Обновить',
+'plan.refresh_done': 'Обновлено дней',
+'plan.new_cycle': '🔁 Начать новый цикл',
+'plan.cycle_completed': 'Цикл пройден! Начать заново?',
+'plan.reset_incomplete': 'Пройдено только {0} из 10 дней. Сбросить прогресс?',
+'plan.reset': 'Сбросить',
+'plan.cycle_reset': 'Цикл сброшен',
+'plan.cycles_completed': 'Пройдено циклов',
+'common.save': 'Сохранить', 'common.cancel': 'Отмена',
+'common.name': 'Название', 'common.qty': 'Количество', 'common.unit': 'Единица',
+'common.price': 'Цена, грн', 'common.code': 'Код АТБ', 'common.image': 'Картинка',
+'common.confirm': 'Подтвердите действие', 'toast.save_err': 'Ошибка сохранения',
+'toast.quota': '⚠ Хранилище переполнено!', 'toast.saved': 'Сохранено',  'toast.added': 'Добавлено',
+'toast.empty': 'Список пуст', 'day.empty': 'Список продуктов пуст.', 'day.kcal': 'ккал',
+'day.protein': 'белки', 'day.fat': 'жиры', 'day.carb': 'углеводы',
+'dev.legend': '🟡 недобор (<-10%) · 🟢 норма (±10%) · 🔴 перебор (>+10%)',
+'dev.animal': 'животный', 'dev.plant': 'растительный',
+'diag.title': '⚠ Отклонения:', 'diag.protein': 'Белки', 'diag.fat': 'Жиры', 'diag.carbs': 'Углеводы', 'diag.kcal': 'Калории',
+'toast.meas_saved': 'Замер сохранён', 'toast.enter_weight': 'Укажи вес', 'toast.enter_name': 'Укажи название',
+'toast.enter_name_price': 'Укажи название и цену', 'meas.none': 'Пока нет замеров.',
+'meas.weight': 'Вес, кг', 'meas.waist': 'Талия, см', 'meas.chest': 'Грудь, см', 'meas.hip': 'Бедро, см', 'meas.biceps': 'Бицепс, см',
+'common.total': 'Итого', 'common.positions_short': 'поз.', 'common.active_short': 'активно', 'common.currency': 'грн',
+'common.delete': 'Удалить', 'common.day_single': 'День', 'common.days_range': 'Дни',
+'macro.b': 'Б', 'macro.f': 'Ж', 'macro.c': 'У', 'macro.weight': 'Г',
+'meas.abbr_waist': 'Т', 'meas.abbr_chest': 'Г', 'meas.abbr_hip': 'Б', 'meas.abbr_biceps': 'Бц', 'meas.unit_kg': 'кг',
+'shop.loading_catalog': '⏳ Загружаю каталог АТБ...', 'shop.catalog_loaded': '✅ Каталог загружен', 'shop.items_suffix': 'товаров',
+'shop.catalog_unavailable': 'Каталог недоступен', 'shop.file_too_large': 'Файл слишком большой',
+'shop.exported_count': 'Выгружено', 'shop.imported_count': 'Загружено', 'shop.json_error': 'Ошибка JSON',
+'shop.delete_confirm': 'Удалить этот продукт из списка?', 'shop.import_found': 'Найдено',
+'shop.import_replace_q': 'Заменить текущий список ({0} шт.)?', 'shop.replace_btn': 'Заменить', 'shop.add_to_current_btn': 'Добавить к текущему',
+'backup.exported': 'Бэкап выгружен', 'backup.err_root': 'Некорректный формат бэкапа',
+'backup.err_profile': 'Отсутствует или повреждён профиль', 'backup.err_gender': 'Некорректное значение пола',
+'backup.err_field': 'Некорректное поле: {0}', 'backup.err_weeklist': 'Список покупок повреждён',
+'backup.err_meas': 'История замеров повреждена', 'backup.err_cookchecks': 'Данные отметок готовки повреждены',
+'backup.err_progress': 'Данные прогресса повреждены', 'backup.err_settings': 'Настройки повреждены',
+'backup.err_format': 'Неверный формат', 'backup.restore_confirm': 'Восстановить данные?', 'backup.restore': 'Восстановить',
+'backup.restored': 'Восстановлено', 'backup.err_prefix': 'Ошибка',
+'profile.activity_1_2': 'Коэф. 1.2 · 0 тренировок/нед.', 'profile.activity_1_375': 'Коэф. 1.375 · 1–3 тренировки/нед.',
+'profile.activity_1_55': 'Коэф. 1.55 · 3–5 тренировок/нед.', 'profile.activity_1_725': 'Коэф. 1.725 · 6–7 тренировок/нед.',
+'profile.activity_1_9': 'Коэф. 1.9 · 2 тренировки в день.'
+},
+ua: {
+'reminders.title2': 'Нагадування про прийом їжі', 'reminders.enable': 'Сповіщення', 'reminders.sound': 'Звук',
+'reminders.on': 'Увімк', 'reminders.off': 'Вимк', 'reminders.test_btn': '🔔 Перевірити',
+'reminders.title': 'Час поїсти 🍽', 'reminders.test': 'Тестове нагадування',
+'reminders.unsupported': 'Браузер не підтримує сповіщення', 'reminders.blocked': 'Сповіщення заблоковані в налаштуваннях браузера — дозвольте їх для цього сайту',
+'reminders.active_until': 'Наступне сповіщення:', 'reminders.hint': 'Працює, поки вкладка відкрита (на передньому плані або нещодавно згорнута); якщо браузер повністю закритий або довго був у фоні, нагадування може не спрацювати — це обмеження платформи.',
+'app.title': 'ATB-Diet', 'nav.plan': 'План', 'nav.products': 'Продукти', 'nav.cook': 'Готування',
+'nav.progress': 'Прогрес', 'nav.profile': 'Профіль', 'nav.info': 'Інфо',
+'shop.title': 'Продукти', 'shop.add': '+ Додати продукт', 'shop.import': '📂 Завантажити JSON',
+'shop.export': '💾 Вивантажити JSON', 'shop.total': 'Разом:', 'cook.title': 'Готування',
+'cook.kitchen': '🍳 Режим кухні', 'cook.print': '🖨️ Друк', 'cook.reset': 'Скинути',
+'progress.title': 'Заміри тіла', 'progress.add': '+ Додати замір', 'progress.history': 'Історія замірів',
+'profile.title': 'Анкета та розрахунок', 'profile.gender': 'Стать', 'profile.male': 'Чоловіча',
+'profile.female': 'Жіноча', 'profile.age': 'Вік', 'profile.height': 'Зріст, см',
+'profile.weight': 'Вага, кг', 'profile.activity': 'Активность', 'profile.goal': 'Мета',
+'profile.maintain': 'Підтримка', 'profile.gain': 'Набір', 'profile.loss': 'Зниження жиру',
+'profile.per_week': 'кг/тижд',
+'profile.note_cut': 'Режим спалювання жиру: дефіцит ~{0}% · {1}', 'profile.note_gain': 'Режим набору: профіцит ~{0}% · {1}',
+'profile.floor_note': 'Спрацював нижній поріг калорій ({0} ккал): дефіцит обмежено.',
+"info.title": "📚 Наукова база спортивної дієтології",
+"info.intro": "Розрахунок спирається на офіційні <b>Position Stands</b> провідних організацій: <b>ISSN</b> (International Society of Sports Nutrition) та <b>ACSM</b> (American College of Sports Medicine) разом з Academy of Nutrition and Dietetics і Dietitians of Canada. Діапазони білка, жирів і вуглеводів узято з них; величини дефіциту та профіциту — практичні орієнтири з публікацій ISSN. Цілі в застосунку — середина діапазону.",
+"info.your": "📌 Ваш розрахунок зараз",
+"info.you_kcal": "<b>Калорії:</b> {0} ккал — {1} до TDEE (≈ {2}) · {3}",
+"info.you_prot": "<b>Білки:</b> {0} г · {1} г/кг",
+"info.you_fat": "<b>Жири:</b> {0} г · {1}% ккал",
+"info.you_carb": "<b>Вуглеводи:</b> {0} г · {1} г/кг",
+"info.s_general": "📋 1. Загальні принципи (усі цілі)",
+"info.th_param": "Параметр",
+"info.th_value": "Значення",
+"info.r_protein": "Білок, г/кг на добу",
+"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.r_protein_cut": "Білок при дефіциті енергії",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжирової маси у худих силових</small>",
+"info.r_protein_meal": "Білок на прийом",
+"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>кожні 3–5 год, 4–6 прийомів (ACSM, ISSN)</small>",
+"info.r_fat": "Жири",
+"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. У застосунку: не нижче 20% і 0.5 г/кг</small>",
+"info.r_oil": "Олія",
+"info.v_oil": "Соняшникова, оливкова, лляна та ін.<small>За калоріями та жирами вони практично однакові, тому в меню олія розкладається на три основні прийоми (салат, готування), а вид можна змінювати на будь-який інший</small>",
+"info.r_carb": "Вуглеводи, г/кг",
+"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>легка активність · ~1 год/день · 1–3 год/день · 4–5+ год/день (ACSM/AND/DC). У застосунку вуглеводи — залишок калорій після білка та жирів</small>",
+"info.r_water": "Вода",
+"info.v_water": "30–35 мл/кг + 500–1000 мл на годину тренування<small>орієнтир; у застосунку 35 мл/кг</small>",
+"info.s_bulk": "💪 2. Набір м'язової маси (Lean Bulk)",
+"info.s_cut": "🔥 3. Зниження жиру (Cutting)",
+"info.s_maintain": "⚖️ 4. Підтримання (Maintenance)",
+"info.s_sources": "📚 5. Джерела",
+"info.h_cal": "🔥 Калорії",
+"info.h_prot": "🥩 Білок",
+"info.h_fat": "🥑 Жири",
+"info.h_carb": "🍞 Вуглеводи",
+"info.bulk_cal": "<b>Профіцит 5–10%</b> від TDEE; у застосунку — {0}%. ISSN: набір м'язів потребує стійкого профіциту, а його величина та тренувальний стаж визначають, скільки буде м'язів і скільки жиру.",
+"info.bulk_cal2": "Агресивний профіцит (>15%) веде до надмірного набору жиру без додаткового росту м'язів.",
+"info.bulk_rate": "<b>Орієнтир за швидкістю:</b> +0.25–0.5% ваги на тиждень.",
+"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> загальної ваги (у застосунку {0})",
+"info.bulk_prot2": "Понад ~2.2 г/кг приросту м'язів не дає у натуральних атлетів (Morton, 2018)",
+"info.bulk_prot3": "<b>20–40 г якісного білка</b> на прийом (лейцин 2–3 г)",
+"info.bulk_prot4": "Розподіл: 4–6 прийомів на день",
+"info.bulk_fat": "<b>25–35%</b> калорійності (у застосунку {0}%), не нижче 0.5 г/кг. Потрібні для гормонів і засвоєння вітамінів A/D/E/K.",
+"info.bulk_carb": "Залишок калорій після білка та жирів — основне джерело енергії тренувань (орієнтири ACSM — у таблиці вище).",
+"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE; у застосунку — {0}%. ISSN: чим більше жирової маси, тим агресивніший допустимий дефіцит; у худих краще повільніше — так зберігається більше м'язів.",
+"info.cut_rate": "<b>Швидкість:</b> −0.5–1.0% ваги на тиждень (Helms et al., 2014).",
+"info.cut_floor": "Нижня межа: не нижче BMR і не нижче 1200 ккал (жінки) / 1500 ккал (чоловіки).",
+"info.cut_prot1": "<b>1.8–2.7 г/кг</b> загальної ваги (у застосунку {0})",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефіциті енергії; ISSN: 2.3–3.1 г/кг безжирової маси для худих силових",
+"info.cut_prot3": "При захворюваннях нирок високий білок — лише за погодженням з лікарем",
+"info.cut_fat": "<b>25–30%</b> калорійності (у застосунку {0}%), не нижче 20% і 0.5 г/кг.",
+"info.cut_carb": "Залишок калорій, <b>не менше 2 г/кг</b> — щоб зберігати інтенсивність тренувань.",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабільна вага; у застосунку — 0%.",
+"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — збереження м'язів (у застосунку {0}).",
+"info.mnt_fat": "<b>30–35%</b> калорійності (у застосунку {0}%).",
+"info.disclaimer": "<b>Важливо:</b> це орієнтири для здорових дорослих. При вагітності, діабеті, захворюваннях нирок та інших станах, а також при високих тренувальних навантаженнях потрібен індивідуальний план у лікаря або спортивного дієтолога.",
+"meal.0": "Сніданок",
+"meal.1": "Перекус №1",
+"meal.2": "Обід",
+"meal.3": "Перекус №2",
+"meal.4": "Вечеря",
+"meal.5": "Перекус перед сном (казеїн)",
+"cat.meat": "М'ясо, риба, яйця",
+"cat.carb": "Гарніри — вуглеводи",
+"cat.fat": "Жири",
+"cat.fruits": "Фрукти, йогурти, напої",
+"cat.snack": "Перекуси",
+"shop.b100": "Білки/100г",
+"shop.f100": "Жири/100г",
+"shop.c100": "Вуглеводи/100г",
+"shop.file_note": "БЖВ у файлі — на 100 г.",
+"shop.editing": "Редагування",
+"shop.toggle_avail": "Перемкнути наявність",
+"cook.choose_period": "Оберіть період.",
+"cook.add_first": "Спочатку додайте продукти.",
+"cook.p_day": "День",
+"cook.p_3": "3 дні",
+"cook.p_6": "6 днів",
+"cook.p_10": "Усі 10 днів",
+"profile.act_opt_1_2": "Сидячий (0 тренувань)",
+"profile.act_opt_1_375": "Легка (1–3)",
+"profile.act_opt_1_55": "Середня (3–5)",
+"profile.act_opt_1_725": "Висока (6–7)",
+"profile.act_opt_1_9": "Дуже висока (2 на день)",
+"profile.kcal_per_day": "ккал на день",
+"profile.fiber": "Клітковина",
+"profile.water": "Вода",
+"ctx.edit": "✏️ Редагувати",
+"ctx.delete": "🗑️ Видалити",
+"diag.at_target": "при цілі",
+"err.critical": "Критична помилка: ",
+"err.promise": "Помилка промісу: ",
+'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
+'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 'plan.dayTotal': 'Підсумок дня',
+'plan.balance': 'Баланс КБЖВ', 'plan.mark_day_done': 'Позначити день пройденим',
+'plan.unmark_day': '↩️ Зняти позначку дня',
+'plan.day_completed': 'День позначено пройденим ✓',
+'plan.day_unmarked': 'Позначку дня знято',
+'plan.all_meals_eaten': 'Всі прийоми їжі з\'їдено! Позначити день пройденим?',
+'plan.refresh_completed': '🔄 Оновити всі пройдені дні',
+'plan.refresh_confirm': 'Оновити пройдені дні ({0}) до актуального меню? Старі знімки будуть замінені.',
+'plan.refresh': 'Оновити',
+'plan.refresh_done': 'Оновлено днів',
+'plan.new_cycle': '🔁 Почати новий цикл',
+'plan.cycle_completed': 'Цикл пройдено! Почати спочатку?',
+'plan.reset_incomplete': 'Пройдено тільки {0} з 10 днів. Скинути прогрес?',
+'plan.reset': 'Скинути',
+'plan.cycle_reset': 'Цикл скинуто',
+'plan.cycles_completed': 'Пройдено циклів',
+'common.save': 'Зберегти', 'common.cancel': 'Скасувати',
+'common.name': 'Назва', 'common.qty': 'Кількість', 'common.unit': 'Одиниця',
+'common.price': 'Ціна, грн', 'common.code': 'Код АТБ', 'common.image': 'Зображення',
+'common.confirm': 'Підтвердіть дію', 'toast.save_err': 'Помилка збереження',
+'toast.quota': '⚠ Сховище переповнене!', 'toast.saved': 'Збережено',  'toast.added': 'Додано',
+'toast.empty': 'Список порожній', 'day.empty': 'Список продуктів порожній.', 'day.kcal': 'ккал',
+'day.protein': 'білки', 'day.fat': 'жири', 'day.carb': 'вуглеводи',
+'dev.legend': '🟡 нестача (<-10%) · 🟢 норма (±10%) · 🔴 перевищення (>+10%)',
+'dev.animal': 'тваринний', 'dev.plant': 'рослинний',
+'diag.title': '⚠ Відхилення:', 'diag.protein': 'Білки', 'diag.fat': 'Жири', 'diag.carbs': 'Вуглеводи', 'diag.kcal': 'Калорії',
+'toast.meas_saved': 'Замір збережено', 'toast.enter_weight': 'Вкажи вагу', 'toast.enter_name': 'Вкажи назву',
+'toast.enter_name_price': 'Вкажи назву та ціну', 'meas.none': 'Поки що немає замірів.',
+'meas.weight': 'Вага, кг', 'meas.waist': 'Талія, см', 'meas.chest': 'Груди, см', 'meas.hip': 'Стегно, см', 'meas.biceps': 'Біцепс, см',
+'common.total': 'Всього', 'common.positions_short': 'поз.', 'common.active_short': 'активно', 'common.currency': 'грн',
+'common.delete': 'Видалити', 'common.day_single': 'День', 'common.days_range': 'Дні',
+'macro.b': 'Б', 'macro.f': 'Ж', 'macro.c': 'В', 'macro.weight': 'Г',
+'meas.abbr_waist': 'Т', 'meas.abbr_chest': 'Г', 'meas.abbr_hip': 'Ст', 'meas.abbr_biceps': 'Бц', 'meas.unit_kg': 'кг',
+'shop.loading_catalog': '⏳ Завантажую каталог АТБ...', 'shop.catalog_loaded': '✅ Каталог завантажено', 'shop.items_suffix': 'товарів',
+'shop.catalog_unavailable': 'Каталог недоступний', 'shop.file_too_large': 'Файл занадто великий',
+'shop.exported_count': 'Вивантажено', 'shop.imported_count': 'Завантажено', 'shop.json_error': 'Помилка JSON',
+'shop.delete_confirm': 'Видалити цей продукт зі списку?', 'shop.import_found': 'Знайдено',
+'shop.import_replace_q': 'Замінити поточний список ({0} шт.)?', 'shop.replace_btn': 'Замінити', 'shop.add_to_current_btn': 'Додати до поточного',
+'backup.exported': 'Бекап вивантажено', 'backup.err_root': 'Некоректний формат бекапу',
+'backup.err_profile': 'Відсутній або пошкоджений профіль', 'backup.err_gender': 'Некоректне значення статі',
+'backup.err_field': 'Некоректне поле: {0}', 'backup.err_weeklist': 'Список покупок пошкоджений',
+'backup.err_meas': 'Історія замірів пошкоджена', 'backup.err_cookchecks': 'Дані позначок готування пошкоджені',
+'backup.err_progress': 'Дані прогресу пошкоджені', 'backup.err_settings': 'Налаштування пошкоджені',
+'backup.err_format': 'Невірний формат', 'backup.restore_confirm': 'Відновити дані?', 'backup.restore': 'Відновити',
+'backup.restored': 'Відновлено', 'backup.err_prefix': 'Помилка',
+'profile.activity_1_2': 'Коеф. 1.2 · 0 тренувань/тижд.', 'profile.activity_1_375': 'Коеф. 1.375 · 1–3 тренування/тижд.',
+'profile.activity_1_55': 'Коеф. 1.55 · 3–5 тренувань/тижд.', 'profile.activity_1_725': 'Коеф. 1.725 · 6–7 тренувань/тижд.',
+'profile.activity_1_9': 'Коеф. 1.9 · 2 тренування на день.'
+}
+};
+function t(key, ...args) {
+const lang = AppState.data.settings.lang || 'ru';
+let val = (I18N[lang] && I18N[lang][key]) || I18N.ru[key] || key;
+args.forEach((a, i) => { val = val.replace(new RegExp('\\{' + i + '\\}', 'g'), a); });
+return val;
+}
+function debounce(fn, delay) {
+let timer;
+return function (...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), delay); };
+}
+function parseQty(qtyStr) {
+const m = (qtyStr || '').toString().match(/([\d.,]+)\s*(г|шт|pcs|g)/i);
+if (!m) return { value: CONFIG.DEFAULTS.defaultWeight, unit: 'г' };
+const rawUnit = m[2].toLowerCase();
+let unit = rawUnit;
+if (rawUnit === 'pcs') unit = 'шт';
+else if (rawUnit === 'g') unit = 'г';
+return { value: parseFloat(m[1].replace(',', '.')) || CONFIG.DEFAULTS.defaultWeight, unit };
+}
+const AppState = {
+data: {
+profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', macroLevel: 'optim' },
+weekList: [], measHistory: [], cookChecks: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
+},
+runtime: { products: [], menuPlan: null, currentDay: 0, targets: { kcal: 0, protein: 0, fat: 0, carbs: 0, fiber: 0, water: 0 }, lastMenuParams: null },
+init() {
+Object.keys(this.data).forEach(key => {
+try { const stored = localStorage.getItem(CONFIG.STORAGE_PREFIX + key); if (stored) this.data[key] = JSON.parse(stored); } catch (e) { console.warn(`Load ${key} failed`, e); }
+});
+if (!this.data.progress) this.data.progress = { days: {}, meals: {}, cyclesCompleted: 0 };
+if (!this.data.progress.days) this.data.progress.days = {};
+if (!this.data.progress.meals) this.data.progress.meals = {};
+if (typeof this.data.progress.cyclesCompleted !== 'number') this.data.progress.cyclesCompleted = 0;
+if (!this.data.settings) this.data.settings = { lang: 'ru' };
+if (!this.data.settings.reminders) this.data.settings.reminders = { enabled: false, sound: true };
+},
+save(key) {
+try { localStorage.setItem(CONFIG.STORAGE_PREFIX + key, JSON.stringify(this.data[key])); return true; } catch (e) {
+console.warn(`Save ${key} failed`, e);
+if (e.name === 'QuotaExceededError' || e.code === 22 || e.code === 1014) UI.toast(t('toast.quota'));
+else UI.toast(t('toast.save_err') + ': ' + (e.message || e.name));
+return false;
+}
+},
+saveAll() { Object.keys(this.data).forEach(k => this.save(k)); }
+};
+const UI = {
+escape(str) { const d = document.createElement('div'); d.textContent = String(str ?? ''); return d.innerHTML; },
+escapeAttr(str) { return String(str ?? '').replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); },
+toastTimer: null,
+toast(msg) { const tEl = document.getElementById('toast'); tEl.textContent = msg; tEl.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = setTimeout(() => tEl.classList.remove('show'), 3000); },
+confirm(message, okText = 'OK', cancelText = t('common.cancel')) {
+return new Promise(resolve => {
+const overlay = document.getElementById('sys-modal');
+document.getElementById('sys-modal-text').innerHTML = this.escape(message).replace(/\n/g, '<br>');
+const btnOk = document.getElementById('sys-modal-confirm');
+const btnCancel = document.getElementById('sys-modal-cancel');
+btnOk.textContent = okText; btnCancel.textContent = cancelText;
+const cleanup = () => { overlay.classList.remove('active'); btnOk.onclick = null; btnCancel.onclick = null; };
+btnOk.onclick = () => { cleanup(); resolve(true); };
+btnCancel.onclick = () => { cleanup(); resolve(false); };
+overlay.classList.add('active');
+});
+},
+prompt(message, defaultValue = '') {
+return new Promise(resolve => {
+const overlay = document.getElementById('prompt-modal');
+document.getElementById('prompt-modal-text').textContent = message;
+const input = document.getElementById('prompt-modal-input');
+input.value = defaultValue;
+const btnOk = document.getElementById('prompt-modal-confirm');
+const btnCancel = document.getElementById('prompt-modal-cancel');
+btnOk.textContent = t('common.save'); btnCancel.textContent = t('common.cancel');
+const cleanup = () => { overlay.classList.remove('active'); btnOk.onclick = null; btnCancel.onclick = null; input.onkeydown = null; };
+btnOk.onclick = () => { cleanup(); resolve(input.value); };
+btnCancel.onclick = () => { cleanup(); resolve(null); };
+input.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); cleanup(); resolve(input.value); } if (e.key === 'Escape') { cleanup(); resolve(null); } };
+overlay.classList.add('active');
+setTimeout(() => { input.focus(); input.select(); }, 100);
+});
+},
+goTo(name, btn) {
+document.querySelectorAll('.tab').forEach(tt => tt.classList.remove('active'));
+document.getElementById('tab-' + name).classList.add('active');
+document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+if (btn) btn.classList.add('active');
+else { const map = { plan: 0, shop: 1, cook: 2, progress: 3, profile: 4, info: 5 }; document.querySelectorAll('.nav-item')[map[name]]?.classList.add('active'); }
+window.scrollTo(0, 0);
+if (name === 'info') InfoUI.highlightCurrentGoal();
+},
+applyLang() {
+document.documentElement.lang = AppState.data.settings.lang === 'ua' ? 'uk' : 'ru';
+document.querySelectorAll('[data-i18n]').forEach(el => {
+const key = el.getAttribute('data-i18n');
+const val = t(key);
+if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { if (el.hasAttribute('placeholder')) el.placeholder = val; }
+else if (el.tagName === 'BUTTON' && el.querySelector('svg')) { const svg = el.querySelector('svg'); const svgClone = svg.cloneNode(true); el.innerHTML = ''; el.appendChild(svgClone); el.appendChild(document.createTextNode(val)); }
+else el.textContent = val;
+});
+},
+toggleLang() {
+const s = AppState.data.settings;
+s.lang = s.lang === 'ru' ? 'ua' : 'ru';
+document.getElementById('langBtn').textContent = s.lang === 'ru' ? 'RU' : 'UA';
+AppState.save('settings');
+this.applyLang();
+Shop.render(); Menu.render(); Cook.render();
+const _P = Profile.readParams();
+if (_P) Profile.renderResults(_P);
+InfoUI.render();
+if (AppState.data.settings.reminders && AppState.data.settings.reminders.enabled) Reminders.scheduleNext(); else Reminders.renderState();
+Profile.updateActivityDesc();
+MeasureUI.renderMeas();
+}
+};
+const InfoUI = {
+toggle(id) { const section = document.getElementById(id); if (!section) return; section.classList.toggle('open'); },
+highlightCurrentGoal() {
+const goal = AppState.data.profile.goal;
+const map = { loss: 'info-cut', gain: 'info-bulk', maintain: 'info-maintain' };
+['info-bulk', 'info-cut', 'info-maintain'].forEach(id => { document.getElementById(id)?.classList.remove('current'); });
+const activeId = map[goal];
+if (activeId) { const el = document.getElementById(activeId); if (el) el.classList.add('current'); }
+},
+SOURCES: [
+['ACSM/AND/DC Joint Position Statement: Nutrition and Athletic Performance', 'Thomas, Erdman, Burke. Med Sci Sports Exerc 2016;48(3):543–568'],
+['ISSN Position Stand: Protein and Exercise', 'Jäger et al., J Int Soc Sports Nutr 2017;14:20'],
+['ISSN Position Stand: Diets and Body Composition', 'Aragon et al., J Int Soc Sports Nutr 2017;14:16'],
+['Evidence-based recommendations for natural bodybuilding contest preparation', 'Helms, Aragon, Fitschen. J Int Soc Sports Nutr 2014;11:20'],
+['Meta-analysis: Protein supplementation and muscle mass', 'Morton et al., Br J Sports Med 2018'],
+['MATADOR study: Diet breaks and fat loss', 'Byrne et al., Int J Obes 2018']
+],
+render() {
+const root = document.getElementById('info-root');
+if (!root) return;
+const prevOpen = [...root.querySelectorAll('.info-section.open')].map(e => e.id);
+const first = !root.dataset.ready;
+const d = g => Targets.defaults(g);
+const num = v => String(Math.round(v * 100) / 100);
+const pc = v => String(Math.round(Math.abs(v) * 1000) / 10);
+const h = k => `<div class="info-h">${t(k)}</div>`;
+const p = (k, ...a) => `<div class="info-p">${t(k, ...a)}</div>`;
+const li = (k, ...a) => `<li>${t(k, ...a)}</li>`;
+const row = k => `<tr><td>${t('info.r_' + k)}</td><td>${t('info.v_' + k)}</td></tr>`;
+const sec = (id, title, body) => `<div class="info-section" id="${id}"><button class="info-section-toggle" onclick="InfoUI.toggle('${id}')"><span>${title}</span><span class="info-arrow">▼</span></button><div class="info-section-body">${body}</div></div>`;
+let you = '';
+const pi = AppState.runtime.planInfo;
+if (pi) {
+const goalLabel = t({ cut: 'profile.loss', bulk: 'profile.gain', maintain: 'profile.maintain' }[pi.goal] || 'profile.maintain');
+const dp = Math.round(pi.deltaKcal / pi.tdee * 1000) / 10;
+const dpStr = (dp > 0 ? '+' : dp < 0 ? '−' : '±') + String(Math.abs(dp)).replace('.', ',') + '%';
+you = `<div class="info-card"><b>${t('info.your')} · ${goalLabel}</b><ul class="info-list" style="margin-bottom:0">` +
+li('info.you_kcal', pi.kcal, dpStr, Math.round(pi.tdee / 10) * 10, Profile.fmtWeekly(pi.weeklyKg)) +
+li('info.you_prot', pi.proteinG, num(pi.proteinPerKg)) +
+li('info.you_fat', pi.fatG, Math.round(pi.fatG * 9 / pi.kcal * 100)) +
+li('info.you_carb', pi.carbsG, String(Math.round(pi.carbsG / pi.weight * 10) / 10)) +
+(pi.floorApplied ? `<li>${t('profile.floor_note', pi.floorKcal)}</li>` : '') + '</ul></div>';
+}
+const general = `<table class="info-table"><tr><th>${t('info.th_param')}</th><th>${t('info.th_value')}</th></tr>` + ['protein', 'protein_cut', 'protein_meal', 'fat', 'oil', 'carb', 'water'].map(row).join('') + '</table>';
+const bulk = h('info.h_cal') + p('info.bulk_cal', pc(d('bulk').kcalAdj)) + p('info.bulk_cal2') + `<div class="info-card">${t('info.bulk_rate')}</div>` +
+h('info.h_prot') + '<ul class="info-list">' + li('info.bulk_prot1', num(d('bulk').protein)) + li('info.bulk_prot2') + li('info.bulk_prot3') + li('info.bulk_prot4') + '</ul>' +
+h('info.h_fat') + p('info.bulk_fat', pc(d('bulk').fatPct)) + h('info.h_carb') + p('info.bulk_carb');
+const cut = h('info.h_cal') + p('info.cut_cal', pc(d('cut').kcalAdj)) + `<div class="info-card">${t('info.cut_rate')}</div>` + p('info.cut_floor') +
+h('info.h_prot') + '<ul class="info-list">' + li('info.cut_prot1', num(d('cut').protein)) + li('info.cut_prot2') + li('info.cut_prot3') + '</ul>' +
+h('info.h_fat') + p('info.cut_fat', pc(d('cut').fatPct)) + h('info.h_carb') + p('info.cut_carb');
+const maintain = h('info.h_cal') + p('info.mnt_cal') + h('info.h_prot') + p('info.mnt_prot', num(d('maintain').protein)) + h('info.h_fat') + p('info.mnt_fat', pc(d('maintain').fatPct));
+const sources = InfoUI.SOURCES.map(s => `<div class="info-source"><b>${s[0]}</b><div class="authors">${s[1]}</div></div>`).join('') + `<div class="info-card warn">${t('info.disclaimer')}</div>`;
+root.innerHTML = `<div class="section-title">${t('info.title')}</div><div class="info-intro">${t('info.intro')}</div>${you}` +
+sec('info-general', t('info.s_general'), general) + sec('info-bulk', t('info.s_bulk'), bulk) + sec('info-cut', t('info.s_cut'), cut) + sec('info-maintain', t('info.s_maintain'), maintain) + sec('info-sources', t('info.s_sources'), sources);
+// открытые разделы сохраняются между перерисовками; при смене цели закрывается раздел прежней цели и открывается новой
+const goal = AppState.data.profile.goal;
+const goalMap = { loss: 'info-cut', gain: 'info-bulk', maintain: 'info-maintain' };
+const opens = new Set(first ? ['info-general'] : prevOpen);
+const prevGoal = root.dataset.goal;
+if (first || prevGoal !== goal) { if (prevGoal && goalMap[prevGoal]) opens.delete(goalMap[prevGoal]); if (goalMap[goal]) opens.add(goalMap[goal]); }
+opens.forEach(id => document.getElementById(id)?.classList.add('open'));
+if (goalMap[goal]) document.getElementById(goalMap[goal])?.classList.add('current');
+root.dataset.ready = '1';
+root.dataset.goal = goal;
+}
+};
+const Classify = {
+isFillet: n => /філе|филе/i.test(n || ''),
+isEggName: n => /яйц|яйце|egg/i.test(n || ''),
+isCannedFood: n => /консерв|тунец|паштет|печінка тріски|печень трески|шпрот|сардин|тушонк|тушёнк/i.test(n || ''),
+isHardCheese: n => /сир твердий|сир напівтвердий|сир плавлений|сыр твердый|сыр плавленый/i.test(n || ''),
+isInstantNoodle: n => /вермішель|вермишель/i.test(n || '') && /швидкого|быстрого|мгновен/i.test(n || ''),
+isYogurt: n => /йогурт/i.test(n || ''),
+isBreadOrLavash: n => /хліб|хлеб|лаваш|батон|багет/i.test(n || ''),
+isPotato: n => /картопл|картофел|potato/i.test(n || ''),
+isSweetener: n => /цукор|сахар|мед|мёд|сироп/i.test(n || ''),
+isGarlic: n => /часник|чеснок|garlic/i.test(n || ''),
+isPlantMarked: n => /соєв|соев|рослин|растит|веган|vegan|тофу|tofu|кокос|мигдал|миндал|горіх|орех|арахіс|арахис/i.test(n || ''),
+isAnimalName: n => /філе|филе|курк|курят|куриц|курча|індич|индей|яловичин|говяд|свинин|телятин|баранин|кролик|(?<![а-яіїєґё])(?:риб|рыб)|тунец|тунець|лосос|сьомг|семг|хек|минтай|скумбр|оселедц|сельд|яйц|яйце|молок|кефір|кефир|йогурт|(?<![а-яіїєґё])сир(?:ок|н\S*)?(?![а-яіїєґё])|творог|казеїн|казеин|печінк|печень|паштет|шпрот|сардин|тушонк|тушёнк|м['’ʼ]?яс|ковбас|сосиск|egg|chicken|beef|pork|fish|tuna|cheese|milk/i.test(n || ''),
+isAnimalProtein(item) { const n = (item && item.name) || ''; if (this.isPlantMarked(n)) return false; return this.isAnimalName(n) || this.get(item) === 'protein'; },
+isCasein: n => /казеїн|казеин|творог|кисломолочний сир|сир кисломолочний|кисломолочный сыр|cottage|quark|skyr/i.test(n || ''),
+isPasta: n => /вермішель|вермишель|макарон|спагеті|локшина|лапша|паста|pasta|spaghetti|noodle/i.test(n || ''),
+isUnrefinedOil: n => /нерафін|нерафин|extra virgin/i.test(n || ''),
+isOilProduct: n => /олія|олия|масло раст/i.test(n || ''),
+isRice: n => /рис\b|рису\b|рисов/i.test(n || ''),
+isBuckwheat: n => /гречан|гречк/i.test(n || ''),
+isPearlBarley: n => /перлов/i.test(n || ''),
+isBarleyGrits: n => /ячн/i.test(n || ''),
+isWheatGroats: n => /пшенич/i.test(n || ''),
+isPeas: n => /горох/i.test(n || ''),
+isLentil: n => /сочевиц|чечевиц/i.test(n || ''),
+isOatFlakes: n => /вівсян|овсян/i.test(n || ''),
+dedupeByMacro(items) {
+const best = new Map();
+(items || []).forEach(it => {
+const key = [Math.round((it.p || 0) * 10), Math.round((it.f || 0) * 10), Math.round((it.c || 0) * 10)].join('|');
+const pricePerG = (it.price || 0) / (it.weight || 1);
+const cur = best.get(key);
+if (!cur || pricePerG < cur.pricePerG) best.set(key, { item: it, pricePerG });
+});
+return Array.from(best.values()).map(v => v.item);
+},
+eggWeightByCategory(name) {
+const n = (name || '').toLowerCase();
+if (n.includes('екстра') || n.includes('extra')) return 75;
+if (n.includes('відбірн') || n.includes('отборн')) return 68;
+if (n.includes('3 кат')) return 40;
+if (n.includes('2 кат')) return 50;
+return 58;
+},
+get(item) {
+if (item.forceGroup) return item.forceGroup;
+const gramsEquiv = item.unit === 'pcs' ? item.weight * CONFIG.DEFAULTS.avgPieceWeight : item.weight;
+if (gramsEquiv <= 0) return 'veggie';
+let kcalBase = item.kcal;
+if (!kcalBase || kcalBase <= 0) kcalBase = item.p * 4 + item.f * 9 + item.c * 4;
+if (kcalBase <= 0) return 'veggie';
+const energyDensity = kcalBase / gramsEquiv * 100;
+const fatShare = (item.f * 9) / kcalBase;
+const proteinShare = (item.p * 4) / kcalBase;
+const carbShare = (item.c * 4) / kcalBase;
+if (this.isSweetener(item.name)) return 'sweetener';
+if (this.isPotato(item.name)) return 'carb';
+if (fatShare >= 0.65 && energyDensity >= 200) return 'fat';
+if (proteinShare >= 0.30 && proteinShare >= carbShare * 0.9 && proteinShare >= fatShare * 0.4) return 'protein';
+if (carbShare >= 0.45 && energyDensity >= 150) return 'carb';
+return 'veggie';
+},
+shopCategory(item) {
+const n = (item.name || item.n || '').toString().toLowerCase();
+if (/лаваш|хлеб|хліб|батон|багет|консерв|тунец|паштет|шпрот|сардин|сыр|сир твердий|сир напівтвердий|сир плавлений/i.test(n)) return 'snack';
+if (/куриц|курят|філе|филе|индейк|індич|говядин|ялович|свинин|рыб|риб|хек|лосос|яйц|яйце|морепрод/i.test(n)) return 'meat';
+if (/масл|олія|(?<!не)(?<!без)жир|орех|горіх|арахис|семечк|насіння/i.test(n)) return 'fat';
+if (/йогурт|сир кисломолочний|творог|кисломолочний|молоко|кефир|фрукт|ябл|банан|апельсин|ягод|локхина|сок|сік|чай|кофе|кава|вода/i.test(n)) return 'fruits';
+return 'carb';
+},
+inferGroup(s, name) {
+if (this.isPotato(name)) return 'carb';
+if (this.isSweetener(name)) return 'sweetener';
+const b = s.b || 0, f = s.f || 0, c = s.c || 0;
+const kcal = b * 4 + f * 9 + c * 4;
+if (kcal <= 0) return 'carb';
+const fatShare = f * 9 / kcal, proteinShare = b * 4 / kcal, carbShare = c * 4 / kcal;
+if (fatShare >= 0.65 && kcal >= 200) return 'fat';
+if (proteinShare >= 0.30 && proteinShare >= carbShare * 0.9 && proteinShare >= fatShare * 0.4) return 'protein';
+if (carbShare >= 0.45 && kcal >= 150) return 'carb';
+if (kcal < 100) return 'veggie';
+return 'carb';
+}
+};
+// Базовые названия продуктов для меню: вместо магазинных позиций («Крупа 1 кг Розумний вибір гречана») показываем «Крупа гречана».
+// Магазинные названия остаются в списках закупок (вкладки «Продукты» и «Готовка») и в данных — по ним работает классификация.
+const Names = (() => {
+const W = s => new RegExp('(?<![а-яіїєґё])(?:' + s + ')', 'i');
+const R = (all, ua, ru, none) => ({ all: [].concat(all).map(W), none: none ? [].concat(none).map(W) : [], ua, ru });
+const OIL = 'олі[яї]|олия', RICE = 'рис(?![а-яіїєґё])|рису|рисов', CHICK = 'курч|курк|курин|куряч|бройлер';
+// Творог / кисломолочный сыр: 0–0,2% и 5% — разный по консистенции и калорийности продукт,
+// поэтому жирность сохраняется в базовом названии, а не сводится к одному общему имени.
+const CURD_RE = W('творог|кисломолочн\\S* сир|сир кисломолочн|кисломолочн\\S* сыр|cottage|quark|skyr');
+const MILK_RE = W('молок');
+function milkName(n, ua) {
+if (/кокос/.test(n)) return null; // кокосове молоко уже обрабатывается отдельным правилом ниже
+const condensed = /згущен|сгущен/.test(n);
+const base = condensed ? (ua ? 'Молоко згущене' : 'Молоко сгущённое') : 'Молоко';
+const m = n.match(/(\d+(?:[.,]\d+)?)\s?%/);
+return m ? base + ' ' + m[1].replace('.', ',') + '%' : base;
+}
+function curdName(n, ua) {
+const base = ua ? 'Сир кисломолочний' : 'Творог';
+if (/знежирен|обезжирен/.test(n)) return base + ' ' + (ua ? 'знежирений' : 'обезжиренный');
+const m = n.match(/(\d+(?:[.,]\d+)?)\s?%/);
+if (!m) return base;
+const pct = parseFloat(m[1].replace(',', '.'));
+if (pct <= 0.2) return base + ' ' + (ua ? 'знежирений' : 'обезжиренный');
+return base + ' ' + m[1].replace('.', ',') + '%';
+}
+const RULES = [
+// яйца, растительное молоко
+R(['яйц|яйце', 'перепел'], 'Яйця перепелині', 'Яйца перепелиные'), R('яйц|яйце|egg', 'Яйця курячі', 'Яйца куриные'),
+R(['кокос', 'молок'], 'Кокосове молоко', 'Кокосовое молоко'),
+// мясо, птица
+R(['філе|филе', CHICK], 'Куряче філе', 'Куриное филе', 'куркум'), R(['філе|филе', 'індич|индей|індик'], 'Філе індички', 'Филе индейки'),
+R(['грудк', 'кур|бройлер'], 'Куряча грудка', 'Куриная грудка'), R(['стегн|окорок', 'кур|бройлер'], 'Куряче стегно', 'Куриное бедро'), R(['гомілк|голен', 'кур|бройлер'], 'Курячі гомілки', 'Куриные голени'),
+R('печінк\\S* тріск|печень трески', 'Печінка тріски', 'Печень трески'), R(['печінк|печень', 'кур'], 'Куряча печінка', 'Куриная печень'),
+R(CHICK, 'Курка', 'Курица', ['куркум', 'бульйон|бульон', 'вермішель|вермишель|локшин|лапша|суп|чіпс|чипс|приправ|смаком|смаку|со? ?смаком|вкусом']), R('індич|индей|індик', 'Індичка', 'Индейка'),
+R(['яловичи|говяд', 'фарш'], 'Фарш яловичий', 'Фарш говяжий'), R('яловичи|говяд', 'Яловичина', 'Говядина'),
+R('свин', 'Свинина', 'Свинина'), R('телятин', 'Телятина', 'Телятина'), R('баранин|ягнят', 'Баранина', 'Баранина'), R('кролик|кроль', 'Кролик', 'Кролик'),
+R('фарш', 'Фарш', 'Фарш'), R('паштет', 'Паштет', 'Паштет'), R('печінк|печень', 'Печінка', 'Печень'),
+// рыба и консервы
+R(['тунец|тунець', 'власн\\S* сок|собствен\\S* сок'], 'Консерви тунець у власному соку', 'Консервы тунец в собственном соку'), R(['тунец|тунець', 'олі[яї]|масл'], 'Консерви тунець в олії', 'Консервы тунец в масле'),
+R(['тунец|тунець', 'консерв'], 'Консерви тунець', 'Консервы тунец'), R('тунец|тунець', 'Тунець', 'Тунец'),
+R('шпрот', 'Шпроти', 'Шпроты'), R('сардин', 'Сардини', 'Сардины'), R('скумбр', 'Скумбрія', 'Скумбрия'), R('оселедц|сельд|оселед', 'Оселедець', 'Сельдь'),
+R('сьомг|семг', 'Сьомга', 'Семга'), R('лосос', 'Лосось', 'Лосось'), R('форел', 'Форель', 'Форель'), R('горбуш', 'Горбуша', 'Горбуша'),
+R('мінтай|минтай', 'Мінтай', 'Минтай'), R('хек', 'Хек', 'Хек'), R('тріск|треск', 'Тріска', 'Треска'), R('короп|карп', 'Короп', 'Карп'), R('судак', 'Судак', 'Судак'),
+R('риб', 'Риба', 'Рыба'), R('тушонк|тушёнк', 'Тушонка', 'Тушёнка'),
+// молочные
+R('казеїн|казеин', 'Казеїн', 'Казеин'),
+R(['йогурт', 'грецьк|греческ'], 'Йогурт грецький', 'Йогурт греческий'), R('йогурт', 'Йогурт', 'Йогурт'),
+R('кефір|кефир', 'Кефір', 'Кефир'), R('ряжанк', 'Ряжанка', 'Ряженка'), R('сметан', 'Сметана', 'Сметана', 'сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])'),
+R(['вершков|сливочн', 'масл'], 'Масло вершкове', 'Масло сливочное', 'сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])'),
+R('вершк|сливк', 'Вершки', 'Сливки', 'сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])'),
+R('моцарел', 'Сир моцарела', 'Сыр моцарелла'), R('плавлен', 'Сир плавлений', 'Сыр плавленый'),
+R(['сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])', 'тверд|напівтверд|полутверд'], 'Сир твердий', 'Сыр твёрдый'), R('сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])', 'Сир', 'Сыр'),
+// хлеб
+R('лаваш', 'Лаваш', 'Лаваш'),
+// Упрощено до 5 категорий: пшеничний, ржано-пшеничний, лаваш, багет, батон.
+// Житній/бородинський и любой хлеб с ржаной мукой относим к «ржано-пшеничний» — чисто ржаной хлеб в рознице почти не встречается,
+// а по БЖУ такие хлеба ближе к смешанному виду (см. пример «Хліб ... житній» в каталоге: 6.6/1.2/42.9 — это ржано-пшеничный по составу).
+R(['хліб|хлеб', 'жит|ржан|бородин'], 'Хліб ржано-пшеничний', 'Хлеб ржано-пшеничный'),
+// Цільнозерновий тут же — это пшеничный хлеб с цельным зерном, отдельной категории в списке из 5 для него нет.
+R(['хліб|хлеб', 'пшенич|цільнозерн|цельнозерн'], 'Хліб пшеничний', 'Хлеб пшеничный'),
+// Хлеб без уточнения вида — по умолчанию считаем пшеничным (самый частый тип).
+R('хліб|хлеб', 'Хліб пшеничний', 'Хлеб пшеничный'),
+R('батон(?![а-яіїєґё])', 'Батон', 'Батон'), R('багет(?![а-яіїєґё])', 'Багет', 'Багет'),
+// крупы, бобовые, макароны, картофель
+R('гречан', 'Крупа гречана', 'Крупа гречневая'), R('перлов', 'Крупа перлова', 'Крупа перловая'), R('ячн|ячмін', 'Крупа ячна', 'Крупа ячневая'), R('пшенич', 'Крупа пшенична', 'Крупа пшеничная'),
+R(['кукурудз|кукуруз', 'круп'], 'Крупа кукурудзяна', 'Крупа кукурузная'), R('манн', 'Крупа манна', 'Крупа манная'),
+R(['вівсян|овсян', 'пластів|хлоп|геркулес'], 'Вівсяні пластівці', 'Овсяные хлопья'), R('геркулес', 'Вівсяні пластівці', 'Овсяные хлопья'), R('вівсян|овсян', 'Крупа вівсяна', 'Крупа овсяная'),
+R('горох', 'Горох', 'Горох'), R('сочевиц|чечевиц', 'Сочевиця', 'Чечевица'), R('нут(?![а-яіїєґё])', 'Нут', 'Нут'), R('квасол|фасол', 'Квасоля', 'Фасоль'),
+R('кускус', 'Кускус', 'Кускус'), R('булгур', 'Булгур', 'Булгур'), R('кіноа|киноа', 'Кіноа', 'Киноа'), R('пшоно|пшено', 'Пшоно', 'Пшено'),
+R([RICE, 'пропарен'], 'Рис', 'Рис'), R([RICE, 'басматі|басмати'], 'Рис басматі', 'Рис басмати'), R([RICE, 'бурий|бурый|коричнев'], 'Рис бурий', 'Рис бурый'), R(RICE, 'Рис', 'Рис'),
+R(['вермішель|вермишель|локшин|лапша', 'швидкого|быстрого'], 'Локшина швидкого приготування', 'Лапша быстрого приготовления'), R('вермішель|вермишель', 'Вермішель', 'Вермишель'),
+R('спагеті|спагетти|spaghetti', 'Спагеті', 'Спагетти'), R('макарон|локшин|лапша|pasta', 'Макарони', 'Макароны'), R('картопл|картофел', 'Картопля', 'Картофель'),
+// масла
+R([OIL + '|масло', 'оливков'], 'Олія оливкова', 'Масло оливковое'), R([OIL, 'соняшник|подсолнеч'], 'Олія соняшникова', 'Масло подсолнечное'), R([OIL, 'льнян|льон|ллян'], 'Олія лляна', 'Масло льняное'),
+R([OIL, 'кокос'], 'Олія кокосова', 'Масло кокосовое'), R([OIL, 'ріпак|рапс'], 'Олія ріпакова', 'Масло рапсовое'), R([OIL, 'гарбуз|тыкв'], 'Олія гарбузова', 'Масло тыквенное'),
+R([OIL, 'кунжут'], 'Олія кунжутна', 'Масло кунжутное'), R(OIL, 'Олія', 'Масло растительное'),
+// овощи, зелень, грибы
+R('огір|огур', 'Огірок', 'Огурец'), R('томатн\\S* паст|паста томатн', 'Томатна паста', 'Томатная паста'), R('помідор|томат|помидор', 'Помідори', 'Помидоры'), R('броколі|брокколі|брокколи', 'Броколі', 'Брокколи'),
+R(['капуст', 'цвітн|цветн'], 'Капуста цвітна', 'Капуста цветная'), R(['капуст', 'пекінськ|пекинск'], 'Капуста пекінська', 'Капуста пекинская'), R('капуст', 'Капуста', 'Капуста'),
+R('морк', 'Морква', 'Морковь'), R('буряк|свекл', 'Буряк', 'Свёкла'), R('цибул|лук(?![а-яіїєґё])', 'Цибуля', 'Лук'), R('часник|чеснок', 'Часник', 'Чеснок'),
+R(['перець|перец', 'болгар|солодк|сладк|салатн'], 'Перець солодкий', 'Перец сладкий'), R('кабачк', 'Кабачки', 'Кабачки'), R('баклажан', 'Баклажани', 'Баклажаны'), R('шпинат', 'Шпинат', 'Шпинат'),
+R('салат', 'Салат', 'Салат'), R('зелень|кріп|укроп|петрушк|кінза|кинза|базилік|базилик', 'Зелень', 'Зелень'), R('гриб|шампіньйон|шампиньон|печериц', 'Гриби', 'Грибы'),
+R('редис|редьк', 'Редис', 'Редис'), R('авокадо', 'Авокадо', 'Авокадо'),
+// фрукты, орехи, сладкое
+R('яблук|яблок', 'Яблука', 'Яблоки'), R('лохин|голубик', 'Лохина', 'Голубика'), R('банан', 'Банани', 'Бананы'), R('апельсин', 'Апельсини', 'Апельсины'), R('лимон', 'Лимон', 'Лимон'), R('груш', 'Груші', 'Груши'), R('ківі|киви', 'Ківі', 'Киви'),
+R('мигдал|миндал', 'Мигдаль', 'Миндаль'), R(['арахіс|арахис', 'масл|паст'], 'Арахісова паста', 'Арахисовая паста'), R('арахіс|арахис', 'Арахіс', 'Арахис'), R('волоськ', 'Волоські горіхи', 'Грецкие орехи'), R(['горіх|орех', 'грецьк|грецк'], 'Волоські горіхи', 'Грецкие орехи'),
+R('горіх|орех', 'Горіхи', 'Орехи'), R('насіння|семечк|семена', 'Насіння', 'Семена'),
+R('мед(?![а-яіїєґё])', 'Мед', 'Мёд'), R('цукор|сахар', 'Цукор', 'Сахар')
+];
+// Если правило не нашлось: убираем из названия граммовки, упаковку и охлаждение (бренд без словаря не отличить — такие позиции остаются как есть)
+const SKIP = W('суп|бульйон|бульон|кубик|батончик|чіпс|чипс|печив|цукерк|шоколад|напій|напиток|сік(?![а-яіїєґё])|сок(?![а-яіїєґё])|торт|пиріж|мівін|доширак');
+const NOISE_QTY = /(?<![\p{L}\d.,])\d+(?:[.,]\d+)?\s?(?:кг|г|гр|л|мл|шт)\.?(?![\p{L}])/giu;
+const NOISE_WORDS = /(?<![\p{L}])(?:фас|п\/ет|пет|в\/у|ваг|охолоджен\p{L}*|заморожен\p{L}*|тм)(?![\p{L}])/giu;
+function clean(name) {
+const orig = String(name || '');
+let s = orig.replace(NOISE_QTY, ' ').replace(NOISE_WORDS, ' ').replace(/\s{2,}/g, ' ').trim();
+if (!s) return orig;
+return s.charAt(0).toUpperCase() + s.slice(1);
+}
+function menu(name) {
+const n = String(name || '').toLowerCase();
+if (SKIP.test(n)) return clean(name);
+const ua = (AppState.data.settings && AppState.data.settings.lang) === 'ua';
+if (CURD_RE.test(n)) return curdName(n, ua);
+// «молок» — приставка не только слова «молоко», но и бренда «Молокія» (та інших). Якщо в назві є
+// інше явне молочне слово (йогурт, кефір тощо), довіряємо йому, а не випадковому збігу з брендом.
+const OTHER_DAIRY = /йогурт|кефір|кефир|ряжанк|сметан|казеїн|казеин|творог|кисломолочн|вершк|сливк|сир(?![а-яіїєґё])|сыр(?![а-яіїєґё])/;
+if (MILK_RE.test(n) && !OTHER_DAIRY.test(n)) { const r = milkName(n, ua); if (r) return r; }
+for (const r of RULES) { if (r.all.every(re => re.test(n)) && !r.none.some(re => re.test(n))) return ua ? r.ua : r.ru; }
+return clean(name);
+}
+return { menu, clean, RULES };
+})();
+const Products = {
+CATALOG_PATH: './cart_files/atb_diet_list.json',
+DEFAULT: [
+{ "name": "Філе курчат-бройлерів Чебатурочка охолоджене", "code": 158012, "unit": "g", "weight": 1000, "p": 23.6, "f": 1.9, "c": 0.4, "price": 249.89, "group": "protein", "image": "./cart_files/cart_list_158012.jpg" },
+{ "name": "Яйце куряче 10 шт Ясенсвіт 1 категорії фас", "code": 148723, "unit": "pcs", "weight": 10, "p": 12.7, "f": 11.5, "c": 0.7, "price": 79.9, "group": "protein", "image": "./cart_files/cart_list_148723.jpg" },
+{ "name": "Лаваш 200 г День у День вірменський тонкий круглий п/ет", "code": 0, "unit": "g", "weight": 200, "p": 8, "f": 1, "c": 50, "price": 23.9, "group": "carb", "image": "./cart_files/cart_list_0.jpg" },
+{ "name": "Хліб 0,52 кг Хлібна хата житній Новий формовий", "code": 74667, "unit": "g", "weight": 520, "p": 6.6, "f": 1.2, "c": 42.9, "price": 37.4, "group": "carb", "image": "./cart_files/cart_list_74667.jpg" },
+{ "name": "Крупа 1 кг Розумний вибір перлова", "code": 76310, "unit": "g", "weight": 1000, "p": 9.3, "f": 1.1, "c": 66.9, "price": 24.5, "group": "carb", "image": "./cart_files/cart_list_76310.jpg" },
+{ "name": "Крупа 1 кг Розумний вибір Ячна", "code": 75621, "unit": "g", "weight": 1000, "p": 10.4, "f": 1.3, "c": 66.3, "price": 23.6, "group": "carb", "image": "./cart_files/cart_list_75621.jpg" },
+{ "name": "Крупа 1 кг Розумний вибір горох", "code": 77592, "unit": "g", "weight": 1000, "p": 20.5, "f": 1.5, "c": 48.5, "price": 27.5, "group": "carb", "image": "./cart_files/cart_list_77592.jpg" },
+{ "name": "Крупа 1 кг Розумний вибір гречана", "code": 63024, "unit": "g", "weight": 1000, "p": 12.6, "f": 3.3, "c": 62.1, "price": 65.9, "group": "carb", "image": "./cart_files/cart_list_63024.jpg" },
+{ "name": "Олія 0,5л Своя лінія соняшникова рафінована", "code": 141969, "unit": "g", "weight": 500, "p": 0, "f": 99.9, "c": 0, "price": 53.13, "group": "fat", "image": "./cart_files/cart_list_141969.jpg" }
+],
+GOLDEN: [
+{ name: "Горох", price: 25, weight: 1000, b: 20.5, f: 2.0, c: 53.0 },
+{ name: "Гречка", price: 40, weight: 1000, b: 12.6, f: 3.3, c: 62.1 },
+{ name: "Рис пропарений", price: 55, weight: 1000, b: 7.0, f: 1.0, c: 78.0 }
+],
+normalizeImagePath(img) { if (!img) return ''; return img.replace(/\.\/(Кошик_files|корзина|cart_files)\//gi, './cart_files/'); },
+async initDefaults() {
+const stored = localStorage.getItem(CONFIG.STORAGE_PREFIX + 'weekList');
+if (stored !== null) {
+let migrated = false;
+AppState.data.weekList.forEach(item => {
+if (item.image && (item.image.includes('./корзина/') || item.image.includes('./Кошик_files/'))) {
+item.image = this.normalizeImagePath(item.image); migrated = true;
+}
+});
+if (migrated) AppState.save('weekList');
+return;
+}
+let loaded = false;
+try {
+UI.toast(t('shop.loading_catalog'));
+const response = await fetch(this.CATALOG_PATH);
+if (response.ok) {
+const data = await response.json();
+const list = data.products || data;
+if (Array.isArray(list) && list.length > 0) {
+AppState.data.weekList = list.map(p => ({ n: p.name, qty: p.weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price: p.price || 0, b: p.p || 0, f: p.f || 0, c: p.c || 0, group: p.group || '', count: 1, image: this.normalizeImagePath(p.image || ''), atb_id: p.atb_id || null, unavailable: false }));
+AppState.save('weekList'); loaded = true;
+UI.toast(t('shop.catalog_loaded') + ': ' + list.length + ' ' + t('shop.items_suffix'));
+}
+}
+} catch (e) { console.warn('Каталог недоступен:', e); }
+if (!loaded) {
+AppState.data.weekList = this.DEFAULT.map(p => ({ n: p.name, qty: p.weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price: p.price || 0, b: p.p || 0, f: p.f || 0, c: p.c || 0, group: p.group || '', count: 1, image: p.image || '', atb_id: p.code || null, unavailable: false }));
+AppState.save('weekList');
+}
+},
+initGolden() {
+const datalist = document.getElementById('golden_products');
+if (!datalist) return;
+datalist.innerHTML = this.GOLDEN.map(p => `<option value="${UI.escape(p.name)}">`).join('');
+const nameInput = document.getElementById('np_name');
+if (!nameInput) return;
+nameInput.addEventListener('input', function () {
+const selected = Products.GOLDEN.find(p => p.name === this.value);
+if (selected) {
+document.getElementById('np_qty').value = selected.weight || 1000;
+document.getElementById('np_price').value = selected.price || 0;
+document.getElementById('np_b').value = selected.b || 0;
+document.getElementById('np_f').value = selected.f || 0;
+document.getElementById('np_c').value = selected.c || 0;
+}
+});
+},
+displayName(n) { return typeof n === 'object' ? n.name : n; },
+toRacion(s) {
+const b = s.b || 0, f = s.f || 0, c = s.c || 0;
+if (b + f + c <= 0) return null;
+const nameStr = this.displayName(s.n);
+let forceGroup = (s.group || '').toLowerCase();
+if (Classify.isPotato(nameStr)) forceGroup = 'carb';
+if (Classify.isSweetener(nameStr)) forceGroup = 'sweetener';
+if (Classify.isEggName(nameStr)) {
+const eggW = Classify.eggWeightByCategory(nameStr);
+const pe = Math.round(b * eggW / 100 * 10) / 10;
+const fe = Math.round(f * eggW / 100 * 10) / 10;
+const ce = Math.round(c * eggW / 100 * 10) / 10;
+const kcalE = Math.round(pe * 4 + fe * 9 + ce * 4);
+let baseCount = 10;
+const parsed = parseQty(s.qty);
+if (parsed) { const ut = parsed.unit; if (ut === 'шт') baseCount = parsed.value || 10; else baseCount = Math.round(parsed.value / eggW) || 10; }
+const pricePerEgg = baseCount > 0 ? Math.round((s.price || 0) / baseCount * 100) / 100 : (s.price || 0);
+return { name: nameStr, unit: 'pcs', weight: 1, kcal: kcalE, p: pe, f: fe, c: ce, fib: 0, price: pricePerEgg, forceGroup: forceGroup || 'protein' };
+}
+const parsed = parseQty(s.qty);
+const baseWeight = parsed ? parsed.value : CONFIG.DEFAULTS.defaultWeight;
+const pricePer100 = baseWeight > 0 ? (s.price || 0) * 100 / baseWeight : s.price || 0;
+return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: 0, price: Math.round(pricePer100 * 100) / 100, forceGroup: forceGroup };
+},
+refreshAll() { AppState.runtime.products = AppState.data.weekList.filter(s => !s.unavailable).map(s => this.toRacion(s)).filter(Boolean); }
+};
+const Targets = {
+// Диапазоны из справки во вкладке «Инфо» (ISSN / ACSM-AND-DC). Цель приложения — середина диапазона.
+SPEC: {
+cut: { kcalAdj: [-0.20, -0.25], protein: [1.8, 2.7], fatPct: [0.25, 0.30] },
+maintain: { kcalAdj: [-0.05, 0.05], protein: [1.6, 2.2], fatPct: [0.30, 0.35] },
+bulk: { kcalAdj: [0.05, 0.10], protein: [1.6, 2.2], fatPct: [0.25, 0.35] }
+},
+MIN_KCAL: { male: 1500, female: 1200 },
+MIN_FAT_PCT: 0.20,
+MIN_FAT_PER_KG: 0.5,
+CUT_MIN_CARB_PER_KG: 2,
+PROTEIN_CAP_PCT: 0.45,
+mid(r) { return (r[0] + r[1]) / 2; },
+defaults(goal) {
+const s = this.SPEC[goal] || this.SPEC.maintain;
+return { kcalAdj: this.mid(s.kcalAdj), protein: this.mid(s.protein), fatPct: this.mid(s.fatPct) };
+},
+compute(sex, age, weight, height, activity, goal) {
+const male = sex === 'male' || sex === 'm';
+const bmr = 10 * weight + 6.25 * height - 5 * age + (male ? 5 : -161);
+const tdee = bmr * activity;
+const gk = this.SPEC[goal] ? goal : 'maintain';
+const spec = this.SPEC[gk];
+const d = this.defaults(gk);
+const rawKcal = tdee * (1 + d.kcalAdj);
+const floor = Math.max(bmr, male ? this.MIN_KCAL.male : this.MIN_KCAL.female);
+let kcal = rawKcal, floorApplied = false;
+if (d.kcalAdj < 0 && rawKcal < floor) { kcal = Math.min(tdee, floor); floorApplied = kcal > rawKcal + 0.5; }
+let proteinG = Math.min(d.protein * weight, kcal * this.PROTEIN_CAP_PCT / 4);
+const fatMin = Math.max(this.MIN_FAT_PCT * kcal / 9, this.MIN_FAT_PER_KG * weight);
+let fatG = Math.max(d.fatPct * kcal / 9, fatMin);
+let carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
+// На сушке углеводы не ниже 2 г/кг: сначала снижаем белок до нижней границы диапазона, затем жиры до минимума
+if (gk === 'cut' && carbsG < this.CUT_MIN_CARB_PER_KG * weight) {
+let need = this.CUT_MIN_CARB_PER_KG * weight * 4 - (kcal - proteinG * 4 - fatG * 9);
+const pLow = Math.min(proteinG, spec.protein[0] * weight);
+const fromP = Math.min(need, (proteinG - pLow) * 4);
+proteinG -= fromP / 4; need -= fromP;
+if (need > 0) { const fromF = Math.min(need, Math.max(0, fatG - fatMin) * 9); fatG -= fromF / 9; }
+carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
+}
+carbsG = Math.max(0, carbsG);
+if (carbsG <= 0) { fatG = Math.max(kcal * 0.20 / 9, weight * 0.4); carbsG = Math.max(0, (kcal - proteinG * 4 - fatG * 9) / 4); }
+return { bmr, tdee, kcal, proteinG, fatG, carbsG, floorApplied, floorKcal: Math.round(floor), goal: gk, kcalAdj: d.kcalAdj, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0 };
+},
+// Итоговые цели: Б и Ж округляются до 5 г, углеводы добираются остатком до целевой калорийности
+// и тоже округляются до 5 г; ккал = 4Б + 9Ж + 4У (сходится точно, отклонение от расчётной ≤ ~10 ккал).
+// Именно эти цифры используются и в анкете, и при построении меню.
+plan(sex, age, weight, height, activity, goal) {
+const r = this.compute(sex, age, weight, height, activity, goal);
+const proteinG = this.round5(r.proteinG);
+const fatG = this.round5(r.fatG);
+let carbsG = Math.max(0, this.round5((r.kcal - proteinG * 4 - fatG * 9) / 4));
+if (r.floorApplied && proteinG * 4 + fatG * 9 + carbsG * 4 < r.floorKcal) carbsG += 5;
+if (r.goal === 'cut') { const minC = Math.ceil(this.CUT_MIN_CARB_PER_KG * weight / 5) * 5; if (carbsG < minC) carbsG = minC; }
+const kcal = proteinG * 4 + fatG * 9 + carbsG * 4;
+const deltaKcal = kcal - r.tdee;
+return { ...r, kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0, deltaKcal, weeklyKg: deltaKcal * 7 / 7700 };
+},
+round5: x => Math.round(x / 5) * 5
+};
+const Menu = {
+scale(item, weight) { const ratio = item.weight > 0 ? weight / item.weight : 0; return { kcal: item.kcal * ratio, p: item.p * ratio, f: item.f * ratio, c: item.c * ratio, fib: item.fib * ratio, price: item.price * ratio }; },
+selectProtein(mealIndex, dayIndex, pools, goal) {
+const isMain = CONFIG.MEALS.mainIndices.includes(mealIndex);
+const isSnack = CONFIG.MEALS.snackIndices.includes(mealIndex);
+if (isMain) {
+if (pools.proteinFillet.length) return pools.proteinFillet[(dayIndex + mealIndex) % pools.proteinFillet.length];
+if (pools.proteinOther.length) return pools.proteinOther[(dayIndex + mealIndex) % pools.proteinOther.length];
+if (pools.proteinEggs.length) return pools.proteinEggs[(dayIndex + mealIndex) % pools.proteinEggs.length];
+return null;
+}
+if (isSnack) {
+const cut = goal === 'cut';
+// На похудении сыр (Б≈Ж) не выбираем в приоритет — сначала более постные источники:
+// консервы, творог/казеиновые (Б>>Ж), филе, яйца, прочий белок. Сыр остаётся резервом в самом конце.
+if (mealIndex === CONFIG.MEALS.snackIndices[0]) {
+if (pools.proteinCanned.length) return pools.proteinCanned[dayIndex % pools.proteinCanned.length];
+if (cut) { if (pools.proteinCasein.length) return pools.proteinCasein[dayIndex % pools.proteinCasein.length]; }
+else if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
+} else {
+if (cut) {
+if (pools.proteinCanned.length) return pools.proteinCanned[(dayIndex + mealIndex) % pools.proteinCanned.length];
+if (pools.proteinCasein.length) return pools.proteinCasein[(dayIndex + mealIndex) % pools.proteinCasein.length];
+} else {
+if (pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
+if (pools.proteinCanned.length) return pools.proteinCanned[dayIndex % pools.proteinCanned.length];
+}
+}
+if (pools.proteinFillet.length) return pools.proteinFillet[(dayIndex + mealIndex) % pools.proteinFillet.length];
+if (pools.proteinEggs.length) return pools.proteinEggs[(dayIndex + mealIndex) % pools.proteinEggs.length];
+if (pools.proteinOther.length) return pools.proteinOther[(dayIndex + mealIndex) % pools.proteinOther.length];
+if (cut && pools.proteinCheese.length) return pools.proteinCheese[dayIndex % pools.proteinCheese.length];
+}
+return null;
+},
+addComponent(meal, item, weight) {
+if (!item || weight <= 0) return;
+const existing = meal.components.find(c => c.item && c.item.name === item.name);
+if (existing) { const s = this.scale(item, existing.weight + weight); existing.weight += weight; existing.kcal = s.kcal; existing.p = s.p; existing.f = s.f; existing.c = s.c; existing.fib = s.fib; existing.price = s.price; }
+else { const s = this.scale(item, weight); meal.components.push({ item, weight, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }); }
+},
+balanceDay(meals, dayTotals, targets, pools, dayIndex, goal) {
+const cut = goal === 'cut';
+const mains = [meals[0], meals[2], meals[4]].filter(Boolean);
+const snacks = [meals[1], meals[3]].filter(Boolean);
+if (!meals.length) return;
+const TOL = CONFIG.MACRO.balanceTolerance;
+const within = (actual, target) => !target || target <= 0 || Math.abs(actual - target) / target <= TOL;
+const applyDelta = (meal, d) => { meal.totals.kcal += d.kcal; meal.totals.p += d.p; meal.totals.f += d.f; meal.totals.c += d.c; meal.totals.fib += d.fib; meal.totals.price += d.price; dayTotals.kcal += d.kcal; dayTotals.p += d.p; dayTotals.f += d.f; dayTotals.c += d.c; dayTotals.fib += d.fib; dayTotals.price += d.price; };
+const setWeight = (meal, comp, newWeight) => {
+const before = { kcal: comp.kcal, p: comp.p, f: comp.f, c: comp.c, fib: comp.fib, price: comp.price };
+if (newWeight <= 0) { meal.components = meal.components.filter(c => c !== comp); applyDelta(meal, { kcal: -before.kcal, p: -before.p, f: -before.f, c: -before.c, fib: -before.fib, price: -before.price }); }
+else { const s = this.scale(comp.item, newWeight); comp.weight = newWeight; comp.kcal = s.kcal; comp.p = s.p; comp.f = s.f; comp.c = s.c; comp.fib = s.fib; comp.price = s.price; applyDelta(meal, { kcal: s.kcal - before.kcal, p: s.p - before.p, f: s.f - before.f, c: s.c - before.c, fib: s.fib - before.fib, price: s.price - before.price }); }
+};
+const addNew = (meal, item, weight) => { if (!item || weight <= 0) return; const s = this.scale(item, weight); meal.components.push({ item, weight, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }); applyDelta(meal, s); };
+const findComp = (meal, pred) => meal.components.find(c => c.item && pred(c));
+for (let iter = 0; iter < 3; iter++) {
+if (within(dayTotals.f, targets.fatG) && within(dayTotals.c, targets.carbsG)) break;
+// 1) Жир — самый гибкий рычаг: масло на основных приёмах (салат/готовка), доли по kcalPct. Приёмы обрабатываем по одному, пересчитывая остаток после каждого — иначе округление до 5 г накапливается и качается между недобором и перебором.
+if (Math.abs(dayTotals.f - targets.fatG) > 1) {
+const KPb = CONFIG.MEALS.kcalPct, oilIdx = CONFIG.MEALS.mainIndices;
+oilIdx.forEach((mi, idx) => {
+const m = meals[mi];
+if (!m) return;
+const remaining = dayTotals.f - targets.fatG;
+if (Math.abs(remaining) <= 1) return;
+const restW = oilIdx.slice(idx).reduce((a, i) => a + KPb[i], 0);
+const share = remaining * KPb[mi] / restW;
+const oilComp = findComp(m, c => c.disc === 'fat');
+if (oilComp) { const fatPerG = oilComp.f / oilComp.weight; if (fatPerG > 0) { const newW = Math.max(0, Math.round((oilComp.weight - share / fatPerG) / 5) * 5); setWeight(m, oilComp, newW); } }
+else if (share < -1) { const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking; if (oilPool && oilPool.length) { const item = oilPool[(dayIndex + idx) % oilPool.length]; const fatPerG = item.f / item.weight; if (fatPerG > 0) { const w = Math.max(0, Math.round((-share / fatPerG) / 5) * 5); if (item && w > 0) { const s = this.scale(item, w); m.components.push({ item, weight: w, disc: 'fat', ...s }); applyDelta(m, s); } } } }
+});
+}
+// 2) Углеводы — по порядку рычагов: крупа (не ниже grainMin) -> хлеб/лаваш (до 0 на сушке, иначе до snackBreadMinLoss) -> чеснок (только сушка, до 0) -> подсластитель (до 0).
+let carbDiff = dayTotals.c - targets.carbsG;
+if (carbDiff > 3) {
+let remaining = carbDiff;
+for (const m of mains) {
+if (remaining <= 3) break;
+const grain = findComp(m, c => Classify.get(c.item) === 'carb' && !Classify.isBreadOrLavash(c.item.name) && !Classify.isInstantNoodle(c.item.name));
+if (!grain) continue;
+const carbPerG = grain.c / grain.weight;
+if (carbPerG <= 0) continue;
+const floor = CONFIG.PORTIONS.grainMin;
+const maxCut = Math.max(0, grain.weight - floor);
+const wantCut = Math.min(maxCut, remaining / carbPerG);
+if (wantCut > 0) { const newW = Math.max(floor, Math.round((grain.weight - wantCut) / 5) * 5); setWeight(m, grain, newW); remaining = dayTotals.c - targets.carbsG; }
+}
+for (const m of snacks) {
+if (remaining <= 3) break;
+const bread = findComp(m, c => Classify.isBreadOrLavash(c.item.name));
+if (!bread) continue;
+const carbPerG = bread.c / bread.weight;
+if (carbPerG <= 0) continue;
+const floor = cut ? 0 : CONFIG.PORTIONS.snackBreadMinLoss;
+const maxCut = Math.max(0, bread.weight - floor);
+const wantCut = Math.min(maxCut, remaining / carbPerG);
+if (wantCut > 0) { const newW = Math.max(floor, Math.round((bread.weight - wantCut) / 5) * 5); setWeight(m, bread, newW); remaining = dayTotals.c - targets.carbsG; }
+}
+if (cut && remaining > 3) { const dinner = meals[4]; const garlic = dinner ? findComp(dinner, c => Classify.isGarlic(c.item.name)) : null; if (garlic) { setWeight(dinner, garlic, 0); remaining = dayTotals.c - targets.carbsG; } }
+if (remaining > 3) { const caseinMeal = meals[CONFIG.MEALS.caseinIndex] || meals[meals.length - 1]; const sw = caseinMeal ? findComp(caseinMeal, c => Classify.get(c.item) === 'sweetener') : null; if (sw) setWeight(caseinMeal, sw, 0); }
+} else if (carbDiff < -3) {
+const total = mains.length;
+mains.forEach((m, idx) => {
+const gapNow = targets.carbsG - dayTotals.c;
+if (gapNow <= 3) return;
+const share = gapNow / (total - idx);
+const grain = findComp(m, c => Classify.get(c.item) === 'carb' && !Classify.isBreadOrLavash(c.item.name) && !Classify.isInstantNoodle(c.item.name));
+let item = grain ? grain.item : null;
+if (!item) { const pool = (pools.carbMain && pools.carbMain.length) ? pools.carbMain : pools.carbBread; item = pool && pool.length ? pool[(dayIndex + idx) % pool.length] : null; }
+if (!item) return;
+const carbPerG = item.c / item.weight;
+if (carbPerG <= 0) return;
+const addW = Math.round((share / carbPerG) / 5) * 5;
+if (addW <= 0) return;
+if (grain) setWeight(m, grain, grain.weight + addW); else addNew(m, item, addW);
+});
+}
+}
+// 3) Последний резерв — если жир всё ещё выше цели даже после обнуления масла, слегка подрезаем порцию мяса в её собственных min/max (она же источник оставшегося жира). Овощи, творог и число яиц не трогаем никогда.
+if (dayTotals.f - targets.fatG > 1 && !within(dayTotals.f, targets.fatG)) {
+const proteinSlots = [
+...snacks.map(m => ({ meal: m, floor: cut ? CONFIG.PORTIONS.meatSnackMin : 25 })),
+...mains.map(m => ({ meal: m, floor: CONFIG.PORTIONS.meatMainMin }))
+];
+const total = proteinSlots.length;
+proteinSlots.forEach((entry, idx) => {
+const remaining = dayTotals.f - targets.fatG;
+if (remaining <= 1) return;
+const share = remaining / (total - idx);
+const meat = findComp(entry.meal, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name));
+if (!meat) return;
+const fatPerG = meat.f / meat.weight;
+if (fatPerG <= 0) return;
+const minW = entry.floor;
+const wantCutG = Math.min(Math.max(0, meat.weight - minW), share / fatPerG);
+if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCutG) / 5) * 5); setWeight(entry.meal, meat, newW); }
+});
+}
+},
+buildCaseinSnack(dayIndex, pools, targets) {
+let comp = null;
+const pool = pools.proteinCasein;
+if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; let cw = CONFIG.PORTIONS.caseinPack; const pg = pItem.weight > 0 ? pItem.p / pItem.weight : 0; if (targets && pg > 0) { const share = 1 - CONFIG.MEALS.proteinPct.reduce((a, b) => a + b, 0); cw = Math.max(100, Math.min(300, Math.round(targets.proteinG * share / pg / 50) * 50)); } const s = this.scale(pItem, cw); comp = { item: pItem, weight: cw, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
+const components = comp ? [comp] : [];
+const totals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
+if (comp) { totals.kcal = comp.kcal; totals.p = comp.p; totals.f = comp.f; totals.c = comp.c; totals.fib = comp.fib; totals.price = comp.price; }
+return { components, totals };
+},
+recalc(meal) { const t = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 }; meal.components.forEach(c => { t.kcal += c.kcal; t.p += c.p; t.f += c.f; t.c += c.c; t.fib += c.fib; t.price += c.price; }); meal.totals = t; },
+build() {
+const p = AppState.runtime.lastMenuParams;
+if (!p) return;
+const targets = Targets.plan(p.sex, p.age, p.weight, p.height, p.activity, p.goal, p.level);
+const allCarb = AppState.runtime.products.filter(x => Classify.get(x) === 'carb' && !Classify.isGarlic(x.name));
+const allProtein = AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && !Classify.isCasein(x.name) && !Classify.isGarlic(x.name));
+const proteinFillet = [], proteinEggs = [], proteinCanned = [], proteinOther = [];
+allProtein.forEach(item => { if (Classify.isFillet(item.name)) proteinFillet.push(item); else if (Classify.isEggName(item.name)) proteinEggs.push(item); else if (Classify.isCannedFood(item.name)) proteinCanned.push(item); else proteinOther.push(item); });
+const breadLavash = [], regularCarbs = [], instantNoodles = [];
+allCarb.forEach(c => { if (Classify.isBreadOrLavash(c.name)) breadLavash.push(c); else if (Classify.isInstantNoodle(c.name)) instantNoodles.push(c); else regularCarbs.push(c); });
+const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name)), carbBread: breadLavash, instantNoodles, fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
+const totalProteinCount = proteinFillet.length + proteinEggs.length + proteinCanned.length + proteinOther.length + pools.proteinCasein.length;
+if (totalProteinCount === 0 || allCarb.length === 0) { AppState.runtime.menuPlan = null; this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render(); return; }
+if (!pools.carbMain.length) pools.carbMain = [...pools.carbBread];
+if (!pools.fatCooking.length) pools.fatCooking = [...pools.fat];
+pools.carbMainByDayMeal = {};
+if (pools.carbMain.length > 0) {
+const lastUsedBlock = new Array(pools.carbMain.length).fill(-1);
+let blockIdx = 0;
+const slots = CONFIG.MEALS.mainIndices.slice().sort((a, b) => (CONFIG.MEALS.proteinPct[b] / CONFIG.MEALS.kcalPct[b]) - (CONFIG.MEALS.proteinPct[a] / CONFIG.MEALS.kcalPct[a]));
+for (let dayStart = 0; dayStart < CONFIG.TOTAL_DAYS; dayStart += CONFIG.GRAIN_BLOCK_SIZE) {
+const dayEnd = Math.min(dayStart + CONFIG.GRAIN_BLOCK_SIZE, CONFIG.TOTAL_DAYS) - 1;
+const chosen = [];
+const sorted = Array.from({ length: pools.carbMain.length }, (_, i) => i).sort((a, b) => lastUsedBlock[a] - lastUsedBlock[b]);
+for (let i = 0; i < slots.length; i++) {
+if (pools.carbMain.length === 0) break;
+const idx = sorted[i % pools.carbMain.length];
+if (!chosen.includes(idx)) { chosen.push(idx); lastUsedBlock[idx] = blockIdx; }
+else { const reuseIdx = sorted.find(si => !chosen.includes(si)); const picked = reuseIdx !== undefined ? reuseIdx : sorted[i % sorted.length]; chosen.push(picked); }
+}
+const chosenSorted = chosen.slice().sort((ia, ib) => { const ca = pools.carbMain[ia].c > 0 ? pools.carbMain[ia].p / pools.carbMain[ia].c : 0; const cb = pools.carbMain[ib].c > 0 ? pools.carbMain[ib].p / pools.carbMain[ib].c : 0; return cb - ca; });
+const slotAssign = {};
+for (let i = 0; i < slots.length && i < chosenSorted.length; i++) slotAssign[slots[i]] = pools.carbMain[chosenSorted[i]];
+for (let d = dayStart; d <= dayEnd; d++) pools.carbMainByDayMeal[d] = slotAssign;
+blockIdx++;
+}
+}
+const cutMode = (p.goal === 'cut');
+const sweetLimit = cutMode ? CONFIG.PORTIONS.sweetenerCutMax : (p.goal === 'maintain' ? CONFIG.DEFAULTS.sweetenerMaintainMax : CONFIG.PORTIONS.sweetenerMax);
+const days = [];
+for (let d = 0; d < CONFIG.TOTAL_DAYS; d++) {
+const caseinMeal = this.buildCaseinSnack(d, pools, targets);
+if (pools.sweetener.length > 0) {
+const sItem = pools.sweetener[d % pools.sweetener.length];
+const carbPerG = sItem.c / sItem.weight;
+let sweetW = sweetLimit;
+if (carbPerG > 0) { sweetW = Math.min(sweetW, Math.max(0, Math.round((targets.carbsG - caseinMeal.totals.c) / carbPerG))); } else sweetW = 0;
+if (sweetW >= 3) { const sw = this.scale(sItem, sweetW); caseinMeal.components.push({ item: sItem, weight: sweetW, kcal: sw.kcal, p: sw.p, f: sw.f, c: sw.c, fib: sw.fib, price: sw.price }); this.recalc(caseinMeal); }
+}
+const mealComps = [[], [], [], [], []];
+let daySum = { p: caseinMeal.totals.p, f: caseinMeal.totals.f, c: caseinMeal.totals.c, kcal: caseinMeal.totals.kcal };
+const addC = (mIdx, item, weight) => { if (!item || weight <= 0) return; const s = this.scale(item, weight); mealComps[mIdx].push({ item, weight, ...s }); daySum.p += s.p; daySum.f += s.f; daySum.c += s.c; daySum.kcal += s.kcal; };
+[0, 2, 4].forEach((m, idx) => { if (pools.veggie.length) addC(m, pools.veggie[(d * 3 + idx) % pools.veggie.length], CONFIG.PORTIONS.veggie); });
+if (pools.garlic.length) addC(4, pools.garlic[d % pools.garlic.length], Math.min(CONFIG.PORTIONS.garlicMax, CONFIG.PORTIONS.veggie));
+[1, 3].forEach(m => { if (pools.breadLavash.length) { const shift = (d * 2 + (m === 1 ? 0 : 1)) % pools.breadLavash.length; const bItem = pools.breadLavash[shift]; let bW = CONFIG.PORTIONS.snackBread; if (p.goal === 'cut') bW = Math.max(CONFIG.PORTIONS.snackBreadMinLoss, Math.min(50, bW)); addC(m, bItem, bW); } });
+let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
+if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
+totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
+if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
+[1, 3].forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
+let carbGap = Math.max(0, targets.carbsG - daySum.c);
+const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
+if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
+const meats = [0, 2, 4].map(m => this.selectProtein(m, d, pools, p.goal)).filter(Boolean);
+if (meats.length) {
+const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMin : 45;
+const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMax : 250;
+[0, 2, 4].forEach((m, i) => {
+const meatItem = meats[i]; if (!meatItem) return;
+const protPerG = meatItem.p / meatItem.weight;
+if (protPerG <= 0) return;
+const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0);
+const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.18);
+const needP = mealTarget - existingP;
+let meatW = Math.min(maxPW, Math.round(Math.max(0, needP) / protPerG / 5) * 5);
+// минимальную порцию мяса добавляем, только если приём недобирает хотя бы половину её белка
+if (meatW < minPW) meatW = needP >= 0.5 * minPW * protPerG ? minPW : 0;
+addC(m, meatItem, meatW);
+});
+}
+const meals = [];
+// Масло раскладывается только на основные приёмы (салат / готовка). Виды масел (подсолнечное, оливковое и др.)
+// взаимозаменяемы по ккал и БЖУ: берём любое из группы масел, пользователь может заменить его на другое.
+// Доля каждого основного приёма = его «дефицит жира» относительно kcalPct (доля приёма × жир дня − жир, уже пришедший из еды).
+const KPct = CONFIG.MEALS.kcalPct;
+const oilMealIdx = CONFIG.MEALS.mainIndices;
+const fatForFive = Math.max(0, targets.fatG - caseinMeal.totals.f);
+const natFat = mealComps.map(arr => arr.reduce((s, c) => s + c.f, 0));
+const oilBudget = Math.max(0, fatForFive - natFat.reduce((a, b) => a + b, 0));
+const oilNeed = KPct.map((k, i) => oilMealIdx.includes(i) ? Math.max(0, fatForFive * k - natFat[i]) : 0);
+const oilNeedSum = oilNeed.reduce((a, b) => a + b, 0);
+const oilShare = oilNeed.map((x, i) => !oilMealIdx.includes(i) ? 0 : (oilNeedSum > 0 ? oilBudget * x / oilNeedSum : oilBudget / oilMealIdx.length));
+const oilPool = (pools.oil && pools.oil.length) ? pools.oil : pools.fatCooking;
+for (let m = 0; m < CONFIG.MEALS.mainCount; m++) {
+let fatComp = null;
+const allowance = oilShare[m];
+if (allowance > 1 && oilPool && oilPool.length) { const fItem = oilPool[(d + m) % oilPool.length]; const fatPerUnit = fItem.f / fItem.weight; const fW = Math.min(50, Math.max(0, Math.round((allowance / fatPerUnit) / 5) * 5)); if (fW > 0) { const s = this.scale(fItem, fW); fatComp = { item: fItem, weight: fW, disc: 'fat', ...s }; } }
+const components = [...mealComps[m]];
+if (fatComp) { components.push(fatComp); daySum.f += fatComp.f; daySum.c += fatComp.c; daySum.p += fatComp.p; daySum.kcal += fatComp.kcal; }
+const totals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
+components.forEach(c => { totals.kcal += c.kcal; totals.p += c.p; totals.f += c.f; totals.c += c.c; totals.fib += c.fib; totals.price += c.price; });
+meals.push({ components, totals });
+}
+meals.push(caseinMeal);
+const dayTotals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
+meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p; dayTotals.f += m.totals.f; dayTotals.c += m.totals.c; dayTotals.fib += m.totals.fib; dayTotals.price += m.totals.price; });
+this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
+days.push({ meals, totals: dayTotals });
+}
+AppState.runtime.menuPlan = { targets, days, goal: p.goal };
+this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render();
+},
+// Получение данных дня с учётом пройденных дней (из снимка)
+getDayData(dayIdx) {
+const dayProgress = AppState.data.progress.days[dayIdx];
+if (dayProgress?.done && dayProgress.snapshot) {
+return dayProgress.snapshot;
+}
+return AppState.runtime.menuPlan?.days[dayIdx] || null;
+},
+renderDaySelector() {
+const wrap = document.getElementById('dayTabs');
+if (!AppState.runtime.menuPlan) { wrap.innerHTML = ''; return; }
+const n = AppState.runtime.menuPlan.days.length;
+if (AppState.runtime.currentDay >= n) AppState.runtime.currentDay = 0;
+const progress = AppState.data.progress;
+wrap.innerHTML = Array.from({ length: n }, (_, i) => {
+const isDone = progress.days[i]?.done;
+const classes = ['day-tab'];
+if (i === AppState.runtime.currentDay) classes.push('active');
+if (isDone) classes.push('done');
+return `<div class="${classes.join(' ')}" onclick="AppState.runtime.currentDay=${i};Menu.renderDaySelector();Menu.render();Menu.renderDiagnostics();">${i + 1}</div>`;
+}).join('');
+},
+render() {
+const el = document.getElementById('dayContent');
+const dayIdx = AppState.runtime.currentDay;
+if (!AppState.runtime.menuPlan) {
+const t_ = AppState.runtime.targets;
+el.innerHTML = `<div class="goal-bar"><b>${t('plan.goal')}</b> ~${t_.kcal} ${t('day.kcal')} · ${t('macro.b')} ~${t_.protein} г · ${t('macro.f')} ~${t_.fat} г · ${t('macro.c')} ~${t_.carbs} г</div><div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
+return;
+}
+const dayData = this.getDayData(dayIdx);
+const isDone = AppState.data.progress.days[dayIdx]?.done;
+// Цели для отображения: из снимка для пройденных дней, иначе текущие
+const displayTargets = (isDone && dayData?.runtimeTargets) ? dayData.runtimeTargets : AppState.runtime.targets;
+const rawTargets = (isDone && dayData?.targets) ? dayData.targets : AppState.runtime.menuPlan?.targets;
+const htmlArr = [`<div class="goal-bar"><b>${t('plan.goal')}</b> ~${displayTargets.kcal} ${t('day.kcal')} · ${t('macro.b')} ~${displayTargets.protein} г · ${t('macro.f')} ~${displayTargets.fat} г · ${t('macro.c')} ~${displayTargets.carbs} г</div>`];
+if (!dayData) {
+el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
+return;
+}
+let DB = 0, DF = 0, DC = 0;
+dayData.meals.forEach((meal, i) => {
+if (!meal.components.length) return;
+const ordered = meal.components.slice().sort((a, b) => this.sortRank(a) - this.sortRank(b));
+let tb = 0, tf = 0, tc = 0, tg = 0;
+const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); tg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}</div><div class="num">${comp.weight.toFixed(0)}${ul}</div><div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
+DB += tb; DF += tf; DC += tc;
+const mealKey = dayIdx + '-' + i;
+const isEaten = AppState.data.progress.meals[mealKey];
+// Для пройденных дней чекбоксы заблокированы
+const checkHtml = isDone
+? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
+: `<div class="meal-eaten-check ${isEaten ? 'on' : ''}" onclick="Progress.toggleMeal(${dayIdx}, ${i})">${isEaten ? '✓' : ''}</div>`;
+htmlArr.push(`<div class="bju-card"><div class="meal-title">${i + 1}. ${t('meal.' + i)} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
+});
+const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
+// Баланс КБЖУ
+if (rawTargets) htmlArr.push(this.renderDevChart(dkcal, DB, DF, DC, rawTargets, this.proteinSplit(dayData)));
+// Служебные переменные для кнопок
+const completedCount = Progress.getCompletedCount();
+const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
+// Кнопка отметки/снятия дня
+if (isDone) {
+htmlArr.push(`<button class="btn btn-ghost day-complete-btn" onclick="Progress.toggleDay(${dayIdx})">${t('plan.unmark_day')}</button>`);
+} else {
+htmlArr.push(`<button class="btn btn-primary day-complete-btn" onclick="Progress.toggleDay(${dayIdx})">${t('plan.mark_day_done')}</button>`);
+}
+// Кнопка обновления всех пройденных дней (если есть хотя бы один)
+if (completedCount > 0) {
+htmlArr.push(`<div class="progress-actions"><button class="btn btn-ghost" onclick="Progress.refreshAllCompleted()">${t('plan.refresh_completed')}</button></div>`);
+}
+// Кнопка нового цикла (если все дни пройдены)
+if (completedCount >= totalDays) {
+htmlArr.push(`<button class="btn btn-primary day-complete-btn" onclick="Progress.resetCycle()">${t('plan.new_cycle')}</button>`);
+}
+// Счётчик циклов
+const cyclesCount = AppState.data.progress.cyclesCompleted || 0;
+if (cyclesCount > 0) {
+htmlArr.push(`<div class="cycle-stats">${t('plan.cycles_completed')}: ${cyclesCount}</div>`);
+}
+el.innerHTML = htmlArr.join('');
+},
+sortRank(comp) { const name = comp.item.name || ''; if (Classify.isFillet(name)) return 0; if (Classify.isEggName(name)) return 1; if (Classify.isGarlic(name)) return 4; if (Classify.isYogurt(name)) return 10; const cat = Classify.get(comp.item); if (cat === 'protein') return 2; if (cat === 'carb') return 3; if (cat === 'veggie' || cat === 'sweetener') return 4.5; if (cat === 'fat') return 5; return 6; },
+devStatus(actual, target) { if (!target || target <= 0) return 'ok'; const ratio = actual / target; if (ratio < 1 - CONFIG.MACRO.tolerance) return 'low'; if (ratio > 1 + CONFIG.MACRO.tolerance) return 'high'; return 'ok'; },
+proteinSplit(dayData) {
+let animal = 0, total = 0;
+dayData.meals.forEach(m => m.components.forEach(c => { total += c.p; if (Classify.isAnimalProtein(c.item)) animal += c.p; }));
+if (total <= 0) return null;
+const animalPct = Math.round(animal / total * 100);
+return { animalG: animal, plantG: total - animal, animalPct, plantPct: 100 - animalPct };
+},
+splitText(s) { return `${t('diag.protein')}: ${t('dev.animal')} ${s.animalPct}% · ${Math.round(s.animalG)} г, ${t('dev.plant')} ${s.plantPct}% · ${Math.round(s.plantG)} г`; },
+showProteinSplit() {
+const d = this.getDayData(AppState.runtime.currentDay);
+const s = d ? this.proteinSplit(d) : null;
+if (s) UI.toast(this.splitText(s));
+},
+devTile(label, actual, target, unit, macroColor, extraHtml, split) {
+const status = this.devStatus(actual, target);
+const diff = Math.round(actual - target);
+const delta = target > 0 ? `${diff > 0 ? '+' : diff < 0 ? '−' : '±'}${Math.abs(diff)}${unit ? ' ' + unit : ''}` : '';
+const pct = target > 0 ? Math.round(actual / target * 100) : 0;
+let title = target > 0 ? `${Math.round(actual)} / ${Math.round(target)} ${unit || t('day.kcal')} (${pct}%)` : '';
+if (split) title += '\n' + this.splitText(split);
+const tap = split ? ' tappable" onclick="Menu.showProteinSplit()' : '';
+return `<div class="dev-tile ${status}${tap}" title="${UI.escapeAttr(title)}"><div class="dev-tile-name" style="color:${macroColor}">${label}</div><div class="dev-tile-val">${Math.round(actual)}</div><div class="dev-tile-delta">${delta}</div><div class="dev-tile-bar"><i></i>${extraHtml || ''}</div></div>`;
+},
+renderDevChart(dkcal, DB, DF, DC, t_, split) {
+const splitHtml = split ? `<div class="pt-strip" aria-hidden="true"><i style="width:${split.animalPct}%;background:var(--pt-animal)"></i><i style="width:${split.plantPct}%;background:var(--pt-plant)"></i></div><div class="pt-nums" aria-hidden="true"><span style="color:var(--pt-animal)">${split.animalPct}</span><span style="color:var(--pt-plant)">${split.plantPct}</span></div>` : '';
+return `<div class="section"><div class="section-title">${t('plan.balance')}</div><div class="dev-chart"><div class="dev-tiles">${this.devTile(t('diag.kcal'), dkcal, t_.kcal, '', 'var(--macro-kcal)')}${this.devTile(t('diag.protein'), DB, t_.proteinG, 'г', 'var(--macro-protein)', splitHtml, split)}${this.devTile(t('diag.fat'), DF, t_.fatG, 'г', 'var(--macro-fat)')}${this.devTile(t('diag.carbs'), DC, t_.carbsG, 'г', 'var(--macro-carb)')}</div><div class="dev-legend">${t('dev.legend')}</div></div></div>`;
+},
+renderDiagnostics() {
+const box = document.getElementById('menu-diagnostics');
+if (!box) return;
+if (!AppState.runtime.menuPlan) { box.innerHTML = ''; return; }
+const dayIdx = AppState.runtime.currentDay || 0;
+const day = this.getDayData(dayIdx);
+if (!day) { box.innerHTML = ''; return; }
+const actualVals = day.totals;
+const isDone = AppState.data.progress.days[dayIdx]?.done;
+const t_ = (isDone && day.targets) ? day.targets : AppState.runtime.menuPlan.targets;
+if (!t_) { box.innerHTML = ''; return; }
+const issues = [];
+const check = (label, actual, target) => { if (!target || target <= 0) return; const diff = (actual - target) / target; if (Math.abs(diff) <= CONFIG.MACRO.tolerance) return; issues.push(`<b>${label}:</b> ${actual.toFixed(0)} ${t('diag.at_target')} ${target.toFixed(0)} (${diff > 0 ? '+' : ''}${Math.round(diff * 100)}%)`); };
+check(t('diag.protein'), actualVals.p, t_.proteinG);
+check(t('diag.fat'), actualVals.f, t_.fatG);
+check(t('diag.carbs'), actualVals.c, t_.carbsG);
+check(t('diag.kcal'), actualVals.kcal, t_.kcal);
+box.innerHTML = issues.length ? `<div class="diagnostic-banner"><b>${t('diag.title')}</b><ul>${issues.map(x => `<li>${x}</li>`).join('')}</ul></div>` : '';
+}
+};
+const Progress = {
+autoCompletePending: false,
+// Создание снимка текущего меню дня
+createSnapshot(dayIdx) {
+const day = AppState.runtime.menuPlan?.days[dayIdx];
+if (!day) return null;
+const snapshot = JSON.parse(JSON.stringify(day));
+if (AppState.runtime.menuPlan.targets) {
+snapshot.targets = JSON.parse(JSON.stringify(AppState.runtime.menuPlan.targets));
+}
+if (AppState.runtime.targets) {
+snapshot.runtimeTargets = JSON.parse(JSON.stringify(AppState.runtime.targets));
+}
+return snapshot;
+},
+// Переключение чекбокса "съедено" для приёма пищи
+toggleMeal(dayIdx, mealIdx) {
+// Блокировка для пройденных дней
+if (AppState.data.progress.days[dayIdx]?.done) return;
+const key = dayIdx + '-' + mealIdx;
+AppState.data.progress.meals[key] = !AppState.data.progress.meals[key];
+AppState.save('progress');
+Menu.render();
+this.checkAutoComplete(dayIdx);
+},
+// Переключение отметки "день пройден"
+toggleDay(dayIdx) {
+const cur = AppState.data.progress.days[dayIdx];
+if (cur?.done) {
+// Снимаем отметку
+delete AppState.data.progress.days[dayIdx];
+UI.toast(t('plan.day_unmarked'));
+} else {
+// Отмечаем и создаём снимок
+AppState.data.progress.days[dayIdx] = {
+done: true,
+ts: Date.now(),
+snapshot: this.createSnapshot(dayIdx)
+};
+UI.toast(t('plan.day_completed'));
+}
+AppState.save('progress');
+Menu.renderDaySelector();
+Menu.render();
+},
+// Массовое обновление всех пройденных дней
+async refreshAllCompleted() {
+const progress = AppState.data.progress;
+const completedDays = Object.keys(progress.days).filter(k => progress.days[k]?.done);
+if (!completedDays.length) return;
+const confirmed = await UI.confirm(
+t('plan.refresh_confirm').replace('{0}', completedDays.length),
+t('plan.refresh'),
+t('common.cancel')
+);
+if (!confirmed) return;
+let updatedCount = 0;
+completedDays.forEach(key => {
+const dayIdx = parseInt(key);
+const dayData = AppState.runtime.menuPlan?.days[dayIdx];
+if (dayData) {
+const snapshot = JSON.parse(JSON.stringify(dayData));
+if (AppState.runtime.menuPlan.targets) {
+snapshot.targets = JSON.parse(JSON.stringify(AppState.runtime.menuPlan.targets));
+}
+if (AppState.runtime.targets) {
+snapshot.runtimeTargets = JSON.parse(JSON.stringify(AppState.runtime.targets));
+}
+progress.days[key].snapshot = snapshot;
+progress.days[key].ts = Date.now();
+updatedCount++;
+}
+});
+AppState.save('progress');
+Menu.render();
+UI.toast(t('plan.refresh_done') + ': ' + updatedCount);
+},
+// Автопредложение при всех съеденных приёмах
+checkAutoComplete(dayIdx) {
+if (this.autoCompletePending) return;
+if (AppState.data.progress.days[dayIdx]?.done) return;
+if (AppState.runtime.currentDay !== dayIdx) return;
+const meals = AppState.data.progress.meals;
+let allEaten = true;
+for (let i = 0; i < CONFIG.MEALS.totalCount; i++) {
+if (!meals[dayIdx + '-' + i]) {
+allEaten = false;
+break;
+}
+}
+if (!allEaten) return;
+this.autoCompletePending = true;
+setTimeout(async () => {
+const confirmed = await UI.confirm(t('plan.all_meals_eaten'), 'OK', t('common.cancel'));
+this.autoCompletePending = false;
+if (confirmed) {
+this.toggleDay(dayIdx);
+}
+}, 500);
+},
+// Сброс цикла
+async resetCycle() {
+const completedCount = this.getCompletedCount();
+const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
+let confirmMsg;
+if (completedCount < totalDays) {
+confirmMsg = t('plan.reset_incomplete').replace('{0}', completedCount);
+} else {
+confirmMsg = t('plan.cycle_completed');
+}
+const confirmed = await UI.confirm(confirmMsg, t('plan.reset'), t('common.cancel'));
+if (!confirmed) return;
+AppState.data.progress.cyclesCompleted++;
+AppState.data.progress.days = {};
+AppState.data.progress.meals = {};
+AppState.save('progress');
+Menu.renderDaySelector();
+Menu.render();
+UI.toast(t('plan.cycle_reset'));
+},
+// Количество пройденных дней
+getCompletedCount() {
+return Object.keys(AppState.data.progress.days).filter(k => AppState.data.progress.days[k]?.done).length;
+}
+};
+const Shop = {
+render() {
+const classified = AppState.data.weekList.map((s, idx) => { const prod = Products.toRacion(s); return { ...s, idx, group: prod ? Classify.shopCategory(prod) : 'carb' }; });
+let num = 0;
+const htmlArr = [];
+CONFIG.CAT.order.forEach(g => {
+const items = classified.filter(x => x.group === g);
+if (!items.length) return;
+htmlArr.push(`<div class="shop-group-title">${t('cat.' + g)}</div>`);
+items.forEach(s => {
+num++;
+const count = s.count || 1;
+const line = (s.price || 0) * count;
+const isUnavail = s.unavailable;
+const imgHtml = s.image
+? `<img src="${UI.escapeAttr(s.image)}" class="shop-img" onerror="this.style.display='none'" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}">`
+: `<div class="shop-img" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}"></div>`;
+htmlArr.push(`<div class="shop-row ${isUnavail ? 'unavailable' : ''}"><div class="shop-num">${num}.</div>${imgHtml}<div class="shop-info" data-idx="${s.idx}"><div class="shop-name">${UI.escape(Products.displayName(s.n))}${count > 1 ? ' ×' + count : ''}</div><div class="shop-sub">${UI.escape(s.qty || '')}${s.b ? ' · ' + t('macro.b') + s.b + ' ' + t('macro.f') + s.f + ' ' + t('macro.c') + s.c : ''}</div></div><div class="shop-price">${line.toFixed(2)} ${t('common.currency')}</div><div class="avail-switch ${isUnavail ? '' : 'on'}" onclick="ShopUI.toggleAvail(${s.idx})" title="${t('shop.toggle_avail')}"><i></i></div></div>`);
+});
+});
+document.getElementById('shopContent').innerHTML = htmlArr.join('');
+this.updateTotals();
+ShopUI.attachShopInfoEvents();
+},
+updateTotals() {
+let activeCount = 0, sum = 0;
+AppState.data.weekList.forEach(s => { if (!s.unavailable) { activeCount++; sum += (s.price || 0) * (s.count || 1); } });
+document.getElementById('shopCountLabel').textContent = `${t('shop.total')} ${AppState.data.weekList.length} ${t('common.positions_short')} (${t('common.active_short')}: ${activeCount})`;
+document.getElementById('shopTotalPrice').textContent = sum.toFixed(2) + ' ' + t('common.currency');
+}
+};
+const ShopUI = {
+currentActionIdx: null,
+toggleAvail(idx) {
+const un = !AppState.data.weekList[idx].unavailable;
+AppState.data.weekList[idx].unavailable = un;
+AppState.save('weekList');
+const info = document.querySelector('.shop-info[data-idx="' + idx + '"]');
+const row = info && info.closest('.shop-row');
+if (row) { row.classList.toggle('unavailable', un); const sw = row.querySelector('.avail-switch'); if (sw) sw.classList.toggle('on', !un); Shop.updateTotals(); }
+else Shop.render();
+Products.refreshAll();
+Menu.build();
+},
+toggleAddForm() { document.getElementById('addForm').classList.toggle('open'); },
+delWeek(idx) { AppState.data.weekList.splice(idx, 1); AppState.save('weekList'); Shop.render(); Products.refreshAll(); Menu.build(); },
+addUserProduct() {
+const name = document.getElementById('np_name').value.trim();
+const qty = +document.getElementById('np_qty').value || 0;
+const unit = document.getElementById('np_unit').value;
+const price = +document.getElementById('np_price').value || 0;
+const atb = +document.getElementById('np_atb').value || 0;
+const image = document.getElementById('np_img').value.trim();
+const b = +document.getElementById('np_b').value || 0;
+const f = +document.getElementById('np_f').value || 0;
+const c = +document.getElementById('np_c').value || 0;
+if (!name || !price) { UI.toast(t('toast.enter_name_price')); return; }
+const existing = AppState.data.weekList.find(s => Products.displayName(s.n) === name);
+if (existing) { existing.count = (existing.count || 1) + 1; if (image) existing.image = image; }
+else AppState.data.weekList.push({ n: name, qty: qty + ' ' + unit, price, b, f, c, group: Classify.inferGroup({ b, f, c }, name), count: 1, image, atb_id: atb || null });
+AppState.save('weekList');
+document.getElementById('np_name').value = '';
+document.getElementById('np_atb').value = '';
+document.getElementById('addForm').classList.remove('open');
+Shop.render(); Products.refreshAll(); Menu.build();
+UI.toast(t('toast.added') + ': ' + name);
+},
+openEdit(idx) {
+const s = AppState.data.weekList[idx];
+if (!s) return;
+document.getElementById('edit_idx').value = idx;
+document.getElementById('edit_name').value = Products.displayName(s.n);
+const parsed = parseQty(s.qty);
+if (parsed) { document.getElementById('edit_qty').value = parsed.value; document.getElementById('edit_unit').value = parsed.unit; }
+else { document.getElementById('edit_qty').value = CONFIG.DEFAULTS.defaultWeight; document.getElementById('edit_unit').value = 'г'; }
+document.getElementById('edit_price').value = s.price || 0;
+document.getElementById('edit_atb').value = s.atb_id || '';
+document.getElementById('edit_img').value = s.image || '';
+document.getElementById('edit_b').value = s.b || 0;
+document.getElementById('edit_f').value = s.f || 0;
+document.getElementById('edit_c').value = s.c || 0;
+document.getElementById('editForm').classList.add('open');
+document.getElementById('editForm').scrollIntoView({ behavior: 'smooth' });
+},
+saveEdit() {
+const idx = +document.getElementById('edit_idx').value;
+if (isNaN(idx) || !AppState.data.weekList[idx]) return;
+const name = document.getElementById('edit_name').value.trim();
+const qty = +document.getElementById('edit_qty').value || 0;
+const unit = document.getElementById('edit_unit').value;
+const price = +document.getElementById('edit_price').value || 0;
+const atb = +document.getElementById('edit_atb').value || 0;
+const image = document.getElementById('edit_img').value.trim();
+const b = +document.getElementById('edit_b').value || 0;
+const f = +document.getElementById('edit_f').value || 0;
+const c = +document.getElementById('edit_c').value || 0;
+if (!name) { UI.toast(t('toast.enter_name')); return; }
+const old = AppState.data.weekList[idx];
+AppState.data.weekList[idx] = { ...old, n: name, qty: qty + ' ' + unit, price, b, f, c, image, atb_id: atb || null };
+AppState.save('weekList');
+Shop.render(); Products.refreshAll(); Menu.build();
+this.closeEdit();
+UI.toast(t('toast.saved'));
+},
+closeEdit() { document.getElementById('editForm').classList.remove('open'); },
+bindImg(fileId, urlId, prevId) {
+const fileEl = document.getElementById(fileId), urlEl = document.getElementById(urlId), prev = document.getElementById(prevId);
+if (!fileEl || !urlEl || !prev) return;
+fileEl.addEventListener('change', function () { const file = this.files && this.files[0]; if (!file) return; if (file.size > CONFIG.DEFAULTS.maxImageSize) { UI.toast(t('shop.file_too_large')); this.value = ''; return; } const rd = new FileReader(); rd.onload = e => { urlEl.value = e.target.result; prev.src = e.target.result; prev.style.display = 'block'; }; rd.readAsDataURL(file); this.value = ''; });
+urlEl.addEventListener('input', function () { const v = this.value.trim(); if (v) { prev.src = v; prev.style.display = 'block'; } else { prev.style.display = 'none'; prev.removeAttribute('src'); } });
+},
+exportProducts() {
+if (!AppState.data.weekList.length) { UI.toast(t('toast.empty')); return; }
+const out = AppState.data.weekList.map(s => { const name = Products.displayName(s.n); const parsed = parseQty(s.qty); return { name, unit: parsed.unit === 'шт' ? 'pcs' : 'g', weight: parsed.value, p: s.b || 0, f: s.f || 0, c: s.c || 0, price: s.price || 0, group: s.group || '', image: s.image || '', atb_id: s.atb_id || null }; });
+const blob = new Blob([JSON.stringify({ products: out }, null, 2)], { type: 'application/json' });
+const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'atb_diet_list.json'; a.click(); URL.revokeObjectURL(a.href);
+UI.toast(t('shop.exported_count') + ': ' + out.length);
+},
+async importProducts() {
+const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+input.onchange = async e => {
+const file = e.target.files[0]; if (!file) return;
+const reader = new FileReader();
+reader.onload = async ev => {
+try {
+const parsed = JSON.parse(ev.target.result);
+const list = Array.isArray(parsed) ? parsed : (parsed.products || parsed.items || []);
+if (!Array.isArray(list) || list.length === 0) { UI.toast(t('toast.empty')); return; }
+const imported = [];
+list.forEach(p => { const name = (p.name || '').toString().trim(); if (!name) return; const weight = parseFloat(p.weight || CONFIG.DEFAULTS.defaultWeight) || CONFIG.DEFAULTS.defaultWeight; const b = parseFloat(p.p || p.b || 0) || 0; const f = parseFloat(p.f || p.fat || 0) || 0; const c = parseFloat(p.c || p.carbs || 0) || 0; const price = parseFloat(p.price || 0) || 0; const group = (p.group || '').toLowerCase(); imported.push({ n: name, qty: weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price, b, f, c, group: group || Classify.inferGroup({ b, f, c }, name), count: 1, image: p.image || '', atb_id: p.atb_id || null }); });
+if (!imported.length) { UI.toast(t('toast.empty')); return; }
+const replace = await UI.confirm(`${t('shop.import_found')}: ${imported.length}.\n` + t('shop.import_replace_q', AppState.data.weekList.length), t('shop.replace_btn'), t('shop.add_to_current_btn'));
+AppState.data.weekList = replace ? imported : AppState.data.weekList.concat(imported);
+AppState.save('weekList'); Shop.render(); Products.refreshAll(); Menu.build(); UI.toast(t('shop.imported_count') + ': ' + imported.length);
+} catch (err) { UI.toast(t('shop.json_error') + ': ' + err.message); }
+};
+reader.readAsText(file);
+};
+input.click();
+},
+showCtxMenu(x, y, idx) {
+this.currentActionIdx = idx;
+this.rowLock = idx;
+this.pressRow(idx);
+const overlay = document.getElementById('ctx-overlay');
+const menu = document.getElementById('ctx-menu');
+overlay.classList.add('active');
+menu.style.left = x + 'px';
+menu.style.top = y + 'px';
+requestAnimationFrame(() => {
+const rect = menu.getBoundingClientRect();
+if (rect.right > window.innerWidth) menu.style.left = (window.innerWidth - rect.width - 8) + 'px';
+if (rect.bottom > window.innerHeight) menu.style.top = (y - rect.height) + 'px';
+});
+},
+hideCtxMenu(keepRow) {
+document.getElementById('ctx-overlay').classList.remove('active');
+this.currentActionIdx = null;
+if (!keepRow) this.releaseRow();
+},
+pressRow(idx) {
+const info = document.querySelector('.shop-info[data-idx="' + idx + '"]');
+const row = info && info.closest('.shop-row');
+if (row) row.classList.add('pressed');
+},
+releaseRow() {
+this.rowLock = null;
+document.querySelectorAll('.shop-row.pressed').forEach(r => r.classList.remove('pressed'));
+},
+initCtxMenu() {
+const overlay = document.getElementById('ctx-overlay');
+overlay.addEventListener('click', (e) => { if (e.target === overlay) this.hideCtxMenu(); });
+document.getElementById('ctx-edit').onclick = () => { const idx = this.currentActionIdx; this.hideCtxMenu(); if (idx !== null) this.openEdit(idx); };
+document.getElementById('ctx-delete').onclick = async () => { const idx = this.currentActionIdx; this.hideCtxMenu(true); if (idx !== null) { const confirmed = await UI.confirm(t('shop.delete_confirm'), t('common.delete'), t('common.cancel')); this.releaseRow(); if (confirmed) this.delWeek(idx); } else this.releaseRow(); };
+},
+attachShopInfoEvents() {
+let longPressTimer = null, hlTimer = null;
+let startX = 0, startY = 0;
+document.querySelectorAll('.shop-info').forEach(el => {
+const idx = parseInt(el.getAttribute('data-idx'));
+const row = el.closest('.shop-row');
+const cancelHl = () => { clearTimeout(hlTimer); if (row && ShopUI.rowLock !== idx) row.classList.remove('pressed'); };
+const startPress = (e) => {
+clearTimeout(longPressTimer); clearTimeout(hlTimer);
+startX = e.touches ? e.touches[0].clientX : e.clientX;
+startY = e.touches ? e.touches[0].clientY : e.clientY;
+hlTimer = setTimeout(() => { if (row) row.classList.add('pressed'); }, 150);
+longPressTimer = setTimeout(() => {
+if (navigator.vibrate) navigator.vibrate(30);
+ShopUI.showCtxMenu(startX, startY, idx);
+}, 450);
+};
+const endPress = () => { clearTimeout(longPressTimer); cancelHl(); };
+const movePress = (e) => {
+if (e.touches) {
+const dx = Math.abs(e.touches[0].clientX - startX);
+const dy = Math.abs(e.touches[0].clientY - startY);
+if (dx > 10 || dy > 10) { clearTimeout(longPressTimer); cancelHl(); }
+}
+};
+el.addEventListener('mousedown', startPress);
+el.addEventListener('touchstart', startPress, { passive: true });
+el.addEventListener('mouseup', endPress);
+el.addEventListener('mouseleave', endPress);
+el.addEventListener('touchend', endPress);
+el.addEventListener('touchcancel', endPress);
+el.addEventListener('touchmove', movePress, { passive: true });
+el.addEventListener('contextmenu', e => e.preventDefault());
+});
+}
+};
+const Cook = {
+len(type) { return type === 'day' ? 1 : type === 'p3' ? 3 : type === 'p6' ? 6 : 10; },
+loadChecks() { return AppState.data.cookChecks || {}; },
+saveChecks(obj) { AppState.data.cookChecks = obj; AppState.save('cookChecks'); },
+actualWeight(it) { return it.unit === 'pcs' ? it.weight * Classify.eggWeightByCategory(it.name) : it.weight; },
+formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
+render() {
+const groups = document.getElementById('cooking-groups');
+const empty = document.getElementById('cooking-empty');
+const intro = document.getElementById('cooking-intro');
+if (!AppState.runtime.menuPlan || !AppState.runtime.menuPlan.days || !AppState.runtime.menuPlan.days.length) { intro.style.display = 'none'; empty.style.display = 'block'; groups.innerHTML = ''; return; }
+intro.style.display = 'block'; empty.style.display = 'none';
+const type = document.getElementById('cooking-period-type').value;
+const len = Math.min(this.len(type), AppState.runtime.menuPlan.days.length);
+const maxStart = Math.max(0, AppState.runtime.menuPlan.days.length - len);
+const startSel = document.getElementById('cooking-period-start');
+const prev = +startSel.value || 0;
+const start = Math.min(prev, maxStart);
+startSel.innerHTML = Array.from({ length: maxStart + 1 }, (_, i) => `<option value="${i}">${len === 1 ? t('common.day_single') + ' ' + (i + 1) : t('common.days_range') + ' ' + (i + 1) + '–' + (i + len)}</option>`).join('');
+startSel.value = start;
+const map = {};
+const end = Math.min(start + len, AppState.runtime.menuPlan.days.length);
+for (let d = start; d < end; d++) { AppState.runtime.menuPlan.days[d].meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, group: Classify.shopCategory(comp.item) }; map[name].weight += comp.weight; map[name].price += comp.price; }); }); }
+const items = Object.values(map);
+const checks = this.loadChecks();
+const pkey = type + '-' + start;
+const pc = checks[pkey] || {};
+const htmlArr = [];
+let totalPrice = 0, positions = 0;
+CONFIG.CAT.order.forEach(g => {
+const list = items.filter(x => x.group === g).sort((a, b) => this.actualWeight(b) - this.actualWeight(a));
+if (!list.length) return;
+htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
+list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
+htmlArr.push('</div>');
+});
+htmlArr.push(`<div class="cook-total-bar"><span>${t('common.total')}: ${positions} ${t('common.positions_short')}</span><span>${totalPrice.toFixed(2)} ${t('common.currency')}</span></div>`);
+groups.innerHTML = htmlArr.join('');
+}
+};
+const CookUI = {
+toggleKitchenMode() { document.body.classList.toggle('kitchen-mode'); },
+toggleCookCheck(el, name) { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); if (!checks[key]) checks[key] = {}; checks[key][name] = !checks[key][name]; Cook.saveChecks(checks); const on = checks[key][name]; el.classList.toggle('on', on); el.textContent = on ? '✓' : ''; el.closest('.cook-row').classList.toggle('done', on); },
+resetCook() { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); delete checks[key]; Cook.saveChecks(checks); Cook.render(); }
+};
+const MeasureUI = {
+toggleMeasForm() { document.getElementById('measForm').classList.toggle('open'); },
+saveMeas() {
+const w = parseFloat(document.getElementById('mf_weight').value) || 0;
+if (!w) { UI.toast(t('toast.enter_weight')); return; }
+AppState.data.measHistory.push({ date: new Date().toISOString(), weight: w, waist: parseFloat(document.getElementById('mf_waist').value) || 0, chest: parseFloat(document.getElementById('mf_chest').value) || 0, hip: parseFloat(document.getElementById('mf_hip').value) || 0, biceps: parseFloat(document.getElementById('mf_biceps').value) || 0 });
+AppState.data.measHistory.sort((a, b) => new Date(a.date) - new Date(b.date));
+AppState.save('measHistory');
+['mf_weight', 'mf_waist', 'mf_chest', 'mf_hip', 'mf_biceps'].forEach(id => document.getElementById(id).value = '');
+document.getElementById('measForm').classList.remove('open');
+this.renderMeas();
+UI.toast(t('toast.meas_saved'));
+},
+delMeas(idx) { AppState.data.measHistory.splice(idx, 1); AppState.save('measHistory'); this.renderMeas(); },
+renderMeas() {
+const arr = AppState.data.measHistory;
+const display = document.getElementById('measDisplay');
+const history = document.getElementById('measHistory');
+if (!arr.length) { display.innerHTML = `<div class="note">${t('meas.none')}</div>`; history.innerHTML = ''; return; }
+const last = arr[arr.length - 1];
+const prev = arr.length > 1 ? arr[arr.length - 2] : null;
+const delta = (cur, pre) => { if (pre == null || pre <= 0) return ''; const d = cur - pre; const cls = d < 0 ? 'down' : d > 0 ? 'up' : 'neutral'; return `<div class="meas-delta ${cls}">${d > 0 ? '+' : ''}${d.toFixed(1)}</div>`; };
+display.innerHTML = `<div class="meas-grid"><div class="meas-item"><div class="meas-value">${last.weight || '—'}</div><div class="meas-label">${t('meas.weight')}</div>${delta(last.weight, prev ? prev.weight : null)}</div><div class="meas-item"><div class="meas-value">${last.waist || '—'}</div><div class="meas-label">${t('meas.waist')}</div>${delta(last.waist, prev ? prev.waist : null)}</div><div class="meas-item"><div class="meas-value">${last.chest || '—'}</div><div class="meas-label">${t('meas.chest')}</div>${delta(last.chest, prev ? prev.chest : null)}</div><div class="meas-item"><div class="meas-value">${last.hip || '—'}</div><div class="meas-label">${t('meas.hip')}</div>${delta(last.hip, prev ? prev.hip : null)}</div><div class="meas-item" style="grid-column:span 2"><div class="meas-value">${last.biceps || '—'}</div><div class="meas-label">${t('meas.biceps')}</div>${delta(last.biceps, prev ? prev.biceps : null)}</div></div>`;
+history.innerHTML = arr.slice().reverse().map((m, idxRev) => { const i = arr.length - 1 - idxRev; const d = new Date(m.date); const localeTag = (AppState.data.settings.lang || 'ru') === 'ua' ? 'uk-UA' : 'ru-RU'; const ds = d.toLocaleDateString(localeTag, { day: 'numeric', month: 'short' }); const vals = [m.weight ? m.weight + t('meas.unit_kg') : '', m.waist ? t('meas.abbr_waist') + m.waist : '', m.chest ? t('meas.abbr_chest') + m.chest : '', m.hip ? t('meas.abbr_hip') + m.hip : '', m.biceps ? t('meas.abbr_biceps') + m.biceps : ''].filter(Boolean).join(' · '); return `<div class="meas-history-row"><span class="meas-history-date">${ds}</span><span class="meas-history-vals">${vals}</span><span class="meas-history-del" onclick="MeasureUI.delMeas(${i})">×</span></div>`; }).join('');
+}
+};
+const Profile = {
+setGender(g) { AppState.data.profile.gender = g; document.getElementById('gm').classList.toggle('active', g === 'm'); document.getElementById('gf').classList.toggle('active', g === 'f'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
+setGoal(g) { AppState.data.profile.goal = g; document.getElementById('g-maintain').classList.toggle('active', g === 'maintain'); document.getElementById('g-gain').classList.toggle('active', g === 'gain'); document.getElementById('g-loss').classList.toggle('active', g === 'loss'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
+updateActivityDesc() { const val = document.getElementById('activity').value; const map = { '1.2': t('profile.activity_1_2'), '1.375': t('profile.activity_1_375'), '1.55': t('profile.activity_1_55'), '1.725': t('profile.activity_1_725'), '1.9': t('profile.activity_1_9') }; document.getElementById('activityDesc').textContent = map[val] || map['1.55']; },
+LIMITS: { age: [14, 90], height: [120, 230], weight: [35, 250] },
+GOALS: ['maintain', 'gain', 'loss'],
+ACTIVITY: ['1.2', '1.375', '1.55', '1.725', '1.9'],
+inRange(id, v) { const [lo, hi] = this.LIMITS[id]; return Number.isFinite(v) && v >= lo && v <= hi; },
+goalKey() { return ({ maintain: 'maintain', gain: 'bulk', loss: 'cut' })[AppState.data.profile.goal] || 'maintain'; },
+readParams() {
+const num = id => { const v = document.getElementById(id).value; return v === '' ? NaN : +v; };
+const v = { age: num('age'), height: num('height'), weight: num('weight') };
+const bad = Object.keys(v).filter(k => !this.inRange(k, v[k]));
+Object.keys(v).forEach(k => document.getElementById(k).classList.toggle('invalid', bad.includes(k)));
+const warn = document.getElementById('profileWarn');
+if (bad.length) { warn.textContent = t('profile.err_check', bad.map(k => t('profile.' + k) + ' ' + this.LIMITS[k].join('–')).join('; ')); warn.style.display = 'block'; return null; }
+warn.style.display = 'none';
+return { age: v.age, height: v.height, weight: v.weight, act: +document.getElementById('activity').value || 1.55, sex: AppState.data.profile.gender === 'm' ? 'male' : 'female', goal: this.goalKey() };
+},
+fmtWeekly(kg) {
+const v = Math.round(Math.abs(kg) * 10) / 10;
+if (v === 0) return '≈ 0 ' + t('profile.per_week');
+return '≈ ' + (kg < 0 ? '−' : '+') + String(v).replace('.', ',') + ' ' + t('profile.per_week');
+},
+renderResults(P) {
+const tg = Targets.plan(P.sex, P.age, P.weight, P.height, P.act, P.goal);
+const w = P.weight;
+const fiber = Math.min(35, Math.max(25, Math.round(tg.kcal / 1000 * 14)));
+const water = (w * 35 / 1000).toFixed(1);
+AppState.runtime.targets = { kcal: tg.kcal, protein: tg.proteinG, fat: tg.fatG, carbs: tg.carbsG, fiber, water };
+AppState.runtime.planInfo = { ...tg, weight: w, goal: P.goal };
+const T = AppState.runtime.targets;
+document.getElementById('rKcal').textContent = '~' + T.kcal + ' ' + t('day.kcal');
+document.getElementById('rProt').textContent = '~' + T.protein + ' г (' + tg.proteinPerKg + ' г/кг)';
+document.getElementById('rFat').textContent = '~' + T.fat + ' г (' + (T.fat / w).toFixed(1) + ' г/кг)';
+document.getElementById('rCarb').textContent = '~' + T.carbs + ' г (' + (T.carbs / w).toFixed(1) + ' г/кг)';
+document.getElementById('rFiber').textContent = fiber + ' г';
+document.getElementById('rWater').textContent = water + ' л';
+const modeNote = document.getElementById('rModeNote');
+const pct = Math.round(Math.abs(tg.deltaKcal) / tg.tdee * 100);
+if (P.goal === 'cut') { modeNote.style.display = 'block'; modeNote.textContent = t('profile.note_cut', pct, this.fmtWeekly(tg.weeklyKg)); }
+else if (P.goal === 'bulk') { modeNote.style.display = 'block'; modeNote.textContent = t('profile.note_gain', pct, this.fmtWeekly(tg.weeklyKg)); }
+else modeNote.style.display = 'none';
+const floorNote = document.getElementById('rFloorNote');
+floorNote.textContent = tg.floorApplied ? t('profile.floor_note', tg.floorKcal) : '';
+floorNote.style.display = tg.floorApplied ? 'block' : 'none';
+InfoUI.render();
+},
+calc() {
+const P = this.readParams();
+if (!P) return;
+this.renderResults(P);
+AppState.runtime.lastMenuParams = { sex: P.sex, age: P.age, weight: P.weight, height: P.height, activity: P.act, goal: P.goal };
+Products.refreshAll();
+Menu.build();
+},
+load() {
+const p = AppState.data.profile;
+const DEF = { age: 47, height: 184, weight: 90 };
+['age', 'height', 'weight'].forEach(k => { document.getElementById(k).value = this.inRange(k, +p[k]) ? p[k] : DEF[k]; });
+// значения из ограниченных наборов: при повреждённых данных возвращаем безопасные (и это видно в интерфейсе)
+if (p.gender !== 'm' && p.gender !== 'f') p.gender = 'm';
+if (!this.GOALS.includes(p.goal)) p.goal = 'loss';
+if (!this.ACTIVITY.includes(String(p.activity))) p.activity = '1.55';
+p.activity = String(p.activity);
+document.getElementById('activity').value = p.activity;
+document.getElementById('gm').classList.toggle('active', p.gender === 'm');
+document.getElementById('gf').classList.toggle('active', p.gender === 'f');
+document.getElementById('g-maintain').classList.toggle('active', p.goal === 'maintain');
+document.getElementById('g-gain').classList.toggle('active', p.goal === 'gain');
+document.getElementById('g-loss').classList.toggle('active', p.goal === 'loss');
+}
+};
+const BackupSystem = {
+exportFullDump() { const dump = { app: 'ATB-Diet', version: CONFIG.APP_VERSION, timestamp: new Date().toISOString(), data: AppState.data }; const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `atb_diet_backup_${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href); UI.toast(t('backup.exported')); },
+validateDump(data) {
+if (!data || typeof data !== 'object') return t('backup.err_root');
+const p = data.profile;
+if (!p || typeof p !== 'object') return t('backup.err_profile');
+if (p.gender !== undefined && p.gender !== 'm' && p.gender !== 'f') return t('backup.err_gender');
+if (p.goal !== undefined && !Profile.GOALS.includes(p.goal)) return t('backup.err_field', 'goal');
+if (p.activity !== undefined && !Profile.ACTIVITY.includes(String(p.activity))) return t('backup.err_field', 'activity');
+for (const k of ['age', 'height', 'weight']) { if (p[k] !== undefined && (typeof p[k] !== 'number' || !Profile.inRange(k, p[k]))) return t('backup.err_field', k); }
+if (data.weekList !== undefined && !Array.isArray(data.weekList)) return t('backup.err_weeklist');
+if (data.measHistory !== undefined && !Array.isArray(data.measHistory)) return t('backup.err_meas');
+if (data.cookChecks !== undefined && (typeof data.cookChecks !== 'object' || Array.isArray(data.cookChecks))) return t('backup.err_cookchecks');
+if (data.progress !== undefined) {
+const pr = data.progress;
+if (typeof pr !== 'object' || Array.isArray(pr)) return t('backup.err_progress');
+if (pr.days !== undefined && (typeof pr.days !== 'object' || Array.isArray(pr.days))) return t('backup.err_progress');
+if (pr.meals !== undefined && (typeof pr.meals !== 'object' || Array.isArray(pr.meals))) return t('backup.err_progress');
+if (pr.cyclesCompleted !== undefined && typeof pr.cyclesCompleted !== 'number') return t('backup.err_progress');
+}
+if (data.settings !== undefined && (typeof data.settings !== 'object' || Array.isArray(data.settings))) return t('backup.err_settings');
+return null;
+},
+async importFullDump(event) {
+const file = event.target.files[0]; if (!file) return;
+const reader = new FileReader();
+reader.onload = async e => {
+try {
+const parsed = JSON.parse(e.target.result);
+if (parsed.app !== 'ATB-Diet' || !parsed.data) throw new Error(t('backup.err_format'));
+const validationError = this.validateDump(parsed.data);
+if (validationError) throw new Error(validationError);
+const confirmed = await UI.confirm(t('backup.restore_confirm'), t('backup.restore'), t('common.cancel'));
+if (confirmed) {
+const merged = { profile: { ...AppState.data.profile, ...(parsed.data.profile || {}) }, weekList: parsed.data.weekList ?? AppState.data.weekList, measHistory: parsed.data.measHistory ?? AppState.data.measHistory, cookChecks: parsed.data.cookChecks ?? AppState.data.cookChecks, progress: { ...AppState.data.progress, ...(parsed.data.progress || {}) }, settings: { ...AppState.data.settings, ...(parsed.data.settings || {}) } };
+AppState.data = merged;
+AppState.saveAll();
+UI.toast(t('backup.restored'));
+setTimeout(() => location.reload(), 800);
+}
+} catch (err) { UI.toast(t('backup.err_prefix') + ': ' + err.message); }
+event.target.value = '';
+};
+reader.readAsText(file);
+}
+};
+const Reminders = {
+timer: null,
+nextLabel: '',
+audioCtx: null,
+ensureAudioUnlocked() {
+if (!this.audioCtx) { try { this.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { /* нет Web Audio — просто без звука */ } }
+if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();
+},
+playBeep() {
+try {
+this.ensureAudioUnlocked();
+if (!this.audioCtx) return;
+const ctx = this.audioCtx; const now = ctx.currentTime;
+[0, 0.22].forEach(offset => {
+const osc = ctx.createOscillator(); const gain = ctx.createGain();
+osc.type = 'sine'; osc.frequency.value = 880;
+gain.gain.setValueAtTime(0.0001, now + offset);
+gain.gain.exponentialRampToValueAtTime(0.35, now + offset + 0.02);
+gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.18);
+osc.connect(gain); gain.connect(ctx.destination);
+osc.start(now + offset); osc.stop(now + offset + 0.2);
+});
+} catch (e) { console.warn('Reminders beep failed', e); }
+},
+async requestPermission() {
+if (!('Notification' in window)) { UI.toast(t('reminders.unsupported')); return false; }
+if (Notification.permission === 'granted') return true;
+if (Notification.permission === 'denied') { UI.toast(t('reminders.blocked')); return false; }
+try { const res = await Notification.requestPermission(); return res === 'granted'; } catch (e) { return false; }
+},
+async toggle(on) {
+this.ensureAudioUnlocked();
+if (on) { const granted = await this.requestPermission(); if (!granted) on = false; }
+AppState.data.settings.reminders.enabled = on;
+AppState.save('settings');
+if (on) this.scheduleNext(); else { this.clearTimer(); this.nextLabel = ''; }
+this.renderState();
+},
+toggleSound(on) { AppState.data.settings.reminders.sound = on; AppState.save('settings'); this.renderState(); },
+renderState() {
+const r = AppState.data.settings.reminders || {};
+const onBtn = document.getElementById('rem-on'), offBtn = document.getElementById('rem-off');
+if (onBtn && offBtn) { onBtn.classList.toggle('active', !!r.enabled); offBtn.classList.toggle('active', !r.enabled); }
+const sOnBtn = document.getElementById('rem-sound-on'), sOffBtn = document.getElementById('rem-sound-off');
+if (sOnBtn && sOffBtn) { sOnBtn.classList.toggle('active', r.sound !== false); sOffBtn.classList.toggle('active', r.sound === false); }
+const status = document.getElementById('rem-status');
+if (!status) return;
+if (!('Notification' in window)) status.textContent = t('reminders.unsupported');
+else if (Notification.permission === 'denied') status.textContent = t('reminders.blocked');
+else if (r.enabled && this.nextLabel) status.textContent = t('reminders.active_until') + ' ' + this.nextLabel;
+else status.textContent = '';
+},
+clearTimer() { if (this.timer) { clearTimeout(this.timer); this.timer = null; } },
+nextMealInfo(fromDate) {
+const times = CONFIG.MEALS.times;
+const now = fromDate || new Date();
+let best = null;
+for (let dayOffset = 0; dayOffset <= 1 && !best; dayOffset++) {
+for (let i = 0; i < times.length; i++) {
+const [hh, mm] = times[i].split(':').map(Number);
+const dt = new Date(now); dt.setDate(now.getDate() + dayOffset); dt.setHours(hh, mm, 0, 0);
+if (dt.getTime() > now.getTime() && (!best || dt.getTime() < best.time)) best = { time: dt.getTime(), name: t('meal.' + i), timeStr: times[i] };
+}
+}
+return best;
+},
+scheduleNext() {
+this.clearTimer();
+const r = AppState.data.settings.reminders;
+if (!r || !r.enabled) return;
+const info = this.nextMealInfo();
+if (!info) return;
+this.nextLabel = info.timeStr + ' · ' + info.name;
+this.renderState();
+const delay = Math.max(0, info.time - Date.now());
+// В свёрнутой вкладке браузер вправе замедлять/замораживать таймеры — это ограничение платформы
+// (см. подсказку под переключателем), а не баг: пока вкладка открыта, напоминание сработает.
+this.timer = setTimeout(() => this.fire(info), delay);
+},
+fire(info) {
+const r = AppState.data.settings.reminders || {};
+if (r.sound !== false) this.playBeep();
+const title = t('reminders.title'), body = info.name + ' · ' + info.timeStr;
+if ('Notification' in window && Notification.permission === 'granted') {
+try { const n = new Notification(title, { body, icon: './icon-192.png', tag: 'atb-diet-meal' }); n.onclick = () => { window.focus(); n.close(); }; }
+catch (e) { UI.toast(body); }
+} else { UI.toast(body); }
+if (r.enabled) this.scheduleNext();
+},
+testNow() { this.ensureAudioUnlocked(); this.fire({ name: t('reminders.test'), timeStr: new Date().toTimeString().slice(0, 5) }); },
+init() {
+this.renderState();
+const r = AppState.data.settings.reminders;
+if (r && r.enabled) {
+if ('Notification' in window && Notification.permission === 'granted') this.scheduleNext();
+else { r.enabled = false; AppState.save('settings'); this.renderState(); }
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && AppState.data.settings.reminders.enabled) this.scheduleNext(); });
+}
+};
+async function registerServiceWorker() {
+if (!('serviceWorker' in navigator)) return;
+try {
+await navigator.serviceWorker.register('./sw.js', { scope: './' });
+} catch (e) {
+// Тихо игнорируем: SW недоступен на file://, в некоторых webview,
+// или сервер отдаёт неверный MIME-тип — приложение и без него работает.
+console.warn('Service worker registration failed', e);
+}
+}
+async function init() {
+AppState.init();
+await Products.initDefaults();
+Products.initGolden();
+Profile.load();
+Profile.updateActivityDesc();
+ShopUI.bindImg('np_img_file', 'np_img', 'np_img_preview');
+ShopUI.bindImg('edit_img_file', 'edit_img', 'edit_img_preview');
+ShopUI.initCtxMenu();
+document.getElementById('import-dump').addEventListener('change', e => BackupSystem.importFullDump(e));
+const debouncedProfileUpdate = debounce(() => { Profile.calc(); AppState.save('profile'); }, 250);
+['age', 'height', 'weight'].forEach(id => { document.getElementById(id).addEventListener('input', () => { const raw = document.getElementById(id).value; const v = raw === '' ? NaN : +raw; if (Profile.inRange(id, v)) AppState.data.profile[id] = v; debouncedProfileUpdate(); }); });
+document.getElementById('activity').addEventListener('input', () => { AppState.data.profile.activity = +document.getElementById('activity').value; debouncedProfileUpdate(); });
+document.getElementById('activity').addEventListener('change', () => { AppState.data.profile.activity = document.getElementById('activity').value; Profile.updateActivityDesc(); debouncedProfileUpdate(); });
+Shop.render();
+MeasureUI.renderMeas();
+InfoUI.highlightCurrentGoal();
+UI.applyLang();
+Profile.calc();
+Reminders.init();
+registerServiceWorker();
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
