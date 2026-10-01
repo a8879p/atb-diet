@@ -608,6 +608,13 @@ transition: left .15s
 .avail-switch.on i {
 left: 19px
 }
+.opt-switch-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 8px 0;
+font-size: 14px
+}
 .del {
 margin-left: 8px;
 cursor: pointer;
@@ -1702,6 +1709,11 @@ onclick="Profile.setGoal('gain')" data-i18n="profile.gain">Набор</button><b
 class="seg-item active" id="g-loss" onclick="Profile.setGoal('loss')"
 data-i18n="profile.loss">Снижение жира</button></div>
 </div>
+<div class="form-group"><label class="form-label" data-i18n="profile.meals_settings">Приёмы пищи</label>
+<div class="opt-switch-row"><span data-i18n="profile.snack1">Перекус №1 (11:00)</span><div class="avail-switch on" id="sw-snack1" onclick="Profile.toggleSnack('snack1')"><i></i></div></div>
+<div class="opt-switch-row"><span data-i18n="profile.snack2">Перекус №2 (17:00)</span><div class="avail-switch on" id="sw-snack2" onclick="Profile.toggleSnack('snack2')"><i></i></div></div>
+<div class="opt-switch-row"><span data-i18n="profile.casein_toggle">Перекус-казеин (22:30)</span><div class="avail-switch on" id="sw-casein" onclick="Profile.toggleSnack('casein')"><i></i></div></div>
+</div>
 <div class="result" id="result">
 <div class="result-big" id="rKcal" style="color:var(--macro-kcal)">—</div>
 <div class="result-sub" data-i18n="profile.kcal_per_day">ккал в день</div>
@@ -1963,6 +1975,8 @@ ru: {
 "diag.at_target": "при цели",
 "err.critical": "Критическая ошибка: ",
 "err.promise": "Ошибка промиса: ",
+'diag.casein_missing_title': 'Нет продукта для казеинового перекуса', 'diag.casein_missing_text': 'В профиле включён перекус-казеин, но среди продуктов нет творога/казеина. Добавьте творог/казеин в список продуктов или отключите этот перекус в профиле.',
+'profile.meals_settings': 'Приёмы пищи', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеин (22:30)',
 'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
 'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 'plan.dayTotal': 'Итог дня',
 'plan.balance': 'Баланс КБЖУ', 'plan.mark_day_done': 'Отметить день пройденным',
@@ -2121,6 +2135,8 @@ ua: {
 "diag.at_target": "при цілі",
 "err.critical": "Критична помилка: ",
 "err.promise": "Помилка промісу: ",
+'diag.casein_missing_title': 'Немає продукту для казеїнового перекусу', 'diag.casein_missing_text': 'У профілі увімкнено перекус-казеїн, але серед продуктів немає сиру кисломолочного/казеїну. Додайте сир кисломолочний/казеїн до списку продуктів або вимкніть цей перекус у профілі.',
+'profile.meals_settings': 'Прийоми їжі', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеїн (22:30)',
 'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
 'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 'plan.dayTotal': 'Підсумок дня',
 'plan.balance': 'Баланс КБЖВ', 'plan.mark_day_done': 'Позначити день пройденим',
@@ -2193,7 +2209,7 @@ return { value: parseFloat(m[1].replace(',', '.')) || CONFIG.DEFAULTS.defaultWei
 }
 const AppState = {
 data: {
-profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', macroLevel: 'optim' },
+profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', macroLevel: 'optim', snack1: true, snack2: true, casein: true },
 weekList: [], measHistory: [], cookChecks: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
 },
 runtime: { products: [], menuPlan: null, currentDay: 0, targets: { kcal: 0, protein: 0, fat: 0, carbs: 0, fiber: 0, water: 0 }, lastMenuParams: null },
@@ -2847,6 +2863,7 @@ if (wantCutG > 0) { const newW = Math.max(minW, Math.round((meat.weight - wantCu
 }
 },
 buildCaseinSnack(dayIndex, pools, targets) {
+if (!CONFIG.MEALS.caseinEnabled) return { components: [], totals: { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 } };
 let comp = null;
 const pool = pools.proteinCasein;
 if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; let cw = CONFIG.PORTIONS.caseinPack; const pg = pItem.weight > 0 ? pItem.p / pItem.weight : 0; if (targets && pg > 0) { const share = 1 - CONFIG.MEALS.proteinPct.reduce((a, b) => a + b, 0); cw = Math.max(100, Math.min(300, Math.round(targets.proteinG * share / pg / 50) * 50)); } const s = this.scale(pItem, cw); comp = { item: pItem, weight: cw, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
@@ -2856,9 +2873,27 @@ if (comp) { totals.kcal = comp.kcal; totals.p = comp.p; totals.f = comp.f; total
 return { components, totals };
 },
 recalc(meal) { const t = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 }; meal.components.forEach(c => { t.kcal += c.kcal; t.p += c.p; t.f += c.f; t.c += c.c; t.fib += c.fib; t.price += c.price; }); meal.totals = t; },
+applyMealsConfig(s1, s2, cas) {
+const BASE_KCAL = [0.25, 0.125, 0.25, 0.125, 0.25];
+const BASE_PROT = [0.19, 0.13, 0.22, 0.13, 0.16];
+const active = [0, 2, 4].concat(s1 ? [1] : [], s2 ? [3] : []).sort((a, b) => a - b);
+const kcalSum = active.reduce((a, i) => a + BASE_KCAL[i], 0);
+const protSum = active.reduce((a, i) => a + BASE_PROT[i], 0);
+const protTargetSum = cas ? BASE_PROT.reduce((a, b) => a + b, 0) : 1;
+const kcalPct = [0, 0, 0, 0, 0], proteinPct = [0, 0, 0, 0, 0];
+active.forEach(i => { kcalPct[i] = BASE_KCAL[i] / kcalSum; proteinPct[i] = BASE_PROT[i] * (protTargetSum / protSum); });
+CONFIG.MEALS.kcalPct = kcalPct;
+CONFIG.MEALS.proteinPct = proteinPct;
+CONFIG.MEALS.snackIndices = [1, 3].filter(i => (i === 1 ? s1 : s2));
+CONFIG.MEALS.caseinIndex = cas ? 5 : null;
+CONFIG.MEALS.caseinEnabled = cas;
+CONFIG.MEALS.enabledIndices = active.concat(cas ? [5] : []);
+CONFIG.MEALS.totalCount = CONFIG.MEALS.enabledIndices.length;
+},
 build() {
 const p = AppState.runtime.lastMenuParams;
 if (!p) return;
+this.applyMealsConfig(p.snack1 !== false, p.snack2 !== false, p.casein !== false);
 const targets = Targets.plan(p.sex, p.age, p.weight, p.height, p.activity, p.goal, p.level);
 const allCarb = AppState.runtime.products.filter(x => Classify.get(x) === 'carb' && !Classify.isGarlic(x.name));
 const allProtein = AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && !Classify.isCasein(x.name) && !Classify.isGarlic(x.name));
@@ -2869,6 +2904,11 @@ allCarb.forEach(c => { if (Classify.isBreadOrLavash(c.name)) breadLavash.push(c)
 const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name)), carbBread: breadLavash, instantNoodles, fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
 const totalProteinCount = proteinFillet.length + proteinEggs.length + proteinCanned.length + proteinOther.length + pools.proteinCasein.length;
 if (totalProteinCount === 0 || allCarb.length === 0) { AppState.runtime.menuPlan = null; this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render(); return; }
+const caseinRequested = p.casein !== false;
+const caseinAvailable = pools.proteinCasein.length > 0;
+const effectiveCasein = caseinRequested && caseinAvailable;
+if (effectiveCasein !== caseinRequested) this.applyMealsConfig(p.snack1 !== false, p.snack2 !== false, effectiveCasein);
+const caseinMissing = caseinRequested && !caseinAvailable;
 if (!pools.carbMain.length) pools.carbMain = [...pools.carbBread];
 if (!pools.fatCooking.length) pools.fatCooking = [...pools.fat];
 pools.carbMainByDayMeal = {};
@@ -2898,7 +2938,7 @@ const sweetLimit = cutMode ? CONFIG.PORTIONS.sweetenerCutMax : (p.goal === 'main
 const days = [];
 for (let d = 0; d < CONFIG.TOTAL_DAYS; d++) {
 const caseinMeal = this.buildCaseinSnack(d, pools, targets);
-if (pools.sweetener.length > 0) {
+if (CONFIG.MEALS.caseinEnabled && pools.sweetener.length > 0) {
 const sItem = pools.sweetener[d % pools.sweetener.length];
 const carbPerG = sItem.c / sItem.weight;
 let sweetW = sweetLimit;
@@ -2910,12 +2950,17 @@ let daySum = { p: caseinMeal.totals.p, f: caseinMeal.totals.f, c: caseinMeal.tot
 const addC = (mIdx, item, weight) => { if (!item || weight <= 0) return; const s = this.scale(item, weight); mealComps[mIdx].push({ item, weight, ...s }); daySum.p += s.p; daySum.f += s.f; daySum.c += s.c; daySum.kcal += s.kcal; };
 [0, 2, 4].forEach((m, idx) => { if (pools.veggie.length) addC(m, pools.veggie[(d * 3 + idx) % pools.veggie.length], CONFIG.PORTIONS.veggie); });
 if (pools.garlic.length) addC(4, pools.garlic[d % pools.garlic.length], Math.min(CONFIG.PORTIONS.garlicMax, CONFIG.PORTIONS.veggie));
-[1, 3].forEach(m => { if (pools.breadLavash.length) { const shift = (d * 2 + (m === 1 ? 0 : 1)) % pools.breadLavash.length; const bItem = pools.breadLavash[shift]; let bW = CONFIG.PORTIONS.snackBread; if (p.goal === 'cut') bW = Math.max(CONFIG.PORTIONS.snackBreadMinLoss, Math.min(50, bW)); addC(m, bItem, bW); } });
+// Хлеб на перекусе раньше был фиксированной порцией (80 г / 20–50 г на сушке) независимо от того,
+// сколько калорий реально приходится на этот перекус. При отключении одного из перекусов доля
+// оставшегося растёт (см. applyMealsConfig), поэтому и хлеб масштабируем тем же коэффициентом —
+// иначе «вырастал» только белковый компонент, а хлеб оставался прежним.
+const BASE_SNACK_KCAL = 0.125;
+CONFIG.MEALS.snackIndices.forEach(m => { if (pools.breadLavash.length) { const shift = (d * 2 + (m === 1 ? 0 : 1)) % pools.breadLavash.length; const bItem = pools.breadLavash[shift]; const snackScale = (CONFIG.MEALS.kcalPct[m] || BASE_SNACK_KCAL) / BASE_SNACK_KCAL; let bW = Math.round(CONFIG.PORTIONS.snackBread * snackScale / 5) * 5; bW = Math.min(bW, 200); if (p.goal === 'cut') bW = Math.max(CONFIG.PORTIONS.snackBreadMinLoss, Math.min(Math.round(50 * snackScale / 5) * 5, 120)); addC(m, bItem, bW); } });
 let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
 if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
 if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
-[1, 3].forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
+CONFIG.MEALS.snackIndices.forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
 const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
 if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
@@ -2965,7 +3010,7 @@ meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p;
 this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
 days.push({ meals, totals: dayTotals });
 }
-AppState.runtime.menuPlan = { targets, days, goal: p.goal };
+AppState.runtime.menuPlan = { targets, days, goal: p.goal, caseinMissing };
 this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render();
 },
 // Получение данных дня с учётом пройденных дней (из снимка)
@@ -3008,9 +3053,10 @@ if (!dayData) {
 el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
 }
-let DB = 0, DF = 0, DC = 0;
+let DB = 0, DF = 0, DC = 0, visibleNum = 0;
 dayData.meals.forEach((meal, i) => {
 if (!meal.components.length) return;
+visibleNum++;
 const ordered = meal.components.slice().sort((a, b) => this.sortRank(a) - this.sortRank(b));
 let tb = 0, tf = 0, tc = 0, tg = 0;
 const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); tg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}</div><div class="num">${comp.weight.toFixed(0)}${ul}</div><div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
@@ -3021,7 +3067,7 @@ const isEaten = AppState.data.progress.meals[mealKey];
 const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
 : `<div class="meal-eaten-check ${isEaten ? 'on' : ''}" onclick="Progress.toggleMeal(${dayIdx}, ${i})">${isEaten ? '✓' : ''}</div>`;
-htmlArr.push(`<div class="bju-card"><div class="meal-title">${i + 1}. ${t('meal.' + i)} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
+htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('meal.' + i)} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span>${t('macro.weight')}</span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num">${tg.toFixed(0)} г</div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)} г</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)} г</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)} г</div></div></div>`);
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
 // Баланс КБЖУ
@@ -3091,6 +3137,7 @@ const isDone = AppState.data.progress.days[dayIdx]?.done;
 const t_ = (isDone && day.targets) ? day.targets : AppState.runtime.menuPlan.targets;
 if (!t_) { box.innerHTML = ''; return; }
 const issues = [];
+if (AppState.runtime.menuPlan.caseinMissing) issues.push(`<b>${t('diag.casein_missing_title')}:</b> ${t('diag.casein_missing_text')}`);
 const check = (label, actual, target) => { if (!target || target <= 0) return; const diff = (actual - target) / target; if (Math.abs(diff) <= CONFIG.MACRO.tolerance) return; issues.push(`<b>${label}:</b> ${actual.toFixed(0)} ${t('diag.at_target')} ${target.toFixed(0)} (${diff > 0 ? '+' : ''}${Math.round(diff * 100)}%)`); };
 check(t('diag.protein'), actualVals.p, t_.proteinG);
 check(t('diag.fat'), actualVals.f, t_.fatG);
@@ -3183,7 +3230,7 @@ if (AppState.data.progress.days[dayIdx]?.done) return;
 if (AppState.runtime.currentDay !== dayIdx) return;
 const meals = AppState.data.progress.meals;
 let allEaten = true;
-for (let i = 0; i < CONFIG.MEALS.totalCount; i++) {
+for (const i of CONFIG.MEALS.enabledIndices) {
 if (!meals[dayIdx + '-' + i]) {
 allEaten = false;
 break;
@@ -3508,6 +3555,13 @@ history.innerHTML = arr.slice().reverse().map((m, idxRev) => { const i = arr.len
 };
 const Profile = {
 setGender(g) { AppState.data.profile.gender = g; document.getElementById('gm').classList.toggle('active', g === 'm'); document.getElementById('gf').classList.toggle('active', g === 'f'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
+toggleSnack(key) {
+const cur = AppState.data.profile[key] !== false;
+AppState.data.profile[key] = !cur;
+document.getElementById('sw-' + (key === 'casein' ? 'casein' : key)).classList.toggle('on', !cur);
+AppState.save('profile');
+this.calc();
+},
 setGoal(g) { AppState.data.profile.goal = g; document.getElementById('g-maintain').classList.toggle('active', g === 'maintain'); document.getElementById('g-gain').classList.toggle('active', g === 'gain'); document.getElementById('g-loss').classList.toggle('active', g === 'loss'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
 updateActivityDesc() { const val = document.getElementById('activity').value; const map = { '1.2': t('profile.activity_1_2'), '1.375': t('profile.activity_1_375'), '1.55': t('profile.activity_1_55'), '1.725': t('profile.activity_1_725'), '1.9': t('profile.activity_1_9') }; document.getElementById('activityDesc').textContent = map[val] || map['1.55']; },
 LIMITS: { age: [14, 90], height: [120, 230], weight: [35, 250] },
@@ -3558,7 +3612,8 @@ calc() {
 const P = this.readParams();
 if (!P) return;
 this.renderResults(P);
-AppState.runtime.lastMenuParams = { sex: P.sex, age: P.age, weight: P.weight, height: P.height, activity: P.act, goal: P.goal };
+AppState.runtime.lastMenuParams = { sex: P.sex, age: P.age, weight: P.weight, height: P.height, activity: P.act, goal: P.goal,
+snack1: AppState.data.profile.snack1 !== false, snack2: AppState.data.profile.snack2 !== false, casein: AppState.data.profile.casein !== false };
 Products.refreshAll();
 Menu.build();
 },
@@ -3577,6 +3632,9 @@ document.getElementById('gf').classList.toggle('active', p.gender === 'f');
 document.getElementById('g-maintain').classList.toggle('active', p.goal === 'maintain');
 document.getElementById('g-gain').classList.toggle('active', p.goal === 'gain');
 document.getElementById('g-loss').classList.toggle('active', p.goal === 'loss');
+document.getElementById('sw-snack1').classList.toggle('on', p.snack1 !== false);
+document.getElementById('sw-snack2').classList.toggle('on', p.snack2 !== false);
+document.getElementById('sw-casein').classList.toggle('on', p.casein !== false);
 }
 };
 const BackupSystem = {
@@ -3684,6 +3742,7 @@ const now = fromDate || new Date();
 let best = null;
 for (let dayOffset = 0; dayOffset <= 1 && !best; dayOffset++) {
 for (let i = 0; i < times.length; i++) {
+if (!CONFIG.MEALS.enabledIndices.includes(i)) continue;
 const [hh, mm] = times[i].split(':').map(Number);
 const dt = new Date(now); dt.setDate(now.getDate() + dayOffset); dt.setHours(hh, mm, 0, 0);
 if (dt.getTime() > now.getTime() && (!best || dt.getTime() < best.time)) best = { time: dt.getTime(), name: t('meal.' + i), timeStr: times[i] };
