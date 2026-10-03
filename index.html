@@ -589,7 +589,12 @@ background: var(--border);
 position: relative;
 cursor: pointer;
 transition: background .15s;
-margin-left: 4px
+margin-left: 4px;
+-webkit-user-select: none;
+user-select: none;
+-webkit-touch-callout: none;
+-webkit-tap-highlight-color: transparent;
+outline: none
 }
 .avail-switch.on {
 background: var(--primary)
