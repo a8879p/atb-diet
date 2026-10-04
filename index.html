@@ -49,6 +49,10 @@ line-height: 1.4;
 -webkit-font-smoothing: antialiased
 }
 .app {
+-webkit-user-select: none;
+user-select: none;
+-webkit-touch-callout: none;
+-webkit-tap-highlight-color: transparent;
 max-width: 520px;
 margin: 20px auto;
 background: var(--bg-card);
@@ -321,7 +325,8 @@ display: block;
 color: #374151
 }
 .input,
-.select {
+.select,
+textarea {
 width: 100%;
 padding: 10px 12px;
 border: 1px solid #d1d5db;
@@ -330,7 +335,10 @@ font-size: 15px;
 background: #fff;
 color: var(--text-main);
 outline: none;
-transition: var(--transition)
+transition: var(--transition);
+-webkit-user-select: text;
+user-select: text;
+-webkit-touch-callout: default
 }
 .input:focus,
 .select:focus {
