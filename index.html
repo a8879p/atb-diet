@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#047857">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ATB-Diet">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>ATB-Diet v2.1</title>
 <style>
 :root {
@@ -30,6 +32,8 @@
 --pt-animal: #378ADD;
 --pt-plant: #1D9E75;
 --macro-kcal: #1f2937;
+--macro-fiber: #7c3aed;
+--ok: #15803d;
 --radius: 8px;
 --radius-lg: 12px;
 --shadow: 0 4px 6px -1px rgba(0, 0, 0, .08), 0 2px 4px -1px rgba(0, 0, 0, .04);
@@ -554,6 +558,71 @@ flex-shrink: 0;
 text-align: right;
 margin-right: 10px
 }
+.snack-types-cap {
+font-size: 12px;
+color: var(--text-muted);
+margin-bottom: 6px
+}
+.snack-types {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 10px 12px;
+margin-bottom: 10px
+}
+.snack-types.dim {
+opacity: 0.5
+}
+.snack-types-title {
+font-size: 13px;
+font-weight: 700;
+color: var(--text-main);
+margin-bottom: 8px
+}
+.snack-chips {
+display: flex;
+flex-wrap: wrap;
+gap: 6px
+}
+.snack-chip {
+min-height: 36px;
+padding: 6px 12px;
+border-radius: 18px;
+border: 1px solid var(--border);
+background: var(--bg-card);
+color: var(--text-muted);
+font-family: inherit;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer
+}
+.snack-chip.on {
+background: var(--primary-light);
+border-color: var(--primary);
+color: var(--primary)
+}
+.snack-chip.on::before {
+content: "✓ "
+}
+@supports (-webkit-touch-callout: none) {
+input, select, textarea {
+font-size: 16px
+}
+}
+.snack-chip:disabled {
+cursor: not-allowed
+}
+.snack-types-off {
+margin-left: 8px;
+font-size: 12px;
+font-weight: 500;
+color: var(--text-muted)
+}
+.snack-types-warn {
+font-size: 12px;
+color: var(--danger);
+margin-top: 6px
+}
 .shop-group-title {
 font-size: 13px;
 font-weight: 700;
@@ -664,96 +733,129 @@ font-size: 12px;
 width: 100%;
 color: var(--text-muted)
 }
-.dev-chart {
+.cook-w {
+display: block;
+font-size: 11px;
+font-weight: 500;
+color: var(--text-muted);
+margin-top: 1px
+}
+.eaten-card {
 border: 1px solid var(--border);
 border-radius: var(--radius);
-padding: 10px 10px 8px
-}
-.dev-tiles {
-display: grid;
-grid-template-columns: repeat(4, minmax(0, 1fr));
-gap: 6px;
-align-items: stretch
-}
-@media(max-width:340px) {
-.dev-tiles {
-grid-template-columns: repeat(2, minmax(0, 1fr))
-}
-}
-.dev-tile {
---st: #047857;
---st-text: #047857;
-background: var(--border-soft);
-border-radius: 8px;
-padding: 6px 8px 7px;
+padding: 14px 6px 10px;
 display: flex;
 flex-direction: column;
-min-width: 0
+gap: 10px
 }
-.dev-tile.low {
---st: #f2b90c;
---st-text: #a16207
+.eaten-row {
+display: flex;
+gap: 2px
 }
-.dev-tile.high {
---st: #dc2626;
---st-text: #dc2626
+.eaten-m {
+flex: 1;
+min-width: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+gap: 8px
 }
-.dev-tile.tappable {
+.eaten-m.tappable {
 cursor: pointer
 }
-.dev-tile-name {
-font-size: 11px;
-font-weight: 700;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis
+.ering {
+width: 66px;
+height: 66px;
+border-radius: 50%;
+display: grid;
+place-items: center
 }
-.dev-tile-val {
+.ering>div {
+width: 54px;
+height: 54px;
+border-radius: 50%;
+background: var(--bg-card);
+display: grid;
+place-items: center;
+font-weight: 800;
+font-size: 18px;
+letter-spacing: -0.3px;
+color: var(--text-main);
+font-variant-numeric: tabular-nums
+}
+.eaten-chip {
+width: 100%;
+box-sizing: border-box;
+border-radius: 10px;
+padding: 6px 2px;
+text-align: center;
+background: #eef0f3
+}
+.eaten-l {
+font-size: 12px;
+font-weight: 700;
+color: var(--text-main);
+line-height: 1.2
+}
+.eaten-d {
+font-size: 11px;
+font-weight: 600;
+color: var(--text-muted);
+font-variant-numeric: tabular-nums;
+line-height: 1.2
+}
+.eaten-t {
 font-size: 15px;
 font-weight: 800;
-line-height: 1.25;
-font-variant-numeric: tabular-nums
+color: var(--text-main);
+font-variant-numeric: tabular-nums;
+line-height: 1.25
 }
-.dev-tile-delta {
-font-size: 11px;
-font-weight: 600;
-color: var(--st-text);
-font-variant-numeric: tabular-nums
+.eaten-m[data-m="p"] .ering>div, .eaten-m[data-m="p"] .eaten-t {
+color: var(--macro-protein)
 }
-.dev-tile-bar {
-margin-top: auto;
-padding-top: 4px
+.eaten-m[data-m="p"] .eaten-chip {
+background: #eaf0ff
 }
-.dev-tile-bar>i {
-display: block;
-height: 3px;
-border-radius: 2px;
-background: var(--st)
+.eaten-m[data-m="f"] .ering>div, .eaten-m[data-m="f"] .eaten-t {
+color: var(--macro-fat)
 }
-.pt-strip {
+.eaten-m[data-m="f"] .eaten-chip {
+background: #fbf0e4
+}
+.eaten-m[data-m="c"] .ering>div, .eaten-m[data-m="c"] .eaten-t {
+color: var(--macro-carb)
+}
+.eaten-m[data-m="c"] .eaten-chip {
+background: #e6f4ee
+}
+.eaten-m[data-m="n"] .ering>div, .eaten-m[data-m="n"] .eaten-t {
+color: var(--macro-fiber)
+}
+.eaten-m[data-m="n"] .eaten-chip {
+background: #f1ebfd
+}
+.eaten-m.ok .ering>div {
+color: var(--ok)
+}
+.eaten-split {
 display: flex;
-height: 4px;
-border-radius: 2px;
-overflow: hidden;
-margin-top: 3px
-}
-.pt-strip>i {
-display: block;
-height: 100%
-}
-.pt-nums {
-display: flex;
-justify-content: space-between;
+gap: 6px;
 font-size: 11px;
-font-weight: 600;
-margin-top: 2px;
-font-variant-numeric: tabular-nums
+font-weight: 700
 }
-.dev-legend {
-font-size: 10px;
+.eaten-legend {
+display: flex;
+justify-content: center;
+gap: 14px;
+font-size: 11px;
+color: var(--text-muted)
+}
+.eaten-hint {
+font-size: 12px;
 color: var(--text-light);
-text-align: center;
-margin-top: 8px
+text-align: center
 }
 .activity-desc {
 font-size: 11px;
@@ -889,6 +991,53 @@ font-variant-numeric: tabular-nums
 .cook-price {
 color: var(--text-muted);
 font-size: 12px
+}
+@media print {
+.print-period {
+display: block !important;
+font-size: 15px;
+font-weight: 700;
+margin: 0 0 8px;
+color: #000
+}
+.cook-group {
+margin-bottom: 6px !important
+}
+.cook-group-title {
+padding: 4px 8px !important;
+font-size: 11px !important
+}
+.cook-row {
+padding: 3px 8px !important
+}
+.cook-name {
+font-size: 12px !important
+}
+.cook-weight {
+font-size: 12px !important
+}
+.cook-price {
+font-size: 10px !important
+}
+.cook-w {
+font-size: 10px !important;
+margin-top: 0 !important
+}
+.cook-check {
+width: 14px !important;
+height: 14px !important;
+margin-right: 8px !important;
+border-radius: 3px !important;
+font-size: 10px !important
+}
+.cook-total-bar {
+padding: 6px 10px !important;
+font-size: 12px !important;
+margin: 6px 0 !important
+}
+}
+.print-period {
+display: none
 }
 .cook-total-bar {
 display: flex;
@@ -1385,12 +1534,6 @@ padding: 10px 14px
 .cook-row {
 padding: 13px 14px
 }
-.dev-tile-name {
-font-size: 12px
-}
-.dev-tile-delta {
-font-size: 12px
-}
 .note {
 font-size: 14px;
 line-height: 1.6
@@ -1865,7 +2008,7 @@ totalCount: 6
 },
 PORTIONS: {
 veggie: 150, cookedTarget: 280, snackBread: 80, snackBreadMinLoss: 20, grainMin: 30,
-meatMainMin: 35, meatMainMax: 250, meatSnackMin: 20, meatSnackMax: 130,
+meatMainMin: 35, meatMainMax: 300, meatSnackMin: 20, meatSnackMax: 130,
 instantNoodlePack: 60, caseinPack: 200, sweetenerMax: 50, sweetenerCutMax: 15,
 garlicMax: 15, eggsMin: 2, eggsMax: 5
 },
@@ -1876,7 +2019,7 @@ maxImageSize: 300 * 1024, minEggs: 2, maxEggs: 5, carbCountThreshold: 3
 MACRO: { tolerance: 0.10, balanceTolerance: 0.05 },
 CAT: {
 order: ['meat', 'carb', 'fat', 'fruits', 'snack'],
-labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — углеводы', fat: 'Жиры', fruits: 'Фрукты, йогурты, напитки', snack: 'Перекусы' }
+labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — углеводы', fat: 'Жиры', fruits: 'Фрукты, кисломолочные продукты, напитки', snack: 'Перекусы' }
 }
 };
 const I18N = {
@@ -1912,7 +2055,7 @@ ru: {
 "info.r_protein": "Белок, г/кг в сутки",
 "info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
 "info.r_protein_cut": "Белок при дефиците энергии",
-"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжировой массы у худых силовых</small>",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г на кг безжировой массы — для людей с низким процентом жира, занимающихся силовыми тренировками</small>",
 "info.r_protein_meal": "Белок за приём",
 "info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>каждые 3–5 ч, 4–6 приёмов (ACSM, ISSN)</small>",
 "info.r_fat": "Жиры",
@@ -1940,11 +2083,11 @@ ru: {
 "info.bulk_prot4": "Распределение: 4–6 приёмов в день",
 "info.bulk_fat": "<b>25–35%</b> калорийности (в приложении {0}%), не ниже 0.5 г/кг. Нужны для гормонов и усвоения витаминов A/D/E/K.",
 "info.bulk_carb": "Остаток калорий после белка и жиров — основной источник энергии тренировок (ориентиры ACSM — в таблице выше).",
-"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE; в приложении — {0}%. ISSN: чем больше жировой массы, тем агрессивнее допустим дефицит; у худых лучше медленнее — так сохраняется больше мышц.",
+"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE; в приложении — {0}%. ISSN: чем больше жировой массы, тем агрессивнее допустим дефицит; у людей с низким процентом жира лучше медленнее — так сохраняется больше мышц.",
 "info.cut_rate": "<b>Скорость:</b> −0.5–1.0% веса в неделю (Helms et al., 2014).",
 "info.cut_floor": "Нижняя граница: не ниже BMR и не ниже 1200 ккал (женщины) / 1500 ккал (мужчины).",
 "info.cut_prot1": "<b>1.8–2.7 г/кг</b> общего веса (в приложении {0})",
-"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефиците энергии; ISSN: 2.3–3.1 г/кг безжировой массы для худых силовых",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефиците энергии; ISSN: 2.3–3.1 г на кг безжировой массы (вес тела без жира) — для людей с низким процентом жира, занимающихся силовыми тренировками, чтобы максимально сохранить мышцы",
 "info.cut_prot3": "При заболеваниях почек высокий белок — только по согласованию с врачом",
 "info.cut_fat": "<b>25–30%</b> калорийности (в приложении {0}%), не ниже 20% и 0.5 г/кг.",
 "info.cut_carb": "Остаток калорий, <b>не менее 2 г/кг</b> — чтобы сохранять интенсивность тренировок.",
@@ -1961,7 +2104,7 @@ ru: {
 "cat.meat": "Мясо, рыба, яйца",
 "cat.carb": "Гарниры — углеводы",
 "cat.fat": "Жиры",
-"cat.fruits": "Фрукты, йогурты, напитки",
+"cat.fruits": "Фрукты, кисломолочные продукты, напитки",
 "cat.snack": "Перекусы",
 "shop.b100": "Белки/100г",
 "shop.f100": "Жиры/100г",
@@ -1993,6 +2136,7 @@ ru: {
 'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
 'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 'plan.dayTotal': 'Итог дня',
 'plan.balance': 'Баланс КБЖУ', 'plan.mark_day_done': 'Отметить день пройденным',
+'cook.ready': '≈ {0} г после готовки', 'cook.print_title': 'Приготовление: набор продуктов', 'cook.period_1': 'на 1 день', 'cook.period_3': 'на 3 дня', 'cook.period_6': 'на 6 дней', 'cook.period_10': 'на 10 дней', 'cook.period_n': 'на {0} дн.', 'snacktype.title': 'Что можно в перекусах', 'snacktype.off': 'выключен в профиле', 'snacktype.meat': 'Мясо, птица', 'snacktype.egg': 'Яйца', 'snacktype.fish': 'Рыба', 'snacktype.canned': 'Консервы', 'snacktype.dairy': 'Творог, йогурт', 'snacktype.cheese': 'Сыр', 'snacktype.bread': 'Хлеб, лаваш', 'snacktype.noodles': 'Лапша', 'snacktype.empty': 'Всё выключено: перекус будет пустым. Если он не нужен, отключите его в профиле', 'eaten.title': 'Съедено за день', 'eaten.hint': 'Отметьте съеденные приёмы — кольца заполнятся',
 'plan.unmark_day': '↩️ Снять отметку дня',
 'plan.day_completed': 'День отмечен пройденным ✓',
 'plan.day_unmarked': 'Отметка дня снята',
@@ -2072,7 +2216,7 @@ ua: {
 "info.r_protein": "Білок, г/кг на добу",
 "info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
 "info.r_protein_cut": "Білок при дефіциті енергії",
-"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г/кг безжирової маси у худих силових</small>",
+"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г на кг безжирової маси — для людей з низьким відсотком жиру, які займаються силовими тренуваннями</small>",
 "info.r_protein_meal": "Білок на прийом",
 "info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>кожні 3–5 год, 4–6 прийомів (ACSM, ISSN)</small>",
 "info.r_fat": "Жири",
@@ -2100,11 +2244,11 @@ ua: {
 "info.bulk_prot4": "Розподіл: 4–6 прийомів на день",
 "info.bulk_fat": "<b>25–35%</b> калорійності (у застосунку {0}%), не нижче 0.5 г/кг. Потрібні для гормонів і засвоєння вітамінів A/D/E/K.",
 "info.bulk_carb": "Залишок калорій після білка та жирів — основне джерело енергії тренувань (орієнтири ACSM — у таблиці вище).",
-"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE; у застосунку — {0}%. ISSN: чим більше жирової маси, тим агресивніший допустимий дефіцит; у худих краще повільніше — так зберігається більше м'язів.",
+"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE; у застосунку — {0}%. ISSN: чим більше жирової маси, тим агресивніший допустимий дефіцит; у людей з низьким відсотком жиру краще повільніше — так зберігається більше м'язів.",
 "info.cut_rate": "<b>Швидкість:</b> −0.5–1.0% ваги на тиждень (Helms et al., 2014).",
 "info.cut_floor": "Нижня межа: не нижче BMR і не нижче 1200 ккал (жінки) / 1500 ккал (чоловіки).",
 "info.cut_prot1": "<b>1.8–2.7 г/кг</b> загальної ваги (у застосунку {0})",
-"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефіциті енергії; ISSN: 2.3–3.1 г/кг безжирової маси для худих силових",
+"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефіциті енергії; ISSN: 2.3–3.1 г на кг безжирової маси (вага тіла без жиру) — для людей з низьким відсотком жиру, які займаються силовими тренуваннями, щоб максимально зберегти м'язи",
 "info.cut_prot3": "При захворюваннях нирок високий білок — лише за погодженням з лікарем",
 "info.cut_fat": "<b>25–30%</b> калорійності (у застосунку {0}%), не нижче 20% і 0.5 г/кг.",
 "info.cut_carb": "Залишок калорій, <b>не менше 2 г/кг</b> — щоб зберігати інтенсивність тренувань.",
@@ -2121,7 +2265,7 @@ ua: {
 "cat.meat": "М'ясо, риба, яйця",
 "cat.carb": "Гарніри — вуглеводи",
 "cat.fat": "Жири",
-"cat.fruits": "Фрукти, йогурти, напої",
+"cat.fruits": "Фрукти, кисломолочні продукти, напої",
 "cat.snack": "Перекуси",
 "shop.b100": "Білки/100г",
 "shop.f100": "Жири/100г",
@@ -2153,6 +2297,7 @@ ua: {
 'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
 'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 'plan.dayTotal': 'Підсумок дня',
 'plan.balance': 'Баланс КБЖВ', 'plan.mark_day_done': 'Позначити день пройденим',
+'cook.ready': '≈ {0} г після приготування', 'cook.print_title': 'Приготування їжі: набір продуктів', 'cook.period_1': 'на 1 день', 'cook.period_3': 'на 3 дні', 'cook.period_6': 'на 6 днів', 'cook.period_10': 'на 10 днів', 'cook.period_n': 'на {0} дн.', 'snacktype.title': 'Що можна в перекусах', 'snacktype.off': 'вимкнено в профілі', 'snacktype.meat': 'М’ясо, птиця', 'snacktype.egg': 'Яйця', 'snacktype.fish': 'Риба', 'snacktype.canned': 'Консерви', 'snacktype.dairy': 'Сир, йогурт', 'snacktype.cheese': 'Сир твердий', 'snacktype.bread': 'Хліб, лаваш', 'snacktype.noodles': 'Локшина', 'snacktype.empty': 'Все вимкнено: перекус буде порожнім. Якщо він не потрібен, вимкніть його в профілі', 'eaten.title': 'З’їдено за день', 'eaten.hint': 'Позначте з’їдені прийоми — кільця заповняться',
 'plan.unmark_day': '↩️ Зняти позначку дня',
 'plan.day_completed': 'День позначено пройденим ✓',
 'plan.day_unmarked': 'Позначку дня знято',
@@ -2387,7 +2532,9 @@ isFillet: n => /філе|филе/i.test(n || ''),
 isEggName: n => /яйц|яйце|egg/i.test(n || ''),
 isCannedFood: n => /консерв|тунец|паштет|печінка тріски|печень трески|шпрот|сардин|тушонк|тушёнк/i.test(n || ''),
 isHardCheese: n => /сир твердий|сир напівтвердий|сир плавлений|сыр твердый|сыр плавленый/i.test(n || ''),
-isInstantNoodle: n => /вермішель|вермишель/i.test(n || '') && /швидкого|быстрого|мгновен/i.test(n || ''),
+isInstantNoodle: n => /вермішель|вермишель|локшин|лапш/i.test(n || '') && /швидк|быстр|мгновен/i.test(n || ''),
+isBanana: n => /банан/i.test(n || ''),
+isMeatOrFish: n => /яловичин|говяд|свинин|телятин|баранин|кролик|(?<![а-яіїєґё])(?:риб|рыб)|хек|минтай|лосос|сьомг|семг|скумбр|тріск|треск|оселедц|сельд|форел|судак/i.test(n || ''),
 isYogurt: n => /йогурт/i.test(n || ''),
 isBreadOrLavash: n => /хліб|хлеб|лаваш|батон|багет/i.test(n || ''),
 isPotato: n => /картопл|картофел|potato/i.test(n || ''),
@@ -2396,6 +2543,56 @@ isGarlic: n => /часник|чеснок|garlic/i.test(n || ''),
 isPlantMarked: n => /соєв|соев|рослин|растит|веган|vegan|тофу|tofu|кокос|мигдал|миндал|горіх|орех|арахіс|арахис/i.test(n || ''),
 isAnimalName: n => /філе|филе|курк|курят|куриц|курча|індич|индей|яловичин|говяд|свинин|телятин|баранин|кролик|(?<![а-яіїєґё])(?:риб|рыб)|тунец|тунець|лосос|сьомг|семг|хек|минтай|скумбр|оселедц|сельд|яйц|яйце|молок|кефір|кефир|йогурт|(?<![а-яіїєґё])сир(?:ок|н\S*)?(?![а-яіїєґё])|творог|казеїн|казеин|печінк|печень|паштет|шпрот|сардин|тушонк|тушёнк|м['’ʼ]?яс|ковбас|сосиск|egg|chicken|beef|pork|fish|tuna|cheese|milk/i.test(n || ''),
 isAnimalProtein(item) { const n = (item && item.name) || ''; if (this.isPlantMarked(n)) return false; return this.isAnimalName(n) || this.get(item) === 'protein'; },
+// Клетчатка, г на 100 г продукта (сухого/сырого, как в плане). Справочные приблизительные значения;
+// если в каталоге у продукта задано поле fib, оно в приоритете.
+fiberPer100(name, group) {
+const g = (group || '').toLowerCase();
+if (g === 'protein' || g === 'sweetener') return 0;
+const n = (name || '').toLowerCase();
+const W = w => new RegExp('(^|[^а-яіїєґё])(?:' + w + ')([^а-яіїєґё]|$)');
+const table = [[W('вермішель|вермишель|локшин|лапш'), 3], [W('лаваш'), 2.5], [W('тостов[а-яіїєґё]*'), 2.5], [W('житн[а-яіїєґё]*'), 6], [/хліб|хлеб/, 5],
+[W('вівсян[а-яіїєґё]*|овсян[а-яіїєґё]*'), 10], [W('булгур'), 12], [W('перлов[а-яіїєґё]*'), 7.8], [W('ячн[а-яіїєґё]*|ячнев[а-яіїєґё]*'), 8], [W('пшенич[а-яіїєґё]*'), 3],
+[W('горох|гороховий'), 11], [/рис.*пропарен/, 1.5], [W('рис'), 1], [W('греч[а-яіїєґё]*|гречан[а-яіїєґё]*'), 11], [W('сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*'), 11],
+[W('кукурудз[а-яіїєґё]*|кукуруз[а-яіїєґё]*'), 2], [W('картопл[а-яіїєґё]*|картофел[а-яіїєґё]*'), 2], [W('банан[а-яіїєґё]*'), 2.6], [W('перец|перець'), 1.8], [W('морк[а-яіїєґё]*'), 2.4], [W('кабач[а-яіїєґё]*'), 1],
+[W('буряк|свекл[а-яіїєґё]*|свёкл[а-яіїєґё]*'), 2.5], [W('цибул[а-яіїєґё]*|лук'), 3], [W('часник|чеснок'), 1.5], [W('яблук[а-яіїєґё]*|яблок[а-яіїєґё]*'), 1.8],
+[W('лохин[а-яіїєґё]*|голубик[а-яіїєґё]*|чорниц[а-яіїєґё]*'), 2.5], [W('огір[а-яіїєґё]*|огур[а-яіїєґё]*'), 0.7], [W('помідор[а-яіїєґё]*|томат[а-яіїєґё]*'), 1.2], [W('капуст[а-яіїєґё]*'), 2], [W('горіх[а-яіїєґё]*|орех[а-яіїєґё]*'), 6]];
+for (const [re, v] of table) if (re.test(n)) return v;
+return 0;
+},
+// Коэффициент «готовый вес ÷ сырой вес» для круп, макарон, мяса и рыбы (вес в плане — сырой продукт).
+// Ориентир, зависит от способа приготовления (±10–15%). Для остальных продуктов возвращает null.
+cookFactor(name, group) {
+const g = (group || '').toLowerCase();
+if (g === 'sweetener' || g === 'veggie' || g === 'fat') return null;
+const n = (name || '').toLowerCase();
+if (/консерв|паштет|йогурт|молок|яйц|(^|[^а-яіїєґё])сир([^а-яіїєґё]|$)/.test(n)) return null;
+const W = w => new RegExp('(^|[^а-яіїєґё])(?:' + w + ')([^а-яіїєґё]|$)');
+if (g !== 'protein') {
+const grains = [[W('вермішель|вермишель|локшин[а-яіїєґё]*|лапш[а-яіїєґё]*|макарон[а-яіїєґё]*|спагеті'), 2], [W('рис'), 2.75], [W('греч[а-яіїєґё]*'), 2.75], [W('булгур'), 2.75],
+[W('вівсян[а-яіїєґё]*|овсян[а-яіїєґё]*'), 3.25], [W('перлов[а-яіїєґё]*'), 3.5], [W('ячн[а-яіїєґё]*'), 3.5], [W('пшенич[а-яіїєґё]*'), 3],
+[W('сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|горох'), 2.5], [W('кукурудз[а-яіїєґё]*|кукуруз[а-яіїєґё]*'), 3]];
+for (const [re, v] of grains) if (re.test(n)) return v;
+}
+if (g === 'protein' || g === '') {
+const meat = [[W('яловичин[а-яіїєґё]*|говяд[а-яіїєґё]*'), 0.6], [W('риб[а-яіїєґё]*|хек|минтай|лосос[а-яіїєґё]*|сьомг[а-яіїєґё]*|тріск[а-яіїєґё]*|форел[а-яіїєґё]*|скумбр[а-яіїєґё]*|судак'), 0.8],
+[W('філе|куряч[а-яіїєґё]*|курк[а-яіїєґё]*|індич[а-яіїєґё]*|індик[а-яіїєґё]*|бройлер[а-яіїєґё]*'), 0.72]];
+for (const [re, v] of meat) if (re.test(n)) return v;
+}
+return null;
+},
+// Тип продукта для настроек перекусов: meat, fish, egg, canned, dairy, cheese, bread, noodles.
+snackType(item) {
+const n = (item && item.name) || '';
+if (this.isInstantNoodle(n)) return 'noodles';
+if (this.isBreadOrLavash(n)) return 'bread';
+if (this.isEggName(n)) return 'egg';
+if (this.isCannedFood(n)) return 'canned';
+if (this.isHardCheese(n)) return 'cheese';
+if (this.isCasein(n)) return 'dairy';
+if (/(^|[^а-яіїєґё])(?:риб[а-яіїєґё]*|хек|минтай|лосос[а-яіїєґё]*|сьомг[а-яіїєґё]*|тріск[а-яіїєґё]*|форел[а-яіїєґё]*|скумбр[а-яіїєґё]*|судак|оселедц[а-яіїєґё]*)([^а-яіїєґё]|$)/i.test(n)) return 'fish';
+if (this.isFillet(n) || this.isMeatOrFish(n)) return 'meat';
+return 'dairy';
+},
 isCasein: n => /казеїн|казеин|творог|кисломолочний сир|сир кисломолочний|кисломолочный сыр|cottage|quark|skyr/i.test(n || ''),
 isPasta: n => /вермішель|вермишель|макарон|спагеті|локшина|лапша|паста|pasta|spaghetti|noodle/i.test(n || ''),
 isUnrefinedOil: n => /нерафін|нерафин|extra virgin/i.test(n || ''),
@@ -2418,13 +2615,16 @@ if (!cur || pricePerG < cur.pricePerG) best.set(key, { item: it, pricePerG });
 });
 return Array.from(best.values()).map(v => v.item);
 },
+// Доля съедобной части яйца (без скорлупы ~12%): таблицы БЖУ даны на 100 г съедобной части, а вес категории указан со скорлупой.
+eggEdibleShare: 0.88,
 eggWeightByCategory(name) {
 const n = (name || '').toLowerCase();
 if (n.includes('екстра') || n.includes('extra')) return 75;
+if (n.includes('велетн') || n.includes('вища')) return 70;
 if (n.includes('відбірн') || n.includes('отборн')) return 68;
 if (n.includes('3 кат')) return 40;
 if (n.includes('2 кат')) return 50;
-return 58;
+return 55;
 },
 get(item) {
 if (item.forceGroup) return item.forceGroup;
@@ -2446,10 +2646,11 @@ return 'veggie';
 },
 shopCategory(item) {
 const n = (item.name || item.n || '').toString().toLowerCase();
+if (Classify.isInstantNoodle(n)) return 'snack';
 if (/лаваш|хлеб|хліб|батон|багет|консерв|тунец|паштет|шпрот|сардин|сыр|сир твердий|сир напівтвердий|сир плавлений/i.test(n)) return 'snack';
 if (/куриц|курят|філе|филе|индейк|індич|говядин|ялович|свинин|рыб|риб|хек|лосос|яйц|яйце|морепрод/i.test(n)) return 'meat';
 if (/масл|олія|(?<!не)(?<!без)жир|орех|горіх|арахис|семечк|насіння/i.test(n)) return 'fat';
-if (/йогурт|сир кисломолочний|творог|кисломолочний|молоко|кефир|фрукт|ябл|банан|апельсин|ягод|локхина|сок|сік|чай|кофе|кава|вода/i.test(n)) return 'fruits';
+if (/йогурт|сир кисломолочний|творог|кисломолочний|молоко|кефир|фрукт|ябл|банан|апельсин|ягод|лохина|сок|сік|чай|кофе|кава|вода/i.test(n)) return 'fruits';
 return 'carb';
 },
 inferGroup(s, name) {
@@ -2540,7 +2741,7 @@ R([RICE, 'пропарен'], 'Рис', 'Рис'), R([RICE, 'басматі|ба
 R(['вермішель|вермишель|локшин|лапша', 'швидкого|быстрого'], 'Локшина швидкого приготування', 'Лапша быстрого приготовления'), R('вермішель|вермишель', 'Вермішель', 'Вермишель'),
 R('спагеті|спагетти|spaghetti', 'Спагеті', 'Спагетти'), R('макарон|локшин|лапша|pasta', 'Макарони', 'Макароны'), R('картопл|картофел', 'Картопля', 'Картофель'),
 // масла
-R([OIL + '|масло', 'оливков'], 'Олія оливкова', 'Масло оливковое'), R([OIL, 'соняшник|подсолнеч'], 'Олія соняшникова', 'Масло подсолнечное'), R([OIL, 'льнян|льон|ллян'], 'Олія лляна', 'Масло льняное'),
+R(['масл|масло', 'солодковершков|вершков|сливочн'], 'Масло вершкове', 'Масло сливочное'), R([OIL + '|масло', 'оливков'], 'Олія оливкова', 'Масло оливковое'), R([OIL, 'соняшник|подсолнеч'], 'Олія соняшникова', 'Масло подсолнечное'), R([OIL, 'льнян|льон|ллян'], 'Олія лляна', 'Масло льняное'),
 R([OIL, 'кокос'], 'Олія кокосова', 'Масло кокосовое'), R([OIL, 'ріпак|рапс'], 'Олія ріпакова', 'Масло рапсовое'), R([OIL, 'гарбуз|тыкв'], 'Олія гарбузова', 'Масло тыквенное'),
 R([OIL, 'кунжут'], 'Олія кунжутна', 'Масло кунжутное'), R(OIL, 'Олія', 'Масло растительное'),
 // овощи, зелень, грибы
@@ -2608,6 +2809,18 @@ if (item.image && (item.image.includes('./корзина/') || item.image.includ
 item.image = this.normalizeImagePath(item.image); migrated = true;
 }
 });
+if (AppState.data.weekList.some(it => it.net === undefined)) {
+try {
+const r = await fetch(this.CATALOG_PATH);
+if (r.ok) {
+const dj = await r.json(); const lst = dj.products || dj;
+if (Array.isArray(lst)) {
+const byName = new Map(lst.map(x => [x.name, x]));
+AppState.data.weekList.forEach(it => { if (it.net === undefined) { const src = byName.get(it.n); it.net = src && +src.net > 0 ? +src.net : null; if (it.fib == null && src && src.fib != null && isFinite(+src.fib) && +src.fib >= 0) it.fib = +src.fib; migrated = true; } });
+}
+}
+} catch (e) { /* каталог недоступен: продолжаем без net */ }
+}
 if (migrated) AppState.save('weekList');
 return;
 }
@@ -2619,7 +2832,7 @@ if (response.ok) {
 const data = await response.json();
 const list = data.products || data;
 if (Array.isArray(list) && list.length > 0) {
-AppState.data.weekList = list.map(p => ({ n: p.name, qty: p.weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price: p.price || 0, b: p.p || 0, f: p.f || 0, c: p.c || 0, group: p.group || '', count: 1, image: this.normalizeImagePath(p.image || ''), atb_id: p.atb_id || null, unavailable: false }));
+AppState.data.weekList = list.map(p => ({ n: p.name, qty: p.weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price: p.price || 0, b: p.p || 0, f: p.f || 0, c: p.c || 0, fib: (p.fib != null && isFinite(+p.fib) && +p.fib >= 0) ? +p.fib : null, net: +p.net > 0 ? +p.net : null, group: p.group || '', count: 1, image: this.normalizeImagePath(p.image || ''), atb_id: p.atb_id || null, unavailable: false }));
 AppState.save('weekList'); loaded = true;
 UI.toast(t('shop.catalog_loaded') + ': ' + list.length + ' ' + t('shop.items_suffix'));
 }
@@ -2657,9 +2870,10 @@ if (Classify.isPotato(nameStr)) forceGroup = 'carb';
 if (Classify.isSweetener(nameStr)) forceGroup = 'sweetener';
 if (Classify.isEggName(nameStr)) {
 const eggW = Classify.eggWeightByCategory(nameStr);
-const pe = Math.round(b * eggW / 100 * 10) / 10;
-const fe = Math.round(f * eggW / 100 * 10) / 10;
-const ce = Math.round(c * eggW / 100 * 10) / 10;
+const eggE = eggW * Classify.eggEdibleShare;
+const pe = Math.round(b * eggE / 100 * 10) / 10;
+const fe = Math.round(f * eggE / 100 * 10) / 10;
+const ce = Math.round(c * eggE / 100 * 10) / 10;
 const kcalE = Math.round(pe * 4 + fe * 9 + ce * 4);
 let baseCount = 10;
 const parsed = parseQty(s.qty);
@@ -2668,9 +2882,10 @@ const pricePerEgg = baseCount > 0 ? Math.round((s.price || 0) / baseCount * 100)
 return { name: nameStr, unit: 'pcs', weight: 1, kcal: kcalE, p: pe, f: fe, c: ce, fib: 0, price: pricePerEgg, forceGroup: forceGroup || 'protein' };
 }
 const parsed = parseQty(s.qty);
-const baseWeight = parsed ? parsed.value : CONFIG.DEFAULTS.defaultWeight;
+const netW = +s.net > 0 ? +s.net : 0;
+const baseWeight = netW > 0 ? netW : (parsed ? parsed.value : CONFIG.DEFAULTS.defaultWeight);
 const pricePer100 = baseWeight > 0 ? (s.price || 0) * 100 / baseWeight : s.price || 0;
-return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: 0, price: Math.round(pricePer100 * 100) / 100, forceGroup: forceGroup };
+return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: (s.fib != null && isFinite(+s.fib) && +s.fib >= 0) ? +s.fib : Classify.fiberPer100(s.n, forceGroup), price: Math.round(pricePer100 * 100) / 100, net: netW, forceGroup: forceGroup };
 },
 refreshAll() { AppState.runtime.products = AppState.data.weekList.filter(s => !s.unavailable).map(s => this.toRacion(s)).filter(Boolean); }
 };
@@ -2737,10 +2952,20 @@ round5: x => Math.round(x / 5) * 5
 };
 const Menu = {
 scale(item, weight) { const ratio = item.weight > 0 ? weight / item.weight : 0; return { kcal: item.kcal * ratio, p: item.p * ratio, f: item.f * ratio, c: item.c * ratio, fib: item.fib * ratio, price: item.price * ratio }; },
+snackAllowed(key, type) {
+const st = AppState.data.settings && AppState.data.settings.snackTypes && AppState.data.settings.snackTypes[key];
+return !st || st[type] !== false;
+},
+snackPoolsFor(pools, m) {
+const key = m === 1 ? 's1' : 's2';
+const f = arr => (arr || []).filter(it => this.snackAllowed(key, Classify.snackType(it)));
+return { ...pools, proteinFillet: f(pools.proteinFillet), proteinEggs: f(pools.proteinEggs), proteinCanned: f(pools.proteinCanned), proteinOther: f(pools.proteinOther), proteinCasein: f(pools.proteinCasein), proteinCheese: f(pools.proteinCheese), breadLavash: f(pools.breadLavash), snackCarb: f(pools.snackCarb) };
+},
 selectProtein(mealIndex, dayIndex, pools, goal) {
 const isMain = CONFIG.MEALS.mainIndices.includes(mealIndex);
 const isSnack = CONFIG.MEALS.snackIndices.includes(mealIndex);
 if (isMain) {
+if (pools.proteinMain && pools.proteinMain.length) return pools.proteinMain[(dayIndex + mealIndex) % pools.proteinMain.length];
 if (pools.proteinFillet.length) return pools.proteinFillet[(dayIndex + mealIndex) % pools.proteinFillet.length];
 if (pools.proteinOther.length) return pools.proteinOther[(dayIndex + mealIndex) % pools.proteinOther.length];
 if (pools.proteinEggs.length) return pools.proteinEggs[(dayIndex + mealIndex) % pools.proteinEggs.length];
@@ -2860,12 +3085,14 @@ const proteinSlots = [
 ...snacks.map(m => ({ meal: m, floor: cut ? CONFIG.PORTIONS.meatSnackMin : 25 })),
 ...mains.map(m => ({ meal: m, floor: CONFIG.PORTIONS.meatMainMin }))
 ];
-const total = proteinSlots.length;
-proteinSlots.forEach((entry, idx) => {
+// Режем в первую очередь самое жирное мясо (больше всего жира на 1 г белка): так срез жира почти не уменьшает белок.
+proteinSlots.forEach(entry => { entry.meat = findComp(entry.meal, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name) && !Classify.isEggName(c.item.name)); });
+const trimSlots = proteinSlots.filter(e => e.meat && e.meat.weight > 0 && e.meat.p > 0 && !(e.meat.item.net > 0 && Classify.isCannedFood(e.meat.item.name))).sort((a, b) => (b.meat.f / b.meat.p) - (a.meat.f / a.meat.p));
+trimSlots.forEach(entry => {
 const remaining = dayTotals.f - targets.fatG;
 if (remaining <= 1) return;
-const share = remaining / (total - idx);
-const meat = findComp(entry.meal, c => Classify.get(c.item) === 'protein' && !Classify.isCasein(c.item.name));
+const share = remaining;
+const meat = entry.meat;
 if (!meat) return;
 const fatPerG = meat.f / meat.weight;
 if (fatPerG <= 0) return;
@@ -2914,7 +3141,7 @@ const proteinFillet = [], proteinEggs = [], proteinCanned = [], proteinOther = [
 allProtein.forEach(item => { if (Classify.isFillet(item.name)) proteinFillet.push(item); else if (Classify.isEggName(item.name)) proteinEggs.push(item); else if (Classify.isCannedFood(item.name)) proteinCanned.push(item); else proteinOther.push(item); });
 const breadLavash = [], regularCarbs = [], instantNoodles = [];
 allCarb.forEach(c => { if (Classify.isBreadOrLavash(c.name)) breadLavash.push(c); else if (Classify.isInstantNoodle(c.name)) instantNoodles.push(c); else regularCarbs.push(c); });
-const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name)), carbBread: breadLavash, instantNoodles, fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
+const pools = { proteinFillet, proteinEggs, proteinCanned, proteinOther, proteinCasein: AppState.runtime.products.filter(x => Classify.get(x) === 'protein' && Classify.isCasein(x.name) && !Classify.isGarlic(x.name)), proteinCheese: AppState.runtime.products.filter(x => Classify.isHardCheese(x.name)), breadLavash, carbMain: regularCarbs.filter(x => !Classify.isBreadOrLavash(x.name) && !Classify.isBanana(x.name)), carbBread: breadLavash, instantNoodles, snackCarb: breadLavash.concat(instantNoodles), proteinMain: proteinFillet.concat(proteinOther.filter(x => Classify.isMeatOrFish(x.name))), fat: AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isGarlic(x.name)), fatCooking: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && !Classify.isUnrefinedOil(x.name) && !Classify.isHardCheese(x.name) && !Classify.isCannedFood(x.name) && !Classify.isGarlic(x.name))), oil: Classify.dedupeByMacro(AppState.runtime.products.filter(x => Classify.get(x) === 'fat' && Classify.isOilProduct(x.name) && !Classify.isGarlic(x.name))), veggie: AppState.runtime.products.filter(x => Classify.get(x) === 'veggie' && !Classify.isGarlic(x.name)), garlic: AppState.runtime.products.filter(x => Classify.isGarlic(x.name)), sweetener: AppState.runtime.products.filter(x => Classify.get(x) === 'sweetener' && !Classify.isGarlic(x.name)) };
 const totalProteinCount = proteinFillet.length + proteinEggs.length + proteinCanned.length + proteinOther.length + pools.proteinCasein.length;
 if (totalProteinCount === 0 || allCarb.length === 0) { AppState.runtime.menuPlan = null; this.renderDaySelector(); this.render(); this.renderDiagnostics(); Cook.render(); return; }
 const caseinRequested = p.casein !== false;
@@ -2926,24 +3153,19 @@ if (!pools.carbMain.length) pools.carbMain = [...pools.carbBread];
 if (!pools.fatCooking.length) pools.fatCooking = [...pools.fat];
 pools.carbMainByDayMeal = {};
 if (pools.carbMain.length > 0) {
-const lastUsedBlock = new Array(pools.carbMain.length).fill(-1);
-let blockIdx = 0;
-const slots = CONFIG.MEALS.mainIndices.slice().sort((a, b) => (CONFIG.MEALS.proteinPct[b] / CONFIG.MEALS.kcalPct[b]) - (CONFIG.MEALS.proteinPct[a] / CONFIG.MEALS.kcalPct[a]));
-for (let dayStart = 0; dayStart < CONFIG.TOTAL_DAYS; dayStart += CONFIG.GRAIN_BLOCK_SIZE) {
-const dayEnd = Math.min(dayStart + CONFIG.GRAIN_BLOCK_SIZE, CONFIG.TOTAL_DAYS) - 1;
-const chosen = [];
-const sorted = Array.from({ length: pools.carbMain.length }, (_, i) => i).sort((a, b) => lastUsedBlock[a] - lastUsedBlock[b]);
-for (let i = 0; i < slots.length; i++) {
-if (pools.carbMain.length === 0) break;
-const idx = sorted[i % pools.carbMain.length];
-if (!chosen.includes(idx)) { chosen.push(idx); lastUsedBlock[idx] = blockIdx; }
-else { const reuseIdx = sorted.find(si => !chosen.includes(si)); const picked = reuseIdx !== undefined ? reuseIdx : sorted[i % sorted.length]; chosen.push(picked); }
-}
-const chosenSorted = chosen.slice().sort((ia, ib) => { const ca = pools.carbMain[ia].c > 0 ? pools.carbMain[ia].p / pools.carbMain[ia].c : 0; const cb = pools.carbMain[ib].c > 0 ? pools.carbMain[ib].p / pools.carbMain[ib].c : 0; return cb - ca; });
-const slotAssign = {};
-for (let i = 0; i < slots.length && i < chosenSorted.length; i++) slotAssign[slots[i]] = pools.carbMain[chosenSorted[i]];
-for (let d = dayStart; d <= dayEnd; d++) pools.carbMainByDayMeal[d] = slotAssign;
-blockIdx++;
+// Гарниры чередуются по приёмам подряд, сквозь дни: при двух гарнирах 1-2-1-2-…, при трёх 1-2-3-1-2-3-…
+// Рис (шлифованный, пропаренный и т. д.) считается одним гарниром: внутри дня продукт один, по дням продукты внутри гарнира чередуются.
+const famOf = it => { const n = (it.name || '').toLowerCase(); const m = n.match(/(^|[^а-яіїєґё])(рис|греч[а-яіїєґё]*|вівсян[а-яіїєґё]*|овсян[а-яіїєґё]*|булгур|перлов[а-яіїєґё]*|ячн[а-яіїєґё]*|пшенич[а-яіїєґё]*|горох|сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|кукурудз[а-яіїєґё]*|картопл[а-яіїєґё]*)([^а-яіїєґё]|$)/); return m ? m[2].slice(0, 5) : n; };
+const families = [], famIdx = {};
+pools.carbMain.forEach(it => { const k = famOf(it); if (famIdx[k] === undefined) { famIdx[k] = families.length; families.push([]); } families[famIdx[k]].push(it); });
+// Порядок гарниров: сначала более крахмалистые (меньше белка на 1 г углеводов), богатые белком (горох, чечевица) позже.
+const famRatio = fam => fam.reduce((acc, it) => acc + (it.c > 0 ? it.p / it.c : 0), 0) / fam.length;
+families.sort((fa, fb) => famRatio(fa) - famRatio(fb));
+const mainMeals = CONFIG.MEALS.mainIndices.slice().sort((x, y) => x - y);
+let seq = 0;
+for (let d = 0; d < CONFIG.TOTAL_DAYS; d++) {
+pools.carbMainByDayMeal[d] = {};
+mainMeals.forEach(m => { const fam = families[seq % families.length]; pools.carbMainByDayMeal[d][m] = fam[d % fam.length]; seq++; });
 }
 }
 const cutMode = (p.goal === 'cut');
@@ -2968,12 +3190,14 @@ if (pools.garlic.length) addC(4, pools.garlic[d % pools.garlic.length], Math.min
 // оставшегося растёт (см. applyMealsConfig), поэтому и хлеб масштабируем тем же коэффициентом —
 // иначе «вырастал» только белковый компонент, а хлеб оставался прежним.
 const BASE_SNACK_KCAL = 0.125;
-CONFIG.MEALS.snackIndices.forEach(m => { if (pools.breadLavash.length) { const shift = (d * 2 + (m === 1 ? 0 : 1)) % pools.breadLavash.length; const bItem = pools.breadLavash[shift]; const snackScale = (CONFIG.MEALS.kcalPct[m] || BASE_SNACK_KCAL) / BASE_SNACK_KCAL; let bW = Math.round(CONFIG.PORTIONS.snackBread * snackScale / 5) * 5; bW = Math.min(bW, 200); if (p.goal === 'cut') bW = Math.max(CONFIG.PORTIONS.snackBreadMinLoss, Math.min(Math.round(50 * snackScale / 5) * 5, 120)); addC(m, bItem, bW); } });
+let noodleToday = false;
+CONFIG.MEALS.snackIndices.forEach(m => { const sp = this.snackPoolsFor(pools, m); if (sp.snackCarb.length) { const shift = (d * 2 + (m === 1 ? 0 : 1)) % sp.snackCarb.length; let bItem = sp.snackCarb[shift]; if (Classify.isInstantNoodle(bItem.name)) { if (noodleToday) bItem = sp.breadLavash.length ? sp.breadLavash[shift % sp.breadLavash.length] : null; else noodleToday = true; } if (!bItem) return; if (Classify.isInstantNoodle(bItem.name)) { addC(m, bItem, CONFIG.PORTIONS.instantNoodlePack); return; } const snackScale = (CONFIG.MEALS.kcalPct[m] || BASE_SNACK_KCAL) / BASE_SNACK_KCAL; let bW = Math.round(CONFIG.PORTIONS.snackBread * snackScale / 5) * 5; bW = Math.min(bW, 200); if (p.goal === 'cut') bW = Math.max(CONFIG.PORTIONS.snackBreadMinLoss, Math.min(Math.round(50 * snackScale / 5) * 5, 120)); addC(m, bItem, bW); } });
 let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
 if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
 if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
-CONFIG.MEALS.snackIndices.forEach(m => { const pItem = this.selectProtein(m, d, pools, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } addC(m, pItem, pW); } });
+let cannedToday = false, protExcess = 0;
+CONFIG.MEALS.snackIndices.forEach(m => { const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
 const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
 if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
@@ -2981,17 +3205,27 @@ const meats = [0, 2, 4].map(m => this.selectProtein(m, d, pools, p.goal)).filter
 if (meats.length) {
 const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMin : 45;
 const maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatMainMax : 250;
-[0, 2, 4].forEach((m, i) => {
-const meatItem = meats[i]; if (!meatItem) return;
+const meatPlan = [0, 2, 4].map((m, i) => {
+const meatItem = meats[i]; if (!meatItem) return null;
 const protPerG = meatItem.p / meatItem.weight;
-if (protPerG <= 0) return;
+if (protPerG <= 0) return null;
 const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0);
 const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.18);
-const needP = mealTarget - existingP;
-let meatW = Math.min(maxPW, Math.round(Math.max(0, needP) / protPerG / 5) * 5);
-// минимальную порцию мяса добавляем, только если приём недобирает хотя бы половину её белка
-if (meatW < minPW) meatW = needP >= 0.5 * minPW * protPerG ? minPW : 0;
-addC(m, meatItem, meatW);
+return { m, meatItem, protPerG, needP: mealTarget - existingP - protExcess / 3, capP: maxPW * protPerG };
+});
+// Сушка: белок, который не помещается в потолок порции одного приёма, добираем на других приёмах того же дня (в пределах их потолка).
+if (p.goal === 'cut') {
+let deficit = 0;
+meatPlan.forEach(x => { if (x && x.needP > x.capP) { deficit += x.needP - x.capP; x.needP = x.capP; } });
+const spare = meatPlan.filter(x => x && x.needP < x.capP);
+const spareSum = spare.reduce((acc, x) => acc + (x.capP - x.needP), 0);
+if (deficit > 0 && spareSum > 0) { const f = Math.min(1, deficit / spareSum); spare.forEach(x => { x.needP += (x.capP - x.needP) * f; }); }
+}
+meatPlan.forEach(x => {
+if (!x) return;
+let meatW = Math.min(maxPW, Math.round(Math.max(0, x.needP) / x.protPerG / 5) * 5);
+if (meatW < minPW) meatW = x.needP >= 0.5 * minPW * x.protPerG ? minPW : 0;
+addC(x.m, x.meatItem, meatW);
 });
 }
 const meals = [];
@@ -3066,16 +3300,18 @@ if (!dayData) {
 el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
 }
-let DB = 0, DF = 0, DC = 0, visibleNum = 0;
+let DB = 0, DF = 0, DC = 0, visibleNum = 0, EB = 0, EF = 0, EC = 0, EFib = 0, EAnimal = 0, DFib = 0;
 dayData.meals.forEach((meal, i) => {
 if (!meal.components.length) return;
 visibleNum++;
 const ordered = meal.components.slice().sort((a, b) => this.sortRank(a) - this.sortRank(b));
 let tb = 0, tf = 0, tc = 0, tg = 0;
-const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); tg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}</div><div class="num">${comp.weight.toFixed(0)}${ul}</div><div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
+const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); tg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; const cf = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const cookedHtml = cf ? `<span class="cook-w">${t('cook.ready', Math.round(comp.weight * cf / 5) * 5)}</span>` : ''; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}${cookedHtml}</div><div class="num">${comp.weight.toFixed(0)}${ul}</div><div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
 DB += tb; DF += tf; DC += tc;
 const mealKey = dayIdx + '-' + i;
 const isEaten = AppState.data.progress.meals[mealKey];
+meal.components.forEach(comp => { DFib += this.compFiber(comp); });
+if (isEaten || isDone) { EB += tb; EF += tf; EC += tc; meal.components.forEach(comp => { EFib += this.compFiber(comp); if (Classify.isAnimalProtein(comp.item)) EAnimal += comp.p; }); }
 // Для пройденных дней чекбоксы заблокированы
 const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
@@ -3084,7 +3320,7 @@ htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
 // Баланс КБЖУ
-if (rawTargets) htmlArr.push(this.renderDevChart(dkcal, DB, DF, DC, rawTargets, this.proteinSplit(dayData)));
+htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null));
 // Служебные переменные для кнопок
 const completedCount = Progress.getCompletedCount();
 const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
@@ -3110,7 +3346,6 @@ htmlArr.push(`<div class="cycle-stats">${t('plan.cycles_completed')}: ${cyclesCo
 el.innerHTML = htmlArr.join('');
 },
 sortRank(comp) { const name = comp.item.name || ''; if (Classify.isFillet(name)) return 0; if (Classify.isEggName(name)) return 1; if (Classify.isGarlic(name)) return 4; if (Classify.isYogurt(name)) return 10; const cat = Classify.get(comp.item); if (cat === 'protein') return 2; if (cat === 'carb') return 3; if (cat === 'veggie' || cat === 'sweetener') return 4.5; if (cat === 'fat') return 5; return 6; },
-devStatus(actual, target) { if (!target || target <= 0) return 'ok'; const ratio = actual / target; if (ratio < 1 - CONFIG.MACRO.tolerance) return 'low'; if (ratio > 1 + CONFIG.MACRO.tolerance) return 'high'; return 'ok'; },
 proteinSplit(dayData) {
 let animal = 0, total = 0;
 dayData.meals.forEach(m => m.components.forEach(c => { total += c.p; if (Classify.isAnimalProtein(c.item)) animal += c.p; }));
@@ -3119,24 +3354,35 @@ const animalPct = Math.round(animal / total * 100);
 return { animalG: animal, plantG: total - animal, animalPct, plantPct: 100 - animalPct };
 },
 splitText(s) { return `${t('diag.protein')}: ${t('dev.animal')} ${s.animalPct}% · ${Math.round(s.animalG)} г, ${t('dev.plant')} ${s.plantPct}% · ${Math.round(s.plantG)} г`; },
-showProteinSplit() {
-const d = this.getDayData(AppState.runtime.currentDay);
-const s = d ? this.proteinSplit(d) : null;
-if (s) UI.toast(this.splitText(s));
+compFiber(comp) {
+if (comp.fib > 0) return comp.fib;
+if (!comp.item || comp.item.unit === 'pcs') return 0;
+return Classify.fiberPer100(comp.item.name, comp.item.forceGroup) * (comp.weight || 0) / 100;
 },
-devTile(label, actual, target, unit, macroColor, extraHtml, split) {
-const status = this.devStatus(actual, target);
-const diff = Math.round(actual - target);
-const delta = target > 0 ? `${diff > 0 ? '+' : diff < 0 ? '−' : '±'}${Math.abs(diff)}${unit ? ' ' + unit : ''}` : '';
-const pct = target > 0 ? Math.round(actual / target * 100) : 0;
-let title = target > 0 ? `${Math.round(actual)} / ${Math.round(target)} ${unit || t('day.kcal')} (${pct}%)` : '';
-if (split) title += '\n' + this.splitText(split);
-const tap = split ? ' tappable" onclick="Menu.showProteinSplit()' : '';
-return `<div class="dev-tile ${status}${tap}" title="${UI.escapeAttr(title)}"><div class="dev-tile-name" style="color:${macroColor}">${label}</div><div class="dev-tile-val">${Math.round(actual)}</div><div class="dev-tile-delta">${delta}</div><div class="dev-tile-bar"><i></i>${extraHtml || ''}</div></div>`;
-},
-renderDevChart(dkcal, DB, DF, DC, t_, split) {
-const splitHtml = split ? `<div class="pt-strip" aria-hidden="true"><i style="width:${split.animalPct}%;background:var(--pt-animal)"></i><i style="width:${split.plantPct}%;background:var(--pt-plant)"></i></div><div class="pt-nums" aria-hidden="true"><span style="color:var(--pt-animal)">${split.animalPct}</span><span style="color:var(--pt-plant)">${split.plantPct}</span></div>` : '';
-return `<div class="section"><div class="section-title">${t('plan.balance')}</div><div class="dev-chart"><div class="dev-tiles">${this.devTile(t('diag.kcal'), dkcal, t_.kcal, '', 'var(--macro-kcal)')}${this.devTile(t('diag.protein'), DB, t_.proteinG, 'г', 'var(--macro-protein)', splitHtml, split)}${this.devTile(t('diag.fat'), DF, t_.fatG, 'г', 'var(--macro-fat)')}${this.devTile(t('diag.carbs'), DC, t_.carbsG, 'г', 'var(--macro-carb)')}</div><div class="dev-legend">${t('dev.legend')}</div></div></div>`;
+showEatenSplit() { if (this._eatenSplit) UI.toast(this.splitText(this._eatenSplit)); },
+renderEatenRings(E, P, T) {
+// Кольцо: сколько съедено и какая это доля от реального итога плана дня.
+// Плашка под кольцом: реальный итог плана дня и отклонение от основного плана (цели профиля).
+const ek = Math.round(E.p * 4 + E.f * 9 + E.c * 4), pk = Math.round(P.p * 4 + P.f * 9 + P.c * 4);
+const pc = (a, b) => b > 0 ? Math.max(0, Math.min(100, a / b * 100)) : 0;
+const arc = (color, p) => `conic-gradient(${color} 0 ${p.toFixed(1)}%, var(--border-soft) 0)`;
+const done = (a, b) => b > 0 && Math.round(a) >= Math.round(b) ? 'ok' : '';
+const devHtml = (plan, tgt) => { if (!T || !(tgt > 0)) return ''; const dv = Math.round(plan) - Math.round(tgt); return `<div class="eaten-d">${dv > 0 ? '+' + dv : dv < 0 ? '−' + Math.abs(dv) : '0'}</div>`; };
+const cell = (m, label, val, bg, plan, tgt, cls, extra, tip, tap) => `<div class="eaten-m ${cls}${tap ? ' tappable' : ''}" data-m="${m}" title="${UI.escapeAttr(tip)}"${tap ? ' onclick="Menu.showEatenSplit()"' : ''}><div class="ering" style="background:${bg}"><div>${Math.round(val)}</div></div><div class="eaten-chip"><div class="eaten-l">${label}</div><div class="eaten-t">${Math.round(plan)}</div>${devHtml(plan, tgt)}</div>${extra || ''}</div>`;
+const animalPct = E.p > 0 ? Math.round(Math.min(1, E.animalG / E.p) * 100) : 0;
+this._eatenSplit = E.p > 0 ? { animalG: E.animalG, plantG: Math.max(0, E.p - E.animalG), animalPct, plantPct: 100 - animalPct } : null;
+const pP = pc(E.p, P.p);
+const protBg = `conic-gradient(var(--pt-animal) 0 ${(pP * animalPct / 100).toFixed(1)}%, var(--pt-plant) 0 ${pP.toFixed(1)}%, var(--border-soft) 0)`;
+const protExtra = this._eatenSplit ? `<div class="eaten-split"><span style="color:var(--pt-animal)">${animalPct}%</span><span style="color:var(--pt-plant)">${100 - animalPct}%</span></div>` : '';
+const tg = T || {};
+const cells = cell('k', t('diag.kcal'), ek, arc('var(--macro-kcal)', pc(ek, pk)), pk, tg.kcal, done(ek, pk), '', `${ek} / ${pk} ${t('day.kcal')}`)
++ cell('p', t('diag.protein'), E.p, protBg, P.p, tg.p, done(E.p, P.p), protExtra, `${Math.round(E.p)} / ${Math.round(P.p)} г`, !!this._eatenSplit)
++ cell('f', t('diag.fat'), E.f, arc('var(--macro-fat)', pc(E.f, P.f)), P.f, tg.f, done(E.f, P.f), '', `${Math.round(E.f)} / ${Math.round(P.f)} г`)
++ cell('c', t('diag.carbs'), E.c, arc('var(--macro-carb)', pc(E.c, P.c)), P.c, tg.c, done(E.c, P.c), '', `${Math.round(E.c)} / ${Math.round(P.c)} г`);
+const fibCell = P.fib > 0 ? cell('n', t('profile.fiber'), E.fib, arc('var(--macro-fiber)', pc(E.fib, P.fib)), P.fib, tg.fib, done(E.fib, P.fib), '', `${Math.round(E.fib)} / ${Math.round(P.fib)} г`) : '';
+const legend = this._eatenSplit ? `<div class="eaten-legend"><span><b style="color:var(--pt-animal)">●</b> ${t('dev.animal')}</span><span><b style="color:var(--pt-plant)">●</b> ${t('dev.plant')}</span></div>` : '';
+const hint = ek === 0 ? `<div class="eaten-hint">${t('eaten.hint')}</div>` : '';
+return `<div class="section"><div class="section-title">${t('eaten.title')}</div><div class="eaten-card"><div class="eaten-row">${cells}${fibCell}</div>${legend}${hint}</div></div>`;
 },
 renderDiagnostics() {
 const box = document.getElementById('menu-diagnostics');
@@ -3285,14 +3531,24 @@ return Object.keys(AppState.data.progress.days).filter(k => AppState.data.progre
 }
 };
 const Shop = {
+snackTypesHtml() {
+const types = ['meat', 'egg', 'fish', 'canned', 'dairy', 'cheese', 'bread', 'noodles'];
+const row = (key, profKey) => {
+const off = AppState.data.profile[profKey] === false;
+const allOff = !off && types.every(tp => !Menu.snackAllowed(key, tp));
+return `<div class="snack-types${off ? ' dim' : ''}"><div class="snack-types-title">${t('profile.' + profKey)}${off ? `<span class="snack-types-off">${t('snacktype.off')}</span>` : ''}</div><div class="snack-chips">${types.map(tp => { const on = Menu.snackAllowed(key, tp); return `<button type="button" class="snack-chip${on ? ' on' : ''}" aria-pressed="${on}"${off ? ' disabled aria-disabled="true"' : ''} onclick="ShopUI.toggleSnackType('${key}','${tp}')">${t('snacktype.' + tp)}</button>`; }).join('')}</div>${allOff ? `<div class="snack-types-warn">${t('snacktype.empty')}</div>` : ''}</div>`;
+};
+return `<div id="snack-types"><div class="snack-types-cap">${t('snacktype.title')}</div>${row('s1', 'snack1')}${row('s2', 'snack2')}</div>`;
+},
 render() {
 const classified = AppState.data.weekList.map((s, idx) => { const prod = Products.toRacion(s); return { ...s, idx, group: prod ? Classify.shopCategory(prod) : 'carb' }; });
 let num = 0;
 const htmlArr = [];
 CONFIG.CAT.order.forEach(g => {
 const items = classified.filter(x => x.group === g);
-if (!items.length) return;
+if (!items.length && g !== 'snack') return;
 htmlArr.push(`<div class="shop-group-title">${t('cat.' + g)}</div>`);
+if (g === 'snack') htmlArr.push(this.snackTypesHtml());
 items.forEach(s => {
 num++;
 const count = s.count || 1;
@@ -3317,6 +3573,17 @@ document.getElementById('shopTotalPrice').textContent = sum.toFixed(2) + ' ' + t
 };
 const ShopUI = {
 currentActionIdx: null,
+toggleSnackType(key, type) {
+if (AppState.data.profile[key === 's1' ? 'snack1' : 'snack2'] === false) return;
+const st = AppState.data.settings;
+if (!st.snackTypes) st.snackTypes = {};
+if (!st.snackTypes[key]) st.snackTypes[key] = {};
+st.snackTypes[key][type] = !Menu.snackAllowed(key, type);
+AppState.save('settings');
+const wrap = document.getElementById('snack-types');
+if (wrap) wrap.outerHTML = Shop.snackTypesHtml();
+Menu.build();
+},
 toggleAvail(idx) {
 const un = !AppState.data.weekList[idx].unavailable;
 AppState.data.weekList[idx].unavailable = un;
@@ -3397,7 +3664,7 @@ urlEl.addEventListener('input', function () { const v = this.value.trim(); if (v
 },
 exportProducts() {
 if (!AppState.data.weekList.length) { UI.toast(t('toast.empty')); return; }
-const out = AppState.data.weekList.map(s => { const name = Products.displayName(s.n); const parsed = parseQty(s.qty); return { name, unit: parsed.unit === 'шт' ? 'pcs' : 'g', weight: parsed.value, p: s.b || 0, f: s.f || 0, c: s.c || 0, price: s.price || 0, group: s.group || '', image: s.image || '', atb_id: s.atb_id || null }; });
+const out = AppState.data.weekList.map(s => { const name = Products.displayName(s.n); const parsed = parseQty(s.qty); return { name, unit: parsed.unit === 'шт' ? 'pcs' : 'g', weight: parsed.value, p: s.b || 0, f: s.f || 0, c: s.c || 0, price: s.price || 0, group: s.group || '', image: s.image || '', atb_id: s.atb_id || null, ...(s.fib != null ? { fib: s.fib } : {}), ...(+s.net > 0 ? { net: +s.net } : {}) }; });
 const blob = new Blob([JSON.stringify({ products: out }, null, 2)], { type: 'application/json' });
 const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'atb_diet_list.json'; a.click(); URL.revokeObjectURL(a.href);
 UI.toast(t('shop.exported_count') + ': ' + out.length);
@@ -3413,7 +3680,7 @@ const parsed = JSON.parse(ev.target.result);
 const list = Array.isArray(parsed) ? parsed : (parsed.products || parsed.items || []);
 if (!Array.isArray(list) || list.length === 0) { UI.toast(t('toast.empty')); return; }
 const imported = [];
-list.forEach(p => { const name = (p.name || '').toString().trim(); if (!name) return; const weight = parseFloat(p.weight || CONFIG.DEFAULTS.defaultWeight) || CONFIG.DEFAULTS.defaultWeight; const b = parseFloat(p.p || p.b || 0) || 0; const f = parseFloat(p.f || p.fat || 0) || 0; const c = parseFloat(p.c || p.carbs || 0) || 0; const price = parseFloat(p.price || 0) || 0; const group = (p.group || '').toLowerCase(); imported.push({ n: name, qty: weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price, b, f, c, group: group || Classify.inferGroup({ b, f, c }, name), count: 1, image: p.image || '', atb_id: p.atb_id || null }); });
+list.forEach(p => { const name = (p.name || '').toString().trim(); if (!name) return; const weight = parseFloat(p.weight || CONFIG.DEFAULTS.defaultWeight) || CONFIG.DEFAULTS.defaultWeight; const b = parseFloat(p.p || p.b || 0) || 0; const f = parseFloat(p.f || p.fat || 0) || 0; const c = parseFloat(p.c || p.carbs || 0) || 0; const price = parseFloat(p.price || 0) || 0; const group = (p.group || '').toLowerCase(); imported.push({ n: name, qty: weight + ' ' + (p.unit === 'pcs' ? 'шт' : 'г'), price, b, f, c, group: group || Classify.inferGroup({ b, f, c }, name), count: 1, image: p.image || '', atb_id: p.atb_id || null, fib: (p.fib != null && isFinite(+p.fib) && +p.fib >= 0) ? +p.fib : null, net: +p.net > 0 ? +p.net : null }); });
 if (!imported.length) { UI.toast(t('toast.empty')); return; }
 const replace = await UI.confirm(`${t('shop.import_found')}: ${imported.length}.\n` + t('shop.import_replace_q', AppState.data.weekList.length), t('shop.replace_btn'), t('shop.add_to_current_btn'));
 AppState.data.weekList = replace ? imported : AppState.data.weekList.concat(imported);
@@ -3500,6 +3767,11 @@ len(type) { return type === 'day' ? 1 : type === 'p3' ? 3 : type === 'p6' ? 6 : 
 loadChecks() { return AppState.data.cookChecks || {}; },
 saveChecks(obj) { AppState.data.cookChecks = obj; AppState.save('cookChecks'); },
 actualWeight(it) { return it.unit === 'pcs' ? it.weight * Classify.eggWeightByCategory(it.name) : it.weight; },
+cansLabel(weight, net) {
+const n = Math.max(1, Math.ceil(weight / net - 1e-6));
+const form = (n % 10 === 1 && n % 100 !== 11) ? 'банка' : ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) ? 'банки' : 'банок';
+return `≈ ${n} ${form}`;
+},
 formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
 render() {
 const groups = document.getElementById('cooking-groups');
@@ -3517,18 +3789,21 @@ startSel.innerHTML = Array.from({ length: maxStart + 1 }, (_, i) => `<option val
 startSel.value = start;
 const map = {};
 const end = Math.min(start + len, AppState.runtime.menuPlan.days.length);
-for (let d = start; d < end; d++) { AppState.runtime.menuPlan.days[d].meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, group: Classify.shopCategory(comp.item) }; map[name].weight += comp.weight; map[name].price += comp.price; }); }); }
+for (let d = start; d < end; d++) { AppState.runtime.menuPlan.days[d].meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, net: comp.item.net || 0, group: Classify.shopCategory(comp.item) }; map[name].weight += comp.weight; map[name].price += comp.price; }); }); }
 const items = Object.values(map);
 const checks = this.loadChecks();
 const pkey = type + '-' + start;
 const pc = checks[pkey] || {};
 const htmlArr = [];
+const periodTxt = [1, 3, 6, 10].includes(len) ? t('cook.period_' + len) : t('cook.period_n', len);
+const rangeTxt = len === 1 ? `${t('common.day_single').toLowerCase()} ${start + 1}` : `${t('common.days_range').toLowerCase()} ${start + 1}–${end}`;
+htmlArr.push(`<div class="print-period">${t('cook.print_title')} ${periodTxt} (${rangeTxt})</div>`);
 let totalPrice = 0, positions = 0;
 CONFIG.CAT.order.forEach(g => {
 const list = items.filter(x => x.group === g).sort((a, b) => this.actualWeight(b) - this.actualWeight(a));
 if (!list.length) return;
 htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
-list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
+list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
 htmlArr.push('</div>');
 });
 htmlArr.push(`<div class="cook-total-bar"><span>${t('common.total')}: ${positions} ${t('common.positions_short')}</span><span>${totalPrice.toFixed(2)} ${t('common.currency')}</span></div>`);
@@ -3573,6 +3848,8 @@ const cur = AppState.data.profile[key] !== false;
 AppState.data.profile[key] = !cur;
 document.getElementById('sw-' + (key === 'casein' ? 'casein' : key)).classList.toggle('on', !cur);
 AppState.save('profile');
+const stw = document.getElementById('snack-types');
+if (stw) stw.outerHTML = Shop.snackTypesHtml();
 this.calc();
 },
 setGoal(g) { AppState.data.profile.goal = g; document.getElementById('g-maintain').classList.toggle('active', g === 'maintain'); document.getElementById('g-gain').classList.toggle('active', g === 'gain'); document.getElementById('g-loss').classList.toggle('active', g === 'loss'); this.calc(); AppState.save('profile'); InfoUI.highlightCurrentGoal(); },
