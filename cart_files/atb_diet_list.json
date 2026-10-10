@@ -385,6 +385,18 @@
       "atb_id": null
     },
     {
+      "name": "Крупа 1 кг Розумний вибір кукурузяна",
+      "unit": "g",
+      "weight": 1000,
+      "p": 8.3,
+      "f": 1.2,
+      "c": 70.4,
+      "price": 20.19,
+      "group": "carb",
+      "image": "https://images.silpo.ua/v2/products/1000x1000/webp/a9f960dd-53bc-4b0f-8f7f-540f7a602707.png",
+      "atb_id": null
+    },
+    {
       "name": "Крупа 1 кг Розумний вибір гречана",
       "unit": "g",
       "weight": 1000,
