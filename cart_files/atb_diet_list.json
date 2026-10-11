@@ -769,6 +769,18 @@
       "atb_id": null
     },
     {
+      "name": "Зефір 350г Жако Класичний",
+      "unit": "g",
+      "weight": 350,
+      "p": 1.2,
+      "f": 0,
+      "c": 87.9,
+      "price": 75.50,
+      "group": "sweetener",
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i0/catalog_product_gal_81991.webp",
+      "atb_id": 96916
+    },
+    {
       "name": "Молоко 450 г Ічня згущене з цукром 8,5% д/пак",
       "unit": "g",
       "weight": 450,
