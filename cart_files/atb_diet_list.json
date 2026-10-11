@@ -25,6 +25,18 @@
       "atb_id": null
     },
     {
+      "name": "Печінка куряча Наша Ряба охолоджена 700 г",
+      "unit": "g",
+      "weight": 700,
+      "p": 18.9,
+      "f": 4.7,
+      "c": 0,
+      "price": 96.40,
+      "group": "protein",
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i32/catalog_product_gal_98937.webp",
+      "atb_id": 182932
+    },
+    {
       "name": "Індиче філе",
       "unit": "g",
       "weight": 1000,
