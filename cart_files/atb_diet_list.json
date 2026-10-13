@@ -229,6 +229,18 @@
       "atb_id": null
     },
     {
+      "name": "Мак. Виp. 1 кг День у День Веpмишель тoнка",
+      "unit": "g",
+      "weight": 1000,
+      "p": 11,
+      "f": 1.1,
+      "c": 72,
+      "price": 46.30,
+      "group": "carb",
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i42/catalog_product_gal_111083.webp",
+      "atb_id": 192767
+    },
+    {
       "name": "Лаваш 200 г День у День вірменський тонкий круглий п/ет",
       "unit": "g",
       "weight": 200,
