@@ -781,6 +781,18 @@
       "atb_id": null
     },
     {
+      "name": "Мед 250г Своя лінія акацієвий",
+      "unit": "g",
+      "weight": 250,
+      "p": 0.1,
+      "f": 0,
+      "c": 79.3,
+      "price": 114.98,
+      "group": "sweetener",
+      "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i3/catalog_product_gal_94479.webp",
+      "atb_id": 133052
+    },
+    {
       "name": "Цукор 1 кг",
       "unit": "g",
       "weight": 1000,
