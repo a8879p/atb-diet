@@ -150,7 +150,7 @@ position: relative
 .bju-row,
 .bju-total {
 display: grid;
-grid-template-columns: 1fr 42px 42px 42px 42px;
+grid-template-columns: 1fr 78px 40px 40px 40px;
 gap: 4px;
 align-items: center
 }
@@ -182,6 +182,35 @@ text-align: right;
 font-size: 13px;
 font-variant-numeric: tabular-nums;
 color: #374151
+}
+.has-raw {
+cursor: pointer;
+position: relative
+}
+.has-raw::after {
+content: attr(data-raw);
+position: absolute;
+right: 0;
+bottom: calc(100% + 2px);
+background: var(--text-main);
+color: #fff;
+font-size: 12px;
+font-weight: 600;
+padding: 4px 8px;
+border-radius: 6px;
+white-space: nowrap;
+opacity: 0;
+pointer-events: none;
+transition: opacity .15s;
+z-index: 20
+}
+.has-raw.show-raw::after {
+opacity: 1
+}
+@media(hover:hover) {
+.has-raw:hover::after {
+opacity: 1
+}
 }
 .p-name {
 font-size: 14px;
@@ -851,6 +880,27 @@ justify-content: center;
 gap: 14px;
 font-size: 11px;
 color: var(--text-muted)
+}
+.eaten-prod {
+margin-top: 10px;
+border: 1px solid var(--border);
+border-radius: var(--radius);
+overflow: hidden
+}
+.eaten-prod-row {
+display: flex;
+justify-content: space-between;
+gap: 10px;
+padding: 9px 14px;
+font-size: 14px;
+border-bottom: 1px solid var(--border-soft)
+}
+.eaten-prod-row:last-child {
+border-bottom: none
+}
+.eaten-prod-row b {
+font-variant-numeric: tabular-nums;
+white-space: nowrap
 }
 .eaten-hint {
 font-size: 12px;
@@ -1715,6 +1765,7 @@ data-i18n="common.unit">Единица</label><select class="select" id="np_unit
 АТБ</label><input type="number" class="input" id="np_atb" placeholder="148723">
 </div>
 </div>
+<div class="form-group"><label class="form-label">Нетто в упаковке, г (банка: масса продукта без жидкости)</label><input type="number" class="input" id="np_net" placeholder="130"></div>
 <div class="form-group"><label class="form-label"
 data-i18n="common.image">Картинка</label><input type="text" class="input" id="np_img"
 placeholder="URL"></div>
@@ -1753,6 +1804,7 @@ id="edit_price"></div>
 <div class="form-group"><label class="form-label" data-i18n="common.code">Код
 АТБ</label><input type="number" class="input" id="edit_atb"></div>
 </div>
+<div class="form-group"><label class="form-label">Нетто в упаковке, г (банка: масса продукта без жидкости)</label><input type="number" class="input" id="edit_net"></div>
 <div class="form-group"><label class="form-label"
 data-i18n="common.image">Картинка</label><input type="text" class="input" id="edit_img">
 </div>
@@ -2017,9 +2069,11 @@ sweetenerMaintainMax: 35, avgPieceWeight: 60, defaultWeight: 100, roundingStep: 
 maxImageSize: 300 * 1024, minEggs: 2, maxEggs: 5, carbCountThreshold: 3
 },
 MACRO: { tolerance: 0.10, balanceTolerance: 0.05 },
+// Желаемое соотношение белков: животные 60–70%, растительные 30–40% (поправка в расчёте включается, когда животных меньше 60%).
+PROTEIN_SPLIT: { animalMinPerKg: 1.6, breadSnackMax: 150, fastCarbMax: 60, fastCarbMaxCut: 40 },
 CAT: {
-order: ['meat', 'carb', 'fat', 'fruits', 'snack'],
-labels: { meat: 'Мясо, рыба, яйца', carb: 'Гарниры — углеводы', fat: 'Жиры', fruits: 'Фрукты, кисломолочные продукты, напитки', snack: 'Перекусы' }
+order: ['meat', 'carb', 'veg', 'fat', 'fruits', 'snack'],
+labels: { meat: 'Мясо, яйца, рыба', carb: 'Гарниры — углеводы', veg: 'Овощи', fat: 'Жиры', fruits: 'Фрукты, кисломолочные продукты, напитки', snack: 'Перекусы' }
 }
 };
 const I18N = {
@@ -2043,7 +2097,7 @@ ru: {
 'profile.note_cut': 'Режим жиросжигания: дефицит ~{0}% · {1}', 'profile.note_gain': 'Режим набора: профицит ~{0}% · {1}',
 'profile.floor_note': 'Сработал нижний порог калорий ({0} ккал): дефицит ограничен.',
 "info.title": "📚 Научная база спортивной диетологии",
-"info.intro": "Расчёт опирается на официальные <b>Position Stands</b> ведущих организаций: <b>ISSN</b> (International Society of Sports Nutrition) и <b>ACSM</b> (American College of Sports Medicine) совместно с Academy of Nutrition and Dietetics и Dietitians of Canada. Диапазоны белка, жиров и углеводов взяты из них; величины дефицита и профицита — практические ориентиры из публикаций ISSN. Цели в приложении — середина диапазона.",
+"info.intro": "Расчёт ориентирован на людей, тренирующихся в зале с отягощениями. Опора — Position Stands <b>ISSN</b> и исследования по питанию силовых атлетов: Morton 2018, Helms 2014 и 2023, Iraki 2019, Roberts 2020, Refalo 2025. Всё, что исследованиями не подтверждено, вынесено в раздел «Правила приложения».",
 "info.your": "📌 Ваш расчёт сейчас",
 "info.you_kcal": "<b>Калории:</b> {0} ккал — {1} к TDEE (≈ {2}) · {3}",
 "info.you_prot": "<b>Белки:</b> {0} г · {1} г/кг",
@@ -2053,47 +2107,61 @@ ru: {
 "info.th_param": "Параметр",
 "info.th_value": "Значение",
 "info.r_protein": "Белок, г/кг в сутки",
-"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.v_protein": "2.0–2.2<small>Morton 2018: общий белок 1.6–2.2 г/кг; в приложении для набора и поддержания 2.0–2.2 (запас до верхней границы). ISSN: 1.4–2.0</small>",
 "info.r_protein_cut": "Белок при дефиците энергии",
-"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г на кг безжировой массы — для людей с низким процентом жира, занимающихся силовыми тренировками</small>",
+"info.v_protein_cut": "1.9–3.2<small>Refalo 2025: ниже ~1.9 безжировая масса в среднем теряется, выше — нет. Roberts 2020: 1.8–2.7. Верхний край — для людей с низким процентом жира</small>",
 "info.r_protein_meal": "Белок за приём",
-"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>каждые 3–5 ч, 4–6 приёмов (ACSM, ISSN)</small>",
+"info.v_protein_meal": "≈ 0.25–0.4 г/кг ≈ 20–40 г<small>3–6 приёмов каждые 3–4 ч (ISSN 2017). Schoenfeld & Aragon 2018: 0.4 г/кг на приём при минимум четырёх приёмах</small>",
 "info.r_fat": "Жиры",
-"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. В приложении: не ниже 20% и 0.5 г/кг</small>",
+"info.v_fat": "0.5–1.5 г/кг<small>Iraki 2019. На сушке 15–30% калорий (Helms 2014). В приложении не ниже 0.5 г/кг</small>",
 "info.r_oil": "Масло",
 "info.v_oil": "Подсолнечное, оливковое, льняное и др.<small>По калориям и жирам они практически одинаковы, поэтому в меню масло раскладывается на три основных приёма (салат, готовка), а вид можно менять на любой другой</small>",
 "info.r_carb": "Углеводы, г/кг",
-"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>лёгкая активность · ~1 ч/день · 1–3 ч/день · 4–5+ ч/день (ACSM/AND/DC). В приложении углеводы — остаток калорий после белка и жиров</small>",
+"info.v_carb": "Набор: ≥ 3–5<small>Iraki 2019. Сушка: остаток калорий после белка и жиров, минимума в граммах нет</small>",
 "info.r_water": "Вода",
 "info.v_water": "30–35 мл/кг + 500–1000 мл на час тренировки<small>ориентир; в приложении 35 мл/кг</small>",
 "info.s_bulk": "💪 2. Набор мышечной массы (Lean Bulk)",
 "info.s_cut": "🔥 3. Снижение жира (Cutting)",
 "info.s_maintain": "⚖️ 4. Поддержание (Maintenance)",
-"info.s_sources": "📚 5. Источники",
+"info.s_creatine": "🧪 5. Креатин",
+"info.cr_1": "<b>Креатин моногидрат</b> — самая изученная добавка для силовых тренировок (ISSN 2017, Kreider). Повышает креатин и креатинфосфат в мышцах на 20–40%, увеличивает безжировую массу и силу при тренировках с отягощениями.",
+"info.cr_2": "<b>Доза:</b> 3–5 г в день каждый день, в том числе в дни без тренировок. Время приёма не важно. Более крупным спортсменам ISSN допускает 5–10 г.",
+"info.cr_3": "<b>Загрузка (необязательно):</b> 0.3 г/кг в день (≈5 г × 4 раза) 5–7 дней, затем поддерживающая доза. Без загрузки 3 г в день насыщают мышцы примерно за 28 дней.",
+"info.cr_4": "Креатин лучше усваивается вместе с едой с углеводами или углеводами и белком. Другие формы (гидрохлорид, этиловый эфир и т. п.) преимуществ перед моногидратом не показали.",
+"info.cr_5": "<b>Безопасность:</b> у здоровых людей приём до 30 г в день до 5 лет не вызвал вредных эффектов (ISSN 2017). После отмены запасы возвращаются к исходным за 4–6 недель. Вес может вырасти на 1–2 кг за счёт воды в мышцах. При заболеваниях почек — только по согласованию с врачом. В расчёт калорий и БЖУ креатин не входит.",
+"info.s_sources": "📚 7. Источники",
+"info.s_rules": "⚙️ 6. Правила приложения",
+"info.rules_intro": "Эти значения выбраны приложением и не следуют напрямую из исследований.",
+"info.rule_kcal": "<b>Минимум калорий:</b> не ниже BMR и 1200/1500 ккал — практическое правило.",
+"info.rule_protcap": "<b>Потолок белка:</b> не более 45% калорий — ограничение приложения при низкой калорийности.",
+"info.rule_animal": "<b>Животного белка не менее 1.6 г/кг веса в день:</b> нижняя граница диапазона Morton 2018; остальной белок до 2.0–2.2 г/кг идёт из каш, бобовых и хлеба. Lim 2021: на силу источник белка не влияет, на безжировую массу у людей до 50 лет животный белок немного лучше (результат нестабилен).",
+"info.rule_fast": "<b>Быстрые углеводы:</b> не более 60 г в день (40 г на сушке). Ориентир ВОЗ 2015: свободные сахара (добавленный сахар, мёд, соки, сладости) менее 10% калорийности. Жёстких пропорций «быстрые/медленные» (например 80/20) в исследованиях не найдено.",
+"info.rule_fiber": "<b>Клетчатка:</b> 14 г на 1000 ккал, в пределах 25–35 г — ориентир.",
+"info.rule_water": "<b>Вода:</b> 35 мл на кг веса — ориентир.",
 "info.h_cal": "🔥 Калории",
 "info.h_prot": "🥩 Белок",
 "info.h_fat": "🥑 Жиры",
 "info.h_carb": "🍞 Углеводы",
-"info.bulk_cal": "<b>Профицит 5–10%</b> от TDEE; в приложении — {0}%. ISSN: набор мышц требует устойчивого профицита, а его величина и тренировочный стаж определяют, сколько будет мышц и сколько жира.",
-"info.bulk_cal2": "Агрессивный профицит (>15%) ведёт к избыточному набору жира без дополнительного роста мышц.",
-"info.bulk_rate": "<b>Ориентир по скорости:</b> +0.25–0.5% веса в неделю.",
-"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> общего веса (в приложении {0})",
-"info.bulk_prot2": "Выше ~2.2 г/кг прироста мышц не даёт у натуральных атлетов (Morton, 2018)",
-"info.bulk_prot3": "<b>20–40 г качественного белка</b> на приём (лейцин 2–3 г)",
-"info.bulk_prot4": "Распределение: 4–6 приёмов в день",
-"info.bulk_fat": "<b>25–35%</b> калорийности (в приложении {0}%), не ниже 0.5 г/кг. Нужны для гормонов и усвоения витаминов A/D/E/K.",
-"info.bulk_carb": "Остаток калорий после белка и жиров — основной источник энергии тренировок (ориентиры ACSM — в таблице выше).",
-"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE; в приложении — {0}%. ISSN: чем больше жировой массы, тем агрессивнее допустим дефицит; у людей с низким процентом жира лучше медленнее — так сохраняется больше мышц.",
-"info.cut_rate": "<b>Скорость:</b> −0.5–1.0% веса в неделю (Helms et al., 2014).",
-"info.cut_floor": "Нижняя граница: не ниже BMR и не ниже 1200 ккал (женщины) / 1500 ккал (мужчины).",
-"info.cut_prot1": "<b>1.8–2.7 г/кг</b> общего веса (в приложении {0})",
-"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефиците энергии; ISSN: 2.3–3.1 г на кг безжировой массы (вес тела без жира) — для людей с низким процентом жира, занимающихся силовыми тренировками, чтобы максимально сохранить мышцы",
+"info.bulk_cal": "<b>Профицит +5–10%</b> от TDEE; в приложении — {0}%. Helms 2023: при +5% и +15% толщина мышц не отличалась (как и в группе поддержания), жира при +15% стало больше; жим лёжа вырос сильнее при +15%. Iraki 2019 допускает 10–20%, у опытных — нижний край.",
+"info.bulk_cal2": "Больший профицит в исследованиях давал больше жира, а не больше мышц: Garthe 2013 — жировая масса выросла на 15% в группе с большим набором калорий против 3% в контролируемой группе; Helms 2023 — то же при +15%.",
+"info.bulk_rate": "<b>Ориентир по скорости:</b> +0.25–0.5% веса в неделю (Iraki 2019). Если вес растёт быстрее — уменьшайте калории.",
+"info.bulk_prot1": "<b>2.0–2.2 г/кг</b> общего веса: Morton 2018 — диапазон 1.6–2.2 (точка перелома 1.62, доверительный интервал 1.03–2.20), Iraki 2019 — 1.6–2.2. В приложении {0}",
+"info.bulk_prot2": "Из них животного белка не менее 1.6 г/кг (мясо, рыба, яйца, творог, казеин), остальное добирают растительные продукты (каши, бобовые, хлеб) до 2.0–2.2 г/кг. Выше 2.2 г/кг прирост мышц по Morton 2018 не подтверждён",
+"info.bulk_prot3": "<b>20–40 г качественного белка</b> на приём (≈0.25–0.4 г/кг), лейцин 0.7–3 г (ISSN 2017)",
+"info.bulk_prot4": "3–6 приёмов в день, каждые 3–4 ч; разбивка на 4 приёма по 0.4 г/кг — практическая рекомендация (Schoenfeld & Aragon 2018), а не строгое требование",
+"info.bulk_fat": "<b>0.5–1.5 г/кг</b> общего веса (Iraki 2019); в приложении {0}% калорий, не ниже 0.5 г/кг.",
+"info.bulk_carb": "Остаток калорий после белка и жиров, не менее 3–5 г/кг (Iraki 2019).",
+"info.cut_cal": "<b>Дефицит 20–25%</b> от TDEE (в приложении — {0}%) — ориентир приложения; в исследованиях дефицит задаётся скоростью потери веса (см. ниже). ISSN: у людей с большим процентом жира допустим больший дефицит, у людей с низким — медленнее.",
+"info.cut_rate": "<b>Скорость:</b> 0.5–1.0% веса в неделю (Helms 2014); для людей с низким процентом жира ≤ 0.5% (Roberts 2020). Garthe 2011: при ~0.7% в неделю безжировая масса выросла на 2.1%, при ~1.0% не изменилась.",
+"info.cut_floor": "Нижняя граница калорий (правило приложения): не ниже BMR и не ниже 1200 ккал (женщины) / 1500 ккал (мужчины).",
+"info.cut_prot1": "<b>1.9–3.2 г/кг</b> общего веса (Refalo 2025: ниже ~1.9 безжировая масса в среднем теряется); Roberts 2020: 1.8–2.7. В приложении {0}",
+"info.cut_prot2": "Верхний край (2.5–3.2) нужен людям с низким процентом жира (мужчины примерно до 12%); выводы Refalo 2025 предварительные",
 "info.cut_prot3": "При заболеваниях почек высокий белок — только по согласованию с врачом",
-"info.cut_fat": "<b>25–30%</b> калорийности (в приложении {0}%), не ниже 20% и 0.5 г/кг.",
-"info.cut_carb": "Остаток калорий, <b>не менее 2 г/кг</b> — чтобы сохранять интенсивность тренировок.",
-"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабильный вес; в приложении — 0%.",
-"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — сохранение мышц (в приложении {0}).",
-"info.mnt_fat": "<b>30–35%</b> калорийности (в приложении {0}%).",
+"info.cut_fat": "<b>15–30%</b> калорийности (Helms 2014); в приложении {0}%, не ниже 0.5 г/кг.",
+"info.cut_carb": "Остаток калорий после белка и жиров. Минимума в граммах нет: порог, ниже которого падает интенсивность тренировок, в исследованиях числом не определён (Helms 2014).",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабильный вес; в приложении — 0%. Отдельных исследований по поддержанию веса у тренирующихся с отягощениями нет — значения взяты из рекомендаций для набора и сушки.",
+"info.mnt_prot": "<b>2.0–2.2 г/кг</b> (Morton 2018: 1.6–2.2, Iraki 2019); в приложении {0}, животного белка не менее 1.6 г/кг.",
+"info.mnt_fat": "<b>0.5–1.5 г/кг</b> общего веса (Iraki 2019); в приложении {0}% калорий.",
 "info.disclaimer": "<b>Важно:</b> это ориентиры для здоровых взрослых. При беременности, диабете, заболеваниях почек и других состояниях, а также при высоких тренировочных нагрузках нужен индивидуальный план у врача или спортивного диетолога.",
 "meal.0": "Завтрак",
 "meal.1": "Перекус №1",
@@ -2101,7 +2169,8 @@ ru: {
 "meal.3": "Перекус №2",
 "meal.4": "Ужин",
 "meal.5": "Перекус перед сном (казеин)",
-"cat.meat": "Мясо, рыба, яйца",
+"cat.meat": "Мясо, яйца, рыба",
+"cat.veg": "Овощи",
 "cat.carb": "Гарниры — углеводы",
 "cat.fat": "Жиры",
 "cat.fruits": "Фрукты, кисломолочные продукты, напитки",
@@ -2204,7 +2273,7 @@ ua: {
 'profile.note_cut': 'Режим спалювання жиру: дефіцит ~{0}% · {1}', 'profile.note_gain': 'Режим набору: профіцит ~{0}% · {1}',
 'profile.floor_note': 'Спрацював нижній поріг калорій ({0} ккал): дефіцит обмежено.',
 "info.title": "📚 Наукова база спортивної дієтології",
-"info.intro": "Розрахунок спирається на офіційні <b>Position Stands</b> провідних організацій: <b>ISSN</b> (International Society of Sports Nutrition) та <b>ACSM</b> (American College of Sports Medicine) разом з Academy of Nutrition and Dietetics і Dietitians of Canada. Діапазони білка, жирів і вуглеводів узято з них; величини дефіциту та профіциту — практичні орієнтири з публікацій ISSN. Цілі в застосунку — середина діапазону.",
+"info.intro": "Розрахунок орієнтований на людей, які тренуються в залі з обтяженнями. Опора — Position Stands <b>ISSN</b> та дослідження з харчування силових атлетів: Morton 2018, Helms 2014 і 2023, Iraki 2019, Roberts 2020, Refalo 2025. Усе, що дослідженнями не підтверджено, винесено в розділ «Правила застосунку».",
 "info.your": "📌 Ваш розрахунок зараз",
 "info.you_kcal": "<b>Калорії:</b> {0} ккал — {1} до TDEE (≈ {2}) · {3}",
 "info.you_prot": "<b>Білки:</b> {0} г · {1} г/кг",
@@ -2214,47 +2283,61 @@ ua: {
 "info.th_param": "Параметр",
 "info.th_value": "Значення",
 "info.r_protein": "Білок, г/кг на добу",
-"info.v_protein": "1.2–2.0<small>ACSM/AND/DC · ISSN: 1.4–2.0</small>",
+"info.v_protein": "2.0–2.2<small>Morton 2018: загальний білок 1.6–2.2 г/кг; у застосунку для набору й підтримання 2.0–2.2 (запас до верхньої межі). ISSN: 1.4–2.0</small>",
 "info.r_protein_cut": "Білок при дефіциті енергії",
-"info.v_protein_cut": "≥ 2.0<small>ACSM/AND/DC · ISSN: 2.3–3.1 г на кг безжирової маси — для людей з низьким відсотком жиру, які займаються силовими тренуваннями</small>",
+"info.v_protein_cut": "1.9–3.2<small>Refalo 2025: нижче ~1.9 безжирова маса в середньому втрачається, вище — ні. Roberts 2020: 1.8–2.7. Верхній край — для людей з низьким відсотком жиру</small>",
 "info.r_protein_meal": "Білок на прийом",
-"info.v_protein_meal": "0.25–0.3 г/кг ≈ 20–40 г<small>кожні 3–5 год, 4–6 прийомів (ACSM, ISSN)</small>",
+"info.v_protein_meal": "≈ 0.25–0.4 г/кг ≈ 20–40 г<small>3–6 прийомів кожні 3–4 год (ISSN 2017). Schoenfeld & Aragon 2018: 0.4 г/кг на прийом щонайменше за чотири прийоми</small>",
 "info.r_fat": "Жири",
-"info.v_fat": "20–35% ккал<small>ACSM/AND/DC. У застосунку: не нижче 20% і 0.5 г/кг</small>",
+"info.v_fat": "0.5–1.5 г/кг<small>Iraki 2019. На сушінні 15–30% калорій (Helms 2014). У застосунку не нижче 0.5 г/кг</small>",
 "info.r_oil": "Олія",
 "info.v_oil": "Соняшникова, оливкова, лляна та ін.<small>За калоріями та жирами вони практично однакові, тому в меню олія розкладається на три основні прийоми (салат, готування), а вид можна змінювати на будь-який інший</small>",
 "info.r_carb": "Вуглеводи, г/кг",
-"info.v_carb": "3–5 · 5–7 · 6–10 · 8–12<small>легка активність · ~1 год/день · 1–3 год/день · 4–5+ год/день (ACSM/AND/DC). У застосунку вуглеводи — залишок калорій після білка та жирів</small>",
+"info.v_carb": "Набір: ≥ 3–5<small>Iraki 2019. Сушіння: залишок калорій після білка й жирів, мінімуму в грамах немає</small>",
 "info.r_water": "Вода",
 "info.v_water": "30–35 мл/кг + 500–1000 мл на годину тренування<small>орієнтир; у застосунку 35 мл/кг</small>",
 "info.s_bulk": "💪 2. Набір м'язової маси (Lean Bulk)",
 "info.s_cut": "🔥 3. Зниження жиру (Cutting)",
 "info.s_maintain": "⚖️ 4. Підтримання (Maintenance)",
-"info.s_sources": "📚 5. Джерела",
+"info.s_creatine": "🧪 5. Креатин",
+"info.cr_1": "<b>Креатин моногідрат</b> — найбільш вивчена добавка для силових тренувань (ISSN 2017, Kreider). Підвищує креатин і креатинфосфат у м'язах на 20–40%, збільшує безжирову масу і силу при тренуваннях з обтяженнями.",
+"info.cr_2": "<b>Доза:</b> 3–5 г на день щодня, у тому числі в дні без тренувань. Час прийому не важливий. Більшим спортсменам ISSN допускає 5–10 г.",
+"info.cr_3": "<b>Завантаження (необов'язково):</b> 0.3 г/кг на день (≈5 г × 4 рази) 5–7 днів, потім підтримуюча доза. Без завантаження 3 г на день насичують м'язи приблизно за 28 днів.",
+"info.cr_4": "Креатин краще засвоюється разом з їжею з вуглеводами або вуглеводами й білком. Інші форми (гідрохлорид, етиловий ефір тощо) переваг перед моногідратом не показали.",
+"info.cr_5": "<b>Безпека:</b> у здорових людей прийом до 30 г на день до 5 років не викликав шкідливих ефектів (ISSN 2017). Після відміни запаси повертаються до вихідних за 4–6 тижнів. Вага може зрости на 1–2 кг за рахунок води в м'язах. При захворюваннях нирок — лише за погодженням з лікарем. У розрахунок калорій і БЖВ креатин не входить.",
+"info.s_sources": "📚 7. Джерела",
+"info.s_rules": "⚙️ 6. Правила застосунку",
+"info.rules_intro": "Ці значення обрані застосунком і не випливають напряму з досліджень.",
+"info.rule_kcal": "<b>Мінімум калорій:</b> не нижче BMR і 1200/1500 ккал — практичне правило.",
+"info.rule_protcap": "<b>Стеля білка:</b> не більше 45% калорій — обмеження застосунку при низькій калорійності.",
+"info.rule_animal": "<b>Тваринного білка не менше 1.6 г/кг ваги на день:</b> нижня межа діапазону Morton 2018; решта білка до 2.0–2.2 г/кг іде з каш, бобових і хліба. Lim 2021: на силу джерело білка не впливає, на безжирову масу у людей до 50 років тваринний білок трохи кращий (результат нестабільний).",
+"info.rule_fast": "<b>Швидкі вуглеводи:</b> не більше 60 г на день (40 г на сушінні). Орієнтир ВООЗ 2015: вільні цукри (доданий цукор, мед, соки, солодощі) менше 10% калорійності. Жорстких пропорцій «швидкі/повільні» (наприклад 80/20) у дослідженнях не знайдено.",
+"info.rule_fiber": "<b>Клітковина:</b> 14 г на 1000 ккал, у межах 25–35 г — орієнтир.",
+"info.rule_water": "<b>Вода:</b> 35 мл на кг ваги — орієнтир.",
 "info.h_cal": "🔥 Калорії",
 "info.h_prot": "🥩 Білок",
 "info.h_fat": "🥑 Жири",
 "info.h_carb": "🍞 Вуглеводи",
-"info.bulk_cal": "<b>Профіцит 5–10%</b> від TDEE; у застосунку — {0}%. ISSN: набір м'язів потребує стійкого профіциту, а його величина та тренувальний стаж визначають, скільки буде м'язів і скільки жиру.",
-"info.bulk_cal2": "Агресивний профіцит (>15%) веде до надмірного набору жиру без додаткового росту м'язів.",
-"info.bulk_rate": "<b>Орієнтир за швидкістю:</b> +0.25–0.5% ваги на тиждень.",
-"info.bulk_prot1": "<b>1.6–2.2 г/кг</b> загальної ваги (у застосунку {0})",
-"info.bulk_prot2": "Понад ~2.2 г/кг приросту м'язів не дає у натуральних атлетів (Morton, 2018)",
-"info.bulk_prot3": "<b>20–40 г якісного білка</b> на прийом (лейцин 2–3 г)",
-"info.bulk_prot4": "Розподіл: 4–6 прийомів на день",
-"info.bulk_fat": "<b>25–35%</b> калорійності (у застосунку {0}%), не нижче 0.5 г/кг. Потрібні для гормонів і засвоєння вітамінів A/D/E/K.",
-"info.bulk_carb": "Залишок калорій після білка та жирів — основне джерело енергії тренувань (орієнтири ACSM — у таблиці вище).",
-"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE; у застосунку — {0}%. ISSN: чим більше жирової маси, тим агресивніший допустимий дефіцит; у людей з низьким відсотком жиру краще повільніше — так зберігається більше м'язів.",
-"info.cut_rate": "<b>Швидкість:</b> −0.5–1.0% ваги на тиждень (Helms et al., 2014).",
-"info.cut_floor": "Нижня межа: не нижче BMR і не нижче 1200 ккал (жінки) / 1500 ккал (чоловіки).",
-"info.cut_prot1": "<b>1.8–2.7 г/кг</b> загальної ваги (у застосунку {0})",
-"info.cut_prot2": "ACSM/AND/DC: ≥ 2.0 г/кг при дефіциті енергії; ISSN: 2.3–3.1 г на кг безжирової маси (вага тіла без жиру) — для людей з низьким відсотком жиру, які займаються силовими тренуваннями, щоб максимально зберегти м'язи",
+"info.bulk_cal": "<b>Профіцит +5–10%</b> від TDEE; у застосунку — {0}%. Helms 2023: при +5% і +15% товщина м'язів не відрізнялася (як і в групі підтримання), жиру при +15% стало більше; жим лежачи виріс сильніше при +15%. Iraki 2019 допускає 10–20%, у досвідчених — нижній край.",
+"info.bulk_cal2": "Більший профіцит у дослідженнях давав більше жиру, а не більше м'язів: Garthe 2013 — жирова маса зросла на 15% у групі з більшим набором калорій проти 3% у контрольованій групі; Helms 2023 — те саме при +15%.",
+"info.bulk_rate": "<b>Орієнтир за швидкістю:</b> +0.25–0.5% ваги на тиждень (Iraki 2019). Якщо вага зростає швидше — зменшуйте калорії.",
+"info.bulk_prot1": "<b>2.0–2.2 г/кг</b> загальної ваги: Morton 2018 — діапазон 1.6–2.2 (точка перелому 1.62, довірчий інтервал 1.03–2.20), Iraki 2019 — 1.6–2.2. У застосунку {0}",
+"info.bulk_prot2": "З них тваринного білка не менше 1.6 г/кг (м'ясо, риба, яйця, сир, казеїн), решту добирають рослинні продукти (каші, бобові, хліб) до 2.0–2.2 г/кг. Вище 2.2 г/кг приріст м'язів за Morton 2018 не підтверджений",
+"info.bulk_prot3": "<b>20–40 г якісного білка</b> на прийом (≈0.25–0.4 г/кг), лейцин 0.7–3 г (ISSN 2017)",
+"info.bulk_prot4": "3–6 прийомів на день, кожні 3–4 год; розбивка на 4 прийоми по 0.4 г/кг — практична рекомендація (Schoenfeld & Aragon 2018), а не сувора вимога",
+"info.bulk_fat": "<b>0.5–1.5 г/кг</b> загальної ваги (Iraki 2019); у застосунку {0}% калорій, не нижче 0.5 г/кг.",
+"info.bulk_carb": "Залишок калорій після білка й жирів, не менше 3–5 г/кг (Iraki 2019).",
+"info.cut_cal": "<b>Дефіцит 20–25%</b> від TDEE (у застосунку — {0}%) — орієнтир застосунку; у дослідженнях дефіцит задається швидкістю втрати ваги (див. нижче). ISSN: у людей з більшим відсотком жиру допустимий більший дефіцит, у людей з низьким — повільніше.",
+"info.cut_rate": "<b>Швидкість:</b> 0.5–1.0% ваги на тиждень (Helms 2014); для людей з низьким відсотком жиру ≤ 0.5% (Roberts 2020). Garthe 2011: при ~0.7% на тиждень безжирова маса зросла на 2.1%, при ~1.0% не змінилася.",
+"info.cut_floor": "Нижня межа калорій (правило застосунку): не нижче BMR і не нижче 1200 ккал (жінки) / 1500 ккал (чоловіки).",
+"info.cut_prot1": "<b>1.9–3.2 г/кг</b> загальної ваги (Refalo 2025: нижче ~1.9 безжирова маса в середньому втрачається); Roberts 2020: 1.8–2.7. У застосунку {0}",
+"info.cut_prot2": "Верхній край (2.5–3.2) потрібен людям з низьким відсотком жиру (чоловіки приблизно до 12%); висновки Refalo 2025 попередні",
 "info.cut_prot3": "При захворюваннях нирок високий білок — лише за погодженням з лікарем",
-"info.cut_fat": "<b>25–30%</b> калорійності (у застосунку {0}%), не нижче 20% і 0.5 г/кг.",
-"info.cut_carb": "Залишок калорій, <b>не менше 2 г/кг</b> — щоб зберігати інтенсивність тренувань.",
-"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабільна вага; у застосунку — 0%.",
-"info.mnt_prot": "<b>1.6–2.2 г/кг</b> — збереження м'язів (у застосунку {0}).",
-"info.mnt_fat": "<b>30–35%</b> калорійності (у застосунку {0}%).",
+"info.cut_fat": "<b>15–30%</b> калорійності (Helms 2014); у застосунку {0}%, не нижче 0.5 г/кг.",
+"info.cut_carb": "Залишок калорій після білка й жирів. Мінімуму в грамах немає: поріг, нижче якого падає інтенсивність тренувань, у дослідженнях числом не визначений (Helms 2014).",
+"info.mnt_cal": "<b>TDEE ± 0–5%</b> — стабільна вага; у застосунку — 0%. Окремих досліджень з підтримання ваги у тих, хто тренується з обтяженнями, немає — значення взято з рекомендацій для набору й сушіння.",
+"info.mnt_prot": "<b>2.0–2.2 г/кг</b> (Morton 2018: 1.6–2.2, Iraki 2019); у застосунку {0}, тваринного білка не менше 1.6 г/кг.",
+"info.mnt_fat": "<b>0.5–1.5 г/кг</b> загальної ваги (Iraki 2019); у застосунку {0}% калорій.",
 "info.disclaimer": "<b>Важливо:</b> це орієнтири для здорових дорослих. При вагітності, діабеті, захворюваннях нирок та інших станах, а також при високих тренувальних навантаженнях потрібен індивідуальний план у лікаря або спортивного дієтолога.",
 "meal.0": "Сніданок",
 "meal.1": "Перекус №1",
@@ -2262,7 +2345,8 @@ ua: {
 "meal.3": "Перекус №2",
 "meal.4": "Вечеря",
 "meal.5": "Перекус перед сном (казеїн)",
-"cat.meat": "М'ясо, риба, яйця",
+"cat.meat": "М'ясо, яйця, риба",
+"cat.veg": "Овочі",
 "cat.carb": "Гарніри — вуглеводи",
 "cat.fat": "Жири",
 "cat.fruits": "Фрукти, кисломолочні продукти, напої",
@@ -2471,12 +2555,20 @@ const activeId = map[goal];
 if (activeId) { const el = document.getElementById(activeId); if (el) el.classList.add('current'); }
 },
 SOURCES: [
-['ACSM/AND/DC Joint Position Statement: Nutrition and Athletic Performance', 'Thomas, Erdman, Burke. Med Sci Sports Exerc 2016;48(3):543–568'],
 ['ISSN Position Stand: Protein and Exercise', 'Jäger et al., J Int Soc Sports Nutr 2017;14:20'],
 ['ISSN Position Stand: Diets and Body Composition', 'Aragon et al., J Int Soc Sports Nutr 2017;14:16'],
-['Evidence-based recommendations for natural bodybuilding contest preparation', 'Helms, Aragon, Fitschen. J Int Soc Sports Nutr 2014;11:20'],
-['Meta-analysis: Protein supplementation and muscle mass', 'Morton et al., Br J Sports Med 2018'],
-['MATADOR study: Diet breaks and fat loss', 'Byrne et al., Int J Obes 2018']
+['Protein supplementation and resistance training: systematic review, meta-analysis and meta-regression', 'Morton et al., Br J Sports Med 2018;52(6):376–384'],
+['Effect of Dietary Protein on Fat-Free Mass in Energy Restricted, Resistance-Trained Individuals: An Updated Systematic Review With Meta-Regression', 'Refalo, Trexler, Helms. Strength Cond J 2025'],
+['Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation', 'Helms, Aragon, Fitschen. J Int Soc Sports Nutr 2014;11:20'],
+['Nutrition Recommendations for Bodybuilders in the Off-Season: A Narrative Review', 'Iraki, Fitschen, Espinar, Helms. Sports 2019;7(7):154'],
+['Nutritional Recommendations for Physique Athletes', 'Roberts, Helms, Trexler, Fitschen. J Hum Kinet 2020;71:79–108'],
+['Effect of Small and Large Energy Surpluses on Strength, Muscle, and Skinfold Thickness in Resistance-Trained Individuals', 'Helms et al., Sports Med Open 2023;9:102'],
+['Effect of nutritional intervention on body composition and performance in elite athletes', 'Garthe et al., Eur J Sport Sci 2013;13(3):295–303'],
+['Effect of two different weight-loss rates on body composition and strength and power-related performance in elite athletes', 'Garthe et al., Int J Sport Nutr Exerc Metab 2011;21(2):97–104'],
+['How much protein can the body use in a single meal for muscle-building?', 'Schoenfeld, Aragon. J Int Soc Sports Nutr 2018;15:10'],
+['Animal Protein versus Plant Protein in Supporting Lean Mass and Muscle Strength', 'Lim et al., Nutrients 2021;13(2):661'],
+['International Society of Sports Nutrition Position Stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', 'Kreider et al., J Int Soc Sports Nutr 2017;14:18'],
+['Guideline: Sugars intake for adults and children', 'WHO, 2015']
 ],
 render() {
 const root = document.getElementById('info-root');
@@ -2512,9 +2604,11 @@ const cut = h('info.h_cal') + p('info.cut_cal', pc(d('cut').kcalAdj)) + `<div cl
 h('info.h_prot') + '<ul class="info-list">' + li('info.cut_prot1', num(d('cut').protein)) + li('info.cut_prot2') + li('info.cut_prot3') + '</ul>' +
 h('info.h_fat') + p('info.cut_fat', pc(d('cut').fatPct)) + h('info.h_carb') + p('info.cut_carb');
 const maintain = h('info.h_cal') + p('info.mnt_cal') + h('info.h_prot') + p('info.mnt_prot', num(d('maintain').protein)) + h('info.h_fat') + p('info.mnt_fat', pc(d('maintain').fatPct));
+const creatine = '<ul class="info-list">' + ['cr_1','cr_2','cr_3','cr_4','cr_5'].map(k => li('info.' + k)).join('') + '</ul>';
+const rules = `<div class="info-p">${t('info.rules_intro')}</div><ul class="info-list">` + ['kcal','protcap','animal','fast','fiber','water'].map(k => li('info.rule_' + k)).join('') + '</ul>';
 const sources = InfoUI.SOURCES.map(s => `<div class="info-source"><b>${s[0]}</b><div class="authors">${s[1]}</div></div>`).join('') + `<div class="info-card warn">${t('info.disclaimer')}</div>`;
 root.innerHTML = `<div class="section-title">${t('info.title')}</div><div class="info-intro">${t('info.intro')}</div>${you}` +
-sec('info-general', t('info.s_general'), general) + sec('info-bulk', t('info.s_bulk'), bulk) + sec('info-cut', t('info.s_cut'), cut) + sec('info-maintain', t('info.s_maintain'), maintain) + sec('info-sources', t('info.s_sources'), sources);
+sec('info-general', t('info.s_general'), general) + sec('info-bulk', t('info.s_bulk'), bulk) + sec('info-cut', t('info.s_cut'), cut) + sec('info-maintain', t('info.s_maintain'), maintain) + sec('info-creatine', t('info.s_creatine'), creatine) + sec('info-rules', t('info.s_rules'), rules) + sec('info-sources', t('info.s_sources'), sources);
 // открытые разделы сохраняются между перерисовками; при смене цели закрывается раздел прежней цели и открывается новой
 const goal = AppState.data.profile.goal;
 const goalMap = { loss: 'info-cut', gain: 'info-bulk', maintain: 'info-maintain' };
@@ -2651,7 +2745,15 @@ if (/лаваш|хлеб|хліб|батон|багет|консерв|туне�
 if (/куриц|курят|філе|филе|индейк|індич|говядин|ялович|свинин|рыб|риб|хек|лосос|яйц|яйце|морепрод/i.test(n)) return 'meat';
 if (/масл|олія|(?<!не)(?<!без)жир|орех|горіх|арахис|семечк|насіння/i.test(n)) return 'fat';
 if (/йогурт|сир кисломолочний|творог|кисломолочний|молоко|кефир|фрукт|ябл|банан|апельсин|ягод|лохина|сок|сік|чай|кофе|кава|вода/i.test(n)) return 'fruits';
+if (item.forceGroup === 'veggie' || /перец|перець|морков|морква|кабач|буряк|свекл|цибул|лук|часник|чеснок|огір|огур|помідор|помидор|томат|капуст|броколі|брокколи|шпинат|зелен|салат/i.test(n)) return 'veg';
 return 'carb';
+},
+// Порядок внутри группы «Мясо, яйца, рыба»: мясо и птица, затем яйца, затем рыба.
+meatRank(name) {
+const n = (name || '').toString().toLowerCase();
+if (/яйц|яйце/.test(n)) return 1;
+if (/(^|[^а-яіїєґё])(?:риб[а-яіїєґё]*|рыб[а-яіїєґё]*|хек|минтай|лосос[а-яіїєґё]*|сьомг[а-яіїєґё]*|тріск[а-яіїєґё]*|форел[а-яіїєґё]*|скумбр[а-яіїєґё]*)([^а-яіїєґё]|$)/.test(n)) return 2;
+return 0;
 },
 inferGroup(s, name) {
 if (this.isPotato(name)) return 'carb';
@@ -2893,13 +2995,12 @@ const Targets = {
 // Диапазоны из справки во вкладке «Инфо» (ISSN / ACSM-AND-DC). Цель приложения — середина диапазона.
 SPEC: {
 cut: { kcalAdj: [-0.20, -0.25], protein: [1.8, 2.7], fatPct: [0.25, 0.30] },
-maintain: { kcalAdj: [-0.05, 0.05], protein: [1.6, 2.2], fatPct: [0.30, 0.35] },
-bulk: { kcalAdj: [0.05, 0.10], protein: [1.6, 2.2], fatPct: [0.25, 0.35] }
+maintain: { kcalAdj: [-0.05, 0.05], protein: [2.0, 2.2], fatPct: [0.30, 0.35] },
+bulk: { kcalAdj: [0.05, 0.10], protein: [2.0, 2.2], fatPct: [0.25, 0.35] }
 },
 MIN_KCAL: { male: 1500, female: 1200 },
 MIN_FAT_PCT: 0.20,
 MIN_FAT_PER_KG: 0.5,
-CUT_MIN_CARB_PER_KG: 2,
 PROTEIN_CAP_PCT: 0.45,
 mid(r) { return (r[0] + r[1]) / 2; },
 defaults(goal) {
@@ -2921,15 +3022,6 @@ let proteinG = Math.min(d.protein * weight, kcal * this.PROTEIN_CAP_PCT / 4);
 const fatMin = Math.max(this.MIN_FAT_PCT * kcal / 9, this.MIN_FAT_PER_KG * weight);
 let fatG = Math.max(d.fatPct * kcal / 9, fatMin);
 let carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
-// На сушке углеводы не ниже 2 г/кг: сначала снижаем белок до нижней границы диапазона, затем жиры до минимума
-if (gk === 'cut' && carbsG < this.CUT_MIN_CARB_PER_KG * weight) {
-let need = this.CUT_MIN_CARB_PER_KG * weight * 4 - (kcal - proteinG * 4 - fatG * 9);
-const pLow = Math.min(proteinG, spec.protein[0] * weight);
-const fromP = Math.min(need, (proteinG - pLow) * 4);
-proteinG -= fromP / 4; need -= fromP;
-if (need > 0) { const fromF = Math.min(need, Math.max(0, fatG - fatMin) * 9); fatG -= fromF / 9; }
-carbsG = (kcal - proteinG * 4 - fatG * 9) / 4;
-}
 carbsG = Math.max(0, carbsG);
 if (carbsG <= 0) { fatG = Math.max(kcal * 0.20 / 9, weight * 0.4); carbsG = Math.max(0, (kcal - proteinG * 4 - fatG * 9) / 4); }
 return { bmr, tdee, kcal, proteinG, fatG, carbsG, floorApplied, floorKcal: Math.round(floor), goal: gk, kcalAdj: d.kcalAdj, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0 };
@@ -2943,7 +3035,6 @@ const proteinG = this.round5(r.proteinG);
 const fatG = this.round5(r.fatG);
 let carbsG = Math.max(0, this.round5((r.kcal - proteinG * 4 - fatG * 9) / 4));
 if (r.floorApplied && proteinG * 4 + fatG * 9 + carbsG * 4 < r.floorKcal) carbsG += 5;
-if (r.goal === 'cut') { const minC = Math.ceil(this.CUT_MIN_CARB_PER_KG * weight / 5) * 5; if (carbsG < minC) carbsG = minC; }
 const kcal = proteinG * 4 + fatG * 9 + carbsG * 4;
 const deltaKcal = kcal - r.tdee;
 return { ...r, kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0, deltaKcal, weeklyKg: deltaKcal * 7 / 7700 };
@@ -3000,6 +3091,33 @@ if (!item || weight <= 0) return;
 const existing = meal.components.find(c => c.item && c.item.name === item.name);
 if (existing) { const s = this.scale(item, existing.weight + weight); existing.weight += weight; existing.kcal = s.kcal; existing.p = s.p; existing.f = s.f; existing.c = s.c; existing.fib = s.fib; existing.price = s.price; }
 else { const s = this.scale(item, weight); meal.components.push({ item, weight, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }); }
+},
+// Животного белка за день не меньше 1.6 г на кг массы тела (нижняя граница Morton 2018). Растительный белок (каши, бобовые, хлеб)
+// добирает общий белок до целевых 2.0–2.2 г/кг. Если животного белка не хватает, увеличиваем порции мяса/рыбы в основных приёмах.
+balanceProteinRatio(meals, dayTotals, targets, pools, d, goal, weight) {
+const R = CONFIG.PROTEIN_SPLIT;
+if (!(weight > 0)) return;
+const need = R.animalMinPerKg * weight;
+const animalSum = () => { let a = 0; meals.forEach(m => m.components.forEach(c => { if (Classify.isAnimalProtein(c.item)) a += c.p; })); return a; };
+const applyDelta = (meal, dl) => { ['kcal', 'p', 'f', 'c', 'fib', 'price'].forEach(key => { meal.totals[key] += dl[key]; dayTotals[key] += dl[key]; }); };
+const setWeight = (meal, comp, w) => {
+const before = { kcal: comp.kcal, p: comp.p, f: comp.f, c: comp.c, fib: comp.fib, price: comp.price };
+const sc = this.scale(comp.item, w); comp.weight = w; comp.kcal = sc.kcal; comp.p = sc.p; comp.f = sc.f; comp.c = sc.c; comp.fib = sc.fib; comp.price = sc.price;
+applyDelta(meal, { kcal: sc.kcal - before.kcal, p: sc.p - before.p, f: sc.f - before.f, c: sc.c - before.c, fib: sc.fib - before.fib, price: sc.price - before.price });
+};
+for (let pass = 0; pass < 4; pass++) {
+const deficit = need - animalSum();
+if (deficit <= 0.5) return;
+const meats = [0, 2, 4].map(k => ({ k, c: meals[k] && meals[k].components.find(c => Classify.isAnimalProtein(c.item) && c.item.unit !== 'pcs' && Classify.get(c.item) === 'protein' && !Classify.isCannedFood(c.item.name) && c.weight > 0 && c.p > 0) })).filter(x => x.c);
+if (!meats.length) return;
+let grew = false;
+meats.forEach(({ k, c }) => {
+const perG = c.p / c.weight;
+const nw = Math.min(CONFIG.PORTIONS.meatMainMax, Math.ceil((c.weight + deficit / meats.length / perG) / 5) * 5);
+if (nw > c.weight) { setWeight(meals[k], c, nw); grew = true; }
+});
+if (!grew) return;
+}
 },
 balanceDay(meals, dayTotals, targets, pools, dayIndex, goal) {
 const cut = goal === 'cut';
@@ -3196,8 +3314,8 @@ let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
 if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
 if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
-let cannedToday = false, protExcess = 0;
-CONFIG.MEALS.snackIndices.forEach(m => { const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
+let cannedToday = false, protExcess = 0, cannedRest = null;
+CONFIG.MEALS.snackIndices.forEach(m => { if (cannedRest && cannedRest.m === m) { const cr = cannedRest; cannedRest = null; addC(m, cr.item, cr.w); protExcess += Math.max(0, mealComps[m].reduce((sum, c) => sum + c.p, 0) - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13)); return; } const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const pgC = pItem.p / pItem.weight; const needC = pgC > 0 ? (targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13) - mealComps[m].reduce((sum, c) => sum + c.p, 0)) / pgC : pW; const otherM = CONFIG.MEALS.snackIndices.find(x => x > m); /* банка целиком, либо пополам на два перекуса — остатки в 20 г не оставляем */ if (otherM !== undefined && needC < 0.7 * pItem.net && this.snackPoolsFor(pools, otherM).proteinCanned.some(x => x.name === pItem.name)) { pW = Math.round(pItem.net / 2 / 5) * 5; cannedRest = { item: pItem, w: pItem.net - pW, m: otherM }; } const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
 const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
 if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
@@ -3255,6 +3373,7 @@ meals.push(caseinMeal);
 const dayTotals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p; dayTotals.f += m.totals.f; dayTotals.c += m.totals.c; dayTotals.fib += m.totals.fib; dayTotals.price += m.totals.price; });
 this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
+this.balanceProteinRatio(meals, dayTotals, targets, pools, d, p.goal, p.weight);
 days.push({ meals, totals: dayTotals });
 }
 AppState.runtime.menuPlan = { targets, days, goal: p.goal, caseinMissing };
@@ -3300,18 +3419,18 @@ if (!dayData) {
 el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
 }
-let DB = 0, DF = 0, DC = 0, visibleNum = 0, EB = 0, EF = 0, EC = 0, EFib = 0, EAnimal = 0, DFib = 0;
+const eatenMap = {}; let DB = 0, DF = 0, DC = 0, visibleNum = 0, EB = 0, EF = 0, EC = 0, EFib = 0, EAnimal = 0, DFib = 0;
 dayData.meals.forEach((meal, i) => {
 if (!meal.components.length) return;
 visibleNum++;
 const ordered = meal.components.slice().sort((a, b) => this.sortRank(a) - this.sortRank(b));
 let tb = 0, tf = 0, tc = 0, tg = 0;
-const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); tg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; const cf = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const cookedHtml = cf ? `<span class="cook-w">${t('cook.ready', Math.round(comp.weight * cf / 5) * 5)}</span>` : ''; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}${cookedHtml}</div><div class="num">${comp.weight.toFixed(0)}${ul}</div><div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
+const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); const cf0 = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); tg += cf0 ? Math.round(comp.weight * cf0 / 5) * 5 : weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; const cf = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const cookedW = cf ? Math.round(comp.weight * cf / 5) * 5 : null; const cookedHtml = ''; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}${cookedHtml}</div>${cookedW !== null ? '<div class="num has-raw" data-raw="сырой: ' + comp.weight.toFixed(0) + ' г" onclick="this.classList.toggle(\'show-raw\')">' + cookedW + ' г</div>' : '<div class="num">' + comp.weight.toFixed(0) + ul + '</div>'}<div class="num">${comp.p.toFixed(1)} г</div><div class="num">${comp.f.toFixed(1)} г</div><div class="num">${comp.c.toFixed(1)} г</div></div>`; }).join('');
 DB += tb; DF += tf; DC += tc;
 const mealKey = dayIdx + '-' + i;
 const isEaten = AppState.data.progress.meals[mealKey];
 meal.components.forEach(comp => { DFib += this.compFiber(comp); });
-if (isEaten || isDone) { EB += tb; EF += tf; EC += tc; meal.components.forEach(comp => { EFib += this.compFiber(comp); if (Classify.isAnimalProtein(comp.item)) EAnimal += comp.p; }); }
+if (isEaten || isDone) { EB += tb; EF += tf; EC += tc; meal.components.forEach(comp => { const pcs = comp.item.unit === 'pcs'; const cfe = pcs ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const key = Names.menu(comp.item.name); if (!eatenMap[key]) eatenMap[key] = { name: key, val: 0, pcs, rank: this.sortRank(comp) }; eatenMap[key].val += pcs ? comp.weight : comp.weight * (cfe || 1); EFib += this.compFiber(comp); if (Classify.isAnimalProtein(comp.item)) EAnimal += comp.p; }); }
 // Для пройденных дней чекбоксы заблокированы
 const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
@@ -3320,7 +3439,7 @@ htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
 // Баланс КБЖУ
-htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null));
+htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null, Object.values(eatenMap)));
 // Служебные переменные для кнопок
 const completedCount = Progress.getCompletedCount();
 const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
@@ -3353,14 +3472,14 @@ if (total <= 0) return null;
 const animalPct = Math.round(animal / total * 100);
 return { animalG: animal, plantG: total - animal, animalPct, plantPct: 100 - animalPct };
 },
-splitText(s) { return `${t('diag.protein')}: ${t('dev.animal')} ${s.animalPct}% · ${Math.round(s.animalG)} г, ${t('dev.plant')} ${s.plantPct}% · ${Math.round(s.plantG)} г`; },
+splitText(s) { return `${t('diag.protein')}: ${t('dev.animal')} ${Math.round(s.animalG)} г, ${t('dev.plant')} ${Math.round(s.plantG)} г`; },
 compFiber(comp) {
 if (comp.fib > 0) return comp.fib;
 if (!comp.item || comp.item.unit === 'pcs') return 0;
 return Classify.fiberPer100(comp.item.name, comp.item.forceGroup) * (comp.weight || 0) / 100;
 },
 showEatenSplit() { if (this._eatenSplit) UI.toast(this.splitText(this._eatenSplit)); },
-renderEatenRings(E, P, T) {
+renderEatenRings(E, P, T, eatenList) {
 // Кольцо: сколько съедено и какая это доля от реального итога плана дня.
 // Плашка под кольцом: реальный итог плана дня и отклонение от основного плана (цели профиля).
 const ek = Math.round(E.p * 4 + E.f * 9 + E.c * 4), pk = Math.round(P.p * 4 + P.f * 9 + P.c * 4);
@@ -3373,7 +3492,7 @@ const animalPct = E.p > 0 ? Math.round(Math.min(1, E.animalG / E.p) * 100) : 0;
 this._eatenSplit = E.p > 0 ? { animalG: E.animalG, plantG: Math.max(0, E.p - E.animalG), animalPct, plantPct: 100 - animalPct } : null;
 const pP = pc(E.p, P.p);
 const protBg = `conic-gradient(var(--pt-animal) 0 ${(pP * animalPct / 100).toFixed(1)}%, var(--pt-plant) 0 ${pP.toFixed(1)}%, var(--border-soft) 0)`;
-const protExtra = this._eatenSplit ? `<div class="eaten-split"><span style="color:var(--pt-animal)">${animalPct}%</span><span style="color:var(--pt-plant)">${100 - animalPct}%</span></div>` : '';
+const protExtra = this._eatenSplit ? `<div class="eaten-split"><span style="color:var(--pt-animal)">${Math.round(E.animalG)} г</span><span style="color:var(--pt-plant)">${Math.round(Math.max(0, E.p - E.animalG))} г</span></div>` : '';
 const tg = T || {};
 const cells = cell('k', t('diag.kcal'), ek, arc('var(--macro-kcal)', pc(ek, pk)), pk, tg.kcal, done(ek, pk), '', `${ek} / ${pk} ${t('day.kcal')}`)
 + cell('p', t('diag.protein'), E.p, protBg, P.p, tg.p, done(E.p, P.p), protExtra, `${Math.round(E.p)} / ${Math.round(P.p)} г`, !!this._eatenSplit)
@@ -3382,7 +3501,9 @@ const cells = cell('k', t('diag.kcal'), ek, arc('var(--macro-kcal)', pc(ek, pk))
 const fibCell = P.fib > 0 ? cell('n', t('profile.fiber'), E.fib, arc('var(--macro-fiber)', pc(E.fib, P.fib)), P.fib, tg.fib, done(E.fib, P.fib), '', `${Math.round(E.fib)} / ${Math.round(P.fib)} г`) : '';
 const legend = this._eatenSplit ? `<div class="eaten-legend"><span><b style="color:var(--pt-animal)">●</b> ${t('dev.animal')}</span><span><b style="color:var(--pt-plant)">●</b> ${t('dev.plant')}</span></div>` : '';
 const hint = ek === 0 ? `<div class="eaten-hint">${t('eaten.hint')}</div>` : '';
-return `<div class="section"><div class="section-title">${t('eaten.title')}</div><div class="eaten-card"><div class="eaten-row">${cells}${fibCell}</div>${legend}${hint}</div></div>`;
+const list = (eatenList || []).slice().sort((a, b) => a.rank - b.rank || b.val - a.val);
+const tbl = list.length ? `<div class="eaten-prod">${list.map(x => `<div class="eaten-prod-row"><span>${UI.escape(x.name)}</span><b>${x.pcs ? (Math.round(x.val * 2) / 2) + ' шт' : Math.round(x.val / 5) * 5 + ' г'}</b></div>`).join('')}</div>` : '';
+return `<div class="section"><div class="section-title">${t('eaten.title')}</div><div class="eaten-card"><div class="eaten-row">${cells}${fibCell}</div>${legend}${hint}</div>${tbl}</div>`;
 },
 renderDiagnostics() {
 const box = document.getElementById('menu-diagnostics');
@@ -3546,6 +3667,7 @@ let num = 0;
 const htmlArr = [];
 CONFIG.CAT.order.forEach(g => {
 const items = classified.filter(x => x.group === g);
+if (g === 'meat') items.sort((a, b) => Classify.meatRank(a.n) - Classify.meatRank(b.n));
 if (!items.length && g !== 'snack') return;
 htmlArr.push(`<div class="shop-group-title">${t('cat.' + g)}</div>`);
 if (g === 'snack') htmlArr.push(this.snackTypesHtml());
@@ -3610,7 +3732,7 @@ const c = +document.getElementById('np_c').value || 0;
 if (!name || !price) { UI.toast(t('toast.enter_name_price')); return; }
 const existing = AppState.data.weekList.find(s => Products.displayName(s.n) === name);
 if (existing) { existing.count = (existing.count || 1) + 1; if (image) existing.image = image; }
-else AppState.data.weekList.push({ n: name, qty: qty + ' ' + unit, price, b, f, c, group: Classify.inferGroup({ b, f, c }, name), count: 1, image, atb_id: atb || null });
+else AppState.data.weekList.push({ n: name, net: (+document.getElementById('np_net').value > 0 ? +document.getElementById('np_net').value : null), qty: qty + ' ' + unit, price, b, f, c, group: Classify.inferGroup({ b, f, c }, name), count: 1, image, atb_id: atb || null });
 AppState.save('weekList');
 document.getElementById('np_name').value = '';
 document.getElementById('np_atb').value = '';
@@ -3629,6 +3751,7 @@ else { document.getElementById('edit_qty').value = CONFIG.DEFAULTS.defaultWeight
 document.getElementById('edit_price').value = s.price || 0;
 document.getElementById('edit_atb').value = s.atb_id || '';
 document.getElementById('edit_img').value = s.image || '';
+document.getElementById('edit_net').value = s.net > 0 ? s.net : '';
 document.getElementById('edit_b').value = s.b || 0;
 document.getElementById('edit_f').value = s.f || 0;
 document.getElementById('edit_c').value = s.c || 0;
@@ -3649,7 +3772,7 @@ const f = +document.getElementById('edit_f').value || 0;
 const c = +document.getElementById('edit_c').value || 0;
 if (!name) { UI.toast(t('toast.enter_name')); return; }
 const old = AppState.data.weekList[idx];
-AppState.data.weekList[idx] = { ...old, n: name, qty: qty + ' ' + unit, price, b, f, c, image, atb_id: atb || null };
+AppState.data.weekList[idx] = { ...old, net: (+document.getElementById('edit_net').value > 0 ? +document.getElementById('edit_net').value : null), n: name, qty: qty + ' ' + unit, price, b, f, c, image, atb_id: atb || null };
 AppState.save('weekList');
 Shop.render(); Products.refreshAll(); Menu.build();
 this.closeEdit();
@@ -3800,7 +3923,7 @@ const rangeTxt = len === 1 ? `${t('common.day_single').toLowerCase()} ${start + 
 htmlArr.push(`<div class="print-period">${t('cook.print_title')} ${periodTxt} (${rangeTxt})</div>`);
 let totalPrice = 0, positions = 0;
 CONFIG.CAT.order.forEach(g => {
-const list = items.filter(x => x.group === g).sort((a, b) => this.actualWeight(b) - this.actualWeight(a));
+const list = items.filter(x => x.group === g).sort((a, b) => (g === 'meat' ? Classify.meatRank(a.name) - Classify.meatRank(b.name) : 0) || this.actualWeight(b) - this.actualWeight(a));
 if (!list.length) return;
 htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
 list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
