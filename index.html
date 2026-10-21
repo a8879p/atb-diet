@@ -3419,7 +3419,7 @@ if (!dayData) {
 el.innerHTML = htmlArr[0] + `<div class="note" style="padding:20px 0">${t('day.empty')}</div>`;
 return;
 }
-const eatenMap = {}; let DB = 0, DF = 0, DC = 0, visibleNum = 0, EB = 0, EF = 0, EC = 0, EFib = 0, EAnimal = 0, DFib = 0;
+const eatenMap = {}; let DB = 0, DF = 0, DC = 0, visibleNum = 0, EB = 0, EF = 0, EC = 0, EFib = 0, EAnimal = 0, DAnimal = 0, DFib = 0;
 dayData.meals.forEach((meal, i) => {
 if (!meal.components.length) return;
 visibleNum++;
@@ -3429,7 +3429,7 @@ const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let
 DB += tb; DF += tf; DC += tc;
 const mealKey = dayIdx + '-' + i;
 const isEaten = AppState.data.progress.meals[mealKey];
-meal.components.forEach(comp => { DFib += this.compFiber(comp); });
+meal.components.forEach(comp => { DFib += this.compFiber(comp); if (Classify.isAnimalProtein(comp.item)) DAnimal += comp.p; });
 if (isEaten || isDone) { EB += tb; EF += tf; EC += tc; meal.components.forEach(comp => { const pcs = comp.item.unit === 'pcs'; const cfe = pcs ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const key = Names.menu(comp.item.name); if (!eatenMap[key]) eatenMap[key] = { name: key, val: 0, pcs, rank: this.sortRank(comp) }; eatenMap[key].val += pcs ? comp.weight : comp.weight * (cfe || 1); EFib += this.compFiber(comp); if (Classify.isAnimalProtein(comp.item)) EAnimal += comp.p; }); }
 // Для пройденных дней чекбоксы заблокированы
 const checkHtml = isDone
@@ -3439,7 +3439,7 @@ htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('
 });
 const dkcal = +(DB * 4 + DF * 9 + DC * 4).toFixed(1);
 // Баланс КБЖУ
-htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null, Object.values(eatenMap)));
+htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib, animalG: DAnimal }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null, Object.values(eatenMap)));
 // Служебные переменные для кнопок
 const completedCount = Progress.getCompletedCount();
 const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
@@ -3487,15 +3487,15 @@ const pc = (a, b) => b > 0 ? Math.max(0, Math.min(100, a / b * 100)) : 0;
 const arc = (color, p) => `conic-gradient(${color} 0 ${p.toFixed(1)}%, var(--border-soft) 0)`;
 const done = (a, b) => b > 0 && Math.round(a) >= Math.round(b) ? 'ok' : '';
 const devHtml = (plan, tgt) => { if (!T || !(tgt > 0)) return ''; const dv = Math.round(plan) - Math.round(tgt); return `<div class="eaten-d">${dv > 0 ? '+' + dv : dv < 0 ? '−' + Math.abs(dv) : '0'}</div>`; };
-const cell = (m, label, val, bg, plan, tgt, cls, extra, tip, tap) => `<div class="eaten-m ${cls}${tap ? ' tappable' : ''}" data-m="${m}" title="${UI.escapeAttr(tip)}"${tap ? ' onclick="Menu.showEatenSplit()"' : ''}><div class="ering" style="background:${bg}"><div>${Math.round(val)}</div></div><div class="eaten-chip"><div class="eaten-l">${label}</div><div class="eaten-t">${Math.round(plan)}</div>${devHtml(plan, tgt)}</div>${extra || ''}</div>`;
+const cell = (m, label, val, bg, plan, tgt, cls, extra, tip, tap, planHtml) => `<div class="eaten-m ${cls}${tap ? ' tappable' : ''}" data-m="${m}" title="${UI.escapeAttr(tip)}"${tap ? ' onclick="Menu.showEatenSplit()"' : ''}><div class="ering" style="background:${bg}"><div>${Math.round(val)}</div></div><div class="eaten-chip"><div class="eaten-l">${label}</div><div class="eaten-t">${planHtml || Math.round(plan)}</div>${devHtml(plan, tgt)}</div>${extra || ''}</div>`;
 const animalPct = E.p > 0 ? Math.round(Math.min(1, E.animalG / E.p) * 100) : 0;
 this._eatenSplit = E.p > 0 ? { animalG: E.animalG, plantG: Math.max(0, E.p - E.animalG), animalPct, plantPct: 100 - animalPct } : null;
 const pP = pc(E.p, P.p);
 const protBg = `conic-gradient(var(--pt-animal) 0 ${(pP * animalPct / 100).toFixed(1)}%, var(--pt-plant) 0 ${pP.toFixed(1)}%, var(--border-soft) 0)`;
-const protExtra = this._eatenSplit ? `<div class="eaten-split"><span style="color:var(--pt-animal)">${Math.round(E.animalG)} г</span><span style="color:var(--pt-plant)">${Math.round(Math.max(0, E.p - E.animalG))} г</span></div>` : '';
+const protExtra = '';
 const tg = T || {};
 const cells = cell('k', t('diag.kcal'), ek, arc('var(--macro-kcal)', pc(ek, pk)), pk, tg.kcal, done(ek, pk), '', `${ek} / ${pk} ${t('day.kcal')}`)
-+ cell('p', t('diag.protein'), E.p, protBg, P.p, tg.p, done(E.p, P.p), protExtra, `${Math.round(E.p)} / ${Math.round(P.p)} г`, !!this._eatenSplit)
++ cell('p', t('diag.protein'), E.p, protBg, P.p, tg.p, done(E.p, P.p), protExtra, `${Math.round(E.p)} / ${Math.round(P.p)} г`, !!this._eatenSplit, `<span style="color:var(--pt-animal)">${Math.round(P.animalG || 0)}</span><span style="opacity:.5"> / </span><span style="color:var(--pt-plant)">${Math.round(Math.max(0, P.p - (P.animalG || 0)))}</span>`)
 + cell('f', t('diag.fat'), E.f, arc('var(--macro-fat)', pc(E.f, P.f)), P.f, tg.f, done(E.f, P.f), '', `${Math.round(E.f)} / ${Math.round(P.f)} г`)
 + cell('c', t('diag.carbs'), E.c, arc('var(--macro-carb)', pc(E.c, P.c)), P.c, tg.c, done(E.c, P.c), '', `${Math.round(E.c)} / ${Math.round(P.c)} г`);
 const fibCell = P.fib > 0 ? cell('n', t('profile.fiber'), E.fib, arc('var(--macro-fiber)', pc(E.fib, P.fib)), P.fib, tg.fib, done(E.fib, P.fib), '', `${Math.round(E.fib)} / ${Math.round(P.fib)} г`) : '';
