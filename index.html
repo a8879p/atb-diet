@@ -1033,6 +1033,9 @@ color: var(--text-light)
 text-align: right;
 margin-left: 10px
 }
+.cook-w-in { width: 64px; font: inherit; font-weight: 700; text-align: right; padding: 2px 4px; border: 1px solid var(--border); border-radius: 6px; background: var(--card, transparent); color: inherit }
+.cook-w-in.pinned { border-color: var(--macro-protein) }
+.cook-w-reset { border: 0; background: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 0 2px }
 .cook-weight {
 font-weight: 700;
 font-size: 13px;
@@ -2452,7 +2455,7 @@ return { value: parseFloat(m[1].replace(',', '.')) || CONFIG.DEFAULTS.defaultWei
 const AppState = {
 data: {
 profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', macroLevel: 'optim', snack1: true, snack2: true, casein: true },
-weekList: [], measHistory: [], cookChecks: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
+weekList: [], measHistory: [], cookChecks: {}, weightOverrides: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
 },
 runtime: { products: [], menuPlan: null, currentDay: 0, targets: { kcal: 0, protein: 0, fat: 0, carbs: 0, fiber: 0, water: 0 }, lastMenuParams: null },
 init() {
@@ -2463,6 +2466,7 @@ if (!this.data.progress) this.data.progress = { days: {}, meals: {}, cyclesCompl
 if (!this.data.progress.days) this.data.progress.days = {};
 if (!this.data.progress.meals) this.data.progress.meals = {};
 if (typeof this.data.progress.cyclesCompleted !== 'number') this.data.progress.cyclesCompleted = 0;
+if (!this.data.weightOverrides || typeof this.data.weightOverrides !== 'object' || Array.isArray(this.data.weightOverrides)) this.data.weightOverrides = {};
 if (!this.data.settings) this.data.settings = { lang: 'ru' };
 if (!this.data.settings.reminders) this.data.settings.reminders = { enabled: false, sound: true };
 },
@@ -3119,6 +3123,52 @@ if (nw > c.weight) { setWeight(meals[k], c, nw); grew = true; }
 if (!grew) return;
 }
 },
+// Ручные веса из вкладки «Готовка»: закреплённый продукт ставится на заданный вес, остальные продукты дня подстраиваются так, чтобы
+// животный белок, растительный белок, углеводы и жиры дня остались такими же, как в расчётном меню (каждый показатель своим продуктом:
+// животный белок — мясо/рыба/творог/казеин, растительный — бобовые, углеводы — крупы/хлеб, жиры — масло).
+applyOverrides(meals, dayTotals, d) {
+const ov = (AppState.data.weightOverrides || {})[d];
+if (!ov || typeof ov !== 'object') return;
+const names = Object.keys(ov).filter(n => ov[n] > 0);
+if (!names.length) return;
+const KEYS = ['kcal', 'p', 'f', 'c', 'fib', 'price'];
+const sums = () => { let a = 0, pl = 0, f = 0, c = 0; meals.forEach(m => m.components.forEach(x => { if (Classify.isAnimalProtein(x.item)) a += x.p; else pl += x.p; f += x.f; c += x.c; })); return { a, pl, f, c }; };
+const base = sums();
+const setW = (meal, comp, w) => {
+const before = {}; KEYS.forEach(k => before[k] = comp[k]);
+if (w <= 0) { meal.components = meal.components.filter(x => x !== comp); KEYS.forEach(k => { meal.totals[k] -= before[k]; dayTotals[k] -= before[k]; }); return; }
+const sc = this.scale(comp.item, w); comp.weight = w; KEYS.forEach(k => { comp[k] = sc[k]; meal.totals[k] += sc[k] - before[k]; dayTotals[k] += sc[k] - before[k]; });
+};
+const roundW = (item, w) => item.unit === 'pcs' ? Math.round(w * 2) / 2 : Math.round(w / 5) * 5;
+const pinnedSet = new Set(names);
+names.forEach(n => {
+const list = []; meals.forEach(m => m.components.forEach(c => { if (c.item.name === n && c.weight > 0) list.push({ m, c }); }));
+const cur = list.reduce((a, x) => a + x.c.weight, 0);
+if (cur <= 0) return;
+list.forEach(({ m, c }) => setW(m, c, roundW(c.item, c.weight * ov[n] / cur)));
+});
+const isLegume = n => /(^|[^а-яіїєґё])(горох|сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|нут|квасол[а-яіїєґё]*|фасол[а-яіїєґё]*)([^а-яіїєґё]|$)/i.test(n || '');
+const free = x => !pinnedSet.has(x.item.name);
+const pick = (pred, withPcs) => { const out = []; meals.forEach((m, mi) => m.components.forEach(c => { if (free(c) && (withPcs || c.item.unit !== 'pcs') && c.weight > 0 && pred(c)) out.push({ m, c, mi }); })); return out; };
+const adjust = (list, key, need, capFn) => {
+const tot = list.reduce((a, x) => a + x.c[key], 0);
+if (!(tot > 0) || Math.abs(need) < 0.5) return;
+const f = 1 + need / tot;
+list.forEach(({ m, c, mi }) => { let w = c.item.unit === 'pcs' ? Math.round(c.weight * f) : Math.round(c.weight * f / 5) * 5; w = Math.max(0, Math.min(capFn ? capFn(c, mi) : 1000, w)); if (w !== c.weight) setW(m, c, w); });
+};
+const mains = [0, 2, 4];
+const aCap = (c, mi) => c.item.unit === 'pcs' ? 12 : mains.includes(mi) ? CONFIG.PORTIONS.meatMainMax : 250;
+for (let it = 0; it < 8; it++) {
+let s = sums();
+adjust(pick(c => Classify.isAnimalProtein(c.item) && Classify.get(c.item) === 'protein' && !Classify.isCannedFood(c.item.name) && c.p > 0, true), 'p', -(s.a - base.a), aCap);
+s = sums();
+adjust(pick(c => isLegume(c.item.name) && c.p > 0), 'p', -(s.pl - base.pl), null);
+s = sums();
+adjust(pick(c => Classify.get(c.item) === 'carb' && !isLegume(c.item.name) && !Classify.isInstantNoodle(c.item.name) && c.c > 0), 'c', -(s.c - base.c), null);
+s = sums();
+adjust(pick(c => Classify.isOilProduct(c.item.name) && c.f > 0), 'f', -(s.f - base.f), null);
+}
+},
 balanceDay(meals, dayTotals, targets, pools, dayIndex, goal) {
 const cut = goal === 'cut';
 const mains = [meals[0], meals[2], meals[4]].filter(Boolean);
@@ -3374,6 +3424,7 @@ const dayTotals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p; dayTotals.f += m.totals.f; dayTotals.c += m.totals.c; dayTotals.fib += m.totals.fib; dayTotals.price += m.totals.price; });
 this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
 this.balanceProteinRatio(meals, dayTotals, targets, pools, d, p.goal, p.weight);
+this.applyOverrides(meals, dayTotals, d);
 days.push({ meals, totals: dayTotals });
 }
 AppState.runtime.menuPlan = { targets, days, goal: p.goal, caseinMissing };
@@ -3895,6 +3946,13 @@ const n = Math.max(1, Math.ceil(weight / net - 1e-6));
 const form = (n % 10 === 1 && n % 100 !== 11) ? 'банка' : ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) ? 'банки' : 'банок';
 return `≈ ${n} ${form}`;
 },
+weightCell(it) {
+if (!(it.free > 0)) return this.formatWeight(it);
+const pcs = it.unit === 'pcs';
+const v = pcs ? (Math.round(it.weight * 2) / 2) : Math.round(it.weight / 5) * 5;
+const nm = UI.escapeAttr(it.name);
+return `<input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${pcs ? 0.5 : 5}" inputmode="decimal" onchange="CookUI.editWeight('${nm}', this.value)"> ${pcs ? 'шт' : 'г'}${it.pinned ? ` <button class="cook-w-reset" title="Сбросить к расчётному" onclick="CookUI.resetWeight('${nm}')">↺</button>` : ''}`;
+},
 formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
 render() {
 const groups = document.getElementById('cooking-groups');
@@ -3912,7 +3970,7 @@ startSel.innerHTML = Array.from({ length: maxStart + 1 }, (_, i) => `<option val
 startSel.value = start;
 const map = {};
 const end = Math.min(start + len, AppState.runtime.menuPlan.days.length);
-for (let d = start; d < end; d++) { AppState.runtime.menuPlan.days[d].meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, net: comp.item.net || 0, group: Classify.shopCategory(comp.item) }; map[name].weight += comp.weight; map[name].price += comp.price; }); }); }
+for (let d = start; d < end; d++) { const locked = !!AppState.data.progress.days[d]?.done; const dd = Menu.getDayData(d); if (!dd) continue; dd.meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, net: comp.item.net || 0, group: Classify.shopCategory(comp.item), free: 0, pinned: false }; map[name].weight += comp.weight; map[name].price += comp.price; if (!locked) { map[name].free += comp.weight; if ((AppState.data.weightOverrides[d] || {})[name] > 0) map[name].pinned = true; } }); }); }
 const items = Object.values(map);
 const checks = this.loadChecks();
 const pkey = type + '-' + start;
@@ -3926,7 +3984,7 @@ CONFIG.CAT.order.forEach(g => {
 const list = items.filter(x => x.group === g).sort((a, b) => (g === 'meat' ? Classify.meatRank(a.name) - Classify.meatRank(b.name) : 0) || this.actualWeight(b) - this.actualWeight(a));
 if (!list.length) return;
 htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
-list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.formatWeight(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
+list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}</div><div class="cook-meta"><div class="cook-weight">${this.weightCell(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
 htmlArr.push('</div>');
 });
 htmlArr.push(`<div class="cook-total-bar"><span>${t('common.total')}: ${positions} ${t('common.positions_short')}</span><span>${totalPrice.toFixed(2)} ${t('common.currency')}</span></div>`);
@@ -3934,6 +3992,47 @@ groups.innerHTML = htmlArr.join('');
 }
 };
 const CookUI = {
+_period() { const type = document.getElementById('cooking-period-type').value; const start = +document.getElementById('cooking-period-start').value || 0; const n = AppState.runtime.menuPlan.days.length; const len = Math.min(Cook.len(type), n); return { start, end: Math.min(start + len, n) }; },
+_dayWeights(name, start, end) {
+const out = []; let lockedSum = 0, pcs = false;
+for (let d = start; d < end; d++) { const dd = Menu.getDayData(d); if (!dd) continue; let w = 0; dd.meals.forEach(m => m.components.forEach(c => { if (c.item.name === name) { w += c.weight; if (c.item.unit === 'pcs') pcs = true; } })); if (AppState.data.progress.days[d]?.done) lockedSum += w; else if (w > 0) out.push({ d, w }); }
+return { out, lockedSum, pcs };
+},
+editWeight(name, val) {
+if (!AppState.runtime.menuPlan) return;
+const { start, end } = this._period();
+const { out, lockedSum, pcs } = this._dayWeights(name, start, end);
+const total = parseFloat(String(val).replace(',', '.'));
+const freeSum = out.reduce((a, x) => a + x.w, 0);
+if (!(total >= 0) || !out.length || !(freeSum > 0)) { Cook.render(); return; }
+const target = total - lockedSum;
+if (target <= 0) { UI.toast('Вес меньше, чем уже в пройденных днях'); Cook.render(); return; }
+const step = pcs ? 0.5 : 5;
+const rnd = v => Math.round(v / step) * step;
+let rest = rnd(target);
+const wo = AppState.data.weightOverrides;
+out.forEach((x, i) => {
+let w = i === out.length - 1 ? rest : Math.min(rest, rnd(x.w * target / freeSum));
+w = Math.max(step, w);
+rest = Math.max(0, rest - w);
+if (!wo[x.d]) wo[x.d] = {};
+wo[x.d][name] = w;
+});
+AppState.save('weightOverrides');
+Menu.build();
+this._warnAnimal(start, end);
+},
+resetWeight(name) {
+const { start, end } = this._period();
+const wo = AppState.data.weightOverrides;
+for (let d = start; d < end; d++) { if (AppState.data.progress.days[d]?.done) continue; if (wo[d]) { delete wo[d][name]; if (!Object.keys(wo[d]).length) delete wo[d]; } }
+AppState.save('weightOverrides');
+Menu.build();
+},
+_warnAnimal(start, end) {
+const p = AppState.runtime.lastMenuParams; if (!p) return;
+for (let d = start; d < end; d++) { if (AppState.data.progress.days[d]?.done) continue; const dd = AppState.runtime.menuPlan.days[d]; if (!dd) continue; let a = 0; dd.meals.forEach(m => m.components.forEach(c => { if (Classify.isAnimalProtein(c.item)) a += c.p; })); if (a < CONFIG.PROTEIN_SPLIT.animalMinPerKg * p.weight * 0.97) { UI.toast('День ' + (d + 1) + ': животного белка меньше ' + CONFIG.PROTEIN_SPLIT.animalMinPerKg + ' г/кг'); return; } }
+},
 toggleKitchenMode() { document.body.classList.toggle('kitchen-mode'); },
 toggleCookCheck(el, name) { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); if (!checks[key]) checks[key] = {}; checks[key][name] = !checks[key][name]; Cook.saveChecks(checks); const on = checks[key][name]; el.classList.toggle('on', on); el.textContent = on ? '✓' : ''; el.closest('.cook-row').classList.toggle('done', on); },
 resetCook() { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); delete checks[key]; Cook.saveChecks(checks); Cook.render(); }
@@ -4027,6 +4126,7 @@ if (!P) return;
 this.renderResults(P);
 AppState.runtime.lastMenuParams = { sex: P.sex, age: P.age, weight: P.weight, height: P.height, activity: P.act, goal: P.goal,
 snack1: AppState.data.profile.snack1 !== false, snack2: AppState.data.profile.snack2 !== false, casein: AppState.data.profile.casein !== false };
+{ const sig = JSON.stringify(AppState.runtime.lastMenuParams); if (AppState.data.weightOverrides._sig !== undefined && AppState.data.weightOverrides._sig !== sig) AppState.data.weightOverrides = {}; AppState.data.weightOverrides._sig = sig; AppState.save('weightOverrides'); }
 Products.refreshAll();
 Menu.build();
 },
@@ -4084,7 +4184,7 @@ const validationError = this.validateDump(parsed.data);
 if (validationError) throw new Error(validationError);
 const confirmed = await UI.confirm(t('backup.restore_confirm'), t('backup.restore'), t('common.cancel'));
 if (confirmed) {
-const merged = { profile: { ...AppState.data.profile, ...(parsed.data.profile || {}) }, weekList: parsed.data.weekList ?? AppState.data.weekList, measHistory: parsed.data.measHistory ?? AppState.data.measHistory, cookChecks: parsed.data.cookChecks ?? AppState.data.cookChecks, progress: { ...AppState.data.progress, ...(parsed.data.progress || {}) }, settings: { ...AppState.data.settings, ...(parsed.data.settings || {}) } };
+const merged = { profile: { ...AppState.data.profile, ...(parsed.data.profile || {}) }, weekList: parsed.data.weekList ?? AppState.data.weekList, measHistory: parsed.data.measHistory ?? AppState.data.measHistory, cookChecks: parsed.data.cookChecks ?? AppState.data.cookChecks, weightOverrides: parsed.data.weightOverrides ?? AppState.data.weightOverrides ?? {}, progress: { ...AppState.data.progress, ...(parsed.data.progress || {}) }, settings: { ...AppState.data.settings, ...(parsed.data.settings || {}) } };
 AppState.data = merged;
 AppState.saveAll();
 UI.toast(t('backup.restored'));
