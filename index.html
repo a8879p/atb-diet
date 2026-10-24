@@ -982,9 +982,11 @@ margin-left: 10px
 .cook-w-in::-webkit-outer-spin-button, .cook-w-in::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0 }
 .cook-w-in.pinned { border-color: var(--macro-protein); border-width: 2px }
 .cs-unit { font-size: 11px; color: var(--text-muted); min-width: 12px }
-.cook-range { font-size: 11px; color: var(--text-muted); margin-top: 2px }
+.cook-sub.pinned { min-height: 36px }
+.cook-sub { min-height: 18px; margin-top: 2px; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px }
+.cook-range { font-size: 11px; color: var(--text-muted) }
 .cook-range.locked { color: var(--warn, #b45309) }
-.cook-w-reset { border: 0; background: none; color: var(--macro-protein); font-size: 12px; cursor: pointer; padding: 2px 0; touch-action: manipulation; display: block }
+.cook-w-reset { border: 0; background: none; color: var(--macro-protein); font-size: 12px; cursor: pointer; padding: 0; touch-action: manipulation }
 .cook-weight {
 font-weight: 700;
 font-size: 13px;
@@ -995,7 +997,7 @@ color: var(--text-muted);
 font-size: 12px
 }
 @media print {
-.cs-btn, .cook-range, .cook-w-reset { display: none !important }
+.cs-btn, .cook-sub, .cook-range, .cook-w-reset { display: none !important }
 .cook-edit { margin: 0 !important }
 .cook-row.editable { flex-wrap: nowrap !important }
 .cook-w-in { border: 0 !important; width: 52px !important; height: auto !important; font-size: 12px !important; padding: 0 !important; text-align: right !important }
@@ -3914,7 +3916,7 @@ return `<div class="cook-edit" data-name="${nm}"><div class="cook-step"><button 
 },
 subCell(it) {
 const nm = UI.escapeAttr(it.name);
-return `<div class="cook-range" data-name="${nm}"></div>${it.pinned ? `<button type="button" class="cook-w-reset" onclick="CookUI.resetWeight('${nm}')">↺ сбросить</button>` : ''}`;
+return `<div class="cook-sub${it.pinned ? ' pinned' : ''}"><span class="cook-range" data-name="${nm}"></span>${it.pinned ? `<button type="button" class="cook-w-reset" onclick="CookUI.resetWeight('${nm}')">↺ сбросить</button>` : ''}</div>`;
 },
 formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
 render() {
@@ -3951,7 +3953,9 @@ list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions
 htmlArr.push('</div>');
 });
 htmlArr.push(`<div class="cook-total-bar"><span>${t('common.total')}: ${positions} ${t('common.positions_short')}</span><span>${totalPrice.toFixed(2)} ${t('common.currency')}</span></div>`);
+const _y = window.scrollY;
 groups.innerHTML = htmlArr.join('');
+if (window.scrollY !== _y) window.scrollTo(0, _y);
 CookUI.scheduleLimits();
 }
 };
@@ -3973,6 +3977,8 @@ let item = null; cl.meals.forEach(m => m.components.forEach(c => { if (c.item.na
 if (!item) continue;
 const ov = Object.assign({}, wo[d] || {}, { [name]: Cook.roundWeight(item, w * f) });
 const r = Menu.applyOverrides(cl.meals, cl.totals, d, ov, dd.base);
+let dayW = 0; cl.meals.forEach(m => m.components.forEach(c => { if (c.item.name === name) dayW += c.weight; }));
+if (item.net > 0 && Classify.isCannedFood(item.name) && dayW > item.net * 2 + 1e-6) return false;
 const b = dd.base, a = r.after;
 const tolP = x => Math.max(6, 0.05 * x);
 if (Math.abs(a.a - b.a) > tolP(b.a) || Math.abs(a.pl - b.pl) > tolP(b.pl)) return false;
@@ -4061,7 +4067,9 @@ if (!wo[x.d]) wo[x.d] = {};
 wo[x.d][name] = w;
 });
 AppState.save('weightOverrides');
+const _sy = window.scrollY;
 Menu.build();
+window.scrollTo(0, _sy);
 this._warnAnimal(start, end);
 },
 resetWeight(name) {
@@ -4069,7 +4077,9 @@ const { start, end } = this._period();
 const wo = AppState.data.weightOverrides;
 for (let d = start; d < end; d++) { if (AppState.data.progress.days[d]?.done) continue; if (wo[d]) { delete wo[d][name]; if (!Object.keys(wo[d]).length) delete wo[d]; } }
 AppState.save('weightOverrides');
+const _sy = window.scrollY;
 Menu.build();
+window.scrollTo(0, _sy);
 },
 _warnAnimal(start, end) {
 const p = AppState.runtime.lastMenuParams; if (!p) return;
