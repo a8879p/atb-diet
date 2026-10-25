@@ -973,20 +973,28 @@ color: var(--text-light)
 text-align: right;
 margin-left: 10px
 }
-.cook-edit { display: flex; justify-content: flex-end }
-.cook-step { display: inline-flex; align-items: center; gap: 3px }
-.cs-btn { width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-soft, rgba(127,127,127,.1)); color: inherit; font-size: 15px; line-height: 1; font-weight: 600; cursor: pointer; padding: 0; touch-action: manipulation; -webkit-tap-highlight-color: transparent }
+.cook-meta { width: 132px; flex: none }
+.cook-edit { display: flex; justify-content: flex-end; min-height: 26px; align-items: center }
+.cook-pill { min-width: 62px; height: 26px; padding: 0 12px; border-radius: 13px; border: 1.5px solid var(--border); background: transparent; color: inherit; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent }
+.cook-pill.pinned { border-color: var(--macro-protein) }
+.cook-edit .cook-step { display: none }
+.cook-edit.open .cook-step { display: inline-flex }
+.cook-edit.open .cook-pill { display: none }
+.cook-step { align-items: center; gap: 3px }
+.cs-btn { width: 24px; height: 24px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-soft, rgba(127,127,127,.1)); color: inherit; font-size: 15px; line-height: 1; font-weight: 600; cursor: pointer; padding: 0; touch-action: manipulation; -webkit-tap-highlight-color: transparent }
 .cs-btn:active:not(:disabled) { transform: scale(.94) }
-.cs-btn:disabled { opacity: .3; cursor: default }
-.cook-w-in { width: 50px; height: 22px; box-sizing: border-box; font: inherit; font-size: 13px; font-weight: 700; text-align: center; padding: 0 2px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: inherit; -moz-appearance: textfield; appearance: textfield }
+.cs-btn:disabled { opacity: .25; cursor: default }
+.cs-reset { font-size: 13px; margin-left: 2px }
+.cook-w-in { width: 46px; height: 24px; box-sizing: border-box; font: inherit; font-size: 13px; font-weight: 700; text-align: center; padding: 0 2px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: inherit; -moz-appearance: textfield; appearance: textfield }
 .cook-w-in::-webkit-outer-spin-button, .cook-w-in::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0 }
 .cook-w-in.pinned { border-color: var(--macro-protein); border-width: 2px }
-.cs-unit { font-size: 11px; color: var(--text-muted); min-width: 12px }
-.cook-sub.pinned { min-height: 36px }
-.cook-sub { min-height: 18px; margin-top: 2px; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px }
-.cook-range { font-size: 11px; color: var(--text-muted) }
+.cs-unit { font-size: 11px; color: var(--text-muted) }
+.cook-sub { height: 16px; line-height: 16px; margin-top: 2px; overflow: hidden }
+.cook-range { display: block; font-size: 11px; line-height: 16px; height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-muted) }
+.cook-name { min-width: 0 }
+.cook-weight { min-height: 26px }
+.cook-price { min-height: 16px; line-height: 16px }
 .cook-range.locked { color: var(--warn, #b45309) }
-.cook-w-reset { border: 0; background: none; color: var(--macro-protein); font-size: 12px; cursor: pointer; padding: 0; touch-action: manipulation }
 .cook-weight {
 font-weight: 700;
 font-size: 13px;
@@ -997,7 +1005,8 @@ color: var(--text-muted);
 font-size: 12px
 }
 @media print {
-.cs-btn, .cook-sub, .cook-range, .cook-w-reset { display: none !important }
+.cs-btn, .cook-sub, .cook-range, .cook-step { display: none !important }
+.cook-edit .cook-pill, .cook-edit.open .cook-pill { display: inline-block !important; border: 0 !important; padding: 0 !important; height: auto !important; font-size: 12px !important }
 .cook-edit { margin: 0 !important }
 .cook-row.editable { flex-wrap: nowrap !important }
 .cook-w-in { border: 0 !important; width: 52px !important; height: auto !important; font-size: 12px !important; padding: 0 !important; text-align: right !important }
@@ -2607,7 +2616,7 @@ const W = w => new RegExp('(^|[^а-яіїєґё])(?:' + w + ')([^а-яіїєґё
 if (g !== 'protein') {
 const grains = [[W('вермішель|вермишель|локшин[а-яіїєґё]*|лапш[а-яіїєґё]*|макарон[а-яіїєґё]*|спагеті'), 2], [W('рис'), 2.75], [W('греч[а-яіїєґё]*'), 2.75], [W('булгур'), 2.75],
 [W('вівсян[а-яіїєґё]*|овсян[а-яіїєґё]*'), 3.25], [W('перлов[а-яіїєґё]*'), 3.5], [W('ячн[а-яіїєґё]*'), 3.5], [W('пшенич[а-яіїєґё]*'), 3],
-[W('сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|горох'), 2.5], [W('кукурудз[а-яіїєґё]*|кукуруз[а-яіїєґё]*'), 3]];
+[W('сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|горох'), 2.5], [W('кукурудз[а-яіїєґё]*|кукуруз[а-яіїєґё]*'), 3], [W('картопл[а-яіїєґё]*|картофел[а-яіїєґё]*'), 0.95]];
 for (const [re, v] of grains) if (re.test(n)) return v;
 }
 if (g === 'protein' || g === '') {
@@ -2896,7 +2905,12 @@ document.getElementById('np_c').value = selected.c || 0;
 }
 });
 },
-displayName(n) { return typeof n === 'object' ? n.name : n; },
+// В названиях магазина встречаются латинские буквы-двойники внутри кириллических слов («Веpмишель», «тoнка»): приводим к кириллице, иначе продукт не распознаётся
+fixLook(str) {
+const L = { a: 'а', c: 'с', e: 'е', o: 'о', p: 'р', x: 'х', y: 'у', i: 'і', k: 'к', m: 'м', t: 'т', h: 'н', A: 'А', B: 'В', C: 'С', E: 'Е', H: 'Н', K: 'К', M: 'М', O: 'О', P: 'Р', T: 'Т', X: 'Х', Y: 'У' };
+return String(str).replace(/[A-Za-zА-Яа-яІіЇїЄєҐґ]+/g, w => (/[А-Яа-яІіЇїЄєҐґ]/.test(w) && /[A-Za-z]/.test(w)) ? w.replace(/[A-Za-z]/g, ch => L[ch] || ch) : w);
+},
+displayName(n) { return this.fixLook(typeof n === 'object' ? n.name : n); },
 toRacion(s) {
 const b = s.b || 0, f = s.f || 0, c = s.c || 0;
 if (b + f + c <= 0) return null;
@@ -3942,11 +3956,12 @@ const step = this.stepFor(it);
 const v = pcs ? Math.round(it.weight) : Math.round(it.weight / step) * step;
 const nm = UI.escapeAttr(it.name);
 const unit = pcs ? 'шт' : 'г';
-return `<div class="cook-edit" data-name="${nm}"><div class="cook-step"><button type="button" class="cs-btn" aria-label="Меньше" onclick="CookUI.step(this,-1)">−</button><input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${step}" inputmode="${pcs ? 'numeric' : 'decimal'}" onfocus="this.select()" onchange="CookUI.edit(this)"><span class="cs-unit">${unit}</span><button type="button" class="cs-btn" aria-label="Больше" onclick="CookUI.step(this,1)">+</button></div></div>`;
+const open = CookUI._open === it.name;
+return `<div class="cook-edit${open ? ' open' : ''}" data-name="${nm}"><button type="button" class="cook-pill${it.pinned ? ' pinned' : ''}" aria-label="Изменить вес" onclick="CookUI.openEdit(this)">${v} ${unit}</button><div class="cook-step"><button type="button" class="cs-btn" aria-label="Меньше" onclick="CookUI.step(this,-1)">−</button><input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${step}" inputmode="${pcs ? 'numeric' : 'decimal'}" onfocus="this.select()" onchange="CookUI.edit(this)"><span class="cs-unit">${unit}</span><button type="button" class="cs-btn" aria-label="Больше" onclick="CookUI.step(this,1)">+</button><button type="button" class="cs-btn cs-reset" aria-label="Сбросить" title="Сбросить к расчётному" ${it.pinned ? '' : 'disabled'} onclick="CookUI.reset(this)">↺</button></div></div>`;
 },
 subCell(it) {
 const nm = UI.escapeAttr(it.name);
-return `<div class="cook-sub${it.pinned ? ' pinned' : ''}"><span class="cook-range" data-name="${nm}"></span>${it.pinned ? `<button type="button" class="cook-w-reset" onclick="CookUI.reset(this)">↺ сбросить</button>` : ''}</div>`;
+return `<div class="cook-sub"><span class="cook-range" data-name="${nm}"></span></div>`;
 },
 formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
 render() {
@@ -4040,6 +4055,8 @@ return { min: Math.max(lockedSum + freeSum * fmin, lockedSum + out.length * u), 
 scheduleLimits() {
 clearTimeout(this._lt);
 const els = [...document.querySelectorAll('.cook-range')];
+this._last = this._last || {};
+els.forEach(el => { const L = this._last[el.dataset.name]; if (!L) return; el.textContent = L.t; el.classList.toggle('locked', L.lk); const w = el.closest('.cook-row'); if (w) { const bt = w.querySelectorAll('.cs-btn'); if (bt[0]) bt[0].disabled = L.d0; if (bt[1]) bt[1].disabled = L.d1; } });
 let i = 0;
 const key = () => JSON.stringify(AppState.data.weightOverrides) + '|' + document.getElementById('cooking-period-type').value + '|' + document.getElementById('cooking-period-start').value + '|' + (AppState.runtime.menuPlan ? AppState.runtime.menuPlan.days.length : 0);
 this._lcache = this._lcache && this._lcache.k === key() ? this._lcache : { k: key(), m: {} };
@@ -4068,7 +4085,7 @@ const B = this._bounds(name); const wrap = el.closest('.cook-row');
 if (!B) { el.textContent = ''; return; }
 if (B.max - B.min < 1e-6) { el.textContent = 'нельзя менять: нечем скомпенсировать'; el.classList.add('locked'); }
 else { el.textContent = 'допустимо: ' + this._fmt(name, B.min) + ' – ' + this._fmt(name, B.max); el.classList.remove('locked'); }
-if (wrap) { const btns = wrap.querySelectorAll('.cs-btn'); const inp = wrap.querySelector('.cook-w-in'); const v = parseFloat(inp.value); btns[0].disabled = !(v > B.min + 1e-6); btns[1].disabled = !(v < B.max - 1e-6); }
+if (wrap) { const btns = wrap.querySelectorAll('.cs-btn'); const inp = wrap.querySelector('.cook-w-in'); const v = parseFloat(inp.value); btns[0].disabled = !(v > B.min + 1e-6); btns[1].disabled = !(v < B.max - 1e-6); this._last = this._last || {}; this._last[name] = { t: el.textContent, lk: el.classList.contains('locked'), d0: btns[0].disabled, d1: btns[1].disabled }; }
 },
 stepWeight(name, dir) {
 const row = [...document.querySelectorAll('.cook-edit')].find(e => e.dataset.name === name); if (!row) return;
@@ -4128,6 +4145,8 @@ const p = AppState.runtime.lastMenuParams; if (!p) return;
 for (let d = start; d < end; d++) { if (AppState.data.progress.days[d]?.done) continue; const dd = AppState.runtime.menuPlan.days[d]; if (!dd) continue; let a = 0; dd.meals.forEach(m => m.components.forEach(c => { if (Classify.isAnimalProtein(c.item)) a += c.p; })); if (a < CONFIG.PROTEIN_SPLIT.animalMinPerKg * p.weight * 0.97) { UI.toast('День ' + (d + 1) + ': животного белка меньше ' + CONFIG.PROTEIN_SPLIT.animalMinPerKg + ' г/кг'); return; } }
 },
 toggleKitchenMode() { document.body.classList.toggle('kitchen-mode'); },
+_open: null,
+openEdit(el) { const row = el.closest('.cook-row'); this._open = row.dataset.name; document.querySelectorAll('.cook-edit.open').forEach(e => e.classList.remove('open')); row.querySelector('.cook-edit').classList.add('open'); },
 _nm(el) { const r = el.closest('.cook-row'); return r ? r.dataset.name : ''; },
 step(el, dir) { this.stepWeight(this._nm(el), dir); },
 edit(el) { this.editWeight(this._nm(el), el.value); },
@@ -4136,6 +4155,7 @@ toggleCookCheck(el) { const name = this._nm(el); this._toggleCookCheck(el, name)
 _toggleCookCheck(el, name) { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); if (!checks[key]) checks[key] = {}; checks[key][name] = !checks[key][name]; Cook.saveChecks(checks); const on = checks[key][name]; el.classList.toggle('on', on); el.textContent = on ? '✓' : ''; el.closest('.cook-row').classList.toggle('done', on); },
 resetCook() { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); delete checks[key]; Cook.saveChecks(checks); Cook.render(); }
 };
+document.addEventListener('click', e => { if (CookUI._open && !e.target.closest('.cook-edit')) { CookUI._open = null; document.querySelectorAll('.cook-edit.open').forEach(x => x.classList.remove('open')); } });
 const MeasureUI = {
 toggleMeasForm() { document.getElementById('measForm').classList.toggle('open'); },
 saveMeas() {
