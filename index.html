@@ -4019,14 +4019,16 @@ const { out, lockedSum } = this._dayWeights(name, start, end);
 const freeSum = out.reduce((a, x) => a + x.w, 0);
 if (!out.length || !(freeSum > 0)) return null;
 const cur = freeSum + lockedSum;
-if (!this._feasible(name, 1, out)) return { min: cur, max: cur, cur, locked: lockedSum, freeSum };
-let lo = 0, hi = 1;
+const u = this._unit(name);
+// текущее состояние на самой границе (после «+» до максимума) может не пройти пробную проверку: тогда увеличивать нельзя, но уменьшать — можно
+let top = 1;
+if (!this._feasible(name, 1, out)) { top = null; for (let f = 0.98; f >= 0.1; f -= 0.04) { if (this._feasible(name, f, out)) { top = f; break; } } if (top === null) return { min: lockedSum + out.length * u, max: cur, cur, locked: lockedSum, freeSum }; }
+let lo = 0, hi = top;
 if (this._feasible(name, 0.05, out)) hi = 0.05; else for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) hi = mid; else lo = mid; }
 const fmin = hi;
-lo = 1; hi = 3;
 let fmax;
-if (this._feasible(name, 3, out)) fmax = 3; else { for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) lo = mid; else hi = mid; } fmax = lo; }
-const u = this._unit(name);
+if (top < 1) fmax = 1;
+else { lo = 1; hi = 3; if (this._feasible(name, 3, out)) fmax = 3; else { for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) lo = mid; else hi = mid; } fmax = lo; } }
 return { min: Math.max(lockedSum + freeSum * fmin, lockedSum + out.length * u), max: lockedSum + freeSum * fmax, cur, locked: lockedSum, freeSum };
 },
 scheduleLimits() {
