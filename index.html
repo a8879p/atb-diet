@@ -3059,6 +3059,27 @@ if (nw > c.weight) { setWeight(meals[k], c, nw); grew = true; }
 if (!grew) return;
 }
 },
+// Финальная подгонка жиров дня маслом: после остальных пассов в основных приёмах масло округлено до 5 г по каждому приёму отдельно,
+// из-за чего жиры дня могли уходить на 5–8 г от цели. Здесь суммарное масло подбирается шагами по 5 г так, чтобы отклонение было минимальным.
+trimFat(meals, dayTotals, targets) {
+const KEYS = ['kcal', 'p', 'f', 'c', 'fib', 'price'];
+const oils = []; meals.forEach((m, mi) => m.components.forEach(c => { if (Classify.isOilProduct(c.item.name) && c.item.unit !== 'pcs' && c.weight >= 0) oils.push({ m, c, mi }); }));
+if (!oils.length) return;
+const setW = (meal, comp, w) => {
+const before = {}; KEYS.forEach(k => before[k] = comp[k]);
+if (w <= 0) { meal.components = meal.components.filter(x => x !== comp); KEYS.forEach(k => { meal.totals[k] -= before[k]; dayTotals[k] -= before[k]; }); return; }
+const sc = this.scale(comp.item, w); comp.weight = w; KEYS.forEach(k => { comp[k] = sc[k]; meal.totals[k] += sc[k] - before[k]; dayTotals[k] += sc[k] - before[k]; });
+};
+for (let it = 0; it < 12; it++) {
+const excess = dayTotals.f - targets.fatG;
+const live = oils.filter(o => o.m.components.includes(o.c));
+if (!live.length) return;
+const perStep = live.reduce((a, o) => a + o.c.f / o.c.weight, 0) / live.length * 5;
+if (!(perStep > 0) || Math.abs(excess) < perStep / 2) return;
+if (excess > 0) { const o = live.filter(x => x.c.weight >= 5).sort((a, b) => b.c.weight - a.c.weight)[0]; if (!o) return; setW(o.m, o.c, o.c.weight - 5); }
+else { const o = live.slice().sort((a, b) => a.c.weight - b.c.weight)[0]; if (o.c.weight + 5 > 50) return; setW(o.m, o.c, o.c.weight + 5); }
+}
+},
 // Ручные веса из вкладки «Готовка»: закреплённый продукт ставится на заданный вес, остальные продукты дня подстраиваются так, чтобы
 // животный белок, растительный белок, углеводы и жиры дня остались такими же, как в расчётном меню (каждый показатель своим продуктом:
 // животный белок — мясо/рыба/творог/казеин/яйца, растительный — бобовые, углеводы — быстрые сахара, затем крупы/хлеб, жиры — масло).
@@ -3378,6 +3399,7 @@ const dayTotals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 meals.forEach(m => { dayTotals.kcal += m.totals.kcal; dayTotals.p += m.totals.p; dayTotals.f += m.totals.f; dayTotals.c += m.totals.c; dayTotals.fib += m.totals.fib; dayTotals.price += m.totals.price; });
 this.balanceDay(meals, dayTotals, targets, pools, d, p.goal);
 this.balanceProteinRatio(meals, dayTotals, targets, pools, d, p.goal, p.weight);
+this.trimFat(meals, dayTotals, targets);
 const ovInfo = this.applyOverrides(meals, dayTotals, d);
 days.push({ meals, totals: dayTotals, base: ovInfo.base });
 }
@@ -3912,11 +3934,11 @@ const step = canned ? it.net / 2 : this.stepFor(it);
 const v = pcs ? Math.round(it.weight) : canned ? Math.round(it.weight / step) * step : Math.round(it.weight / 5) * 5;
 const nm = UI.escapeAttr(it.name);
 const unit = pcs ? 'шт' : 'г';
-return `<div class="cook-edit" data-name="${nm}"><div class="cook-step"><button type="button" class="cs-btn" aria-label="Меньше" onclick="CookUI.stepWeight('${nm}',-1)">−</button><input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${step}" inputmode="${pcs ? 'numeric' : 'decimal'}" onfocus="this.select()" onchange="CookUI.editWeight('${nm}', this.value)"><span class="cs-unit">${unit}</span><button type="button" class="cs-btn" aria-label="Больше" onclick="CookUI.stepWeight('${nm}',1)">+</button></div></div>`;
+return `<div class="cook-edit" data-name="${nm}"><div class="cook-step"><button type="button" class="cs-btn" aria-label="Меньше" onclick="CookUI.step(this,-1)">−</button><input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${step}" inputmode="${pcs ? 'numeric' : 'decimal'}" onfocus="this.select()" onchange="CookUI.edit(this)"><span class="cs-unit">${unit}</span><button type="button" class="cs-btn" aria-label="Больше" onclick="CookUI.step(this,1)">+</button></div></div>`;
 },
 subCell(it) {
 const nm = UI.escapeAttr(it.name);
-return `<div class="cook-sub${it.pinned ? ' pinned' : ''}"><span class="cook-range" data-name="${nm}"></span>${it.pinned ? `<button type="button" class="cook-w-reset" onclick="CookUI.resetWeight('${nm}')">↺ сбросить</button>` : ''}</div>`;
+return `<div class="cook-sub${it.pinned ? ' pinned' : ''}"><span class="cook-range" data-name="${nm}"></span>${it.pinned ? `<button type="button" class="cook-w-reset" onclick="CookUI.reset(this)">↺ сбросить</button>` : ''}</div>`;
 },
 formatWeight(it) { if (it.unit === 'pcs') { const w = Math.round(it.weight * 2) / 2; return (w === Math.floor(w) ? w : w.toFixed(1)) + ' шт'; } const g = Math.round(it.weight / 5) * 5; if (g >= 1000) return (g / 1000) + ' кг'; return g + ' г'; },
 render() {
@@ -3949,7 +3971,7 @@ CONFIG.CAT.order.forEach(g => {
 const list = items.filter(x => x.group === g).sort((a, b) => (g === 'meat' ? Classify.meatRank(a.name) - Classify.meatRank(b.name) : 0));
 if (!list.length) return;
 htmlArr.push(`<div class="cook-group"><div class="cook-group-title">${t('cat.' + g)}</div>`);
-list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}${it.free > 0 ? ' editable' : ''}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this,'${UI.escapeAttr(it.name)}')">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}${it.free > 0 ? this.subCell(it) : ''}</div><div class="cook-meta"><div class="cook-weight">${it.free > 0 ? this.editCell(it) : this.formatWeight(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
+list.forEach(it => { const on = !!pc[it.name]; totalPrice += it.price; positions++; htmlArr.push(`<div class="cook-row ${on ? 'done' : ''}${it.free > 0 ? ' editable' : ''}" data-name="${UI.escapeAttr(it.name)}"><div class="cook-check ${on ? 'on' : ''}" onclick="CookUI.toggleCookCheck(this)">${on ? '✓' : ''}</div><div class="cook-name">${UI.escape(it.name)}${it.free > 0 ? this.subCell(it) : ''}</div><div class="cook-meta"><div class="cook-weight">${it.free > 0 ? this.editCell(it) : this.formatWeight(it)}${it.net > 0 ? `<span class="cook-w">${this.cansLabel(it.weight, it.net)}</span>` : ''}</div><div class="cook-price">${it.price.toFixed(2)} ${t('common.currency')}</div></div></div>`); });
 htmlArr.push('</div>');
 });
 htmlArr.push(`<div class="cook-total-bar"><span>${t('common.total')}: ${positions} ${t('common.positions_short')}</span><span>${totalPrice.toFixed(2)} ${t('common.currency')}</span></div>`);
@@ -4086,7 +4108,12 @@ const p = AppState.runtime.lastMenuParams; if (!p) return;
 for (let d = start; d < end; d++) { if (AppState.data.progress.days[d]?.done) continue; const dd = AppState.runtime.menuPlan.days[d]; if (!dd) continue; let a = 0; dd.meals.forEach(m => m.components.forEach(c => { if (Classify.isAnimalProtein(c.item)) a += c.p; })); if (a < CONFIG.PROTEIN_SPLIT.animalMinPerKg * p.weight * 0.97) { UI.toast('День ' + (d + 1) + ': животного белка меньше ' + CONFIG.PROTEIN_SPLIT.animalMinPerKg + ' г/кг'); return; } }
 },
 toggleKitchenMode() { document.body.classList.toggle('kitchen-mode'); },
-toggleCookCheck(el, name) { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); if (!checks[key]) checks[key] = {}; checks[key][name] = !checks[key][name]; Cook.saveChecks(checks); const on = checks[key][name]; el.classList.toggle('on', on); el.textContent = on ? '✓' : ''; el.closest('.cook-row').classList.toggle('done', on); },
+_nm(el) { const r = el.closest('.cook-row'); return r ? r.dataset.name : ''; },
+step(el, dir) { this.stepWeight(this._nm(el), dir); },
+edit(el) { this.editWeight(this._nm(el), el.value); },
+reset(el) { this.resetWeight(this._nm(el)); },
+toggleCookCheck(el) { const name = this._nm(el); this._toggleCookCheck(el, name); },
+_toggleCookCheck(el, name) { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); if (!checks[key]) checks[key] = {}; checks[key][name] = !checks[key][name]; Cook.saveChecks(checks); const on = checks[key][name]; el.classList.toggle('on', on); el.textContent = on ? '✓' : ''; el.closest('.cook-row').classList.toggle('done', on); },
 resetCook() { const key = document.getElementById('cooking-period-type').value + '-' + document.getElementById('cooking-period-start').value; const checks = Cook.loadChecks(); delete checks[key]; Cook.saveChecks(checks); Cook.render(); }
 };
 const MeasureUI = {
