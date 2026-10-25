@@ -31,7 +31,7 @@
       "p": 18.9,
       "f": 4.7,
       "c": 0,
-      "price": 96.40,
+      "price": 96.4,
       "group": "protein",
       "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i32/catalog_product_gal_98937.webp",
       "atb_id": 182932
@@ -172,6 +172,7 @@
       "name": "Консерви 185г De Luxe Foods & Goods Selected Тунець шматочками у власному соку",
       "unit": "g",
       "weight": 185,
+      "net": 130,
       "p": 21,
       "f": 1,
       "c": 0,
@@ -184,6 +185,7 @@
       "name": "Консерви 185 г Своя Лінія Тунець подрібнений у власному соку з/б",
       "unit": "g",
       "weight": 185,
+      "net": 130,
       "p": 21,
       "f": 1,
       "c": 0,
@@ -235,7 +237,7 @@
       "p": 11,
       "f": 1.1,
       "c": 72,
-      "price": 46.30,
+      "price": 46.3,
       "group": "carb",
       "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i42/catalog_product_gal_111083.webp",
       "atb_id": 192767
@@ -811,7 +813,7 @@
       "p": 1.2,
       "f": 0,
       "c": 87.9,
-      "price": 75.50,
+      "price": 75.5,
       "group": "sweetener",
       "image": "https://src.zakaz.atbmarket.com/prodwebp/catalog_product_gal/i0/catalog_product_gal_81991.webp",
       "atb_id": 96916
