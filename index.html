@@ -2389,6 +2389,8 @@ if (rawUnit === 'pcs') unit = 'шт';
 else if (rawUnit === 'g') unit = 'г';
 return { value: parseFloat(m[1].replace(',', '.')) || CONFIG.DEFAULTS.defaultWeight, unit };
 }
+// шаг порции: яйцо — 1 шт, консервы и творог — полбанки / полпачки, остальное — 5 г
+function unitOf(item) { if (!item) return 5; if (item.unit === 'pcs') return 1; if (item.quant && item.pack > 0) return item.pack / 2; return 5; }
 const AppState = {
 data: {
 profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', snack1: true, snack2: true, casein: true },
@@ -2921,7 +2923,12 @@ let netW = +s.net > 0 ? +s.net : 0;
 if (!netW && Classify.isCannedFood(nameStr) && parsed && parsed.unit !== 'шт' && parsed.value > 0) netW = parsed.value;
 const baseWeight = netW > 0 ? netW : (parsed ? parsed.value : CONFIG.DEFAULTS.defaultWeight);
 const pricePer100 = baseWeight > 0 ? (s.price || 0) * 100 / baseWeight : s.price || 0;
-return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: (s.fib != null && isFinite(+s.fib) && +s.fib >= 0) ? +s.fib : Classify.fiberPer100(s.n, forceGroup), price: Math.round(pricePer100 * 100) / 100, net: netW, forceGroup: forceGroup };
+// упаковка (банка консервы / пачка творога, сыра, йогурта): нужна, чтобы в плане показывать количество упаковок
+let pack = 0;
+if (Classify.isCannedFood(nameStr)) pack = netW;
+else if ((Classify.isCasein(nameStr) || Classify.isHardCheese(nameStr) || /йогурт|кефір|кефир/i.test(nameStr)) && parsed && parsed.unit !== 'шт' && parsed.value > 0 && parsed.value <= 500) pack = parsed.value;
+const quant = pack > 0 && (Classify.isCannedFood(nameStr) || Classify.isCasein(nameStr));
+return { name: nameStr, pack, quant, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: (s.fib != null && isFinite(+s.fib) && +s.fib >= 0) ? +s.fib : Classify.fiberPer100(s.n, forceGroup), price: Math.round(pricePer100 * 100) / 100, net: netW, forceGroup: forceGroup };
 },
 refreshAll() { AppState.runtime.products = AppState.data.weekList.filter(s => !s.unavailable).map(s => this.toRacion(s)).filter(Boolean); }
 };
@@ -3104,7 +3111,7 @@ const list = []; meals.forEach(m => m.components.forEach(c => { if (c.item.name 
 const cur = list.reduce((a, x) => a + x.c.weight, 0);
 if (cur <= 0) return;
 const it0 = list[0].c.item;
-const u = it0.unit === 'pcs' ? 1 : (it0.net > 0 && Classify.isCannedFood(it0.name)) ? it0.net / 2 : 5;
+const u = unitOf(it0);
 const T = Math.max(u, Math.round(ov[n] / u) * u);
 // вес делится между приёмами шагами по u (метод наибольших остатков), чтобы суммарный вес совпал с заданным
 const parts = list.map(x => { const raw = x.c.weight * T / cur; const fl = Math.floor(raw / u + 1e-9) * u; return { x, fl, fr: raw - fl }; });
@@ -3132,7 +3139,7 @@ const aCap = (c, mi) => c.item.unit === 'pcs' ? 12 : mains.includes(mi) ? CONFIG
 const isFast = c => Classify.get(c.item) === 'sweetener' || /(^|[^а-яіїєґё])(зефір[а-яіїєґё]*|зефир[а-яіїєґё]*|мед|мёд|мармелад[а-яіїєґё]*|джем|варення|повидло|пастил[а-яіїєґё]*|цукор|сахар)([^а-яіїєґё]|$)/i.test((c.item.name || '').toLowerCase());
 for (let it = 0; it < 8; it++) {
 let s = sums();
-adjust(pick(c => Classify.isAnimalProtein(c.item) && Classify.get(c.item) === 'protein' && !Classify.isCannedFood(c.item.name) && c.p > 0, true), 'p', -(s.a - base.a), aCap);
+adjust(pick(c => Classify.isAnimalProtein(c.item) && Classify.get(c.item) === 'protein' && !Classify.isCannedFood(c.item.name) && !c.item.quant && c.p > 0, true), 'p', -(s.a - base.a), aCap);
 s = sums();
 adjust(pick(c => isLegume(c.item.name) && c.p > 0), 'p', -(s.pl - base.pl), null);
 s = sums();
@@ -3249,7 +3256,7 @@ buildCaseinSnack(dayIndex, pools, targets) {
 if (!CONFIG.MEALS.caseinEnabled) return { components: [], totals: { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 } };
 let comp = null;
 const pool = pools.proteinCasein;
-if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; let cw = CONFIG.PORTIONS.caseinPack; const pg = pItem.weight > 0 ? pItem.p / pItem.weight : 0; if (targets && pg > 0) { const share = 1 - CONFIG.MEALS.proteinPct.reduce((a, b) => a + b, 0); cw = Math.max(100, Math.min(300, Math.round(targets.proteinG * share / pg / 50) * 50)); } const s = this.scale(pItem, cw); comp = { item: pItem, weight: cw, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
+if (pool && pool.length > 0) { const pItem = pool[dayIndex % pool.length]; let cw = CONFIG.PORTIONS.caseinPack; const pg = pItem.weight > 0 ? pItem.p / pItem.weight : 0; if (targets && pg > 0) { const share = 1 - CONFIG.MEALS.proteinPct.reduce((a, b) => a + b, 0); cw = Math.max(100, Math.min(300, Math.round(targets.proteinG * share / pg / 50) * 50)); if (pItem.quant && pItem.pack > 0) { const h = pItem.pack / 2; cw = Math.max(h, Math.round(cw / h) * h); } } const s = this.scale(pItem, cw); comp = { item: pItem, weight: cw, kcal: s.kcal, p: s.p, f: s.f, c: s.c, fib: s.fib, price: s.price }; }
 const components = comp ? [comp] : [];
 const totals = { kcal: 0, p: 0, f: 0, c: 0, fib: 0, price: 0 };
 if (comp) { totals.kcal = comp.kcal; totals.p = comp.p; totals.f = comp.f; totals.c = comp.c; totals.fib = comp.fib; totals.price = comp.price; }
@@ -3342,7 +3349,7 @@ if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
 if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
 let cannedToday = false, protExcess = 0, cannedRest = null;
-CONFIG.MEALS.snackIndices.forEach(m => { if (cannedRest && cannedRest.m === m) { const cr = cannedRest; cannedRest = null; addC(m, cr.item, cr.w); protExcess += Math.max(0, mealComps[m].reduce((sum, c) => sum + c.p, 0) - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13)); return; } const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const pgC = pItem.p / pItem.weight; const needC = pgC > 0 ? (targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13) - mealComps[m].reduce((sum, c) => sum + c.p, 0)) / pgC : pW; const otherM = CONFIG.MEALS.snackIndices.find(x => x > m); /* банка целиком, либо пополам на два перекуса — остатки в 20 г не оставляем */ if (otherM !== undefined && needC < 0.7 * pItem.net && this.snackPoolsFor(pools, otherM).proteinCanned.some(x => x.name === pItem.name)) { pW = Math.round(pItem.net / 2 / 5) * 5; cannedRest = { item: pItem, w: pItem.net - pW, m: otherM }; } const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
+CONFIG.MEALS.snackIndices.forEach(m => { if (cannedRest && cannedRest.m === m) { const cr = cannedRest; cannedRest = null; addC(m, cr.item, cr.w); protExcess += Math.max(0, mealComps[m].reduce((sum, c) => sum + c.p, 0) - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13)); return; } const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const pgC = pItem.p / pItem.weight; const needC = pgC > 0 ? (targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13) - mealComps[m].reduce((sum, c) => sum + c.p, 0)) / pgC : pW; const otherM = CONFIG.MEALS.snackIndices.find(x => x > m); /* банка целиком, либо пополам на два перекуса — остатки в 20 г не оставляем */ if (otherM !== undefined && needC < 0.7 * pItem.net && this.snackPoolsFor(pools, otherM).proteinCanned.some(x => x.name === pItem.name)) { pW = Math.round(pItem.net / 2 / 5) * 5; cannedRest = { item: pItem, w: pItem.net - pW, m: otherM }; } const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); if (pItem.quant && pItem.pack > 0) { const h = pItem.pack / 2; pW = Math.max(h, Math.round(pW / h) * h); } } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
 const grains = [0, 2, 4].map(m => pools.carbMainByDayMeal && pools.carbMainByDayMeal[d] ? pools.carbMainByDayMeal[d][m] : null).filter(Boolean);
 if (grains.length) { const carbPerMeal = carbGap / grains.length; [0, 2, 4].forEach(m => { let cItem = pools.carbMainByDayMeal[d][m]; if (cItem) { if (Classify.isInstantNoodle(cItem.name)) addC(m, cItem, CONFIG.PORTIONS.instantNoodlePack); else { const carbDensity = cItem.c / cItem.weight; let itemW = carbDensity > 0 ? (carbPerMeal / carbDensity) : 0; itemW = Math.max(0, Math.round(itemW / 5) * 5); addC(m, cItem, itemW); } } }); }
@@ -3454,7 +3461,7 @@ if (!meal.components.length) return;
 visibleNum++;
 const ordered = meal.components.slice().sort((a, b) => this.sortRank(a) - this.sortRank(b));
 let tb = 0, tf = 0, tc = 0, tg = 0, trg = 0;
-const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); const cf0 = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); tg += cf0 ? Math.round(comp.weight * cf0 / 5) * 5 : weightInGrams; trg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; const cf = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const cookedW = cf ? Math.round(comp.weight * cf / 5) * 5 : null; const cookedHtml = ''; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}${cookedHtml}</div>${cookedW !== null ? '<div class="num wc"><span class="eaten-raw">' + (Math.round(comp.weight / 5) * 5 !== cookedW ? '(' + comp.weight.toFixed(0) + ')' : '') + '</span><b class="w-cook">' + cookedW + ' г</b></div>' : '<div class="num wc"><span class="eaten-raw"></span><b class="w-cook">' + comp.weight.toFixed(0) + ul + '</b></div>'}<div class="num">${comp.p.toFixed(1)}</div><div class="num">${comp.f.toFixed(1)}</div><div class="num">${comp.c.toFixed(1)}</div></div>`; }).join('');
+const rows = ordered.map(comp => { tb += comp.p; tf += comp.f; tc += comp.c; let weightInGrams = comp.weight; if (comp.item.unit === 'pcs') weightInGrams = comp.weight * Classify.eggWeightByCategory(comp.item.name); const cf0 = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); tg += cf0 ? Math.round(comp.weight * cf0 / 5) * 5 : weightInGrams; trg += weightInGrams; const ul = comp.item.unit === 'pcs' ? ' шт' : ' г'; const cf = comp.item.unit === 'pcs' ? null : Classify.cookFactor(comp.item.name, comp.item.forceGroup); const cookedW = cf ? Math.round(comp.weight * cf / 5) * 5 : null; const cookedHtml = ''; const packN = comp.item.pack > 0 && comp.item.unit !== 'pcs' ? comp.weight / comp.item.pack : 0; const packR = Math.round(packN * 2) / 2; const packTxt = packN > 0 ? (Math.abs(packN - packR) < 0.12 && packR > 0 ? String(packR) : packN.toFixed(1)) + (Classify.isCannedFood(comp.item.name) ? ' бан.' : ' пач.') : ''; const rawTxt = packTxt || (cookedW !== null && Math.round(comp.weight / 5) * 5 !== cookedW ? '(' + comp.weight.toFixed(0) + ')' : ''); const cookTxt = cookedW !== null ? cookedW + ' г' : comp.weight.toFixed(0) + ul; return `<div class="bju-row"><div class="p-name" title="${UI.escapeAttr(comp.item.name)}">${UI.escape(Names.menu(comp.item.name))}${cookedHtml}</div><div class="num wc"><span class="eaten-raw">${rawTxt}</span><b class="w-cook">${cookTxt}</b></div><div class="num">${comp.p.toFixed(1)}</div><div class="num">${comp.f.toFixed(1)}</div><div class="num">${comp.c.toFixed(1)}</div></div>`; }).join('');
 DB += tb; DF += tf; DC += tc;
 const mealKey = dayIdx + '-' + i;
 const isEaten = AppState.data.progress.meals[mealKey];
@@ -3920,20 +3927,19 @@ return `≈ ${n} ${form}`;
 },
 roundWeight(item, w) {
 if (item.unit === 'pcs') return Math.max(1, Math.round(w));
-if (item.net > 0 && Classify.isCannedFood(item.name)) { const h = item.net / 2; return Math.max(h, Math.round(w / h) * h); }
+if (item.quant && item.pack > 0) { const h = item.pack / 2; return Math.max(h, Math.round(w / h) * h); }
 return Math.max(5, Math.round(w / 5) * 5);
 },
 stepFor(it) {
 if (it.unit === 'pcs') return 1;
-if (it.net > 0 && Classify.isCannedFood(it.name)) return it.net / 2;
+if (it.quant && it.pack > 0) return it.pack / 2;
 if (Classify.isOilProduct(it.name)) return 5;
 return it.weight >= 500 ? 50 : 10;
 },
 editCell(it) {
 const pcs = it.unit === 'pcs';
-const canned = it.net > 0 && Classify.isCannedFood(it.name);
-const step = canned ? it.net / 2 : this.stepFor(it);
-const v = pcs ? Math.round(it.weight) : canned ? Math.round(it.weight / step) * step : Math.round(it.weight / 5) * 5;
+const step = this.stepFor(it);
+const v = pcs ? Math.round(it.weight) : Math.round(it.weight / step) * step;
 const nm = UI.escapeAttr(it.name);
 const unit = pcs ? 'шт' : 'г';
 return `<div class="cook-edit" data-name="${nm}"><div class="cook-step"><button type="button" class="cs-btn" aria-label="Меньше" onclick="CookUI.step(this,-1)">−</button><input type="number" class="cook-w-in${it.pinned ? ' pinned' : ''}" value="${v}" min="0" step="${step}" inputmode="${pcs ? 'numeric' : 'decimal'}" onfocus="this.select()" onchange="CookUI.edit(this)"><span class="cs-unit">${unit}</span><button type="button" class="cs-btn" aria-label="Больше" onclick="CookUI.step(this,1)">+</button></div></div>`;
@@ -3959,7 +3965,7 @@ startSel.innerHTML = Array.from({ length: maxStart + 1 }, (_, i) => `<option val
 startSel.value = start;
 const map = {};
 const end = Math.min(start + len, AppState.runtime.menuPlan.days.length);
-for (let d = start; d < end; d++) { const locked = !!AppState.data.progress.days[d]?.done; const dd = Menu.getDayData(d); if (!dd) continue; dd.meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, net: comp.item.net || 0, group: Classify.shopCategory(comp.item), free: 0, pinned: false }; map[name].weight += comp.weight; map[name].price += comp.price; if (!locked) { map[name].free += comp.weight; if ((AppState.data.weightOverrides[d] || {})[name] > 0) map[name].pinned = true; } }); }); }
+for (let d = start; d < end; d++) { const locked = !!AppState.data.progress.days[d]?.done; const dd = Menu.getDayData(d); if (!dd) continue; dd.meals.forEach(meal => { meal.components.forEach(comp => { const name = comp.item.name; if (!map[name]) map[name] = { name, unit: comp.item.unit || 'g', weight: 0, price: 0, net: comp.item.net || 0, pack: comp.item.pack || 0, quant: !!comp.item.quant, group: Classify.shopCategory(comp.item), free: 0, pinned: false }; map[name].weight += comp.weight; map[name].price += comp.price; if (!locked) { map[name].free += comp.weight; if ((AppState.data.weightOverrides[d] || {})[name] > 0) map[name].pinned = true; } }); }); }
 const items = Object.values(map);
 const checks = this.loadChecks();
 const pkey = type + '-' + start;
@@ -4048,14 +4054,13 @@ this._lt = setTimeout(step, 0);
 this._lt = setTimeout(step, 0);
 },
 _fmt(name, v) { const it = this._item(name); const pcs = it && it.unit === 'pcs'; const g = pcs ? Math.round(v) : Math.round(v / 5) * 5; if (pcs) return g + ' шт'; return g >= 1000 ? (g / 1000).toFixed(2).replace(/0$/, '').replace(/\.0$/, '') + ' кг' : g + ' г'; },
-_unit(name) { const it = this._item(name); if (!it) return 5; if (it.unit === 'pcs') return 1; if (it.net > 0 && Classify.isCannedFood(it.name)) return it.net / 2; return 5; },
+_unit(name) { return unitOf(this._item(name)); },
 _item(name) { const dd = AppState.runtime.menuPlan && AppState.runtime.menuPlan.days; if (!dd) return null; for (const d of dd) for (const m of d.meals) for (const c of m.components) if (c.item.name === name) return c.item; return null; },
 _bounds(name) {
 const L = this._lcache && this._lcache.m[name]; if (!L) return null;
 const it = this._item(name); if (!it) return null;
 const step = Cook.stepFor(it);
-const canned = it.net > 0 && Classify.isCannedFood(it.name);
-const un = it.unit === 'pcs' ? 1 : canned ? it.net / 2 : 5;
+const un = unitOf(it);
 return { min: Math.ceil(L.min / un - 1e-6) * un, max: Math.floor(L.max / un + 1e-6) * un, step, cur: L.cur };
 },
 _showRange(el, name) {
@@ -4079,7 +4084,7 @@ let total = parseFloat(String(val).replace(',', '.'));
 const freeSum = out.reduce((a, x) => a + x.w, 0);
 if (!(total >= 0) || !out.length || !(freeSum > 0)) { Cook.render(); return; }
 const L = this.limits(name);
-if (L) { const it = this._item(name); const un = it && it.unit === 'pcs' ? 1 : (it && it.net > 0 && Classify.isCannedFood(it.name)) ? it.net / 2 : 5; const mn = Math.ceil(L.min / un - 1e-6) * un, mx = Math.floor(L.max / un + 1e-6) * un; if (total > mx + 1e-6) { total = mx; UI.toast('Максимум ' + this._fmt(name, mx) + ': дальше некуда убрать/добавить белок, жиры и углеводы'); } else if (total < mn - 1e-6) { total = mn; UI.toast('Минимум ' + this._fmt(name, mn) + ': меньше нет смысла'); } }
+if (L) { const it = this._item(name); const un = unitOf(it); const mn = Math.ceil(L.min / un - 1e-6) * un, mx = Math.floor(L.max / un + 1e-6) * un; if (total > mx + 1e-6) { total = mx; UI.toast('Максимум ' + this._fmt(name, mx) + ': дальше некуда убрать/добавить белок, жиры и углеводы'); } else if (total < mn - 1e-6) { total = mn; UI.toast('Минимум ' + this._fmt(name, mn) + ': меньше нет смысла'); } }
 const target = total - lockedSum;
 if (target <= 0) { UI.toast('Вес меньше, чем уже в пройденных днях'); Cook.render(); return; }
 const step = this._unit(name);
