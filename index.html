@@ -2565,7 +2565,7 @@ root.dataset.goal = goal;
 const Classify = {
 isFillet: n => /філе|филе/i.test(n || ''),
 isEggName: n => /яйц|яйце|egg/i.test(n || ''),
-isCannedFood: n => /консерв|тунец|паштет|печінка тріски|печень трески|шпрот|сардин|тушонк|тушёнк/i.test(n || ''),
+isCannedFood: n => /консерв|тунец|тунець|тунц|паштет|печінка тріски|печень трески|шпрот|сардин|тушонк|тушёнк/i.test(n || ''),
 isHardCheese: n => /сир твердий|сир напівтвердий|сир плавлений|сыр твердый|сыр плавленый/i.test(n || ''),
 isInstantNoodle: n => /вермішель|вермишель|локшин|лапш/i.test(n || '') && /швидк|быстр|мгновен/i.test(n || ''),
 isBanana: n => /банан/i.test(n || ''),
@@ -2916,7 +2916,9 @@ const pricePerEgg = baseCount > 0 ? Math.round((s.price || 0) / baseCount * 100)
 return { name: nameStr, unit: 'pcs', weight: 1, kcal: kcalE, p: pe, f: fe, c: ce, fib: 0, price: pricePerEgg, forceGroup: forceGroup || 'protein' };
 }
 const parsed = parseQty(s.qty);
-const netW = +s.net > 0 ? +s.net : 0;
+let netW = +s.net > 0 ? +s.net : 0;
+// консервы без указанного «нетто»: считаем банку целиком по заявленной массе, чтобы порции были целая/половина банки, а не произвольные граммы
+if (!netW && Classify.isCannedFood(nameStr) && parsed && parsed.unit !== 'шт' && parsed.value > 0) netW = parsed.value;
 const baseWeight = netW > 0 ? netW : (parsed ? parsed.value : CONFIG.DEFAULTS.defaultWeight);
 const pricePer100 = baseWeight > 0 ? (s.price || 0) * 100 / baseWeight : s.price || 0;
 return { name: nameStr, unit: 'g', weight: 100, kcal: Math.round(b * 4 + f * 9 + c * 4), p: b, f: f, c: c, fib: (s.fib != null && isFinite(+s.fib) && +s.fib >= 0) ? +s.fib : Classify.fiberPer100(s.n, forceGroup), price: Math.round(pricePer100 * 100) / 100, net: netW, forceGroup: forceGroup };
@@ -4024,7 +4026,8 @@ const fmin = hi;
 lo = 1; hi = 3;
 let fmax;
 if (this._feasible(name, 3, out)) fmax = 3; else { for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) lo = mid; else hi = mid; } fmax = lo; }
-return { min: lockedSum + freeSum * fmin, max: lockedSum + freeSum * fmax, cur, locked: lockedSum, freeSum };
+const u = this._unit(name);
+return { min: Math.max(lockedSum + freeSum * fmin, lockedSum + out.length * u), max: lockedSum + freeSum * fmax, cur, locked: lockedSum, freeSum };
 },
 scheduleLimits() {
 clearTimeout(this._lt);
@@ -4043,6 +4046,7 @@ this._lt = setTimeout(step, 0);
 this._lt = setTimeout(step, 0);
 },
 _fmt(name, v) { const it = this._item(name); const pcs = it && it.unit === 'pcs'; const g = pcs ? Math.round(v) : Math.round(v / 5) * 5; if (pcs) return g + ' шт'; return g >= 1000 ? (g / 1000).toFixed(2).replace(/0$/, '').replace(/\.0$/, '') + ' кг' : g + ' г'; },
+_unit(name) { const it = this._item(name); if (!it) return 5; if (it.unit === 'pcs') return 1; if (it.net > 0 && Classify.isCannedFood(it.name)) return it.net / 2; return 5; },
 _item(name) { const dd = AppState.runtime.menuPlan && AppState.runtime.menuPlan.days; if (!dd) return null; for (const d of dd) for (const m of d.meals) for (const c of m.components) if (c.item.name === name) return c.item; return null; },
 _bounds(name) {
 const L = this._lcache && this._lcache.m[name]; if (!L) return null;
@@ -4068,7 +4072,7 @@ this.editWeight(name, cur + dir * step);
 editWeight(name, val) {
 if (!AppState.runtime.menuPlan) return;
 const { start, end } = this._period();
-const { out, lockedSum, pcs } = this._dayWeights(name, start, end);
+const { out, lockedSum } = this._dayWeights(name, start, end);
 let total = parseFloat(String(val).replace(',', '.'));
 const freeSum = out.reduce((a, x) => a + x.w, 0);
 if (!(total >= 0) || !out.length || !(freeSum > 0)) { Cook.render(); return; }
@@ -4076,18 +4080,27 @@ const L = this.limits(name);
 if (L) { const it = this._item(name); const un = it && it.unit === 'pcs' ? 1 : (it && it.net > 0 && Classify.isCannedFood(it.name)) ? it.net / 2 : 5; const mn = Math.ceil(L.min / un - 1e-6) * un, mx = Math.floor(L.max / un + 1e-6) * un; if (total > mx + 1e-6) { total = mx; UI.toast('Максимум ' + this._fmt(name, mx) + ': дальше некуда убрать/добавить белок, жиры и углеводы'); } else if (total < mn - 1e-6) { total = mn; UI.toast('Минимум ' + this._fmt(name, mn) + ': меньше нет смысла'); } }
 const target = total - lockedSum;
 if (target <= 0) { UI.toast('Вес меньше, чем уже в пройденных днях'); Cook.render(); return; }
-const it0 = this._item(name);
-const step = pcs ? 1 : (it0 && it0.net > 0 && Classify.isCannedFood(it0.name)) ? it0.net / 2 : 5;
-const rnd = v => Math.round(v / step) * step;
-let rest = rnd(target);
+const step = this._unit(name);
+// общий вес делится по дням целыми шагами (яйцо / полбанки / 5 г): методом наибольших остатков, минимум один шаг на день,
+// иначе при уменьшении на один шаг всё округлялось бы обратно до прежнего значения
+const U = Math.max(out.length, Math.round(target / step));
+const cur = out.map(x => Math.max(1, Math.round(x.w / step)));
+const dU = U - cur.reduce((a, v) => a + v, 0);
+let un;
+if (Math.abs(dU) <= out.length) {
+// небольшое изменение (кнопки − / +): меняем по одному шагу в самых нагруженных (при уменьшении) или самых лёгких (при увеличении) днях, остальные дни не трогаем
+un = cur.slice(); let k = Math.abs(dU);
+while (k > 0) { const idx = un.map((v, i) => i).filter(i => dU < 0 ? un[i] > 1 : true).sort((i, j) => dU < 0 ? (un[j] - un[i]) || (j - i) : (un[i] - un[j]) || (i - j))[0]; if (idx === undefined) break; un[idx] += dU < 0 ? -1 : 1; k--; }
+} else {
+const sh = out.map(x => U * x.w / freeSum);
+un = sh.map(v => Math.max(1, Math.floor(v + 1e-9)));
+let diff = U - un.reduce((a, v) => a + v, 0);
+const order = sh.map((v, i) => i).sort((i, j) => (sh[j] - Math.floor(sh[j])) - (sh[i] - Math.floor(sh[i])));
+for (let q = 0; diff > 0 && q < 1000; q++) { un[order[q % order.length]]++; diff--; }
+for (let q = 0; diff < 0 && q < 1000; q++) { const i = order[order.length - 1 - (q % order.length)]; if (un[i] > 1) { un[i]--; diff++; } }
+}
 const wo = AppState.data.weightOverrides;
-out.forEach((x, i) => {
-let w = i === out.length - 1 ? rest : Math.min(rest, rnd(x.w * target / freeSum));
-w = Math.max(step, w);
-rest = Math.max(0, rest - w);
-if (!wo[x.d]) wo[x.d] = {};
-wo[x.d][name] = w;
-});
+out.forEach((x, i) => { if (!wo[x.d]) wo[x.d] = {}; wo[x.d][name] = un[i] * step; });
 AppState.save('weightOverrides');
 const _sy = window.scrollY;
 Menu.build();
