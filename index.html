@@ -3131,6 +3131,20 @@ const T = Math.max(u, Math.round(ov[n] / u) * u);
 const parts = list.map(x => { const raw = x.c.weight * T / cur; const fl = Math.floor(raw / u + 1e-9) * u; return { x, fl, fr: raw - fl }; });
 let left = Math.round((T - parts.reduce((a, p) => a + p.fl, 0)) / u);
 parts.slice().sort((a, b) => b.fr - a.fr).forEach(p => { if (left > 0) { p.fl += u; left--; } });
+const isEgg = it0.unit === 'pcs' && Classify.isEggName(it0.name);
+if (isEgg) {
+// яйца: не более 3 шт за один приём; излишек уходит в другие приёмы, при необходимости в основной приём без яиц
+const EC = 3; let over = 0;
+parts.forEach(p => { if (p.fl > EC) { over += p.fl - EC; p.fl = EC; } });
+parts.forEach(p => { while (over > 0 && p.fl < EC) { p.fl++; over--; } });
+const have = new Set(parts.map(p => meals.indexOf(p.x.m)));
+[0, 2, 4, 1, 3, 5].forEach(mi => {
+if (over <= 0 || have.has(mi) || !meals[mi]) return;
+const k = Math.min(EC, over); const nc = Object.assign({}, parts[0].x.c); meals[mi].components.push(nc); have.add(mi); over -= k;
+parts.push({ x: { m: meals[mi], c: nc }, fl: k, fr: 0, fresh: true });
+});
+parts.forEach(p => { if (p.fresh) { const z = {}; KEYS.forEach(k => { z[k] = 0; }); Object.assign(p.x.c, z); p.x.c.weight = 0; } });
+}
 parts.forEach(p => setW(p.x.m, p.x.c, p.fl));
 });
 const isLegume = n => /(^|[^а-яіїєґё])(горох|сочевиц[а-яіїєґё]*|чечевиц[а-яіїєґё]*|нут|квасол[а-яіїєґё]*|фасол[а-яіїєґё]*)([^а-яіїєґё]|$)/i.test(n || '');
@@ -3149,7 +3163,7 @@ g.forEach(p => { if (p.fl !== p.x.c.weight) setW(p.x.m, p.x.c, p.fl); });
 list.filter(x => x.c.item.unit === 'pcs').forEach(x => { const w = Math.max(0, Math.min(cap(x), Math.round(x.c.weight * f))); if (w !== x.c.weight) setW(x.m, x.c, w); });
 };
 const mains = [0, 2, 4];
-const aCap = (c, mi) => c.item.unit === 'pcs' ? 12 : mains.includes(mi) ? CONFIG.PORTIONS.meatMainMax : 250;
+const aCap = (c, mi) => c.item.unit === 'pcs' ? (Classify.isEggName(c.item.name) ? 3 : 12) : mains.includes(mi) ? CONFIG.PORTIONS.meatMainMax : 250;
 const isFast = c => Classify.get(c.item) === 'sweetener' || /(^|[^а-яіїєґё])(зефір[а-яіїєґё]*|зефир[а-яіїєґё]*|мед|мёд|мармелад[а-яіїєґё]*|джем|варення|повидло|пастил[а-яіїєґё]*|цукор|сахар)([^а-яіїєґё]|$)/i.test((c.item.name || '').toLowerCase());
 for (let it = 0; it < 8; it++) {
 let s = sums();
@@ -4099,7 +4113,9 @@ const { start, end } = this._period();
 const { out, lockedSum } = this._dayWeights(name, start, end);
 let total = parseFloat(String(val).replace(',', '.'));
 const freeSum = out.reduce((a, x) => a + x.w, 0);
-if (!(total >= 0) || !out.length || !(freeSum > 0)) { Cook.render(); return; }
+const doneDays = []; for (let d = start; d < end; d++) if (AppState.data.progress.days[d]?.done) doneDays.push(d + 1);
+const lockMsg = doneDays.length ? (doneDays.length === end - start ? 'Все дни периода пройдены и закреплены: вес изменить нельзя' : 'Пройденные дни закреплены (' + doneDays.join(', ') + '): изменение применено только к остальным дням') : '';
+if (!(total >= 0) || !out.length || !(freeSum > 0)) { if (lockMsg) UI.toast(lockMsg); Cook.render(); return; }
 const L = this.limits(name);
 if (L) { const it = this._item(name); const un = unitOf(it); const mn = Math.ceil(L.min / un - 1e-6) * un, mx = Math.floor(L.max / un + 1e-6) * un; if (total > mx + 1e-6) { total = mx; UI.toast('Максимум ' + this._fmt(name, mx) + ': дальше некуда убрать/добавить белок, жиры и углеводы'); } else if (total < mn - 1e-6) { total = mn; UI.toast('Минимум ' + this._fmt(name, mn) + ': меньше нет смысла'); } }
 const target = total - lockedSum;
@@ -4130,6 +4146,7 @@ const _sy = window.scrollY;
 Menu.build();
 window.scrollTo(0, _sy);
 this._warnAnimal(start, end);
+if (lockMsg) UI.toast(lockMsg);
 },
 resetWeight(name) {
 const { start, end } = this._period();
