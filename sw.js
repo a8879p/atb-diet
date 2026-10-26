@@ -1,6 +1,7 @@
 /* Сервис-воркер ATB-Diet: офлайн-режим для установленного приложения (iOS/Android).
-   Меняйте VERSION при каждом обновлении index.html, чтобы устройства подхватили новую версию. */
-const VERSION = 'atb-diet-v1';
+   Меняйте VERSION при каждом обновлении index.html, чтобы устройства подхватили новую версию.
+   VERSION должна совпадать с CONFIG.APP_VERSION в index.html. */
+const VERSION = 'atb-diet-v10.1';
 const CORE = ['./', './index.html', './manifest.json', './icon-180.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 const CATALOG = 'cart_files/atb_diet_list.json';
 
