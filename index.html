@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta charset="UTF-8">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
@@ -9,9 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ATB-Diet">
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>ATB-Diet v2.1</title>
+<title>ATB-Diet v10.1</title>
 <style>
 :root {
 --bg-main: #f4f4f5;
@@ -1871,7 +1871,7 @@ data-i18n="profile.loss">Снижение жира</button></div>
 <div class="form-group"><label class="form-label" data-i18n="profile.meals_settings">Приёмы пищи</label>
 <div class="opt-switch-row"><span data-i18n="profile.snack1">Перекус №1 (11:00)</span><div class="avail-switch on" id="sw-snack1" onclick="Profile.toggleSnack('snack1')"><i></i></div></div>
 <div class="opt-switch-row"><span data-i18n="profile.snack2">Перекус №2 (17:00)</span><div class="avail-switch on" id="sw-snack2" onclick="Profile.toggleSnack('snack2')"><i></i></div></div>
-<div class="opt-switch-row"><span data-i18n="profile.casein_toggle">Перекус-казеин (22:30)</span><div class="avail-switch on" id="sw-casein" onclick="Profile.toggleSnack('casein')"><i></i></div></div>
+<div class="opt-switch-row"><span data-i18n="profile.casein_toggle">Перекус-казеин</span><div class="avail-switch on" id="sw-casein" onclick="Profile.toggleSnack('casein')"><i></i></div></div>
 </div>
 <div class="result" id="result">
 <div class="result-big" id="rKcal" style="color:var(--macro-kcal)">—</div>
@@ -1994,7 +1994,7 @@ viewBox="0 0 24 24">
 window.addEventListener('error', e => { console.error(e); UI.toast(t('err.critical') + e.message); });
 window.addEventListener('unhandledrejection', e => { console.error(e); UI.toast(t('err.promise') + e.reason); });
 const CONFIG = {
-APP_VERSION: '2.1',
+APP_VERSION: '10.1',
 STORAGE_PREFIX: 'atbdiet_',
 TOTAL_DAYS: 10,
 MEALS: {
@@ -2150,7 +2150,7 @@ ru: {
 "err.critical": "Критическая ошибка: ",
 "err.promise": "Ошибка промиса: ",
 'diag.casein_missing_title': 'Нет продукта для казеинового перекуса', 'diag.casein_missing_text': 'В профиле включён перекус-казеин, но среди продуктов нет творога/казеина. Добавьте творог/казеин в список продуктов или отключите этот перекус в профиле.',
-'profile.meals_settings': 'Приёмы пищи', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеин (22:30)',
+'profile.meals_settings': 'Приёмы пищи', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеин',
 'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
 'profile.restore': '📂 Восстановить', 'plan.goal': 'Цель дня:', 
 'plan.mark_day_done': 'Отметить день пройденным',
@@ -2326,7 +2326,7 @@ ua: {
 "err.critical": "Критична помилка: ",
 "err.promise": "Помилка промісу: ",
 'diag.casein_missing_title': 'Немає продукту для казеїнового перекусу', 'diag.casein_missing_text': 'У профілі увімкнено перекус-казеїн, але серед продуктів немає сиру кисломолочного/казеїну. Додайте сир кисломолочний/казеїн до списку продуктів або вимкніть цей перекус у профілі.',
-'profile.meals_settings': 'Прийоми їжі', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеїн (22:30)',
+'profile.meals_settings': 'Прийоми їжі', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеїн',
 'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
 'profile.restore': '📂 Відновити', 'plan.goal': 'Мета дня:', 
 'plan.mark_day_done': 'Позначити день пройденим',
@@ -3361,7 +3361,7 @@ CONFIG.MEALS.snackIndices.forEach(m => { const sp = this.snackPoolsFor(pools, m)
 let totalEggs = CONFIG.DEFAULTS.minEggs + (d % 4);
 if (p.goal === 'cut') totalEggs = CONFIG.DEFAULTS.minEggs;
 totalEggs = Math.min(CONFIG.DEFAULTS.maxEggs, Math.max(CONFIG.DEFAULTS.minEggs, totalEggs));
-if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const eggsMeal0 = Math.min(3, totalEggs); const eggsMeal2 = totalEggs > 3 ? totalEggs - 3 : 0; addC(0, eItem, eggsMeal0); if (eggsMeal2 > 0) addC(2, eItem, eggsMeal2); }
+if (pools.proteinEggs.length) { const eItem = pools.proteinEggs[d % pools.proteinEggs.length]; const mi = CONFIG.MEALS.mainIndices; const eggsA = Math.min(3, totalEggs); const eggsB = totalEggs > 3 ? totalEggs - 3 : 0; addC(mi[d % mi.length], eItem, eggsA); if (eggsB > 0) addC(mi[(d + 1) % mi.length], eItem, eggsB); }
 let cannedToday = false, protExcess = 0, cannedRest = null;
 CONFIG.MEALS.snackIndices.forEach(m => { if (cannedRest && cannedRest.m === m) { const cr = cannedRest; cannedRest = null; addC(m, cr.item, cr.w); protExcess += Math.max(0, mealComps[m].reduce((sum, c) => sum + c.p, 0) - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13)); return; } const sp = this.snackPoolsFor(pools, m); const pItem = this.selectProtein(m, d, cannedToday ? { ...sp, proteinCanned: [] } : sp, p.goal); if (pItem) { let pW = 50; if (pItem.unit === 'pcs') pW = 1; else if (pItem.net > 0 && Classify.isCannedFood(pItem.name)) { pW = pItem.net; const pgC = pItem.p / pItem.weight; const needC = pgC > 0 ? (targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13) - mealComps[m].reduce((sum, c) => sum + c.p, 0)) / pgC : pW; const otherM = CONFIG.MEALS.snackIndices.find(x => x > m); /* банка целиком, либо пополам на два перекуса — остатки в 20 г не оставляем */ if (otherM !== undefined && needC < 0.7 * pItem.net && this.snackPoolsFor(pools, otherM).proteinCanned.some(x => x.name === pItem.name)) { pW = Math.round(pItem.net / 2 / 5) * 5; cannedRest = { item: pItem, w: pItem.net - pW, m: otherM }; } const exP = mealComps[m].reduce((sum, c) => sum + c.p, 0) + pItem.p * pW / pItem.weight - targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); protExcess += Math.max(0, exP); } else { const minPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMin : 25; let maxPW = p.goal === 'cut' ? CONFIG.PORTIONS.meatSnackMax : 120; if (Classify.isCasein(pItem.name)) maxPW = Math.max(maxPW, 200); const protPerG = pItem.p / pItem.weight; const existingP = mealComps[m].reduce((sum, c) => sum + c.p, 0); const mealTarget = targets.proteinG * (CONFIG.MEALS.proteinPct[m] || 0.13); pW = protPerG > 0 ? Math.max(0, (mealTarget - existingP) / protPerG) : 50; pW = Math.max(minPW, Math.min(maxPW, Math.round(pW / 5) * 5)); if (pItem.quant && pItem.pack > 0) { const h = pItem.pack / 2; pW = Math.max(h, Math.round(pW / h) * h); } } if (Classify.isCannedFood(pItem.name)) cannedToday = true; addC(m, pItem, pW); } });
 let carbGap = Math.max(0, targets.carbsG - daySum.c);
@@ -3485,7 +3485,7 @@ if (isEaten || isDone) { EB += tb; EF += tf; EC += tc; meal.components.forEach(c
 const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
 : `<div class="meal-eaten-check ${isEaten ? 'on' : ''}" onclick="Progress.toggleMeal(${dayIdx}, ${i})">${isEaten ? '✓' : ''}</div>`;
-htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('meal.' + i)} · ${CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span class="wh"><span>${t('macro.raw')}</span><span>${t('macro.weight')}</span></span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num wc"><span class="eaten-raw">${Math.round(trg / 5) * 5 !== Math.round(tg / 5) * 5 ? '(' + trg.toFixed(0) + ')' : ''}</span><b class="w-cook">${tg.toFixed(0)} г</b></div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)}</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)}</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)}</div></div></div>`);
+htmlArr.push(`<div class="bju-card"><div class="meal-title">${visibleNum}. ${t('meal.' + i)}${i === 5 ? '' : ' · ' + CONFIG.MEALS.times[i]}${checkHtml}</div><div class="bju-head"><span></span><span class="wh"><span>${t('macro.raw')}</span><span>${t('macro.weight')}</span></span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num wc"><span class="eaten-raw">${Math.round(trg / 5) * 5 !== Math.round(tg / 5) * 5 ? '(' + trg.toFixed(0) + ')' : ''}</span><b class="w-cook">${tg.toFixed(0)} г</b></div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)}</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)}</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)}</div></div></div>`);
 });
 // Баланс КБЖУ
 htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EAnimal }, { p: DB, f: DF, c: DC, fib: DFib, animalG: DAnimal }, rawTargets ? { kcal: rawTargets.kcal, p: rawTargets.proteinG, f: rawTargets.fatG, c: rawTargets.carbsG, fib: displayTargets.fiber || AppState.runtime.targets.fiber || 0 } : null, Object.values(eatenMap)));
