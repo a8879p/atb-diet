@@ -4049,7 +4049,7 @@ if (this._feasible(name, 0.05, out)) hi = 0.05; else for (let i = 0; i < 9; i++)
 const fmin = hi;
 let fmax;
 if (top < 1) fmax = 1;
-else { lo = 1; hi = 3; if (this._feasible(name, 3, out)) fmax = 3; else { for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) lo = mid; else hi = mid; } fmax = lo; } }
+else { lo = 1; hi = 8; if (this._feasible(name, 8, out)) fmax = 8; else { for (let i = 0; i < 11; i++) { const mid = (lo + hi) / 2; if (this._feasible(name, mid, out)) lo = mid; else hi = mid; } fmax = lo; } }
 return { min: Math.max(lockedSum + freeSum * fmin, lockedSum + out.length * u), max: lockedSum + freeSum * fmax, cur, locked: lockedSum, freeSum };
 },
 scheduleLimits() {
