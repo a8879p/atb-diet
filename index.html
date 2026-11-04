@@ -367,7 +367,7 @@ color: #fff
 }
 .input.invalid {
 border-color: #dc2626;
-background: #fef2f2
+background: color-mix(in srgb, var(--danger) 12%, var(--bg-card))
 }
 .field-warn {
 color: #dc2626;
@@ -765,7 +765,7 @@ box-sizing: border-box;
 border-radius: 10px;
 padding: 6px 2px;
 text-align: center;
-background: #eef0f3
+background: var(--bg-soft2)
 }
 .eaten-l {
 font-size: 12px;
@@ -791,25 +791,25 @@ line-height: 1.25
 color: var(--macro-protein)
 }
 .eaten-m[data-m="p"] .eaten-chip {
-background: #eaf0ff
+background: color-mix(in srgb, var(--macro-protein) 14%, var(--bg-card))
 }
 .eaten-m[data-m="f"] .ering>div, .eaten-m[data-m="f"] .eaten-t {
 color: var(--macro-fat)
 }
 .eaten-m[data-m="f"] .eaten-chip {
-background: #fbf0e4
+background: color-mix(in srgb, var(--macro-fat) 14%, var(--bg-card))
 }
 .eaten-m[data-m="c"] .ering>div, .eaten-m[data-m="c"] .eaten-t {
 color: var(--macro-carb)
 }
 .eaten-m[data-m="c"] .eaten-chip {
-background: #e6f4ee
+background: color-mix(in srgb, var(--macro-carb) 14%, var(--bg-card))
 }
 .eaten-m[data-m="n"] .ering>div, .eaten-m[data-m="n"] .eaten-t {
 color: var(--macro-fiber)
 }
 .eaten-m[data-m="n"] .eaten-chip {
-background: #f1ebfd
+background: color-mix(in srgb, var(--macro-fiber) 14%, var(--bg-card))
 }
 .eaten-m.ok .ering>div {
 color: var(--ok)
@@ -1244,7 +1244,7 @@ color: var(--macro-fat)
 }
 .info-card.danger {
 border-left-color: var(--danger);
-background: #fef2f2
+background: color-mix(in srgb, var(--danger) 12%, var(--bg-card))
 }
 .info-card.danger b {
 color: var(--danger)
@@ -1659,7 +1659,7 @@ background: var(--border-soft)
 background: var(--bg-soft2)
 }
 .ctx-item.danger:hover {
-background: #fef2f2
+background: color-mix(in srgb, var(--danger) 12%, var(--bg-card))
 }
 .meal-eaten-check:not(.locked):hover {
 border-color: var(--primary)
@@ -1820,6 +1820,11 @@ body .shop-price { flex: none; margin-left: 8px }
 body .shop-sub { font-size: 12px; line-height: 1.3 }
 body .shop-name { font-size: 15px; font-weight: 600; line-height: 1.25 }
 @media print { .cook-group-title::before, .shop-group-title::before { display: none } .cook-group.collapsed .cook-row { display: flex !important } }
+body .seg-item.active, body .total-bar, body .cook-total-bar, body #kitchen-mode-btn.active, body .cooking-persistent-bar button.active { background: var(--strong-bg); color: var(--strong-fg); border-color: var(--strong-bg) }
+body .cook-total-bar span, body .total-bar span { color: inherit }
+body .meal-eaten-check.on, body .cook-check.on { color: #fff }
+body #kitchen-mode-btn { background: var(--strong-bg); color: var(--strong-fg); border-color: var(--strong-bg) }
+body .kitchen-mode #kitchen-mode-btn { background: var(--primary); color: #fff; border-color: var(--primary) }
 </style>
 </head>
 <body>
