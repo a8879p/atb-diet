@@ -1825,6 +1825,27 @@ body .cook-total-bar span, body .total-bar span { color: inherit }
 body .meal-eaten-check.on, body .cook-check.on { color: #fff }
 body #kitchen-mode-btn { background: var(--strong-bg); color: var(--strong-fg); border-color: var(--strong-bg) }
 body .kitchen-mode #kitchen-mode-btn { background: var(--primary); color: #fff; border-color: var(--primary) }
+
+/* v3.1: цвет приёмов, «вне плана», напоминание о копии */
+.bju-card[data-meal="0"] { --mc: #f59e0b } .bju-card[data-meal="1"] { --mc: #14b8a6 } .bju-card[data-meal="2"] { --mc: #3b82f6 }
+.bju-card[data-meal="3"] { --mc: #84cc16 } .bju-card[data-meal="4"] { --mc: #8b5cf6 } .bju-card[data-meal="5"] { --mc: #6366f1 }
+.mt-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mc, var(--text-light)); flex: none; margin-right: -2px }
+.extra { border: 1px solid var(--border); border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; background: var(--bg-card); box-shadow: var(--shadow) }
+.extra-head { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; margin-bottom: 6px }
+.extra-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border-soft); font-size: 14px }
+.extra-row .er-n { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.extra-row .er-v { color: var(--text-muted); font-size: 12px; white-space: nowrap }
+.extra-row .er-x { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-soft2); color: var(--text-muted); font-size: 16px; line-height: 1; cursor: pointer }
+.extra-btn { margin-top: 8px; width: 100% }
+.extra-form { display: grid; gap: 8px; margin-top: 10px }
+.extra-form .input { width: 100% }
+.extra-prev { font-size: 13px; color: var(--text-muted); min-height: 18px }
+.extra-an { display: flex; gap: 8px; align-items: center; font-size: 13px; margin-top: 6px }
+.backup-banner { border: 1px solid color-mix(in srgb, var(--macro-fat) 45%, var(--border)); background: var(--warn-bg); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px }
+.backup-banner .bb-t { font-size: 13px; margin-bottom: 10px }
+.backup-banner .bb-b { display: flex; gap: 8px }
+.backup-banner .bb-b .btn { flex: 1; min-height: 40px }
+@media print { .extra, .backup-banner, .water { display: none !important } }
 </style>
 </head>
 <body>
@@ -1838,6 +1859,7 @@ class="lang" onclick="UI.toggleLang()" id="langBtn">RU</button></div>
 </div>
 <div class="content">
 <div class="tab active" id="tab-plan">
+<div id="backup-banner"></div>
 <div class="day-tabs" id="dayTabs"></div>
 <div id="dayContent"></div>
 <div id="menu-diagnostics"></div>
@@ -2306,7 +2328,7 @@ ru: {
 'diag.casein_missing_title': 'Нет продукта для казеинового перекуса', 'diag.casein_missing_text': 'В профиле включён перекус-казеин, но среди продуктов нет творога/казеина. Добавьте творог/казеин в список продуктов или отключите этот перекус в профиле.',
 'profile.meals_settings': 'Приёмы пищи', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеин',
 'profile.err_check': 'Проверьте значения: {0}', 'profile.data': 'Данные', 'profile.backup': '💾 Полный бэкап',
-'profile.restore': '📂 Восстановить', 'plan.next': 'Дальше', 'plan.of': 'из', 'plan.all_eaten': 'Все приёмы отмечены', 'water.title': 'Вода сегодня', 'water.undo': '↶', 'shop.search': 'Поиск продуктов', 'shop.f_all': 'Все', 'shop.f_protein': 'Белок', 'shop.f_carb': 'Крупы и хлеб', 'shop.f_off': 'Выключенные', 'shop.nothing': 'Ничего не найдено', 'cook.sum': 'Итого за период', 'cook.positions': 'поз.', 'prog.weight': 'Вес', 'prog.change': 'Изменение', 'prog.streak': 'Дней пройдено', 'prog.kg': 'кг', 'prog.chart': 'Динамика веса', 'prog.empty': 'Добавьте первый замер — здесь появятся график и тренд.', 'prog.pace_ok': 'Темп в норме', 'prog.pace_fast': 'Темп быстрее плана', 'prog.pace_slow': 'Темп медленнее плана', 'prog.per_week': 'кг/нед.', 'prog.target_pace': 'Цель по плану', 'theme.title': 'Тема', 'plan.goal': 'Цель дня:', 
+'profile.restore': '📂 Восстановить', 'plan.next': 'Дальше', 'plan.of': 'из', 'plan.all_eaten': 'Все приёмы отмечены', 'water.title': 'Вода сегодня', 'water.undo': '↶', 'shop.search': 'Поиск продуктов', 'shop.f_all': 'Все', 'shop.f_protein': 'Белок', 'shop.f_carb': 'Крупы и хлеб', 'shop.f_off': 'Выключенные', 'shop.nothing': 'Ничего не найдено', 'cook.sum': 'Итого за период', 'cook.positions': 'поз.', 'prog.weight': 'Вес', 'prog.change': 'Изменение', 'prog.streak': 'Дней пройдено', 'prog.kg': 'кг', 'prog.chart': 'Динамика веса', 'prog.empty': 'Добавьте первый замер — здесь появятся график и тренд.', 'prog.pace_ok': 'Темп в норме', 'prog.pace_fast': 'Темп быстрее плана', 'prog.pace_slow': 'Темп медленнее плана', 'prog.per_week': 'кг/нед.', 'prog.target_pace': 'Цель по плану', 'theme.title': 'Тема', 'extra.btn': '+ Съел не по плану', 'extra.title': 'Вне плана', 'extra.name': 'Продукт (начните вводить или напишите свой)', 'extra.g': 'Граммы', 'extra.add': 'Добавить', 'extra.custom': 'Своего продукта нет в списке: введите БЖУ на 100 г', 'extra.animal': 'белок животного происхождения', 'extra.err_name': 'Укажите продукт', 'extra.err_g': 'Укажите граммы', 'extra.err_macro': 'Укажите хотя бы одно значение БЖУ', 'extra.out': 'вне плана', 'extra.added': 'Добавлено к съеденному', 'backup.rem_never': 'Резервной копии ещё не было. Выгрузите JSON, чтобы не потерять данные.', 'backup.rem_ago': 'Последняя резервная копия: {0} дн. назад. Выгрузите новую.', 'backup.now': 'Выгрузить', 'backup.later': 'Позже', 'plan.goal': 'Цель дня:', 
 'plan.mark_day_done': 'Отметить день пройденным',
 'cook.print_title': 'Приготовление: набор продуктов', 'cook.period_1': 'на 1 день', 'cook.period_3': 'на 3 дня', 'cook.period_6': 'на 6 дней', 'cook.period_10': 'на 10 дней', 'cook.period_n': 'на {0} дн.', 'snacktype.title': 'Что можно в перекусах', 'snacktype.off': 'выключен в профиле', 'snacktype.meat': 'Мясо, птица', 'snacktype.egg': 'Яйца', 'snacktype.fish': 'Рыба', 'snacktype.canned': 'Консервы', 'snacktype.dairy': 'Творог, йогурт', 'snacktype.cheese': 'Сыр', 'snacktype.bread': 'Хлеб, лаваш', 'snacktype.noodles': 'Лапша', 'snacktype.empty': 'Всё выключено: перекус будет пустым. Если он не нужен, отключите его в профиле', 'eaten.title': 'Съедено за день', 'eaten.hint': 'Отметьте съеденные приёмы — кольца заполнятся',
 'plan.unmark_day': '↩️ Снять отметку дня',
@@ -2482,7 +2504,7 @@ ua: {
 'diag.casein_missing_title': 'Немає продукту для казеїнового перекусу', 'diag.casein_missing_text': 'У профілі увімкнено перекус-казеїн, але серед продуктів немає сиру кисломолочного/казеїну. Додайте сир кисломолочний/казеїн до списку продуктів або вимкніть цей перекус у профілі.',
 'profile.meals_settings': 'Прийоми їжі', 'profile.snack1': 'Перекус №1 (11:00)', 'profile.snack2': 'Перекус №2 (17:00)', 'profile.casein_toggle': 'Перекус-казеїн',
 'profile.err_check': 'Перевірте значення: {0}', 'profile.data': 'Дані', 'profile.backup': '💾 Повний бекап',
-'profile.restore': '📂 Відновити', 'plan.next': 'Далі', 'plan.of': 'з', 'plan.all_eaten': 'Усі прийоми відмічено', 'water.title': 'Вода сьогодні', 'water.undo': '↶', 'shop.search': 'Пошук продуктів', 'shop.f_all': 'Усі', 'shop.f_protein': 'Білок', 'shop.f_carb': 'Крупи та хліб', 'shop.f_off': 'Вимкнені', 'shop.nothing': 'Нічого не знайдено', 'cook.sum': 'Разом за період', 'cook.positions': 'поз.', 'prog.weight': 'Вага', 'prog.change': 'Зміна', 'prog.streak': 'Днів пройдено', 'prog.kg': 'кг', 'prog.chart': 'Динаміка ваги', 'prog.empty': 'Додайте перший замір — тут з’являться графік і тренд.', 'prog.pace_ok': 'Темп у нормі', 'prog.pace_fast': 'Темп швидший за план', 'prog.pace_slow': 'Темп повільніший за план', 'prog.per_week': 'кг/тижд.', 'prog.target_pace': 'Ціль за планом', 'theme.title': 'Тема', 'plan.goal': 'Мета дня:', 
+'profile.restore': '📂 Відновити', 'plan.next': 'Далі', 'plan.of': 'з', 'plan.all_eaten': 'Усі прийоми відмічено', 'water.title': 'Вода сьогодні', 'water.undo': '↶', 'shop.search': 'Пошук продуктів', 'shop.f_all': 'Усі', 'shop.f_protein': 'Білок', 'shop.f_carb': 'Крупи та хліб', 'shop.f_off': 'Вимкнені', 'shop.nothing': 'Нічого не знайдено', 'cook.sum': 'Разом за період', 'cook.positions': 'поз.', 'prog.weight': 'Вага', 'prog.change': 'Зміна', 'prog.streak': 'Днів пройдено', 'prog.kg': 'кг', 'prog.chart': 'Динаміка ваги', 'prog.empty': 'Додайте перший замір — тут з’являться графік і тренд.', 'prog.pace_ok': 'Темп у нормі', 'prog.pace_fast': 'Темп швидший за план', 'prog.pace_slow': 'Темп повільніший за план', 'prog.per_week': 'кг/тижд.', 'prog.target_pace': 'Ціль за планом', 'theme.title': 'Тема', 'extra.btn': '+ Зʼїв не за планом', 'extra.title': 'Поза планом', 'extra.name': 'Продукт (почніть вводити або напишіть свій)', 'extra.g': 'Грами', 'extra.add': 'Додати', 'extra.custom': 'Власного продукту немає в списку: введіть БЖВ на 100 г', 'extra.animal': 'білок тваринного походження', 'extra.err_name': 'Вкажіть продукт', 'extra.err_g': 'Вкажіть грами', 'extra.err_macro': 'Вкажіть хоча б одне значення БЖВ', 'extra.out': 'поза планом', 'extra.added': 'Додано до з’їденого', 'backup.rem_never': 'Резервної копії ще не було. Вивантажте JSON, щоб не втратити дані.', 'backup.rem_ago': 'Остання резервна копія: {0} дн. тому. Вивантажте нову.', 'backup.now': 'Вивантажити', 'backup.later': 'Пізніше', 'plan.goal': 'Мета дня:', 
 'plan.mark_day_done': 'Позначити день пройденим',
 'cook.print_title': 'Приготування їжі: набір продуктів', 'cook.period_1': 'на 1 день', 'cook.period_3': 'на 3 дні', 'cook.period_6': 'на 6 днів', 'cook.period_10': 'на 10 днів', 'cook.period_n': 'на {0} дн.', 'snacktype.title': 'Що можна в перекусах', 'snacktype.off': 'вимкнено в профілі', 'snacktype.meat': 'М’ясо, птиця', 'snacktype.egg': 'Яйця', 'snacktype.fish': 'Риба', 'snacktype.canned': 'Консерви', 'snacktype.dairy': 'Сир, йогурт', 'snacktype.cheese': 'Сир твердий', 'snacktype.bread': 'Хліб, лаваш', 'snacktype.noodles': 'Локшина', 'snacktype.empty': 'Все вимкнено: перекус буде порожнім. Якщо він не потрібен, вимкніть його в профілі', 'eaten.title': 'З’їдено за день', 'eaten.hint': 'Позначте з’їдені прийоми — кільця заповняться',
 'plan.unmark_day': '↩️ Зняти позначку дня',
@@ -2573,7 +2595,7 @@ return { n: v, txt: (exact ? '' : '≈ ') + num + ' ' + forms[idx], short: (exac
 const AppState = {
 data: {
 profile: { gender: 'm', age: 47, height: 184, weight: 90, activity: '1.55', goal: 'loss', snack1: true, snack2: true, casein: true },
-weekList: [], measHistory: [], cookChecks: {}, weightOverrides: {}, water: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
+weekList: [], measHistory: [], cookChecks: {}, weightOverrides: {}, water: {}, extras: {}, progress: { days: {}, meals: {}, cyclesCompleted: 0 }, settings: { lang: 'ru', reminders: { enabled: false, sound: true } }
 },
 runtime: { products: [], menuPlan: null, currentDay: 0, targets: { kcal: 0, protein: 0, fat: 0, carbs: 0, fiber: 0, water: 0 }, lastMenuParams: null },
 init() {
@@ -2586,6 +2608,7 @@ if (!this.data.progress.meals) this.data.progress.meals = {};
 if (typeof this.data.progress.cyclesCompleted !== 'number') this.data.progress.cyclesCompleted = 0;
 if (!this.data.weightOverrides || typeof this.data.weightOverrides !== 'object' || Array.isArray(this.data.weightOverrides)) this.data.weightOverrides = {};
 if (!this.data.water || typeof this.data.water !== 'object' || Array.isArray(this.data.water)) this.data.water = {};
+if (!this.data.extras || typeof this.data.extras !== 'object' || Array.isArray(this.data.extras)) this.data.extras = {};
 if (!this.data.settings) this.data.settings = { lang: 'ru' };
 if (!this.data.settings.reminders) this.data.settings.reminders = { enabled: false, sound: true };
 },
@@ -2668,7 +2691,7 @@ s.lang = s.lang === 'ru' ? 'ua' : 'ru';
 document.getElementById('langBtn').textContent = s.lang === 'ru' ? 'RU' : 'UA';
 AppState.save('settings');
 this.applyLang();
-Shop.render(); Menu.render(); Cook.render();
+Shop.render(); Menu.render(); Cook.render(); BackupSystem.renderBanner();
 const _P = Profile.readParams();
 if (_P) Profile.renderResults(_P);
 InfoUI.render();
@@ -3181,6 +3204,48 @@ const deltaKcal = kcal - r.tdee;
 return { ...r, kcal, proteinG, fatG, carbsG, proteinPerKg: weight > 0 ? Math.round(proteinG / weight * 10) / 10 : 0, deltaKcal, weeklyKg: deltaKcal * 7 / 7700 };
 },
 round5: x => Math.round(x / 5) * 5
+};
+const Extras = {
+_open: false,
+list(d) { const x = AppState.data.extras[d]; return Array.isArray(x) ? x : []; },
+totals(d) { const r = { p: 0, f: 0, c: 0, k: 0, animal: 0 }; this.list(d).forEach(e => { r.p += e.p; r.f += e.f; r.c += e.c; r.k += e.k; if (e.animal) r.animal += e.p; }); return r; },
+find(name) { const q = String(name || '').trim().toLowerCase(); if (!q) return null; return AppState.data.weekList.find(s => { const dn = Products.displayName(s.n).toLowerCase(); return dn === q || Names.menu(Products.displayName(s.n)).toLowerCase() === q; }) || null; },
+toggle() { this._open = !this._open; Menu.render(); if (this._open) { const el = document.getElementById('ex_name'); if (el) el.focus({ preventScroll: false }); } },
+read() {
+const nm = (document.getElementById('ex_name').value || '').trim(); const g = parseFloat(document.getElementById('ex_g').value) || 0; const prod = this.find(nm);
+const num = id => parseFloat(document.getElementById(id).value) || 0;
+const per = prod ? { b: +prod.b || 0, f: +prod.f || 0, c: +prod.c || 0 } : { b: num('ex_b'), f: num('ex_f'), c: num('ex_c') };
+let animal = !!document.getElementById('ex_an').checked;
+if (prod) { try { const it = Products.toRacion(prod); animal = !!(it && Classify.isAnimalProtein(it)); } catch (e) { animal = false; } }
+return { nm, g, prod, per, animal };
+},
+preview() {
+const r = this.read(); const cu = document.getElementById('ex_custom'); if (cu) cu.style.display = r.nm && !r.prod ? 'block' : 'none';
+const p = r.per.b * r.g / 100, f = r.per.f * r.g / 100, c = r.per.c * r.g / 100; const pv = document.getElementById('ex_prev');
+if (pv) pv.textContent = r.g > 0 && (p + f + c) > 0 ? '≈ ' + Math.round(p * 4 + f * 9 + c * 4) + ' ' + t('day.kcal') + ' · ' + t('macro.b') + ' ' + p.toFixed(1) + ' · ' + t('macro.f') + ' ' + f.toFixed(1) + ' · ' + t('macro.c') + ' ' + c.toFixed(1) : '';
+},
+add(d) {
+if (AppState.data.progress.days[d]?.done) return;
+const r = this.read();
+if (!r.nm) { UI.toast(t('extra.err_name')); return; }
+if (!(r.g > 0)) { UI.toast(t('extra.err_g')); return; }
+if (!r.prod && !(r.per.b + r.per.f + r.per.c > 0)) { UI.toast(t('extra.err_macro')); return; }
+const p = r.per.b * r.g / 100, f = r.per.f * r.g / 100, c = r.per.c * r.g / 100;
+if (!Array.isArray(AppState.data.extras[d])) AppState.data.extras[d] = [];
+AppState.data.extras[d].push({ n: r.prod ? Products.displayName(r.prod.n) : r.nm, g: Math.round(r.g), p: Math.round(p * 10) / 10, f: Math.round(f * 10) / 10, c: Math.round(c * 10) / 10, k: Math.round(p * 4 + f * 9 + c * 4), animal: r.animal });
+AppState.save('extras'); this._open = false; Menu.render(); UI.toast(t('extra.added'));
+},
+del(d, i) { if (AppState.data.progress.days[d]?.done) return; const a = this.list(d); a.splice(i, 1); if (!a.length) delete AppState.data.extras[d]; AppState.save('extras'); Menu.render(); },
+html(d, isDone) {
+const list = this.list(d); const tot = this.totals(d);
+const rows = list.map((e, i) => `<div class="extra-row"><span class="er-n">${UI.escape(Names.menu(e.n))}</span><span class="er-v">${e.g} г · ${e.k} ${t('day.kcal')}</span>${isDone ? '' : `<button type="button" class="er-x" aria-label="×" onclick="Extras.del(${d},${i})">×</button>`}</div>`).join('');
+const dl = AppState.data.weekList.filter(s => !s.unavailable || true).map(s => `<option value="${UI.escapeAttr(Products.displayName(s.n))}"></option>`).join('');
+const form = this._open && !isDone ? `<div class="extra-form"><input type="text" class="input" id="ex_name" list="ex_list" placeholder="${UI.escapeAttr(t('extra.name'))}" autocomplete="off" oninput="Extras.preview()"><datalist id="ex_list">${dl}</datalist><input type="number" class="input" id="ex_g" inputmode="decimal" min="0" placeholder="${UI.escapeAttr(t('extra.g'))}" oninput="Extras.preview()"><div id="ex_custom" style="display:none"><div class="note" style="margin:6px 0">${t('extra.custom')}</div><div class="form-row3"><input type="number" class="input" id="ex_b" step="0.1" placeholder="${t('macro.b')}" oninput="Extras.preview()"><input type="number" class="input" id="ex_f" step="0.1" placeholder="${t('macro.f')}" oninput="Extras.preview()"><input type="number" class="input" id="ex_c" step="0.1" placeholder="${t('macro.c')}" oninput="Extras.preview()"></div><label class="extra-an"><input type="checkbox" id="ex_an" onchange="Extras.preview()"> ${t('extra.animal')}</label></div><div class="extra-prev" id="ex_prev"></div><button type="button" class="btn" onclick="Extras.add(${d})">${t('extra.add')}</button></div>` : '';
+const head = list.length ? `<div class="extra-head"><span>🍽️ ${t('extra.title')}</span><span>${Math.round(tot.k)} ${t('day.kcal')}</span></div>` : '';
+const btn = isDone ? '' : `<button type="button" class="btn btn-ghost extra-btn" onclick="Extras.toggle()">${this._open ? t('common.cancel') : t('extra.btn')}</button>`;
+if (!list.length && isDone) return '';
+return `<div class="extra" id="extra-card">${head}${rows}${btn}${form}</div>`;
+}
 };
 const Water = {
 key() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); },
@@ -3726,8 +3791,9 @@ const checkHtml = isDone
 ? `<div class="meal-eaten-check locked ${isEaten ? 'on' : ''}">${isEaten ? '✓' : ''}</div>`
 : `<div class="meal-eaten-check ${isEaten ? 'on' : ''}" onclick="event.stopPropagation();delete Menu._mealState['${mealKey}'];Progress.toggleMeal(${dayIdx}, ${i})">${isEaten ? '✓' : ''}</div>`;
 const stC = this._mealState[mealKey]; const collapsed = stC !== undefined ? stC : !!(isEaten || isDone);
-htmlArr.push(`<div class="bju-card${collapsed ? ' collapsed' : ''}${nextMeal === i && !collapsed ? ' next' : ''}${isEaten || isDone ? ' eaten' : ''}" data-meal="${i}"><div class="meal-title" onclick="Menu.toggleCard(this,'${mealKey}')"><span class="mt-chev">▾</span><span class="mt-name">${visibleNum}. ${t('meal.' + i)}${i === 5 ? '' : ' · ' + CONFIG.MEALS.times[i]}</span><span class="mt-sum">${Math.round(tk)} ${t('day.kcal')}</span>${checkHtml}</div><div class="bju-head"><span></span><span class="wh"><span>${t('macro.raw')}</span><span>${t('macro.weight')}</span></span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num wc"><span class="eaten-raw">${Math.round(trg / 5) * 5 !== Math.round(tg / 5) * 5 ? '(' + trg.toFixed(0) + ')' : ''}</span><b class="w-cook">${tg.toFixed(0)} г</b></div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)}</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)}</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)}</div></div></div>`);
+htmlArr.push(`<div class="bju-card${collapsed ? ' collapsed' : ''}${nextMeal === i && !collapsed ? ' next' : ''}${isEaten || isDone ? ' eaten' : ''}" data-meal="${i}"><div class="meal-title" onclick="Menu.toggleCard(this,'${mealKey}')"><span class="mt-chev">▾</span><span class="mt-dot"></span><span class="mt-name">${visibleNum}. ${t('meal.' + i)}${i === 5 ? '' : ' · ' + CONFIG.MEALS.times[i]}</span><span class="mt-sum">${Math.round(tk)} ${t('day.kcal')}</span>${checkHtml}</div><div class="bju-head"><span></span><span class="wh"><span>${t('macro.raw')}</span><span>${t('macro.weight')}</span></span><span style="color:var(--macro-protein)">${t('macro.b')}</span><span style="color:var(--macro-fat)">${t('macro.f')}</span><span style="color:var(--macro-carb)">${t('macro.c')}</span></div>${rows}<div class="bju-total"><div>${t('common.total')}</div><div class="num wc"><span class="eaten-raw">${Math.round(trg / 5) * 5 !== Math.round(tg / 5) * 5 ? '(' + trg.toFixed(0) + ')' : ''}</span><b class="w-cook">${tg.toFixed(0)} г</b></div><div class="num" style="color:var(--macro-protein)">${tb.toFixed(1)}</div><div class="num" style="color:var(--macro-fat)">${tf.toFixed(1)}</div><div class="num" style="color:var(--macro-carb)">${tc.toFixed(1)}</div></div></div>`);
 });
+{ const XT = Extras.totals(dayIdx); EB += XT.p; EF += XT.f; EC += XT.c; EAnimal += XT.animal; Extras.list(dayIdx).forEach((e, xi) => { eatenMap['x' + xi + e.n] = { name: Names.menu(e.n) + ' (' + t('extra.out') + ')', val: e.g, raw: e.g, pcs: false, rank: 99 }; }); }
 // Карточка «Сегодня»: съедено из цели + ближайший приём
 {
 const ekc = Math.round(EB * 4 + EF * 9 + EC * 4); const tk0 = Math.max(1, Math.round(displayTargets.kcal || 0)); const pr = Math.max(0, Math.min(100, ekc / tk0 * 100));
@@ -3741,6 +3807,7 @@ htmlArr.push(this.renderEatenRings({ p: EB, f: EF, c: EC, fib: EFib, animalG: EA
 const completedCount = Progress.getCompletedCount();
 const totalDays = AppState.runtime.menuPlan?.days.length || CONFIG.TOTAL_DAYS;
 htmlArr.push(Water.html());
+htmlArr.push(Extras.html(dayIdx, !!isDone));
 // Кнопка отметки/снятия дня
 if (isDone) {
 htmlArr.push(`<button class="btn btn-ghost day-complete-btn" onclick="Progress.toggleDay(${dayIdx})">${t('plan.unmark_day')}</button>`);
@@ -3933,6 +4000,8 @@ if (!confirmed) return;
 AppState.data.progress.cyclesCompleted++;
 AppState.data.progress.days = {};
 AppState.data.progress.meals = {};
+AppState.data.extras = {};
+AppState.save('extras');
 AppState.save('progress');
 Menu.renderDaySelector();
 Menu.render();
@@ -4578,7 +4647,21 @@ document.getElementById('sw-casein').classList.toggle('on', p.casein !== false);
 }
 };
 const BackupSystem = {
-exportFullDump() { const dump = { app: 'ATB-Diet', version: CONFIG.APP_VERSION, timestamp: new Date().toISOString(), data: AppState.data }; const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `atb_diet_backup_${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href); UI.toast(t('backup.exported')); },
+due() {
+const st = AppState.data.settings; const now = Date.now();
+if (!st.firstRun) { st.firstRun = new Date(now).toISOString(); AppState.save('settings'); }
+if (st.backupSnooze && now < +st.backupSnooze) return null;
+const hasData = (AppState.data.weekList && AppState.data.weekList.length) || Object.keys(AppState.data.progress.days).length || (AppState.data.measHistory && AppState.data.measHistory.length);
+if (!hasData) return null;
+const days = Math.floor((now - new Date(st.lastBackup || st.firstRun).getTime()) / 86400000);
+return days >= 7 ? { days, never: !st.lastBackup } : null;
+},
+renderBanner() {
+const el = document.getElementById('backup-banner'); if (!el) return; const d = this.due();
+el.innerHTML = d ? `<div class="backup-banner"><div class="bb-t">💾 ${d.never ? t('backup.rem_never') : t('backup.rem_ago').replace('{0}', d.days)}</div><div class="bb-b"><button type="button" class="btn" onclick="BackupSystem.exportFullDump()">${t('backup.now')}</button><button type="button" class="btn btn-ghost" onclick="BackupSystem.snooze()">${t('backup.later')}</button></div></div>` : '';
+},
+snooze() { AppState.data.settings.backupSnooze = Date.now() + 86400000; AppState.save('settings'); this.renderBanner(); },
+exportFullDump() { AppState.data.settings.lastBackup = new Date().toISOString(); AppState.data.settings.backupSnooze = 0; AppState.save('settings'); setTimeout(() => this.renderBanner(), 0); const dump = { app: 'ATB-Diet', version: CONFIG.APP_VERSION, timestamp: new Date().toISOString(), data: AppState.data }; const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `atb_diet_backup_${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href); UI.toast(t('backup.exported')); },
 validateDump(data) {
 if (!data || typeof data !== 'object') return t('backup.err_root');
 const p = data.profile;
@@ -4611,7 +4694,7 @@ const validationError = this.validateDump(parsed.data);
 if (validationError) throw new Error(validationError);
 const confirmed = await UI.confirm(t('backup.restore_confirm'), t('backup.restore'), t('common.cancel'));
 if (confirmed) {
-const merged = { profile: { ...AppState.data.profile, ...(parsed.data.profile || {}) }, weekList: parsed.data.weekList ?? AppState.data.weekList, measHistory: parsed.data.measHistory ?? AppState.data.measHistory, cookChecks: parsed.data.cookChecks ?? AppState.data.cookChecks, weightOverrides: parsed.data.weightOverrides ?? AppState.data.weightOverrides ?? {}, water: parsed.data.water ?? AppState.data.water ?? {}, progress: { ...AppState.data.progress, ...(parsed.data.progress || {}) }, settings: { ...AppState.data.settings, ...(parsed.data.settings || {}) } };
+const merged = { profile: { ...AppState.data.profile, ...(parsed.data.profile || {}) }, weekList: parsed.data.weekList ?? AppState.data.weekList, measHistory: parsed.data.measHistory ?? AppState.data.measHistory, cookChecks: parsed.data.cookChecks ?? AppState.data.cookChecks, weightOverrides: parsed.data.weightOverrides ?? AppState.data.weightOverrides ?? {}, water: parsed.data.water ?? AppState.data.water ?? {}, extras: parsed.data.extras ?? AppState.data.extras ?? {}, progress: { ...AppState.data.progress, ...(parsed.data.progress || {}) }, settings: { ...AppState.data.settings, ...(parsed.data.settings || {}) } };
 AppState.data = merged;
 AppState.saveAll();
 UI.toast(t('backup.restored'));
@@ -4755,6 +4838,7 @@ UI.applyLang();
 Profile.calc();
 Reminders.init();
 Menu.initSwipe();
+BackupSystem.renderBanner();
 UI.syncThemeColor();
 UI.syncHeader();
 window.addEventListener('resize', () => UI.syncHeader());
